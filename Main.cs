@@ -57,5 +57,10 @@ namespace OTS.Ticketing.Software
         {
             this.WindowState = FormWindowState.Minimized;
         }
+
+        private void خروجToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

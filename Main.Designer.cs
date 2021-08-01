@@ -40,7 +40,12 @@ namespace OTS.Ticketing.Software
             this.ImbClose = new System.Windows.Forms.PictureBox();
             this.ImbSlide = new System.Windows.Forms.PictureBox();
             this.PnlContainer = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.ملفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.دخولبمستخدمآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.عنToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
+            this.خروجToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
             this.PnlTop.SuspendLayout();
@@ -49,6 +54,8 @@ namespace OTS.Ticketing.Software
             ((System.ComponentModel.ISupportInitialize)(this.ImbMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbSlide)).BeginInit();
+            this.PnlContainer.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlMenuVertical
@@ -70,7 +77,7 @@ namespace OTS.Ticketing.Software
             this.BtnCompanies.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnCompanies.ForeColor = System.Drawing.Color.White;
             this.BtnCompanies.Image = ((System.Drawing.Image)(resources.GetObject("BtnCompanies.Image")));
-            this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCompanies.Location = new System.Drawing.Point(0, 110);
             this.BtnCompanies.Name = "BtnCompanies";
             this.BtnCompanies.Size = new System.Drawing.Size(250, 45);
@@ -169,11 +176,44 @@ namespace OTS.Ticketing.Software
             // 
             // PnlContainer
             // 
+            this.PnlContainer.Controls.Add(this.menuStrip1);
             this.PnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlContainer.Location = new System.Drawing.Point(250, 50);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(1050, 600);
             this.PnlContainer.TabIndex = 2;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ملفToolStripMenuItem,
+            this.عنToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1050, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // ملفToolStripMenuItem
+            // 
+            this.ملفToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.دخولبمستخدمآخرToolStripMenuItem,
+            this.خروجToolStripMenuItem});
+            this.ملفToolStripMenuItem.Name = "ملفToolStripMenuItem";
+            this.ملفToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.ملفToolStripMenuItem.Text = "ملف";
+            // 
+            // دخولبمستخدمآخرToolStripMenuItem
+            // 
+            this.دخولبمستخدمآخرToolStripMenuItem.Name = "دخولبمستخدمآخرToolStripMenuItem";
+            this.دخولبمستخدمآخرToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.دخولبمستخدمآخرToolStripMenuItem.Text = "دخول بمستخدم آخر";
+            // 
+            // عنToolStripMenuItem
+            // 
+            this.عنToolStripMenuItem.Name = "عنToolStripMenuItem";
+            this.عنToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.عنToolStripMenuItem.Text = "مساعدة";
             // 
             // bunifuFormDock1
             // 
@@ -215,6 +255,13 @@ namespace OTS.Ticketing.Software
             this.bunifuFormDock1.TitleBarOptions.TitleBarControl = this.PnlTop;
             this.bunifuFormDock1.TitleBarOptions.UseBackColorOnDockingIndicators = false;
             // 
+            // خروجToolStripMenuItem
+            // 
+            this.خروجToolStripMenuItem.Name = "خروجToolStripMenuItem";
+            this.خروجToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.خروجToolStripMenuItem.Text = "خروج";
+            this.خروجToolStripMenuItem.Click += new System.EventHandler(this.خروجToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,7 +271,9 @@ namespace OTS.Ticketing.Software
             this.Controls.Add(this.PnlTop);
             this.Controls.Add(this.PnlMenuVertical);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "Main";
             this.PnlMenuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).EndInit();
@@ -234,6 +283,10 @@ namespace OTS.Ticketing.Software
             ((System.ComponentModel.ISupportInitialize)(this.ImbMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbSlide)).EndInit();
+            this.PnlContainer.ResumeLayout(false);
+            this.PnlContainer.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -251,5 +304,10 @@ namespace OTS.Ticketing.Software
         private System.Windows.Forms.PictureBox ImbMaximize;
         private Bunifu.UI.WinForms.BunifuFormDock bunifuFormDock1;
         private System.Windows.Forms.Button BtnCompanies;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem ملفToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem دخولبمستخدمآخرToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem عنToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem خروجToolStripMenuItem;
     }
 }
