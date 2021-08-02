@@ -31,6 +31,11 @@ namespace OTS.Ticketing.Software
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PnlMenuVertical = new System.Windows.Forms.Panel();
+            this.BtnTickets = new System.Windows.Forms.Button();
+            this.BtnSoftwares = new System.Windows.Forms.Button();
+            this.BtnPhoneNumbres = new System.Windows.Forms.Button();
+            this.BtnEmployees = new System.Windows.Forms.Button();
+            this.BtnHome = new System.Windows.Forms.Button();
             this.BtnCompanies = new System.Windows.Forms.Button();
             this.LOGO = new System.Windows.Forms.PictureBox();
             this.PnlTop = new System.Windows.Forms.Panel();
@@ -43,9 +48,10 @@ namespace OTS.Ticketing.Software
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ملفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.دخولبمستخدمآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.عنToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.خروجToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.عنToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.عنToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
             this.PnlTop.SuspendLayout();
@@ -61,6 +67,11 @@ namespace OTS.Ticketing.Software
             // PnlMenuVertical
             // 
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.PnlMenuVertical.Controls.Add(this.BtnTickets);
+            this.PnlMenuVertical.Controls.Add(this.BtnSoftwares);
+            this.PnlMenuVertical.Controls.Add(this.BtnPhoneNumbres);
+            this.PnlMenuVertical.Controls.Add(this.BtnEmployees);
+            this.PnlMenuVertical.Controls.Add(this.BtnHome);
             this.PnlMenuVertical.Controls.Add(this.BtnCompanies);
             this.PnlMenuVertical.Controls.Add(this.LOGO);
             this.PnlMenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
@@ -68,6 +79,86 @@ namespace OTS.Ticketing.Software
             this.PnlMenuVertical.Name = "PnlMenuVertical";
             this.PnlMenuVertical.Size = new System.Drawing.Size(250, 650);
             this.PnlMenuVertical.TabIndex = 0;
+            // 
+            // BtnTickets
+            // 
+            this.BtnTickets.FlatAppearance.BorderSize = 0;
+            this.BtnTickets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnTickets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnTickets.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnTickets.ForeColor = System.Drawing.Color.White;
+            this.BtnTickets.Image = ((System.Drawing.Image)(resources.GetObject("BtnTickets.Image")));
+            this.BtnTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnTickets.Location = new System.Drawing.Point(0, 367);
+            this.BtnTickets.Name = "BtnTickets";
+            this.BtnTickets.Size = new System.Drawing.Size(250, 45);
+            this.BtnTickets.TabIndex = 1;
+            this.BtnTickets.Text = "البطاقات";
+            this.BtnTickets.UseVisualStyleBackColor = true;
+            // 
+            // BtnSoftwares
+            // 
+            this.BtnSoftwares.FlatAppearance.BorderSize = 0;
+            this.BtnSoftwares.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnSoftwares.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnSoftwares.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnSoftwares.ForeColor = System.Drawing.Color.White;
+            this.BtnSoftwares.Image = ((System.Drawing.Image)(resources.GetObject("BtnSoftwares.Image")));
+            this.BtnSoftwares.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnSoftwares.Location = new System.Drawing.Point(0, 316);
+            this.BtnSoftwares.Name = "BtnSoftwares";
+            this.BtnSoftwares.Size = new System.Drawing.Size(250, 45);
+            this.BtnSoftwares.TabIndex = 1;
+            this.BtnSoftwares.Text = "البرامج";
+            this.BtnSoftwares.UseVisualStyleBackColor = true;
+            // 
+            // BtnPhoneNumbres
+            // 
+            this.BtnPhoneNumbres.FlatAppearance.BorderSize = 0;
+            this.BtnPhoneNumbres.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnPhoneNumbres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPhoneNumbres.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnPhoneNumbres.ForeColor = System.Drawing.Color.White;
+            this.BtnPhoneNumbres.Image = ((System.Drawing.Image)(resources.GetObject("BtnPhoneNumbres.Image")));
+            this.BtnPhoneNumbres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnPhoneNumbres.Location = new System.Drawing.Point(0, 265);
+            this.BtnPhoneNumbres.Name = "BtnPhoneNumbres";
+            this.BtnPhoneNumbres.Size = new System.Drawing.Size(250, 45);
+            this.BtnPhoneNumbres.TabIndex = 1;
+            this.BtnPhoneNumbres.Text = "ارقام الهاتف";
+            this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
+            // 
+            // BtnEmployees
+            // 
+            this.BtnEmployees.FlatAppearance.BorderSize = 0;
+            this.BtnEmployees.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEmployees.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnEmployees.ForeColor = System.Drawing.Color.White;
+            this.BtnEmployees.Image = ((System.Drawing.Image)(resources.GetObject("BtnEmployees.Image")));
+            this.BtnEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnEmployees.Location = new System.Drawing.Point(0, 214);
+            this.BtnEmployees.Name = "BtnEmployees";
+            this.BtnEmployees.Size = new System.Drawing.Size(250, 45);
+            this.BtnEmployees.TabIndex = 1;
+            this.BtnEmployees.Text = "الموظفين";
+            this.BtnEmployees.UseVisualStyleBackColor = true;
+            // 
+            // BtnHome
+            // 
+            this.BtnHome.FlatAppearance.BorderSize = 0;
+            this.BtnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnHome.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnHome.ForeColor = System.Drawing.Color.White;
+            this.BtnHome.Image = ((System.Drawing.Image)(resources.GetObject("BtnHome.Image")));
+            this.BtnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnHome.Location = new System.Drawing.Point(0, 111);
+            this.BtnHome.Name = "BtnHome";
+            this.BtnHome.Size = new System.Drawing.Size(250, 45);
+            this.BtnHome.TabIndex = 1;
+            this.BtnHome.Text = "الصفحة الرئيسية";
+            this.BtnHome.UseVisualStyleBackColor = true;
             // 
             // BtnCompanies
             // 
@@ -78,7 +169,7 @@ namespace OTS.Ticketing.Software
             this.BtnCompanies.ForeColor = System.Drawing.Color.White;
             this.BtnCompanies.Image = ((System.Drawing.Image)(resources.GetObject("BtnCompanies.Image")));
             this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnCompanies.Location = new System.Drawing.Point(0, 110);
+            this.BtnCompanies.Location = new System.Drawing.Point(0, 162);
             this.BtnCompanies.Name = "BtnCompanies";
             this.BtnCompanies.Size = new System.Drawing.Size(250, 45);
             this.BtnCompanies.TabIndex = 1;
@@ -106,7 +197,7 @@ namespace OTS.Ticketing.Software
             this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlTop.Location = new System.Drawing.Point(250, 0);
             this.PnlTop.Name = "PnlTop";
-            this.PnlTop.Size = new System.Drawing.Size(1050, 50);
+            this.PnlTop.Size = new System.Drawing.Size(1050, 44);
             this.PnlTop.TabIndex = 1;
             // 
             // ImbMinimize
@@ -178,13 +269,14 @@ namespace OTS.Ticketing.Software
             // 
             this.PnlContainer.Controls.Add(this.menuStrip1);
             this.PnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlContainer.Location = new System.Drawing.Point(250, 50);
+            this.PnlContainer.Location = new System.Drawing.Point(250, 44);
             this.PnlContainer.Name = "PnlContainer";
-            this.PnlContainer.Size = new System.Drawing.Size(1050, 600);
+            this.PnlContainer.Size = new System.Drawing.Size(1050, 606);
             this.PnlContainer.TabIndex = 2;
             // 
             // menuStrip1
             // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ملفToolStripMenuItem,
             this.عنToolStripMenuItem});
@@ -206,14 +298,29 @@ namespace OTS.Ticketing.Software
             // دخولبمستخدمآخرToolStripMenuItem
             // 
             this.دخولبمستخدمآخرToolStripMenuItem.Name = "دخولبمستخدمآخرToolStripMenuItem";
-            this.دخولبمستخدمآخرToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.دخولبمستخدمآخرToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.دخولبمستخدمآخرToolStripMenuItem.Text = "دخول بمستخدم آخر";
+            // 
+            // خروجToolStripMenuItem
+            // 
+            this.خروجToolStripMenuItem.Name = "خروجToolStripMenuItem";
+            this.خروجToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.خروجToolStripMenuItem.Text = "خروج";
+            this.خروجToolStripMenuItem.Click += new System.EventHandler(this.خروجToolStripMenuItem_Click);
             // 
             // عنToolStripMenuItem
             // 
+            this.عنToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.عنToolStripMenuItem1});
             this.عنToolStripMenuItem.Name = "عنToolStripMenuItem";
             this.عنToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.عنToolStripMenuItem.Text = "مساعدة";
+            // 
+            // عنToolStripMenuItem1
+            // 
+            this.عنToolStripMenuItem1.Name = "عنToolStripMenuItem1";
+            this.عنToolStripMenuItem1.Size = new System.Drawing.Size(89, 22);
+            this.عنToolStripMenuItem1.Text = "عن";
             // 
             // bunifuFormDock1
             // 
@@ -254,13 +361,6 @@ namespace OTS.Ticketing.Software
             this.bunifuFormDock1.TitleBarOptions.DoubleClickToExpandWindow = false;
             this.bunifuFormDock1.TitleBarOptions.TitleBarControl = this.PnlTop;
             this.bunifuFormDock1.TitleBarOptions.UseBackColorOnDockingIndicators = false;
-            // 
-            // خروجToolStripMenuItem
-            // 
-            this.خروجToolStripMenuItem.Name = "خروجToolStripMenuItem";
-            this.خروجToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.خروجToolStripMenuItem.Text = "خروج";
-            this.خروجToolStripMenuItem.Click += new System.EventHandler(this.خروجToolStripMenuItem_Click);
             // 
             // Main
             // 
@@ -309,5 +409,11 @@ namespace OTS.Ticketing.Software
         private System.Windows.Forms.ToolStripMenuItem دخولبمستخدمآخرToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem عنToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem خروجToolStripMenuItem;
+        private System.Windows.Forms.Button BtnTickets;
+        private System.Windows.Forms.Button BtnSoftwares;
+        private System.Windows.Forms.Button BtnPhoneNumbres;
+        private System.Windows.Forms.Button BtnEmployees;
+        private System.Windows.Forms.ToolStripMenuItem عنToolStripMenuItem1;
+        private System.Windows.Forms.Button BtnHome;
     }
 }
