@@ -7,22 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.MainForms
+namespace OTS.Ticketing.Software.Tickets
 {
-    public class MainRepository
+    public class TicketRepository
     {
         public DataAccess dataAccess = new DataAccess();
 
-        public bool CheckUserNameAndPassword(string username, string password)
-        {
-            DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("UserName", username);
-            dynamicParameters.Add("Password", password);
-            List<EmployeeInfo> employeesInfo = dataAccess.Query<EmployeeInfo>("SELECT * FROM employees where username like @UserName and password = @Password and State = 1", dynamicParameters).ToList();
-            return employeesInfo.Count > 0;
-        }
-
-        public List<TicketDetails> GetLastCalls()
+        public List<TicketDetails> GetAllTickets()
         {
             return dataAccess.Query<TicketDetails>(@"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
                                                 c.name as CompanyName, 
@@ -34,7 +25,7 @@ namespace OTS.Ticketing.Software.MainForms
                                                  inner join phoneNumbers pn on t.number = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join employees e on t.employeeId = e.id
-                                                 inner join companies c on t.companyId = c.id ORDER BY t.Id DESC", new DynamicParameters()).ToList();
+                                                 inner join companies c on t.companyId = c.id ORDER BY t.number", new DynamicParameters()).ToList();
         }
     }
 }

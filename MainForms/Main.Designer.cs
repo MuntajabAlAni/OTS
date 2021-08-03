@@ -43,14 +43,13 @@ namespace OTS.Ticketing.Software
             this.ImbNormalSize = new System.Windows.Forms.PictureBox();
             this.ImbMaximize = new System.Windows.Forms.PictureBox();
             this.ImbClose = new System.Windows.Forms.PictureBox();
-            this.ImbSlide = new System.Windows.Forms.PictureBox();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChangeUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.ملفToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.دخولبمستخدمآخرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.خروجToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.عنToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.عنToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
@@ -59,9 +58,7 @@ namespace OTS.Ticketing.Software
             ((System.ComponentModel.ISupportInitialize)(this.ImbNormalSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbClose)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImbSlide)).BeginInit();
-            this.PnlContainer.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlMenuVertical
@@ -91,10 +88,13 @@ namespace OTS.Ticketing.Software
             this.BtnTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnTickets.Location = new System.Drawing.Point(0, 367);
             this.BtnTickets.Name = "BtnTickets";
+            this.BtnTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnTickets.Size = new System.Drawing.Size(250, 45);
             this.BtnTickets.TabIndex = 1;
             this.BtnTickets.Text = "البطاقات";
+            this.BtnTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnTickets.UseVisualStyleBackColor = true;
+            this.BtnTickets.Click += new System.EventHandler(this.BtnTickets_Click);
             // 
             // BtnSoftwares
             // 
@@ -107,9 +107,11 @@ namespace OTS.Ticketing.Software
             this.BtnSoftwares.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnSoftwares.Location = new System.Drawing.Point(0, 316);
             this.BtnSoftwares.Name = "BtnSoftwares";
+            this.BtnSoftwares.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnSoftwares.Size = new System.Drawing.Size(250, 45);
             this.BtnSoftwares.TabIndex = 1;
             this.BtnSoftwares.Text = "البرامج";
+            this.BtnSoftwares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSoftwares.UseVisualStyleBackColor = true;
             // 
             // BtnPhoneNumbres
@@ -123,9 +125,11 @@ namespace OTS.Ticketing.Software
             this.BtnPhoneNumbres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnPhoneNumbres.Location = new System.Drawing.Point(0, 265);
             this.BtnPhoneNumbres.Name = "BtnPhoneNumbres";
+            this.BtnPhoneNumbres.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnPhoneNumbres.Size = new System.Drawing.Size(250, 45);
             this.BtnPhoneNumbres.TabIndex = 1;
             this.BtnPhoneNumbres.Text = "ارقام الهاتف";
+            this.BtnPhoneNumbres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
             // 
             // BtnEmployees
@@ -139,9 +143,11 @@ namespace OTS.Ticketing.Software
             this.BtnEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnEmployees.Location = new System.Drawing.Point(0, 214);
             this.BtnEmployees.Name = "BtnEmployees";
+            this.BtnEmployees.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnEmployees.Size = new System.Drawing.Size(250, 45);
             this.BtnEmployees.TabIndex = 1;
             this.BtnEmployees.Text = "الموظفين";
+            this.BtnEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnEmployees.UseVisualStyleBackColor = true;
             // 
             // BtnHome
@@ -155,10 +161,13 @@ namespace OTS.Ticketing.Software
             this.BtnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnHome.Location = new System.Drawing.Point(0, 111);
             this.BtnHome.Name = "BtnHome";
+            this.BtnHome.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnHome.Size = new System.Drawing.Size(250, 45);
             this.BtnHome.TabIndex = 1;
             this.BtnHome.Text = "الصفحة الرئيسية";
+            this.BtnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnHome.UseVisualStyleBackColor = true;
+            this.BtnHome.Click += new System.EventHandler(this.BtnHome_Click);
             // 
             // BtnCompanies
             // 
@@ -171,9 +180,11 @@ namespace OTS.Ticketing.Software
             this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnCompanies.Location = new System.Drawing.Point(0, 162);
             this.BtnCompanies.Name = "BtnCompanies";
+            this.BtnCompanies.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnCompanies.Size = new System.Drawing.Size(250, 45);
             this.BtnCompanies.TabIndex = 1;
-            this.BtnCompanies.Text = "الزبائن";
+            this.BtnCompanies.Text = "الشركات";
+            this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCompanies.UseVisualStyleBackColor = true;
             // 
             // LOGO
@@ -185,6 +196,7 @@ namespace OTS.Ticketing.Software
             this.LOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.LOGO.TabIndex = 0;
             this.LOGO.TabStop = false;
+            this.LOGO.Click += new System.EventHandler(this.LOGO_Click);
             // 
             // PnlTop
             // 
@@ -193,11 +205,11 @@ namespace OTS.Ticketing.Software
             this.PnlTop.Controls.Add(this.ImbNormalSize);
             this.PnlTop.Controls.Add(this.ImbMaximize);
             this.PnlTop.Controls.Add(this.ImbClose);
-            this.PnlTop.Controls.Add(this.ImbSlide);
+            this.PnlTop.Controls.Add(this.MenuStrip);
             this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.PnlTop.Location = new System.Drawing.Point(250, 0);
             this.PnlTop.Name = "PnlTop";
-            this.PnlTop.Size = new System.Drawing.Size(1050, 44);
+            this.PnlTop.Size = new System.Drawing.Size(1050, 60);
             this.PnlTop.TabIndex = 1;
             // 
             // ImbMinimize
@@ -253,74 +265,62 @@ namespace OTS.Ticketing.Software
             this.ImbClose.TabStop = false;
             this.ImbClose.Click += new System.EventHandler(this.ImbClose_Click);
             // 
-            // ImbSlide
+            // MenuStrip
             // 
-            this.ImbSlide.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbSlide.Image = ((System.Drawing.Image)(resources.GetObject("ImbSlide.Image")));
-            this.ImbSlide.Location = new System.Drawing.Point(6, 3);
-            this.ImbSlide.Name = "ImbSlide";
-            this.ImbSlide.Size = new System.Drawing.Size(35, 35);
-            this.ImbSlide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbSlide.TabIndex = 0;
-            this.ImbSlide.TabStop = false;
-            this.ImbSlide.Click += new System.EventHandler(this.ImbSlide_Click);
+            this.MenuStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FileToolStripMenuItem,
+            this.HelpToolStripMenuItem});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 36);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(1050, 24);
+            this.MenuStrip.TabIndex = 2;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
+            // FileToolStripMenuItem
+            // 
+            this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ChangeUserToolStripMenuItem,
+            this.ExitToolStripMenuItem});
+            this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
+            this.FileToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
+            this.FileToolStripMenuItem.Text = "ملف";
+            // 
+            // ChangeUserToolStripMenuItem
+            // 
+            this.ChangeUserToolStripMenuItem.Name = "ChangeUserToolStripMenuItem";
+            this.ChangeUserToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ChangeUserToolStripMenuItem.Text = "دخول بمستخدم آخر";
+            this.ChangeUserToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserToolStripMenuItem_Click);
+            // 
+            // ExitToolStripMenuItem
+            // 
+            this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ExitToolStripMenuItem.Text = "خروج";
+            this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
+            // 
+            // HelpToolStripMenuItem
+            // 
+            this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.AboutToolStripMenuItem});
+            this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
+            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
+            this.HelpToolStripMenuItem.Text = "مساعدة";
+            // 
+            // AboutToolStripMenuItem
+            // 
+            this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
+            this.AboutToolStripMenuItem.Text = "عن";
             // 
             // PnlContainer
             // 
-            this.PnlContainer.Controls.Add(this.menuStrip1);
             this.PnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlContainer.Location = new System.Drawing.Point(250, 44);
+            this.PnlContainer.Location = new System.Drawing.Point(250, 60);
             this.PnlContainer.Name = "PnlContainer";
-            this.PnlContainer.Size = new System.Drawing.Size(1050, 606);
+            this.PnlContainer.Size = new System.Drawing.Size(1050, 590);
             this.PnlContainer.TabIndex = 2;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ملفToolStripMenuItem,
-            this.عنToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1050, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // ملفToolStripMenuItem
-            // 
-            this.ملفToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.دخولبمستخدمآخرToolStripMenuItem,
-            this.خروجToolStripMenuItem});
-            this.ملفToolStripMenuItem.Name = "ملفToolStripMenuItem";
-            this.ملفToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.ملفToolStripMenuItem.Text = "ملف";
-            // 
-            // دخولبمستخدمآخرToolStripMenuItem
-            // 
-            this.دخولبمستخدمآخرToolStripMenuItem.Name = "دخولبمستخدمآخرToolStripMenuItem";
-            this.دخولبمستخدمآخرToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.دخولبمستخدمآخرToolStripMenuItem.Text = "دخول بمستخدم آخر";
-            // 
-            // خروجToolStripMenuItem
-            // 
-            this.خروجToolStripMenuItem.Name = "خروجToolStripMenuItem";
-            this.خروجToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.خروجToolStripMenuItem.Text = "خروج";
-            this.خروجToolStripMenuItem.Click += new System.EventHandler(this.خروجToolStripMenuItem_Click);
-            // 
-            // عنToolStripMenuItem
-            // 
-            this.عنToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.عنToolStripMenuItem1});
-            this.عنToolStripMenuItem.Name = "عنToolStripMenuItem";
-            this.عنToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.عنToolStripMenuItem.Text = "مساعدة";
-            // 
-            // عنToolStripMenuItem1
-            // 
-            this.عنToolStripMenuItem1.Name = "عنToolStripMenuItem1";
-            this.عنToolStripMenuItem1.Size = new System.Drawing.Size(89, 22);
-            this.عنToolStripMenuItem1.Text = "عن";
             // 
             // bunifuFormDock1
             // 
@@ -371,22 +371,21 @@ namespace OTS.Ticketing.Software
             this.Controls.Add(this.PnlTop);
             this.Controls.Add(this.PnlMenuVertical);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.MenuStrip;
             this.Name = "Main";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.Main_Load);
             this.PnlMenuVertical.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).EndInit();
             this.PnlTop.ResumeLayout(false);
+            this.PnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ImbMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbNormalSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbClose)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ImbSlide)).EndInit();
-            this.PnlContainer.ResumeLayout(false);
-            this.PnlContainer.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -396,7 +395,6 @@ namespace OTS.Ticketing.Software
         private System.Windows.Forms.Panel PnlMenuVertical;
         private System.Windows.Forms.PictureBox LOGO;
         private System.Windows.Forms.Panel PnlTop;
-        private System.Windows.Forms.PictureBox ImbSlide;
         private System.Windows.Forms.Panel PnlContainer;
         private System.Windows.Forms.PictureBox ImbClose;
         private System.Windows.Forms.PictureBox ImbMinimize;
@@ -404,16 +402,16 @@ namespace OTS.Ticketing.Software
         private System.Windows.Forms.PictureBox ImbMaximize;
         private Bunifu.UI.WinForms.BunifuFormDock bunifuFormDock1;
         private System.Windows.Forms.Button BtnCompanies;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem ملفToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem دخولبمستخدمآخرToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem عنToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem خروجToolStripMenuItem;
         private System.Windows.Forms.Button BtnTickets;
         private System.Windows.Forms.Button BtnSoftwares;
         private System.Windows.Forms.Button BtnPhoneNumbres;
         private System.Windows.Forms.Button BtnEmployees;
-        private System.Windows.Forms.ToolStripMenuItem عنToolStripMenuItem1;
         private System.Windows.Forms.Button BtnHome;
+        private System.Windows.Forms.MenuStrip MenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ChangeUserToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
     }
 }

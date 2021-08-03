@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OTS.Ticketing.Software.MainForms;
+using OTS.Ticketing.Software.Tickets;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,8 @@ namespace OTS.Ticketing.Software
         public Main()
         {
             InitializeComponent();
+            FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
+            HelpToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
         }
 
         private void ApplingFormOnContainer(object obj)
@@ -28,12 +32,6 @@ namespace OTS.Ticketing.Software
             addForm.Show();
         }
 
-        private void ImbSlide_Click(object sender, EventArgs e)
-        {
-            if (PnlMenuVertical.Width == 250) PnlMenuVertical.Width = 100;
-            else PnlMenuVertical.Width = 250;
-        }
-
         private void ImbClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -44,6 +42,7 @@ namespace OTS.Ticketing.Software
             this.WindowState = FormWindowState.Maximized;
             ImbMaximize.Visible = false;
             ImbNormalSize.Visible = true;
+            bunifuFormDock1.AllowFormDragging = false;
         }
 
         private void ImbNormalSize_Click(object sender, EventArgs e)
@@ -58,9 +57,42 @@ namespace OTS.Ticketing.Software
             this.WindowState = FormWindowState.Minimized;
         }
 
-        private void خروجToolStripMenuItem_Click(object sender, EventArgs e)
+        
+
+        private void BtnHome_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("Home")) return;
+                ApplingFormOnContainer(new Home());
+        }
+
+        
+
+        private void LOGO_Click(object sender, EventArgs e)
+        {
+            if (PnlMenuVertical.Width == 250) PnlMenuVertical.Width = 100;
+            else PnlMenuVertical.Width = 250;
+        }
+
+        private void ChangeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Restart();
+        }
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+         BtnHome_Click(sender, e);
+        }
+
+        private void BtnTickets_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
+            ApplingFormOnContainer(new DisplayTickets());
+        }
+
+        
     }
 }

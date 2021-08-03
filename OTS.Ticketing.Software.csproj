@@ -55,6 +55,12 @@
   <ItemGroup>
     <Compile Include="Branches\BranchRepository.cs" />
     <Compile Include="Companies\CompanyRepository.cs" />
+    <Compile Include="Companies\DisplayCompanies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Companies\DisplayCompanies.Designer.cs">
+      <DependentUpon>DisplayCompanies.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="MainForms\Home.cs">
       <SubType>Form</SubType>
@@ -81,13 +87,23 @@
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="DatabaseConnection\ConnectionTools.cs" />
     <Compile Include="Models\PhoneNumberInfo.cs" />
+    <Compile Include="Models\TicketDetails.cs" />
     <Compile Include="PhoneNumbers\PhoneNumberRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SoftwareInfo.cs" />
     <Compile Include="Models\TicketInfo.cs" />
     <Compile Include="Softwares\SoftwareRepository.cs" />
-    <Compile Include="Ticketing\TicketRepository.cs" />
+    <Compile Include="Tickets\DisplayTickets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\DisplayTickets.Designer.cs">
+      <DependentUpon>DisplayTickets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\TicketRepository.cs" />
+    <EmbeddedResource Include="Companies\DisplayCompanies.resx">
+      <DependentUpon>DisplayCompanies.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +123,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Tickets\DisplayTickets.resx">
+      <DependentUpon>DisplayTickets.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
