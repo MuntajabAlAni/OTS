@@ -25,16 +25,12 @@ namespace OTS.Ticketing.Software.MainForms
         public List<TicketDetails> GetLastCalls()
         {
             return dataAccess.Query<TicketDetails>(@"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
-                                                c.name as CompanyName, 
-                                                case when t.state = 0 then 'لم يتم الحل'
-                                                when t.state = 1 then 'تم الحل'
-                                                when t.state = 2 then 'مؤجلة'
-                                                when t.state = 3 then 'تم التحويل'
-                                                end state, t.revision FROM tickets t
+                                                c.name as CompanyName, st.name state, t.revision FROM tickets t
                                                  inner join phoneNumbers pn on t.number = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join employees e on t.employeeId = e.id
-                                                 inner join companies c on t.companyId = c.id ORDER BY t.Id DESC", new DynamicParameters()).ToList();
+                                                 inner join companies c on t.companyId = c.id
+                                                 inner join states st on t.stateId = st.id ORDER BY t.number DESC,t.revision DESC", new DynamicParameters()).ToList();
         }
     }
 }

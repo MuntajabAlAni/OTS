@@ -33,8 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bunifu.Licensing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=f89b4760ba7dcb6b" />
     <Reference Include="Bunifu.UI.WinForms.BunifuFormDock">
       <HintPath>..\Bunifu_UI_WinForms_5.0.3_Downloadly.ir\Bunifu UI WinForms 5.0.3\ui.winforms.5.0.3\Bunifu.UI.WinForms.BunifuFormDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Bunifu.UI.WinForms.BunifuToggleSwitch">
+      <HintPath>..\Bunifu_UI_WinForms_5.0.3_Downloadly.ir\Bunifu UI WinForms 5.0.3\ui.winforms.5.0.3\Bunifu.UI.WinForms.BunifuToggleSwitch.dll</HintPath>
     </Reference>
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
@@ -42,6 +46,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,6 +92,7 @@
     <Compile Include="Models\EmployeeInfo.cs" />
     <Compile Include="DatabaseConnection\ConnectionTools.cs" />
     <Compile Include="Models\PhoneNumberInfo.cs" />
+    <Compile Include="Models\StateInfo.cs" />
     <Compile Include="Models\TicketDetails.cs" />
     <Compile Include="PhoneNumbers\PhoneNumberRepository.cs" />
     <Compile Include="Program.cs" />
@@ -94,6 +100,12 @@
     <Compile Include="Models\SoftwareInfo.cs" />
     <Compile Include="Models\TicketInfo.cs" />
     <Compile Include="Softwares\SoftwareRepository.cs" />
+    <Compile Include="Tickets\AddTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\AddTicket.Designer.cs">
+      <DependentUpon>AddTicket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tickets\DisplayTickets.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +135,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Tickets\AddTicket.resx">
+      <DependentUpon>AddTicket.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tickets\DisplayTickets.resx">
       <DependentUpon>DisplayTickets.cs</DependentUpon>
     </EmbeddedResource>

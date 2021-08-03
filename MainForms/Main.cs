@@ -93,6 +93,10 @@ namespace OTS.Ticketing.Software
             ApplingFormOnContainer(new DisplayTickets());
         }
 
-        
+        private void BtnAddTicket_Click(object sender, EventArgs e)
+        {
+            AddTicket addTicket = new AddTicket();
+            addTicket.ShowDialog();
+        }
     }
 }

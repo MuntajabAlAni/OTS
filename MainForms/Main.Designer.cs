@@ -31,6 +31,7 @@ namespace OTS.Ticketing.Software
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PnlMenuVertical = new System.Windows.Forms.Panel();
+            this.BtnAddTicket = new System.Windows.Forms.Button();
             this.BtnTickets = new System.Windows.Forms.Button();
             this.BtnSoftwares = new System.Windows.Forms.Button();
             this.BtnPhoneNumbres = new System.Windows.Forms.Button();
@@ -64,6 +65,7 @@ namespace OTS.Ticketing.Software
             // PnlMenuVertical
             // 
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.PnlMenuVertical.Controls.Add(this.BtnAddTicket);
             this.PnlMenuVertical.Controls.Add(this.BtnTickets);
             this.PnlMenuVertical.Controls.Add(this.BtnSoftwares);
             this.PnlMenuVertical.Controls.Add(this.BtnPhoneNumbres);
@@ -76,6 +78,25 @@ namespace OTS.Ticketing.Software
             this.PnlMenuVertical.Name = "PnlMenuVertical";
             this.PnlMenuVertical.Size = new System.Drawing.Size(250, 650);
             this.PnlMenuVertical.TabIndex = 0;
+            // 
+            // BtnAddTicket
+            // 
+            this.BtnAddTicket.FlatAppearance.BorderSize = 0;
+            this.BtnAddTicket.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnAddTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAddTicket.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnAddTicket.ForeColor = System.Drawing.Color.White;
+            this.BtnAddTicket.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddTicket.Image")));
+            this.BtnAddTicket.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnAddTicket.Location = new System.Drawing.Point(0, 418);
+            this.BtnAddTicket.Name = "BtnAddTicket";
+            this.BtnAddTicket.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BtnAddTicket.Size = new System.Drawing.Size(250, 45);
+            this.BtnAddTicket.TabIndex = 1;
+            this.BtnAddTicket.Text = "بطاقة جديدة";
+            this.BtnAddTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnAddTicket.UseVisualStyleBackColor = true;
+            this.BtnAddTicket.Click += new System.EventHandler(this.BtnAddTicket_Click);
             // 
             // BtnTickets
             // 
@@ -413,5 +434,6 @@ namespace OTS.Ticketing.Software
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.Button BtnAddTicket;
     }
 }

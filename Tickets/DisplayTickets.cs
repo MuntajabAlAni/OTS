@@ -22,6 +22,37 @@ namespace OTS.Ticketing.Software.Tickets
         {
             DtgTickets.DataSource = ticketRepository.GetAllTickets();
             ColumnHeadersNaming();
+            TxtNumber.Text = ticketRepository.GetLastTicketNumber();
+            DtpStartDate.Value = DateTime.Now;
+            FillCompaniesComboBox();
+            FillSoftwaresComboBox();
+            FillEmployeesComboBox();
+            FillStatesComboBox();
+        }
+
+        private void FillCompaniesComboBox()
+        {
+            CombCompanies.DataSource = ticketRepository.GetAllCompanies();
+            CombCompanies.DisplayMember = "Name";
+            CombCompanies.ValueMember = "Id";
+        }
+        private void FillSoftwaresComboBox()
+        {
+            CombSoftware.DataSource = ticketRepository.GetAllSoftwares();
+            CombSoftware.DisplayMember = "Name";
+            CombSoftware.ValueMember = "Id";
+        }
+        private void FillEmployeesComboBox()
+        {
+            CombEmployee.DataSource = ticketRepository.GetAllEmployees();
+            CombEmployee.DisplayMember = "displayName";
+            CombEmployee.ValueMember = "Id";
+        }
+        private void FillStatesComboBox()
+        {
+            CombState.DataSource = ticketRepository.GetAllStates();
+            CombState.DisplayMember = "Name";
+            CombState.ValueMember = "Id";
         }
         private void ColumnHeadersNaming()
         {
@@ -36,10 +67,11 @@ namespace OTS.Ticketing.Software.Tickets
             DtgTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+
+        private void ToggleRemotely_CheckedChanged(object sender, Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs e)
         {
-
+            if (ToggleRemotely.Checked) LblRemote.Text = "بإستخدام Anydesk";
+            else LblRemote.Text = "بإتصال فقط";
         }
-
     }
 }
