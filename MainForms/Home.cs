@@ -1,5 +1,4 @@
-﻿using OTS.Ticketing.Software.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
-namespace OTS.Ticketing.Software.MainForms
+namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Home : Form
     {
@@ -20,13 +20,13 @@ namespace OTS.Ticketing.Software.MainForms
             InitializeComponent();
         }
 
-        private void Home_Load(object sender, EventArgs e)
+        private async void Home_Load(object sender, EventArgs e)
         {
-            DtgLastTickets.DataSource = mainRepository.GetLastCalls();
-            ColumnHeadersNaming();
+             DtgLastTickets.DataSource = await mainRepository.GetLastCalls();
+            RenamingColumns();
         }
 
-        private void ColumnHeadersNaming()
+        private void RenamingColumns()
         {
             DtgLastTickets.Columns["Number"].HeaderText = "رقم البطاقة";
             DtgLastTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";

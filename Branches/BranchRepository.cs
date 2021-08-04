@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.Branches
+namespace OTS.Ticketing.Win.Branches
 {
     public class BranchRepository
     {

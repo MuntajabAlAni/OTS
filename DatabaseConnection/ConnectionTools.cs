@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.DatabaseConnection
+namespace OTS.Ticketing.Win.DatabaseConnection
 {
     public static class ConnectionTools
     {

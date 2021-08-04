@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.Models
+namespace OTS.Ticketing.Win.Tickets
 {
-    public class TicketDetails
+    public class TicketsView
     {
         public long Number { get; set; }
         public DateTime OpenDate { get; set; }

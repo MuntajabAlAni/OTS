@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
-namespace OTS.Ticketing.Software.Tickets
+namespace OTS.Ticketing.Win.Tickets
 {
     public partial class DisplayTickets : Form
     {
@@ -20,6 +21,8 @@ namespace OTS.Ticketing.Software.Tickets
 
         private void DisplayTickets_Load(object sender, EventArgs e)
         {
+
+           
             DtgTickets.DataSource = ticketRepository.GetAllTickets();
             ColumnHeadersNaming();
             TxtNumber.Text = ticketRepository.GetLastTicketNumber();

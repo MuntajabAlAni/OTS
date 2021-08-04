@@ -7,23 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.DatabaseConnection
+namespace OTS.Ticketing.Win.DatabaseConnection
 {
     public class DataAccess
     {
-        public IEnumerable<T> Query<T>(string sql, DynamicParameters parameters)
+        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, DynamicParameters parameters)
         {
             using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue("OTS_Ticketing_SoftwareDB")))
             {
-                return connection.Query<T>(sql, parameters);
+                return await connection.QueryAsync<T>(sql, parameters);
             }
         }
 
-        public int Execute(string sql, DynamicParameters parameters)
+        public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters)
         {
             using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue("OTS_Ticketing_SoftwareDB")))
             {
-                return connection.Execute(sql, parameters);
+                return await connection.ExecuteAsync(sql, parameters);
             }
         }
     }

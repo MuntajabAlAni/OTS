@@ -1,5 +1,5 @@
 ﻿
-namespace OTS.Ticketing.Software.Tickets
+namespace OTS.Ticketing.Win.Tickets
 {
     partial class AddTicket
     {

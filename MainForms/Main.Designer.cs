@@ -1,5 +1,5 @@
 ﻿
-namespace OTS.Ticketing.Software
+namespace OTS.Ticketing.Win
 {
     partial class Main
     {

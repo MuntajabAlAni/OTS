@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
-namespace OTS.Ticketing.Software.MainForms
+namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Login : Form
     {
@@ -18,9 +19,10 @@ namespace OTS.Ticketing.Software.MainForms
             InitializeComponent();
         }
 
-        public void LoginToMain()
+        public async Task LoginToMain()
         {
-            if (!mainRepository.CheckUserNameAndPassword(TxtUserName.Text, TxtPassword.Text))
+            var result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text, TxtPassword.Text);
+            if (!result)
             {
                 MessageBox.Show("يرجى التأكد من معلومات الدخول !");
                 return;
@@ -31,9 +33,9 @@ namespace OTS.Ticketing.Software.MainForms
             main.ShowDialog();
             this.Close();
         }
-        private void BtnLogin_Click(object sender, EventArgs e)
+        private async void BtnLogin_Click(object sender, EventArgs e)
         {
-            LoginToMain();
+            await LoginToMain();
         }
 
         private void BtnExit_Click(object sender, EventArgs e)
@@ -49,7 +51,7 @@ namespace OTS.Ticketing.Software.MainForms
             }
         }
 
-        private void TxtUserName_KeyDown(object sender, KeyEventArgs e)
+        private async void TxtUserName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -58,15 +60,15 @@ namespace OTS.Ticketing.Software.MainForms
                     TxtPassword.Focus();
                     return;
                 }
-                LoginToMain();
+                await LoginToMain();
             }
         }
 
-        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+        private async void TxtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                LoginToMain();
+                await LoginToMain();
             }
         }
 

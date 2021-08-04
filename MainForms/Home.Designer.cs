@@ -1,5 +1,5 @@
 ﻿
-namespace OTS.Ticketing.Software.MainForms
+namespace OTS.Ticketing.Win.MainForms
 {
     partial class Home
     {

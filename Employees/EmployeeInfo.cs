@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.Models
+namespace OTS.Ticketing.Win.Employees
 {
     public class EmployeeInfo
     {

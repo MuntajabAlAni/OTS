@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Software.Tickets
+namespace OTS.Ticketing.Win.Tickets
 {
     public partial class AddTicket : Form
     {

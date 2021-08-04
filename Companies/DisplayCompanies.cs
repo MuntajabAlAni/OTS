@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Software.Companies
+namespace OTS.Ticketing.Win.Companies
 {
     public partial class DisplayCompanies : Form
     {

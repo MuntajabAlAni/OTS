@@ -1,11 +1,11 @@
-﻿using OTS.Ticketing.Software.MainForms;
+﻿using OTS.Ticketing.Win.MainForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Software
+namespace OTS.Ticketing.Win
 {
     static class Program
     {

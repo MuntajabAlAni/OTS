@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.PhoneNumbers
+namespace OTS.Ticketing.Win.PhoneNumbers
 {
     class PhoneNumberRepository
     {

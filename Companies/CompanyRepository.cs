@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Software.Companies
+namespace OTS.Ticketing.Win.Companies
 {
     public class CompanyRepository
     {

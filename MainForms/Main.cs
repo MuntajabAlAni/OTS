@@ -1,5 +1,5 @@
-﻿using OTS.Ticketing.Software.MainForms;
-using OTS.Ticketing.Software.Tickets;
+﻿using OTS.Ticketing.Win.MainForms;
+using OTS.Ticketing.Win.Tickets;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Software
+namespace OTS.Ticketing.Win
 {
     public partial class Main : Form
     {

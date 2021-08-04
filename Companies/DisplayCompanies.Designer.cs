@@ -1,5 +1,5 @@
 ﻿
-namespace OTS.Ticketing.Software.Companies
+namespace OTS.Ticketing.Win.Companies
 {
     partial class DisplayCompanies
     {

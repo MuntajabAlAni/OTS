@@ -1,5 +1,5 @@
 ﻿
-namespace OTS.Ticketing.Software.Tickets
+namespace OTS.Ticketing.Win.Tickets
 {
     partial class DisplayTickets
     {
@@ -60,6 +60,7 @@ namespace OTS.Ticketing.Software.Tickets
             this.LblRemote = new System.Windows.Forms.Label();
             this.LblState = new System.Windows.Forms.Label();
             this.CombState = new System.Windows.Forms.ComboBox();
+            this.BtnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,7 +75,7 @@ namespace OTS.Ticketing.Software.Tickets
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(120, 45);
             this.BtnUpdate.TabIndex = 4;
-            this.BtnUpdate.Text = "تعديل";
+            this.BtnUpdate.Text = "حفظ";
             this.BtnUpdate.UseVisualStyleBackColor = false;
             // 
             // DtgTickets
@@ -383,6 +384,20 @@ namespace OTS.Ticketing.Software.Tickets
             this.CombState.Size = new System.Drawing.Size(121, 25);
             this.CombState.TabIndex = 9;
             // 
+            // BtnClose
+            // 
+            this.BtnClose.BackColor = System.Drawing.Color.Crimson;
+            this.BtnClose.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnClose.FlatAppearance.BorderSize = 2;
+            this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnClose.Location = new System.Drawing.Point(12, 161);
+            this.BtnClose.Name = "BtnClose";
+            this.BtnClose.Size = new System.Drawing.Size(120, 45);
+            this.BtnClose.TabIndex = 4;
+            this.BtnClose.Text = "إغلاق";
+            this.BtnClose.UseVisualStyleBackColor = false;
+            // 
             // DisplayTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -410,6 +425,7 @@ namespace OTS.Ticketing.Software.Tickets
             this.Controls.Add(this.TxtRevision);
             this.Controls.Add(this.TxtNumber);
             this.Controls.Add(this.DtgTickets);
+            this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.BtnUpdate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DisplayTickets";
@@ -446,5 +462,6 @@ namespace OTS.Ticketing.Software.Tickets
         private System.Windows.Forms.Label LblRemote;
         private System.Windows.Forms.Label LblState;
         private System.Windows.Forms.ComboBox CombState;
+        private System.Windows.Forms.Button BtnClose;
     }
 }
