@@ -74,9 +74,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.Close();
         }
 
-        private async void BtnAdd_Click(object sender, EventArgs e)
+        private void BtnAdd_Click(object sender, EventArgs e)
         {
-            await ticketRepository.AddTicket(Convert.ToInt64(TxtNumber.Text),
+            ticketRepository.AddTicket(Convert.ToInt64(TxtNumber.Text),
                 Convert.ToInt32(TxtRevision.Text),
                 Convert.ToInt64(CombCompanies.SelectedValue),
                 Convert.ToInt64(CombPhoneNumbers.SelectedValue),
@@ -97,7 +97,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             long selectedNumber = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Number"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-            TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketInfo selectedTicket = await ticketRepository.GetTicketsByNumberAndRevision(selectedNumber, selectedRevision);
             TxtNumber.Text = selectedTicket.Number.ToString();
             TxtRevision.Text = (selectedTicket.Revision + 1).ToString();
             CombCompanies.SelectedValue = selectedTicket.CompanyId;

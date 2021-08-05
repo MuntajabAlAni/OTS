@@ -95,7 +95,7 @@ namespace OTS.Ticketing.Win
                 BtnTickets.Location = new Point(0, 162);
                 return;
             }
-            BtnTickets.Enabled = false;
+            //BtnTickets.Enabled = false;
 
         }
 

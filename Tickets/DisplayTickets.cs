@@ -87,7 +87,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-            TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketInfo selectedTicket = await ticketRepository.GetTicketsByNumberAndRevision(selectedNumber, selectedRevision);
             TxtNumber.Text = selectedTicket.Number.ToString();
             TxtRevision.Text = selectedTicket.Revision.ToString();
             CombCompanies.SelectedValue = selectedTicket.CompanyId;

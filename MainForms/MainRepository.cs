@@ -29,7 +29,7 @@ namespace OTS.Ticketing.Win.MainForms
         {
             string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
                                                 c.name as CompanyName, st.name state, t.revision FROM tickets t
-                                                 left join phoneNumbers pn on t.number = pn.id
+                                                 left join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  left join softwares s on t.softwareId = s.id
                                                  left join employees e on t.employeeId = e.id
                                                  left join companies c on t.companyId = c.id
