@@ -30,10 +30,10 @@ namespace OTS.Ticketing.Win.Tickets
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddTicket));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAddCompany = new System.Windows.Forms.PictureBox();
             this.BtnAddSoftware = new System.Windows.Forms.PictureBox();
             this.CombSoftware = new System.Windows.Forms.ComboBox();
@@ -42,10 +42,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftware = new System.Windows.Forms.Label();
             this.LblEmployee = new System.Windows.Forms.Label();
             this.LblCompany = new System.Windows.Forms.Label();
-            this.LblRevision = new System.Windows.Forms.Label();
-            this.LblNumber = new System.Windows.Forms.Label();
-            this.TxtRevision = new System.Windows.Forms.TextBox();
-            this.TxtNumber = new System.Windows.Forms.TextBox();
+            this.LblRevisionTitle = new System.Windows.Forms.Label();
+            this.LblNumberTitle = new System.Windows.Forms.Label();
             this.BtnExit = new System.Windows.Forms.Button();
             this.BtnAdd = new System.Windows.Forms.Button();
             this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
@@ -53,6 +51,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnAddPhoneNumber = new System.Windows.Forms.PictureBox();
             this.DtgUnclosedTickets = new System.Windows.Forms.DataGridView();
             this.LblUnclosedTickets = new System.Windows.Forms.Label();
+            this.LblNumber = new System.Windows.Forms.Label();
+            this.LblRevision = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddSoftware)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddPhoneNumber)).BeginInit();
@@ -143,43 +143,25 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompany.TabIndex = 16;
             this.LblCompany.Text = "الشركة :";
             // 
-            // LblRevision
+            // LblRevisionTitle
             // 
-            this.LblRevision.AutoSize = true;
-            this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRevision.Location = new System.Drawing.Point(907, 90);
-            this.LblRevision.Name = "LblRevision";
-            this.LblRevision.Size = new System.Drawing.Size(74, 15);
-            this.LblRevision.TabIndex = 17;
-            this.LblRevision.Text = "رقم المراجعة :";
+            this.LblRevisionTitle.AutoSize = true;
+            this.LblRevisionTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblRevisionTitle.Location = new System.Drawing.Point(907, 90);
+            this.LblRevisionTitle.Name = "LblRevisionTitle";
+            this.LblRevisionTitle.Size = new System.Drawing.Size(74, 15);
+            this.LblRevisionTitle.TabIndex = 17;
+            this.LblRevisionTitle.Text = "رقم المراجعة :";
             // 
-            // LblNumber
+            // LblNumberTitle
             // 
-            this.LblNumber.AutoSize = true;
-            this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblNumber.Location = new System.Drawing.Point(907, 41);
-            this.LblNumber.Name = "LblNumber";
-            this.LblNumber.Size = new System.Drawing.Size(69, 15);
-            this.LblNumber.TabIndex = 18;
-            this.LblNumber.Text = "رقم البطاقة :";
-            // 
-            // TxtRevision
-            // 
-            this.TxtRevision.Enabled = false;
-            this.TxtRevision.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtRevision.Location = new System.Drawing.Point(801, 85);
-            this.TxtRevision.Name = "TxtRevision";
-            this.TxtRevision.Size = new System.Drawing.Size(100, 25);
-            this.TxtRevision.TabIndex = 12;
-            // 
-            // TxtNumber
-            // 
-            this.TxtNumber.Enabled = false;
-            this.TxtNumber.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtNumber.Location = new System.Drawing.Point(801, 36);
-            this.TxtNumber.Name = "TxtNumber";
-            this.TxtNumber.Size = new System.Drawing.Size(100, 25);
-            this.TxtNumber.TabIndex = 13;
+            this.LblNumberTitle.AutoSize = true;
+            this.LblNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblNumberTitle.Location = new System.Drawing.Point(907, 41);
+            this.LblNumberTitle.Name = "LblNumberTitle";
+            this.LblNumberTitle.Size = new System.Drawing.Size(69, 15);
+            this.LblNumberTitle.TabIndex = 18;
+            this.LblNumberTitle.Text = "رقم البطاقة :";
             // 
             // BtnExit
             // 
@@ -249,13 +231,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.AllowUserToDeleteRows = false;
             this.DtgUnclosedTickets.AllowUserToOrderColumns = true;
             this.DtgUnclosedTickets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgUnclosedTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgUnclosedTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DtgUnclosedTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -264,24 +246,24 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.DtgUnclosedTickets.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.DtgUnclosedTickets.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DtgUnclosedTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DtgUnclosedTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.DtgUnclosedTickets.ColumnHeadersHeight = 28;
             this.DtgUnclosedTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DtgUnclosedTickets.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DtgUnclosedTickets.DefaultCellStyle = dataGridViewCellStyle11;
             this.DtgUnclosedTickets.EnableHeadersVisualStyles = false;
             this.DtgUnclosedTickets.GridColor = System.Drawing.Color.WhiteSmoke;
             this.DtgUnclosedTickets.Location = new System.Drawing.Point(12, 168);
@@ -292,13 +274,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DtgUnclosedTickets.RowHeadersVisible = false;
             this.DtgUnclosedTickets.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgUnclosedTickets.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgUnclosedTickets.RowsDefaultCellStyle = dataGridViewCellStyle12;
             this.DtgUnclosedTickets.RowTemplate.Height = 26;
             this.DtgUnclosedTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgUnclosedTickets.Size = new System.Drawing.Size(1026, 427);
@@ -314,6 +296,28 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUnclosedTickets.Size = new System.Drawing.Size(226, 31);
             this.LblUnclosedTickets.TabIndex = 17;
             this.LblUnclosedTickets.Text = "البطاقات الغير مغلقة :";
+            // 
+            // LblNumber
+            // 
+            this.LblNumber.AutoSize = true;
+            this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.LblNumber.Location = new System.Drawing.Point(873, 36);
+            this.LblNumber.Name = "LblNumber";
+            this.LblNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LblNumber.Size = new System.Drawing.Size(34, 25);
+            this.LblNumber.TabIndex = 18;
+            this.LblNumber.Text = "99";
+            // 
+            // LblRevision
+            // 
+            this.LblRevision.AutoSize = true;
+            this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.LblRevision.Location = new System.Drawing.Point(873, 85);
+            this.LblRevision.Name = "LblRevision";
+            this.LblRevision.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.LblRevision.Size = new System.Drawing.Size(34, 25);
+            this.LblRevision.TabIndex = 18;
+            this.LblRevision.Text = "99";
             // 
             // AddTicket
             // 
@@ -335,10 +339,10 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.LblPhoneNumber);
             this.Controls.Add(this.LblCompany);
             this.Controls.Add(this.LblUnclosedTickets);
+            this.Controls.Add(this.LblRevisionTitle);
             this.Controls.Add(this.LblRevision);
             this.Controls.Add(this.LblNumber);
-            this.Controls.Add(this.TxtRevision);
-            this.Controls.Add(this.TxtNumber);
+            this.Controls.Add(this.LblNumberTitle);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddTicket";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -364,10 +368,8 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblSoftware;
         private System.Windows.Forms.Label LblEmployee;
         private System.Windows.Forms.Label LblCompany;
-        private System.Windows.Forms.Label LblRevision;
-        private System.Windows.Forms.Label LblNumber;
-        private System.Windows.Forms.TextBox TxtRevision;
-        private System.Windows.Forms.TextBox TxtNumber;
+        private System.Windows.Forms.Label LblRevisionTitle;
+        private System.Windows.Forms.Label LblNumberTitle;
         private System.Windows.Forms.Button BtnExit;
         private System.Windows.Forms.Button BtnAdd;
         private System.Windows.Forms.ComboBox CombPhoneNumbers;
@@ -375,5 +377,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.PictureBox BtnAddPhoneNumber;
         private System.Windows.Forms.DataGridView DtgUnclosedTickets;
         private System.Windows.Forms.Label LblUnclosedTickets;
+        private System.Windows.Forms.Label LblNumber;
+        private System.Windows.Forms.Label LblRevision;
     }
 }

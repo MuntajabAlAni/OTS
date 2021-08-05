@@ -27,7 +27,7 @@ namespace OTS.Ticketing.Win.MainForms
 
         private async void GetDtgLastTicketsData()
         {
-            DtgLastTickets.DataSource = await mainRepository.GetLastCalls();
+            DtgLastTickets.DataSource = await mainRepository.GetLastFiveCalls();
             DtgLastTickets.Columns["Number"].HeaderText = "رقم البطاقة";
             DtgLastTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
             DtgLastTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";

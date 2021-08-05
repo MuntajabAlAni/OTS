@@ -24,14 +24,15 @@ namespace OTS.Ticketing.Win.Tickets
         {
             var parameters = new DynamicParameters();
             parameters.Add("@employeeId", employeeId);
-            string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
-                                                 c.name as CompanyName,st.name state, t.revision FROM tickets t
-                                                 left join phoneNumbers pn on t.phoneNumberId = pn.id
-                                                 left join softwares s on t.softwareId = s.id
-                                                 left join employees e on t.employeeId = e.id
-                                                 left join companies c on t.companyId = c.id 
-                                                 left join states st on t.stateId = st.id
-												 WHERE employeeId = @employeeId and closeDate is null and childId =0
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
+                                                 c.name as CompanyName, st.name state, t.revision FROM tickets t
+                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
+                                                 inner join softwares s on t.softwareId = s.id
+                                                 inner join employees e on t.employeeId = e.id
+                                                 inner join companies c on t.companyId = c.id 
+												 left join states st on t.stateId = st.id
+												 inner join (select number,max(revision) revision from tickets where employeeId = @employeeId group by number) t2 on t.revision = t2.revision and t.number = t2.number
+												 WHERE employeeId = @employeeId and closeDate is null
                                                  ORDER BY t.number,t.revision";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -77,19 +78,17 @@ namespace OTS.Ticketing.Win.Tickets
             var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             return result.ToList();
         }
-        public async void AddTicket(long number, int revision, long companyId, long phoneNumberId, long softwareId, long employeeId)
+        public async Task<int> AddTicket(long number, int revision, long companyId, long phoneNumberId, long softwareId, long employeeId)
         {
-            //using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue("OTS_Ticketing_SoftwareDB")))
-            //{
-                DynamicParameters parameters1 = new DynamicParameters();
-                parameters1.Add("@number", number);
-                parameters1.Add("@revision", revision);
-                parameters1.Add("@companyId", companyId);
-                parameters1.Add("@phoneNumberId", phoneNumberId);
-                parameters1.Add("@softwareId", softwareId);
-                parameters1.Add("@employeeId", employeeId);
+            DynamicParameters parameters1 = new DynamicParameters();
+            parameters1.Add("@number", number);
+            parameters1.Add("@revision", revision);
+            parameters1.Add("@companyId", companyId);
+            parameters1.Add("@phoneNumberId", phoneNumberId);
+            parameters1.Add("@softwareId", softwareId);
+            parameters1.Add("@employeeId", employeeId);
 
-                string command1 = @"INSERT INTO tickets
+            string command1 = @"INSERT INTO tickets
            (number, phoneNumberId, softwareId, employeeId, companyId, revision)
                VALUES
            (@number,
@@ -99,47 +98,27 @@ namespace OTS.Ticketing.Win.Tickets
             @companyId,
             @revision)";
 
-            await dataAccess.ExecuteAsync(command1, parameters1);
-
-            //connection.Open();
-            //using (var trans = connection.BeginTransaction())
-            //{
-            //int recordsUpdated = await connection.ExecuteAsync(command1, parameters1, trans);
-            //    try
-            //    {
-            //        var parameters2 = new DynamicParameters();
-            //        parameters2.Add("@number", number);
-            //        parameters2.Add("@revision", revision);
-
-            //        string command2 = "UPDATE Tickets SET childId = (select max(id) from tickets where number = @number) Where number = @number and revision < @revision";
-            //        int recordsUpdated2 = await connection.ExecuteAsync(command2, parameters2, transaction: trans);
-            //        trans.Commit();
-            //    }
-            //    catch (Exception)
-            //    {
-            //        trans.Rollback();
-            //    }
-            //}
-            //}
+            return await dataAccess.ExecuteAsync(command1, parameters1);
         }
         public async Task<List<TicketsView>> GetUnclosedTicketsOnSelectedCompanyId(long companyId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
+            string query = @" SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
                                                  c.name as CompanyName,st.name state, t.revision FROM tickets t
-                                                 left join phoneNumbers pn on t.phoneNumberId = pn.id
-                                                 left join softwares s on t.softwareId = s.id
-                                                 left join employees e on t.employeeId = e.id
-                                                 left join companies c on t.companyId = c.id 
-                                                 left join states st on t.stateId = st.id 
-												 WHERE closeDate is null and t.companyId = @companyId and childId =0
+                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
+                                                 inner join softwares s on t.softwareId = s.id
+                                                 inner join employees e on t.employeeId = e.id
+                                                 inner join companies c on t.companyId = c.id 
+                                                 left join states st on t.stateId = st.id
+												 inner join (select number,max(revision) revision from tickets where employeeId = 6 group by number) t2 on t.revision = t2.revision and t.number = t2.number 
+												 WHERE closeDate is null and t.companyId = @companyId
                                                  ORDER BY t.number,t.revision";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
-        public async Task<TicketInfo> GetTicketsByNumberAndRevision(long ticketNumber, long revision)
+        public async Task<TicketInfo> GetTicketByNumberAndRevision(long ticketNumber, long revision)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@ticketNumber", ticketNumber);

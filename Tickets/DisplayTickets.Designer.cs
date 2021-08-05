@@ -39,31 +39,31 @@ namespace OTS.Ticketing.Win.Tickets
             Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.DtgTickets = new System.Windows.Forms.DataGridView();
-            this.TxtNumber = new System.Windows.Forms.TextBox();
-            this.LblNumber = new System.Windows.Forms.Label();
+            this.LblNumberTitle = new System.Windows.Forms.Label();
             this.DtpOpenDate = new System.Windows.Forms.DateTimePicker();
             this.LblOpenDate = new System.Windows.Forms.Label();
             this.LblCloseDate = new System.Windows.Forms.Label();
             this.DtpCloseDate = new System.Windows.Forms.DateTimePicker();
-            this.CombCompanies = new System.Windows.Forms.ComboBox();
-            this.LblCompany = new System.Windows.Forms.Label();
-            this.LblEmployee = new System.Windows.Forms.Label();
-            this.CombEmployee = new System.Windows.Forms.ComboBox();
-            this.LblSoftware = new System.Windows.Forms.Label();
-            this.CombSoftware = new System.Windows.Forms.ComboBox();
-            this.TxtRevision = new System.Windows.Forms.TextBox();
-            this.LblRevision = new System.Windows.Forms.Label();
+            this.LblCompanyTitle = new System.Windows.Forms.Label();
+            this.LblEmployeeTitle = new System.Windows.Forms.Label();
+            this.LblSoftwareTitle = new System.Windows.Forms.Label();
+            this.LblRevisionTitle = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.LblRemarks = new System.Windows.Forms.Label();
             this.ToggleRemotely = new Bunifu.UI.WinForms.BunifuToggleSwitch();
             this.LblRemotely = new System.Windows.Forms.Label();
             this.LblRemote = new System.Windows.Forms.Label();
             this.LblState = new System.Windows.Forms.Label();
-            this.CombState = new System.Windows.Forms.ComboBox();
+            this.CombStates = new System.Windows.Forms.ComboBox();
             this.BtnClose = new System.Windows.Forms.Button();
-            this.LblPhoneNumber = new System.Windows.Forms.Label();
-            this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
+            this.LblPhoneNumberTitle = new System.Windows.Forms.Label();
             this.BtnAddState = new System.Windows.Forms.PictureBox();
+            this.CombEmployees = new System.Windows.Forms.ComboBox();
+            this.CombSoftwares = new System.Windows.Forms.ComboBox();
+            this.CombCompaies = new System.Windows.Forms.ComboBox();
+            this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
+            this.LblNumber = new System.Windows.Forms.Label();
+            this.LblRevision = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddState)).BeginInit();
             this.SuspendLayout();
@@ -145,24 +145,15 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.TabIndex = 5;
             this.DtgTickets.DoubleClick += new System.EventHandler(this.DtgTickets_DoubleClick);
             // 
-            // TxtNumber
+            // LblNumberTitle
             // 
-            this.TxtNumber.Enabled = false;
-            this.TxtNumber.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtNumber.Location = new System.Drawing.Point(804, 17);
-            this.TxtNumber.Name = "TxtNumber";
-            this.TxtNumber.Size = new System.Drawing.Size(100, 25);
-            this.TxtNumber.TabIndex = 6;
-            // 
-            // LblNumber
-            // 
-            this.LblNumber.AutoSize = true;
-            this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblNumber.Location = new System.Drawing.Point(910, 22);
-            this.LblNumber.Name = "LblNumber";
-            this.LblNumber.Size = new System.Drawing.Size(69, 15);
-            this.LblNumber.TabIndex = 7;
-            this.LblNumber.Text = "رقم البطاقة :";
+            this.LblNumberTitle.AutoSize = true;
+            this.LblNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblNumberTitle.Location = new System.Drawing.Point(910, 22);
+            this.LblNumberTitle.Name = "LblNumberTitle";
+            this.LblNumberTitle.Size = new System.Drawing.Size(69, 15);
+            this.LblNumberTitle.TabIndex = 7;
+            this.LblNumberTitle.Text = "رقم البطاقة :";
             // 
             // DtpOpenDate
             // 
@@ -208,84 +199,45 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpCloseDate.Size = new System.Drawing.Size(200, 25);
             this.DtpCloseDate.TabIndex = 8;
             // 
-            // CombCompanies
+            // LblCompanyTitle
             // 
-            this.CombCompanies.Enabled = false;
-            this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombCompanies.FormattingEnabled = true;
-            this.CombCompanies.Location = new System.Drawing.Point(764, 89);
-            this.CombCompanies.Name = "CombCompanies";
-            this.CombCompanies.Size = new System.Drawing.Size(180, 25);
-            this.CombCompanies.TabIndex = 9;
+            this.LblCompanyTitle.AutoSize = true;
+            this.LblCompanyTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblCompanyTitle.Location = new System.Drawing.Point(950, 94);
+            this.LblCompanyTitle.Name = "LblCompanyTitle";
+            this.LblCompanyTitle.Size = new System.Drawing.Size(45, 15);
+            this.LblCompanyTitle.TabIndex = 7;
+            this.LblCompanyTitle.Text = "الشركة :";
             // 
-            // LblCompany
+            // LblEmployeeTitle
             // 
-            this.LblCompany.AutoSize = true;
-            this.LblCompany.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblCompany.Location = new System.Drawing.Point(950, 94);
-            this.LblCompany.Name = "LblCompany";
-            this.LblCompany.Size = new System.Drawing.Size(45, 15);
-            this.LblCompany.TabIndex = 7;
-            this.LblCompany.Text = "الشركة :";
+            this.LblEmployeeTitle.AutoSize = true;
+            this.LblEmployeeTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblEmployeeTitle.Location = new System.Drawing.Point(950, 202);
+            this.LblEmployeeTitle.Name = "LblEmployeeTitle";
+            this.LblEmployeeTitle.Size = new System.Drawing.Size(55, 15);
+            this.LblEmployeeTitle.TabIndex = 7;
+            this.LblEmployeeTitle.Text = "الموظف :";
             // 
-            // LblEmployee
+            // LblSoftwareTitle
             // 
-            this.LblEmployee.AutoSize = true;
-            this.LblEmployee.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblEmployee.Location = new System.Drawing.Point(950, 202);
-            this.LblEmployee.Name = "LblEmployee";
-            this.LblEmployee.Size = new System.Drawing.Size(55, 15);
-            this.LblEmployee.TabIndex = 7;
-            this.LblEmployee.Text = "الموظف :";
+            this.LblSoftwareTitle.AutoSize = true;
+            this.LblSoftwareTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblSoftwareTitle.Location = new System.Drawing.Point(950, 166);
+            this.LblSoftwareTitle.Name = "LblSoftwareTitle";
+            this.LblSoftwareTitle.Size = new System.Drawing.Size(49, 15);
+            this.LblSoftwareTitle.TabIndex = 7;
+            this.LblSoftwareTitle.Text = "البرنامج :";
             // 
-            // CombEmployee
+            // LblRevisionTitle
             // 
-            this.CombEmployee.Enabled = false;
-            this.CombEmployee.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombEmployee.FormattingEnabled = true;
-            this.CombEmployee.Location = new System.Drawing.Point(764, 197);
-            this.CombEmployee.Name = "CombEmployee";
-            this.CombEmployee.Size = new System.Drawing.Size(180, 25);
-            this.CombEmployee.TabIndex = 9;
-            // 
-            // LblSoftware
-            // 
-            this.LblSoftware.AutoSize = true;
-            this.LblSoftware.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblSoftware.Location = new System.Drawing.Point(950, 166);
-            this.LblSoftware.Name = "LblSoftware";
-            this.LblSoftware.Size = new System.Drawing.Size(49, 15);
-            this.LblSoftware.TabIndex = 7;
-            this.LblSoftware.Text = "البرنامج :";
-            // 
-            // CombSoftware
-            // 
-            this.CombSoftware.Enabled = false;
-            this.CombSoftware.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombSoftware.FormattingEnabled = true;
-            this.CombSoftware.Location = new System.Drawing.Point(764, 161);
-            this.CombSoftware.Name = "CombSoftware";
-            this.CombSoftware.Size = new System.Drawing.Size(180, 25);
-            this.CombSoftware.TabIndex = 9;
-            // 
-            // TxtRevision
-            // 
-            this.TxtRevision.Enabled = false;
-            this.TxtRevision.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtRevision.Location = new System.Drawing.Point(804, 53);
-            this.TxtRevision.Name = "TxtRevision";
-            this.TxtRevision.Size = new System.Drawing.Size(100, 25);
-            this.TxtRevision.TabIndex = 6;
-            // 
-            // LblRevision
-            // 
-            this.LblRevision.AutoSize = true;
-            this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRevision.Location = new System.Drawing.Point(910, 58);
-            this.LblRevision.Name = "LblRevision";
-            this.LblRevision.Size = new System.Drawing.Size(74, 15);
-            this.LblRevision.TabIndex = 7;
-            this.LblRevision.Text = "رقم المراجعة :";
+            this.LblRevisionTitle.AutoSize = true;
+            this.LblRevisionTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblRevisionTitle.Location = new System.Drawing.Point(910, 58);
+            this.LblRevisionTitle.Name = "LblRevisionTitle";
+            this.LblRevisionTitle.Size = new System.Drawing.Size(74, 15);
+            this.LblRevisionTitle.TabIndex = 7;
+            this.LblRevisionTitle.Text = "رقم المراجعة :";
             // 
             // TxtRemarks
             // 
@@ -381,14 +333,14 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblState.TabIndex = 7;
             this.LblState.Text = "الحالة :";
             // 
-            // CombState
+            // CombStates
             // 
-            this.CombState.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombState.FormattingEnabled = true;
-            this.CombState.Location = new System.Drawing.Point(515, 94);
-            this.CombState.Name = "CombState";
-            this.CombState.Size = new System.Drawing.Size(121, 25);
-            this.CombState.TabIndex = 9;
+            this.CombStates.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombStates.FormattingEnabled = true;
+            this.CombStates.Location = new System.Drawing.Point(515, 94);
+            this.CombStates.Name = "CombStates";
+            this.CombStates.Size = new System.Drawing.Size(121, 25);
+            this.CombStates.TabIndex = 9;
             // 
             // BtnClose
             // 
@@ -405,25 +357,15 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnClose.UseVisualStyleBackColor = false;
             this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // LblPhoneNumber
+            // LblPhoneNumberTitle
             // 
-            this.LblPhoneNumber.AutoSize = true;
-            this.LblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblPhoneNumber.Location = new System.Drawing.Point(950, 130);
-            this.LblPhoneNumber.Name = "LblPhoneNumber";
-            this.LblPhoneNumber.Size = new System.Drawing.Size(65, 15);
-            this.LblPhoneNumber.TabIndex = 7;
-            this.LblPhoneNumber.Text = "رقم الهاتف :";
-            // 
-            // CombPhoneNumbers
-            // 
-            this.CombPhoneNumbers.Enabled = false;
-            this.CombPhoneNumbers.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombPhoneNumbers.FormattingEnabled = true;
-            this.CombPhoneNumbers.Location = new System.Drawing.Point(764, 125);
-            this.CombPhoneNumbers.Name = "CombPhoneNumbers";
-            this.CombPhoneNumbers.Size = new System.Drawing.Size(180, 25);
-            this.CombPhoneNumbers.TabIndex = 9;
+            this.LblPhoneNumberTitle.AutoSize = true;
+            this.LblPhoneNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblPhoneNumberTitle.Location = new System.Drawing.Point(950, 130);
+            this.LblPhoneNumberTitle.Name = "LblPhoneNumberTitle";
+            this.LblPhoneNumberTitle.Size = new System.Drawing.Size(65, 15);
+            this.LblPhoneNumberTitle.TabIndex = 7;
+            this.LblPhoneNumberTitle.Text = "رقم الهاتف :";
             // 
             // BtnAddState
             // 
@@ -439,35 +381,93 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnAddState.TabStop = false;
             this.BtnAddState.Click += new System.EventHandler(this.BtnAddState_Click);
             // 
+            // CombEmployees
+            // 
+            this.CombEmployees.Enabled = false;
+            this.CombEmployees.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombEmployees.FormattingEnabled = true;
+            this.CombEmployees.Location = new System.Drawing.Point(764, 197);
+            this.CombEmployees.Name = "CombEmployees";
+            this.CombEmployees.Size = new System.Drawing.Size(180, 25);
+            this.CombEmployees.TabIndex = 9;
+            // 
+            // CombSoftwares
+            // 
+            this.CombSoftwares.Enabled = false;
+            this.CombSoftwares.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombSoftwares.FormattingEnabled = true;
+            this.CombSoftwares.Location = new System.Drawing.Point(764, 161);
+            this.CombSoftwares.Name = "CombSoftwares";
+            this.CombSoftwares.Size = new System.Drawing.Size(180, 25);
+            this.CombSoftwares.TabIndex = 9;
+            // 
+            // CombCompaies
+            // 
+            this.CombCompaies.Enabled = false;
+            this.CombCompaies.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombCompaies.FormattingEnabled = true;
+            this.CombCompaies.Location = new System.Drawing.Point(764, 89);
+            this.CombCompaies.Name = "CombCompaies";
+            this.CombCompaies.Size = new System.Drawing.Size(180, 25);
+            this.CombCompaies.TabIndex = 9;
+            // 
+            // CombPhoneNumbers
+            // 
+            this.CombPhoneNumbers.Enabled = false;
+            this.CombPhoneNumbers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombPhoneNumbers.FormattingEnabled = true;
+            this.CombPhoneNumbers.Location = new System.Drawing.Point(764, 125);
+            this.CombPhoneNumbers.Name = "CombPhoneNumbers";
+            this.CombPhoneNumbers.Size = new System.Drawing.Size(180, 25);
+            this.CombPhoneNumbers.TabIndex = 9;
+            // 
+            // LblNumber
+            // 
+            this.LblNumber.AutoSize = true;
+            this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.LblNumber.Location = new System.Drawing.Point(876, 17);
+            this.LblNumber.Name = "LblNumber";
+            this.LblNumber.Size = new System.Drawing.Size(0, 25);
+            this.LblNumber.TabIndex = 24;
+            // 
+            // LblRevision
+            // 
+            this.LblRevision.AutoSize = true;
+            this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.LblRevision.Location = new System.Drawing.Point(876, 53);
+            this.LblRevision.Name = "LblRevision";
+            this.LblRevision.Size = new System.Drawing.Size(0, 25);
+            this.LblRevision.TabIndex = 24;
+            // 
             // DisplayTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 606);
+            this.Controls.Add(this.LblRevision);
+            this.Controls.Add(this.LblNumber);
             this.Controls.Add(this.BtnAddState);
             this.Controls.Add(this.ToggleRemotely);
-            this.Controls.Add(this.CombSoftware);
-            this.Controls.Add(this.CombEmployee);
-            this.Controls.Add(this.CombState);
+            this.Controls.Add(this.CombSoftwares);
+            this.Controls.Add(this.CombEmployees);
+            this.Controls.Add(this.CombStates);
             this.Controls.Add(this.CombPhoneNumbers);
-            this.Controls.Add(this.CombCompanies);
+            this.Controls.Add(this.CombCompaies);
             this.Controls.Add(this.LblCloseDate);
             this.Controls.Add(this.DtpCloseDate);
-            this.Controls.Add(this.LblSoftware);
+            this.Controls.Add(this.LblSoftwareTitle);
             this.Controls.Add(this.DtpOpenDate);
-            this.Controls.Add(this.LblEmployee);
-            this.Controls.Add(this.LblPhoneNumber);
+            this.Controls.Add(this.LblEmployeeTitle);
+            this.Controls.Add(this.LblPhoneNumberTitle);
             this.Controls.Add(this.LblOpenDate);
-            this.Controls.Add(this.LblCompany);
+            this.Controls.Add(this.LblCompanyTitle);
             this.Controls.Add(this.LblRemarks);
             this.Controls.Add(this.LblRemote);
             this.Controls.Add(this.LblState);
             this.Controls.Add(this.LblRemotely);
-            this.Controls.Add(this.LblRevision);
-            this.Controls.Add(this.LblNumber);
+            this.Controls.Add(this.LblRevisionTitle);
+            this.Controls.Add(this.LblNumberTitle);
             this.Controls.Add(this.TxtRemarks);
-            this.Controls.Add(this.TxtRevision);
-            this.Controls.Add(this.TxtNumber);
             this.Controls.Add(this.DtgTickets);
             this.Controls.Add(this.BtnClose);
             this.Controls.Add(this.BtnUpdate);
@@ -486,30 +486,30 @@ namespace OTS.Ticketing.Win.Tickets
         #endregion
         private System.Windows.Forms.Button BtnUpdate;
         private System.Windows.Forms.DataGridView DtgTickets;
-        private System.Windows.Forms.TextBox TxtNumber;
-        private System.Windows.Forms.Label LblNumber;
+        private System.Windows.Forms.Label LblNumberTitle;
         private System.Windows.Forms.DateTimePicker DtpOpenDate;
         private System.Windows.Forms.Label LblOpenDate;
         private System.Windows.Forms.Label LblCloseDate;
         private System.Windows.Forms.DateTimePicker DtpCloseDate;
-        private System.Windows.Forms.ComboBox CombCompanies;
-        private System.Windows.Forms.Label LblCompany;
-        private System.Windows.Forms.Label LblEmployee;
-        private System.Windows.Forms.ComboBox CombEmployee;
-        private System.Windows.Forms.Label LblSoftware;
-        private System.Windows.Forms.ComboBox CombSoftware;
-        private System.Windows.Forms.TextBox TxtRevision;
-        private System.Windows.Forms.Label LblRevision;
+        private System.Windows.Forms.Label LblCompanyTitle;
+        private System.Windows.Forms.Label LblEmployeeTitle;
+        private System.Windows.Forms.Label LblSoftwareTitle;
+        private System.Windows.Forms.Label LblRevisionTitle;
         private System.Windows.Forms.TextBox TxtRemarks;
         private System.Windows.Forms.Label LblRemarks;
         private Bunifu.UI.WinForms.BunifuToggleSwitch ToggleRemotely;
         private System.Windows.Forms.Label LblRemotely;
         private System.Windows.Forms.Label LblRemote;
         private System.Windows.Forms.Label LblState;
-        private System.Windows.Forms.ComboBox CombState;
+        private System.Windows.Forms.ComboBox CombStates;
         private System.Windows.Forms.Button BtnClose;
-        private System.Windows.Forms.Label LblPhoneNumber;
-        private System.Windows.Forms.ComboBox CombPhoneNumbers;
+        private System.Windows.Forms.Label LblPhoneNumberTitle;
         private System.Windows.Forms.PictureBox BtnAddState;
+        private System.Windows.Forms.ComboBox CombEmployees;
+        private System.Windows.Forms.ComboBox CombSoftwares;
+        private System.Windows.Forms.ComboBox CombCompaies;
+        private System.Windows.Forms.ComboBox CombPhoneNumbers;
+        private System.Windows.Forms.Label LblNumber;
+        private System.Windows.Forms.Label LblRevision;
     }
 }

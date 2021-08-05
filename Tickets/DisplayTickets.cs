@@ -33,27 +33,27 @@ namespace OTS.Ticketing.Win.Tickets
 
         private async void FillCompaniesComboBox()
         {
-            CombCompanies.DataSource = await ticketRepository.GetAllCompanies();
-            CombCompanies.DisplayMember = "Name";
-            CombCompanies.ValueMember = "Id";
+            CombCompaies.DataSource = await ticketRepository.GetAllCompanies();
+            CombCompaies.DisplayMember = "Name";
+            CombCompaies.ValueMember = "Id";
         }
         private async void FillSoftwaresComboBox()
         {
-            CombSoftware.DataSource = await ticketRepository.GetAllSoftwares();
-            CombSoftware.DisplayMember = "Name";
-            CombSoftware.ValueMember = "Id";
+            CombSoftwares.DataSource = await ticketRepository.GetAllSoftwares();
+            CombSoftwares.DisplayMember = "Name";
+            CombSoftwares.ValueMember = "Id";
         }
         private async void FillEmployeesComboBox()
         {
-            CombEmployee.DataSource = await ticketRepository.GetAllEmployees();
-            CombEmployee.DisplayMember = "displayName";
-            CombEmployee.ValueMember = "Id";
+            CombEmployees.DataSource = await ticketRepository.GetAllEmployees();
+            CombEmployees.DisplayMember = "displayName";
+            CombEmployees.ValueMember = "Id";
         }
         private async void FillStatesComboBox()
         {
-            CombState.DataSource = await ticketRepository.GetAllStates();
-            CombState.DisplayMember = "Name";
-            CombState.ValueMember = "Id";
+            CombStates.DataSource = await ticketRepository.GetAllStates();
+            CombStates.DisplayMember = "Name";
+            CombStates.ValueMember = "Id";
         }
         private async void FillPhoneNumbersComboBox()
         {
@@ -87,13 +87,13 @@ namespace OTS.Ticketing.Win.Tickets
         {
             long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-            TicketInfo selectedTicket = await ticketRepository.GetTicketsByNumberAndRevision(selectedNumber, selectedRevision);
-            TxtNumber.Text = selectedTicket.Number.ToString();
-            TxtRevision.Text = selectedTicket.Revision.ToString();
-            CombCompanies.SelectedValue = selectedTicket.CompanyId;
-            CombEmployee.SelectedValue = selectedTicket.EmployeeId;
+            TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
+            LblNumber.Text = selectedTicket.Number.ToString();
+            LblRevision.Text = selectedTicket.Revision.ToString();
+            CombCompaies.SelectedValue = selectedTicket.CompanyId;
+            CombEmployees.SelectedValue = selectedTicket.EmployeeId;
             CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
-            CombSoftware.SelectedValue = selectedTicket.SoftwareId;
+            CombSoftwares.SelectedValue = selectedTicket.SoftwareId;
             DtpOpenDate.Value = selectedTicket.OpenDate;
         }
 
@@ -104,10 +104,10 @@ namespace OTS.Ticketing.Win.Tickets
 
         private async void BtnUpdate_Click(object sender, EventArgs e)
         {
-            await ticketRepository.UpdateTicket(Convert.ToInt64(TxtNumber.Text),
-                Convert.ToInt32(TxtRevision.Text),
+                await ticketRepository.UpdateTicket(Convert.ToInt64(LblNumber.Text),
+                Convert.ToInt32(LblRevision.Text),
                 DtpCloseDate.Value,
-                Convert.ToInt64(CombState.SelectedValue),
+                Convert.ToInt64(CombStates.SelectedValue),
                 TxtRemarks.Text,
                 ToggleRemotely.Checked);
             GetDtgTicketsData();

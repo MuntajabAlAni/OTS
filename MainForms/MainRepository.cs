@@ -25,7 +25,7 @@ namespace OTS.Ticketing.Win.MainForms
             return result.FirstOrDefault();
         }
 
-        public async Task<List<TicketsView>> GetLastCalls()
+        public async Task<List<TicketsView>> GetLastFiveCalls()
         {
             string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
                                                 c.name as CompanyName, st.name state, t.revision FROM tickets t

@@ -21,8 +21,8 @@ namespace OTS.Ticketing.Win.Tickets
 
         private async void AddTicket_Load(object sender, EventArgs e)
         {
-            TxtNumber.Text = await ticketRepository.GetLastTicketNumber();
-            TxtRevision.Text = "1";
+            LblNumber.Text = await ticketRepository.GetLastTicketNumber();
+            LblRevision.Text = "1";
             FillCompaniesComboBox();
             FillSoftwaresComboBox();
             FillEmployeesComboBox();
@@ -74,10 +74,10 @@ namespace OTS.Ticketing.Win.Tickets
             this.Close();
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private async void BtnAdd_Click(object sender, EventArgs e)
         {
-            ticketRepository.AddTicket(Convert.ToInt64(TxtNumber.Text),
-                Convert.ToInt32(TxtRevision.Text),
+            await ticketRepository.AddTicket(Convert.ToInt64(LblNumber.Text),
+                Convert.ToInt32(LblRevision.Text),
                 Convert.ToInt64(CombCompanies.SelectedValue),
                 Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                 Convert.ToInt64(CombSoftware.SelectedValue),
@@ -97,9 +97,9 @@ namespace OTS.Ticketing.Win.Tickets
         {
             long selectedNumber = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Number"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-            TicketInfo selectedTicket = await ticketRepository.GetTicketsByNumberAndRevision(selectedNumber, selectedRevision);
-            TxtNumber.Text = selectedTicket.Number.ToString();
-            TxtRevision.Text = (selectedTicket.Revision + 1).ToString();
+            TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
+            LblNumber.Text = selectedTicket.Number.ToString();
+            LblRevision.Text = (selectedTicket.Revision + 1).ToString();
             CombCompanies.SelectedValue = selectedTicket.CompanyId;
             CombEmployee.SelectedValue = selectedTicket.EmployeeId;
             CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
