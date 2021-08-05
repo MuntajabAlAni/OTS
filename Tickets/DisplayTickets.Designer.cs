@@ -41,7 +41,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets = new System.Windows.Forms.DataGridView();
             this.TxtNumber = new System.Windows.Forms.TextBox();
             this.LblNumber = new System.Windows.Forms.Label();
-            this.DtpStartDate = new System.Windows.Forms.DateTimePicker();
+            this.DtpOpenDate = new System.Windows.Forms.DateTimePicker();
             this.LblOpenDate = new System.Windows.Forms.Label();
             this.LblCloseDate = new System.Windows.Forms.Label();
             this.DtpCloseDate = new System.Windows.Forms.DateTimePicker();
@@ -61,7 +61,11 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblState = new System.Windows.Forms.Label();
             this.CombState = new System.Windows.Forms.ComboBox();
             this.BtnClose = new System.Windows.Forms.Button();
+            this.LblPhoneNumber = new System.Windows.Forms.Label();
+            this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
+            this.BtnAddState = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAddState)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnUpdate
@@ -77,6 +81,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnUpdate.TabIndex = 4;
             this.BtnUpdate.Text = "حفظ";
             this.BtnUpdate.UseVisualStyleBackColor = false;
+            this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
             // 
             // DtgTickets
             // 
@@ -138,12 +143,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgTickets.Size = new System.Drawing.Size(1026, 333);
             this.DtgTickets.TabIndex = 5;
+            this.DtgTickets.DoubleClick += new System.EventHandler(this.DtgTickets_DoubleClick);
             // 
             // TxtNumber
             // 
             this.TxtNumber.Enabled = false;
             this.TxtNumber.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtNumber.Location = new System.Drawing.Point(790, 12);
+            this.TxtNumber.Location = new System.Drawing.Point(804, 17);
             this.TxtNumber.Name = "TxtNumber";
             this.TxtNumber.Size = new System.Drawing.Size(100, 25);
             this.TxtNumber.TabIndex = 6;
@@ -152,29 +158,29 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblNumber.AutoSize = true;
             this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblNumber.Location = new System.Drawing.Point(896, 17);
+            this.LblNumber.Location = new System.Drawing.Point(910, 22);
             this.LblNumber.Name = "LblNumber";
             this.LblNumber.Size = new System.Drawing.Size(69, 15);
             this.LblNumber.TabIndex = 7;
             this.LblNumber.Text = "رقم البطاقة :";
             // 
-            // DtpStartDate
+            // DtpOpenDate
             // 
-            this.DtpStartDate.CustomFormat = "dddd dd-MM-yyyy mm:HH";
-            this.DtpStartDate.Enabled = false;
-            this.DtpStartDate.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.DtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpStartDate.Location = new System.Drawing.Point(436, 12);
-            this.DtpStartDate.Name = "DtpStartDate";
-            this.DtpStartDate.RightToLeftLayout = true;
-            this.DtpStartDate.Size = new System.Drawing.Size(200, 25);
-            this.DtpStartDate.TabIndex = 8;
+            this.DtpOpenDate.CustomFormat = "dddd dd-MM-yyyy mm:HH";
+            this.DtpOpenDate.Enabled = false;
+            this.DtpOpenDate.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.DtpOpenDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DtpOpenDate.Location = new System.Drawing.Point(438, 17);
+            this.DtpOpenDate.Name = "DtpOpenDate";
+            this.DtpOpenDate.RightToLeftLayout = true;
+            this.DtpOpenDate.Size = new System.Drawing.Size(200, 25);
+            this.DtpOpenDate.TabIndex = 8;
             // 
             // LblOpenDate
             // 
             this.LblOpenDate.AutoSize = true;
             this.LblOpenDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblOpenDate.Location = new System.Drawing.Point(642, 17);
+            this.LblOpenDate.Location = new System.Drawing.Point(644, 25);
             this.LblOpenDate.Name = "LblOpenDate";
             this.LblOpenDate.Size = new System.Drawing.Size(96, 15);
             this.LblOpenDate.TabIndex = 7;
@@ -184,7 +190,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblCloseDate.AutoSize = true;
             this.LblCloseDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblCloseDate.Location = new System.Drawing.Point(291, 17);
+            this.LblCloseDate.Location = new System.Drawing.Point(644, 61);
             this.LblCloseDate.Name = "LblCloseDate";
             this.LblCloseDate.Size = new System.Drawing.Size(105, 15);
             this.LblCloseDate.TabIndex = 7;
@@ -196,7 +202,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpCloseDate.Enabled = false;
             this.DtpCloseDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpCloseDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DtpCloseDate.Location = new System.Drawing.Point(85, 12);
+            this.DtpCloseDate.Location = new System.Drawing.Point(438, 53);
             this.DtpCloseDate.Name = "DtpCloseDate";
             this.DtpCloseDate.RightToLeftLayout = true;
             this.DtpCloseDate.Size = new System.Drawing.Size(200, 25);
@@ -207,7 +213,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombCompanies.Enabled = false;
             this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombCompanies.FormattingEnabled = true;
-            this.CombCompanies.Location = new System.Drawing.Point(764, 74);
+            this.CombCompanies.Location = new System.Drawing.Point(764, 89);
             this.CombCompanies.Name = "CombCompanies";
             this.CombCompanies.Size = new System.Drawing.Size(180, 25);
             this.CombCompanies.TabIndex = 9;
@@ -216,7 +222,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblCompany.AutoSize = true;
             this.LblCompany.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblCompany.Location = new System.Drawing.Point(950, 79);
+            this.LblCompany.Location = new System.Drawing.Point(950, 94);
             this.LblCompany.Name = "LblCompany";
             this.LblCompany.Size = new System.Drawing.Size(45, 15);
             this.LblCompany.TabIndex = 7;
@@ -226,7 +232,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblEmployee.AutoSize = true;
             this.LblEmployee.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblEmployee.Location = new System.Drawing.Point(950, 203);
+            this.LblEmployee.Location = new System.Drawing.Point(950, 202);
             this.LblEmployee.Name = "LblEmployee";
             this.LblEmployee.Size = new System.Drawing.Size(55, 15);
             this.LblEmployee.TabIndex = 7;
@@ -237,7 +243,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombEmployee.Enabled = false;
             this.CombEmployee.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombEmployee.FormattingEnabled = true;
-            this.CombEmployee.Location = new System.Drawing.Point(764, 198);
+            this.CombEmployee.Location = new System.Drawing.Point(764, 197);
             this.CombEmployee.Name = "CombEmployee";
             this.CombEmployee.Size = new System.Drawing.Size(180, 25);
             this.CombEmployee.TabIndex = 9;
@@ -246,7 +252,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblSoftware.AutoSize = true;
             this.LblSoftware.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblSoftware.Location = new System.Drawing.Point(950, 141);
+            this.LblSoftware.Location = new System.Drawing.Point(950, 166);
             this.LblSoftware.Name = "LblSoftware";
             this.LblSoftware.Size = new System.Drawing.Size(49, 15);
             this.LblSoftware.TabIndex = 7;
@@ -257,7 +263,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombSoftware.Enabled = false;
             this.CombSoftware.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombSoftware.FormattingEnabled = true;
-            this.CombSoftware.Location = new System.Drawing.Point(764, 136);
+            this.CombSoftware.Location = new System.Drawing.Point(764, 161);
             this.CombSoftware.Name = "CombSoftware";
             this.CombSoftware.Size = new System.Drawing.Size(180, 25);
             this.CombSoftware.TabIndex = 9;
@@ -266,7 +272,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.TxtRevision.Enabled = false;
             this.TxtRevision.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtRevision.Location = new System.Drawing.Point(536, 74);
+            this.TxtRevision.Location = new System.Drawing.Point(804, 53);
             this.TxtRevision.Name = "TxtRevision";
             this.TxtRevision.Size = new System.Drawing.Size(100, 25);
             this.TxtRevision.TabIndex = 6;
@@ -275,7 +281,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblRevision.AutoSize = true;
             this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRevision.Location = new System.Drawing.Point(642, 79);
+            this.LblRevision.Location = new System.Drawing.Point(910, 58);
             this.LblRevision.Name = "LblRevision";
             this.LblRevision.Size = new System.Drawing.Size(74, 15);
             this.LblRevision.TabIndex = 7;
@@ -309,7 +315,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleRemotely.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ToggleRemotely.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleRemotely.InnerCirclePadding = 3;
-            this.ToggleRemotely.Location = new System.Drawing.Point(234, 135);
+            this.ToggleRemotely.Location = new System.Drawing.Point(339, 93);
             this.ToggleRemotely.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleRemotely.Name = "ToggleRemotely";
             this.ToggleRemotely.Size = new System.Drawing.Size(51, 26);
@@ -349,7 +355,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblRemotely.AutoSize = true;
             this.LblRemotely.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRemotely.Location = new System.Drawing.Point(291, 141);
+            this.LblRemotely.Location = new System.Drawing.Point(396, 99);
             this.LblRemotely.Name = "LblRemotely";
             this.LblRemotely.Size = new System.Drawing.Size(70, 15);
             this.LblRemotely.TabIndex = 7;
@@ -359,7 +365,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblRemote.AutoSize = true;
             this.LblRemote.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRemote.Location = new System.Drawing.Point(129, 141);
+            this.LblRemote.Location = new System.Drawing.Point(234, 99);
             this.LblRemote.Name = "LblRemote";
             this.LblRemote.Size = new System.Drawing.Size(99, 15);
             this.LblRemote.TabIndex = 7;
@@ -369,7 +375,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblState.AutoSize = true;
             this.LblState.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblState.Location = new System.Drawing.Point(291, 79);
+            this.LblState.Location = new System.Drawing.Point(642, 99);
             this.LblState.Name = "LblState";
             this.LblState.Size = new System.Drawing.Size(40, 15);
             this.LblState.TabIndex = 7;
@@ -379,7 +385,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.CombState.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombState.FormattingEnabled = true;
-            this.CombState.Location = new System.Drawing.Point(164, 74);
+            this.CombState.Location = new System.Drawing.Point(515, 94);
             this.CombState.Name = "CombState";
             this.CombState.Size = new System.Drawing.Size(121, 25);
             this.CombState.TabIndex = 9;
@@ -391,28 +397,66 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnClose.FlatAppearance.BorderSize = 2;
             this.BtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnClose.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BtnClose.Location = new System.Drawing.Point(12, 161);
+            this.BtnClose.Location = new System.Drawing.Point(305, 25);
             this.BtnClose.Name = "BtnClose";
             this.BtnClose.Size = new System.Drawing.Size(120, 45);
             this.BtnClose.TabIndex = 4;
             this.BtnClose.Text = "إغلاق";
             this.BtnClose.UseVisualStyleBackColor = false;
+            this.BtnClose.Click += new System.EventHandler(this.BtnClose_Click);
+            // 
+            // LblPhoneNumber
+            // 
+            this.LblPhoneNumber.AutoSize = true;
+            this.LblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblPhoneNumber.Location = new System.Drawing.Point(950, 130);
+            this.LblPhoneNumber.Name = "LblPhoneNumber";
+            this.LblPhoneNumber.Size = new System.Drawing.Size(65, 15);
+            this.LblPhoneNumber.TabIndex = 7;
+            this.LblPhoneNumber.Text = "رقم الهاتف :";
+            // 
+            // CombPhoneNumbers
+            // 
+            this.CombPhoneNumbers.Enabled = false;
+            this.CombPhoneNumbers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombPhoneNumbers.FormattingEnabled = true;
+            this.CombPhoneNumbers.Location = new System.Drawing.Point(764, 125);
+            this.CombPhoneNumbers.Name = "CombPhoneNumbers";
+            this.CombPhoneNumbers.Size = new System.Drawing.Size(180, 25);
+            this.CombPhoneNumbers.TabIndex = 9;
+            // 
+            // BtnAddState
+            // 
+            this.BtnAddState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BtnAddState.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAddState.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnAddState.ErrorImage")));
+            this.BtnAddState.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddState.Image")));
+            this.BtnAddState.Location = new System.Drawing.Point(484, 94);
+            this.BtnAddState.Name = "BtnAddState";
+            this.BtnAddState.Size = new System.Drawing.Size(25, 25);
+            this.BtnAddState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnAddState.TabIndex = 23;
+            this.BtnAddState.TabStop = false;
+            this.BtnAddState.Click += new System.EventHandler(this.BtnAddState_Click);
             // 
             // DisplayTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 606);
+            this.Controls.Add(this.BtnAddState);
             this.Controls.Add(this.ToggleRemotely);
             this.Controls.Add(this.CombSoftware);
             this.Controls.Add(this.CombEmployee);
             this.Controls.Add(this.CombState);
+            this.Controls.Add(this.CombPhoneNumbers);
             this.Controls.Add(this.CombCompanies);
             this.Controls.Add(this.LblCloseDate);
             this.Controls.Add(this.DtpCloseDate);
             this.Controls.Add(this.LblSoftware);
-            this.Controls.Add(this.DtpStartDate);
+            this.Controls.Add(this.DtpOpenDate);
             this.Controls.Add(this.LblEmployee);
+            this.Controls.Add(this.LblPhoneNumber);
             this.Controls.Add(this.LblOpenDate);
             this.Controls.Add(this.LblCompany);
             this.Controls.Add(this.LblRemarks);
@@ -433,6 +477,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Text = "DisplayTickets";
             this.Load += new System.EventHandler(this.DisplayTickets_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAddState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,7 +488,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.DataGridView DtgTickets;
         private System.Windows.Forms.TextBox TxtNumber;
         private System.Windows.Forms.Label LblNumber;
-        private System.Windows.Forms.DateTimePicker DtpStartDate;
+        private System.Windows.Forms.DateTimePicker DtpOpenDate;
         private System.Windows.Forms.Label LblOpenDate;
         private System.Windows.Forms.Label LblCloseDate;
         private System.Windows.Forms.DateTimePicker DtpCloseDate;
@@ -463,5 +508,8 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblState;
         private System.Windows.Forms.ComboBox CombState;
         private System.Windows.Forms.Button BtnClose;
+        private System.Windows.Forms.Label LblPhoneNumber;
+        private System.Windows.Forms.ComboBox CombPhoneNumbers;
+        private System.Windows.Forms.PictureBox BtnAddState;
     }
 }

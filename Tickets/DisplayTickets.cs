@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using OTS.Ticketing.Win.MainForms;
+using OTS.Ticketing.Win.States;
 
 namespace OTS.Ticketing.Win.Tickets
 {
     public partial class DisplayTickets : Form
     {
-        public TicketRepository ticketRepository = new TicketRepository();
+        readonly TicketRepository ticketRepository = new TicketRepository();
         public DisplayTickets()
         {
             InitializeComponent();
@@ -21,44 +23,48 @@ namespace OTS.Ticketing.Win.Tickets
 
         private void DisplayTickets_Load(object sender, EventArgs e)
         {
-
-           
-            DtgTickets.DataSource = ticketRepository.GetAllTickets();
-            ColumnHeadersNaming();
-            TxtNumber.Text = ticketRepository.GetLastTicketNumber();
-            DtpStartDate.Value = DateTime.Now;
+            GetDtgTicketsData();
             FillCompaniesComboBox();
             FillSoftwaresComboBox();
             FillEmployeesComboBox();
             FillStatesComboBox();
+            FillPhoneNumbersComboBox();
         }
 
-        private void FillCompaniesComboBox()
+        private async void FillCompaniesComboBox()
         {
-            CombCompanies.DataSource = ticketRepository.GetAllCompanies();
+            CombCompanies.DataSource = await ticketRepository.GetAllCompanies();
             CombCompanies.DisplayMember = "Name";
             CombCompanies.ValueMember = "Id";
         }
-        private void FillSoftwaresComboBox()
+        private async void FillSoftwaresComboBox()
         {
-            CombSoftware.DataSource = ticketRepository.GetAllSoftwares();
+            CombSoftware.DataSource = await ticketRepository.GetAllSoftwares();
             CombSoftware.DisplayMember = "Name";
             CombSoftware.ValueMember = "Id";
         }
-        private void FillEmployeesComboBox()
+        private async void FillEmployeesComboBox()
         {
-            CombEmployee.DataSource = ticketRepository.GetAllEmployees();
+            CombEmployee.DataSource = await ticketRepository.GetAllEmployees();
             CombEmployee.DisplayMember = "displayName";
             CombEmployee.ValueMember = "Id";
         }
-        private void FillStatesComboBox()
+        private async void FillStatesComboBox()
         {
-            CombState.DataSource = ticketRepository.GetAllStates();
+            CombState.DataSource = await ticketRepository.GetAllStates();
             CombState.DisplayMember = "Name";
             CombState.ValueMember = "Id";
         }
-        private void ColumnHeadersNaming()
+        private async void FillPhoneNumbersComboBox()
         {
+
+            CombPhoneNumbers.DataSource = await ticketRepository.GetPhoneNumbersOnSelectedCompanyId(0);
+            CombPhoneNumbers.DisplayMember = "phoneNumber";
+            CombPhoneNumbers.ValueMember = "Id";
+        }
+        private async void GetDtgTicketsData()
+        {
+            DtgTickets.DataSource = await ticketRepository.GetAllTicketsByEmployeeId(SystemConstants.loggedInEmployeeId);
             DtgTickets.Columns["Number"].HeaderText = "رقم البطاقة";
             DtgTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
             DtgTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
@@ -75,6 +81,43 @@ namespace OTS.Ticketing.Win.Tickets
         {
             if (ToggleRemotely.Checked) LblRemote.Text = "بإستخدام Anydesk";
             else LblRemote.Text = "بإتصال فقط";
+        }
+
+        private async void DtgTickets_DoubleClick(object sender, EventArgs e)
+        {
+            long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
+            long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
+            TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
+            TxtNumber.Text = selectedTicket.Number.ToString();
+            TxtRevision.Text = selectedTicket.Revision.ToString();
+            CombCompanies.SelectedValue = selectedTicket.CompanyId;
+            CombEmployee.SelectedValue = selectedTicket.EmployeeId;
+            CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
+            CombSoftware.SelectedValue = selectedTicket.SoftwareId;
+            DtpOpenDate.Value = selectedTicket.OpenDate;
+        }
+
+        private void BtnClose_Click(object sender, EventArgs e)
+        {
+            DtpCloseDate.Value = DateTime.Now;
+        }
+
+        private async void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            await ticketRepository.UpdateTicket(Convert.ToInt64(TxtNumber.Text),
+                Convert.ToInt32(TxtRevision.Text),
+                DtpCloseDate.Value,
+                Convert.ToInt64(CombState.SelectedValue),
+                TxtRemarks.Text,
+                ToggleRemotely.Checked);
+            GetDtgTicketsData();
+        }
+
+        private void BtnAddState_Click(object sender, EventArgs e)
+        {
+            AddState addState = new AddState();
+            addState.ShowDialog();
+            FillStatesComboBox();
         }
     }
 }

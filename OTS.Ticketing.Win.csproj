@@ -93,7 +93,15 @@
     <Compile Include="Employees\EmployeeInfo.cs" />
     <Compile Include="DatabaseConnection\ConnectionTools.cs" />
     <Compile Include="PhoneNumbers\PhoneNumberInfo.cs" />
+    <Compile Include="States\AddState.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="States\AddState.Designer.cs">
+      <DependentUpon>AddState.cs</DependentUpon>
+    </Compile>
     <Compile Include="States\StateInfo.cs" />
+    <Compile Include="States\StateRepository.cs" />
+    <Compile Include="SystemConstants.cs" />
     <Compile Include="Tickets\TicketsView.cs" />
     <Compile Include="PhoneNumbers\PhoneNumberRepository.cs" />
     <Compile Include="Program.cs" />
@@ -137,6 +145,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="States\AddState.resx">
+      <DependentUpon>AddState.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tickets\AddTicket.resx">
       <DependentUpon>AddTicket.cs</DependentUpon>
     </EmbeddedResource>

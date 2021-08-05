@@ -57,15 +57,15 @@ namespace OTS.Ticketing.Win
             this.WindowState = FormWindowState.Minimized;
         }
 
-        
+
 
         private void BtnHome_Click(object sender, EventArgs e)
         {
             if (PnlContainer.Controls.ContainsKey("Home")) return;
-                ApplingFormOnContainer(new Home());
+            ApplingFormOnContainer(new Home());
         }
 
-        
+
 
         private void LOGO_Click(object sender, EventArgs e)
         {
@@ -84,7 +84,19 @@ namespace OTS.Ticketing.Win
 
         private void Main_Load(object sender, EventArgs e)
         {
-         BtnHome_Click(sender, e);
+            BtnHome_Click(sender, e);
+            if (SystemConstants.loggedInEmployeeId != 6)
+            {
+                BtnAddTicket.Visible = false;
+                BtnCompanies.Visible = false;
+                BtnEmployees.Visible = false;
+                BtnPhoneNumbres.Visible = false;
+                BtnSoftwares.Visible = false;
+                BtnTickets.Location = new Point(0, 162);
+                return;
+            }
+            BtnTickets.Enabled = false;
+
         }
 
         private void BtnTickets_Click(object sender, EventArgs e)
@@ -95,8 +107,9 @@ namespace OTS.Ticketing.Win
 
         private void BtnAddTicket_Click(object sender, EventArgs e)
         {
-            AddTicket addTicket = new AddTicket();
-            addTicket.ShowDialog();
+            if (PnlContainer.Controls.ContainsKey("AddTicket")) return;
+            ApplingFormOnContainer(new AddTicket());
+
         }
     }
 }

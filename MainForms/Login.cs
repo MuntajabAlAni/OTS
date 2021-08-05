@@ -13,7 +13,8 @@ namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Login : Form
     {
-        public MainRepository mainRepository = new MainRepository();
+        readonly MainRepository mainRepository = new MainRepository();
+
         public Login()
         {
             InitializeComponent();
@@ -22,13 +23,14 @@ namespace OTS.Ticketing.Win.MainForms
         public async Task LoginToMain()
         {
             var result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text, TxtPassword.Text);
-            if (!result)
+            if (result == null) 
             {
                 MessageBox.Show("يرجى التأكد من معلومات الدخول !");
                 return;
-
             }
+            SystemConstants.loggedInEmployeeId = result.Id;
             Main main = new Main();
+            this.DialogResult = DialogResult.OK;
             this.Hide();
             main.ShowDialog();
             this.Close();

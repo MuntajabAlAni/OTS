@@ -13,21 +13,21 @@ namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Home : Form
     {
-        public MainRepository mainRepository = new MainRepository();
+        readonly public MainRepository mainRepository = new MainRepository();
 
         public Home()
         {
             InitializeComponent();
         }
 
-        private async void Home_Load(object sender, EventArgs e)
+        private void Home_Load(object sender, EventArgs e)
         {
-             DtgLastTickets.DataSource = await mainRepository.GetLastCalls();
-            RenamingColumns();
+            GetDtgLastTicketsData();
         }
 
-        private void RenamingColumns()
+        private async void GetDtgLastTicketsData()
         {
+            DtgLastTickets.DataSource = await mainRepository.GetLastCalls();
             DtgLastTickets.Columns["Number"].HeaderText = "رقم البطاقة";
             DtgLastTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
             DtgLastTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
