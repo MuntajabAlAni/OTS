@@ -60,7 +60,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnAddState = new System.Windows.Forms.PictureBox();
             this.CombEmployees = new System.Windows.Forms.ComboBox();
             this.CombSoftwares = new System.Windows.Forms.ComboBox();
-            this.CombCompaies = new System.Windows.Forms.ComboBox();
+            this.CombCompanies = new System.Windows.Forms.ComboBox();
             this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
             this.LblNumber = new System.Windows.Forms.Label();
             this.LblRevision = new System.Windows.Forms.Label();
@@ -401,15 +401,15 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombSoftwares.Size = new System.Drawing.Size(180, 25);
             this.CombSoftwares.TabIndex = 9;
             // 
-            // CombCompaies
+            // CombCompanies
             // 
-            this.CombCompaies.Enabled = false;
-            this.CombCompaies.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombCompaies.FormattingEnabled = true;
-            this.CombCompaies.Location = new System.Drawing.Point(764, 89);
-            this.CombCompaies.Name = "CombCompaies";
-            this.CombCompaies.Size = new System.Drawing.Size(180, 25);
-            this.CombCompaies.TabIndex = 9;
+            this.CombCompanies.Enabled = false;
+            this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombCompanies.FormattingEnabled = true;
+            this.CombCompanies.Location = new System.Drawing.Point(764, 89);
+            this.CombCompanies.Name = "CombCompanies";
+            this.CombCompanies.Size = new System.Drawing.Size(180, 25);
+            this.CombCompanies.TabIndex = 9;
             // 
             // CombPhoneNumbers
             // 
@@ -452,7 +452,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.CombEmployees);
             this.Controls.Add(this.CombStates);
             this.Controls.Add(this.CombPhoneNumbers);
-            this.Controls.Add(this.CombCompaies);
+            this.Controls.Add(this.CombCompanies);
             this.Controls.Add(this.LblCloseDate);
             this.Controls.Add(this.DtpCloseDate);
             this.Controls.Add(this.LblSoftwareTitle);
@@ -507,7 +507,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.PictureBox BtnAddState;
         private System.Windows.Forms.ComboBox CombEmployees;
         private System.Windows.Forms.ComboBox CombSoftwares;
-        private System.Windows.Forms.ComboBox CombCompaies;
+        private System.Windows.Forms.ComboBox CombCompanies;
         private System.Windows.Forms.ComboBox CombPhoneNumbers;
         private System.Windows.Forms.Label LblNumber;
         private System.Windows.Forms.Label LblRevision;

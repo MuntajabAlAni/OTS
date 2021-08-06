@@ -147,6 +147,18 @@
         rkJggg==
 </value>
   </data>
+  <data name="BtnStates.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAABL0lEQVRoQ+2YYRGDMAxGkYCE
+        SUDCpCABCXOAhElAAhKQgIRJYF/adLeyphy7rYS7vLv8WMku7wolLZVhGIZhGEeyLEuNuFLwkG4g2iEe
+        iEDHl/QBOZrd0WnG6JxtiJHw5BRjWk7RBcROJ9wgZqcYo1r4fcEFTPgnQEwS7jlFFxCThAdO0QXEJGF6
+        c9ScpgdIScI01nBaGVDQ7Q8QFx76gK4hUsJE2RaNgoOv+4JacLT68VtqHMTIaeVA0bV0gJoFbXpywjTz
+        4t35G1SUi3/DcTs3FJcWWI6J/34ckNgrrmOrCZHW+2yiq4lA6Oa9spRffFtAKnXyCNw5TRcQy71R9M1y
+        AHKpx6R8I9kLJNenEf2fAkjSuzpmHtYPZHvvrPQ0kgKytPc4j7BhGIZRgKp6AravSXds016FAAAAAElF
+        TkSuQmCC
+</value>
+  </data>
   <data name="BtnSoftwares.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

@@ -33,34 +33,38 @@ namespace OTS.Ticketing.Win.Tickets
 
         private async void FillCompaniesComboBox()
         {
-            CombCompaies.DataSource = await ticketRepository.GetAllCompanies();
-            CombCompaies.DisplayMember = "Name";
-            CombCompaies.ValueMember = "Id";
+            CombCompanies.DataSource = await ticketRepository.GetAllCompanies();
+            CombCompanies.DisplayMember = "Name";
+            CombCompanies.ValueMember = "Id";
+            CombCompanies.Text = "";
         }
         private async void FillSoftwaresComboBox()
         {
             CombSoftwares.DataSource = await ticketRepository.GetAllSoftwares();
             CombSoftwares.DisplayMember = "Name";
             CombSoftwares.ValueMember = "Id";
+            CombSoftwares.Text = "";
         }
         private async void FillEmployeesComboBox()
         {
             CombEmployees.DataSource = await ticketRepository.GetAllEmployees();
             CombEmployees.DisplayMember = "displayName";
             CombEmployees.ValueMember = "Id";
+            CombEmployees.Text = "";
         }
         private async void FillStatesComboBox()
         {
             CombStates.DataSource = await ticketRepository.GetAllStates();
             CombStates.DisplayMember = "Name";
             CombStates.ValueMember = "Id";
+            CombStates.Text = "";
         }
         private async void FillPhoneNumbersComboBox()
         {
-
             CombPhoneNumbers.DataSource = await ticketRepository.GetPhoneNumbersOnSelectedCompanyId(0);
             CombPhoneNumbers.DisplayMember = "phoneNumber";
             CombPhoneNumbers.ValueMember = "Id";
+            CombPhoneNumbers.Text = "";
         }
         private async void GetDtgTicketsData()
         {
@@ -90,7 +94,7 @@ namespace OTS.Ticketing.Win.Tickets
             TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
             LblNumber.Text = selectedTicket.Number.ToString();
             LblRevision.Text = selectedTicket.Revision.ToString();
-            CombCompaies.SelectedValue = selectedTicket.CompanyId;
+            CombCompanies.SelectedValue = selectedTicket.CompanyId;
             CombEmployees.SelectedValue = selectedTicket.EmployeeId;
             CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
             CombSoftwares.SelectedValue = selectedTicket.SoftwareId;

@@ -52,6 +52,7 @@ namespace OTS.Ticketing.Win
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
+            this.BtnStates = new System.Windows.Forms.Button();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
             this.PnlTop.SuspendLayout();
@@ -67,6 +68,7 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.PnlMenuVertical.Controls.Add(this.BtnAddTicket);
             this.PnlMenuVertical.Controls.Add(this.BtnTickets);
+            this.PnlMenuVertical.Controls.Add(this.BtnStates);
             this.PnlMenuVertical.Controls.Add(this.BtnSoftwares);
             this.PnlMenuVertical.Controls.Add(this.BtnPhoneNumbres);
             this.PnlMenuVertical.Controls.Add(this.BtnEmployees);
@@ -88,7 +90,7 @@ namespace OTS.Ticketing.Win
             this.BtnAddTicket.ForeColor = System.Drawing.Color.White;
             this.BtnAddTicket.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddTicket.Image")));
             this.BtnAddTicket.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnAddTicket.Location = new System.Drawing.Point(0, 418);
+            this.BtnAddTicket.Location = new System.Drawing.Point(0, 469);
             this.BtnAddTicket.Name = "BtnAddTicket";
             this.BtnAddTicket.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnAddTicket.Size = new System.Drawing.Size(250, 45);
@@ -107,7 +109,7 @@ namespace OTS.Ticketing.Win
             this.BtnTickets.ForeColor = System.Drawing.Color.White;
             this.BtnTickets.Image = ((System.Drawing.Image)(resources.GetObject("BtnTickets.Image")));
             this.BtnTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnTickets.Location = new System.Drawing.Point(0, 367);
+            this.BtnTickets.Location = new System.Drawing.Point(0, 418);
             this.BtnTickets.Name = "BtnTickets";
             this.BtnTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnTickets.Size = new System.Drawing.Size(250, 45);
@@ -126,7 +128,7 @@ namespace OTS.Ticketing.Win
             this.BtnSoftwares.ForeColor = System.Drawing.Color.White;
             this.BtnSoftwares.Image = ((System.Drawing.Image)(resources.GetObject("BtnSoftwares.Image")));
             this.BtnSoftwares.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnSoftwares.Location = new System.Drawing.Point(0, 316);
+            this.BtnSoftwares.Location = new System.Drawing.Point(0, 367);
             this.BtnSoftwares.Name = "BtnSoftwares";
             this.BtnSoftwares.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnSoftwares.Size = new System.Drawing.Size(250, 45);
@@ -383,6 +385,24 @@ namespace OTS.Ticketing.Win
             this.bunifuFormDock1.TitleBarOptions.TitleBarControl = this.PnlTop;
             this.bunifuFormDock1.TitleBarOptions.UseBackColorOnDockingIndicators = false;
             // 
+            // BtnStates
+            // 
+            this.BtnStates.FlatAppearance.BorderSize = 0;
+            this.BtnStates.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnStates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnStates.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnStates.ForeColor = System.Drawing.Color.White;
+            this.BtnStates.Image = ((System.Drawing.Image)(resources.GetObject("BtnStates.Image")));
+            this.BtnStates.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnStates.Location = new System.Drawing.Point(0, 316);
+            this.BtnStates.Name = "BtnStates";
+            this.BtnStates.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BtnStates.Size = new System.Drawing.Size(250, 45);
+            this.BtnStates.TabIndex = 1;
+            this.BtnStates.Text = "حالات البطاقات";
+            this.BtnStates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnStates.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -435,5 +455,6 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.Button BtnAddTicket;
+        private System.Windows.Forms.Button BtnStates;
     }
 }

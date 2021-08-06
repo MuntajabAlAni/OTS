@@ -59,7 +59,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Branches\AddBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Branches\AddBranch.Designer.cs">
+      <DependentUpon>AddBranch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Branches\BranchRepository.cs" />
+    <Compile Include="Companies\AddCompany.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Companies\AddCompany.Designer.cs">
+      <DependentUpon>AddCompany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Companies\CompanyRepository.cs" />
     <Compile Include="Companies\DisplayCompanies.cs">
       <SubType>Form</SubType>
@@ -122,6 +134,12 @@
       <DependentUpon>DisplayTickets.cs</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketRepository.cs" />
+    <EmbeddedResource Include="Branches\AddBranch.resx">
+      <DependentUpon>AddBranch.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Companies\AddCompany.resx">
+      <DependentUpon>AddCompany.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Companies\DisplayCompanies.resx">
       <DependentUpon>DisplayCompanies.cs</DependentUpon>
     </EmbeddedResource>
