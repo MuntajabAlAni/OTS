@@ -14,10 +14,12 @@ namespace OTS.Ticketing.Win.PhoneNumbers
     {
         readonly PhoneNumberRepository phoneNumberRepository = new PhoneNumberRepository();
         readonly private string _phoneNumber;
-        public DisplayPhoneNumbers(string phoneNumber)
+        private readonly long _companyId;
+        public DisplayPhoneNumbers(string phoneNumber, long companyId = 0)
         {
             InitializeComponent();
             _phoneNumber = phoneNumber;
+            _companyId = companyId;
         }
 
         private async void DisplayPhoneNumbers_Load(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 if (DtgPhoneNumbers.Rows.Count == 0)
                 {
                     MessageBox.Show("عذراً.. هذا الرقم غير معرف", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0,_phoneNumber, _companyId);
+                    addPhoneNumber.ShowDialog();
                     this.Close();
                 }
             }

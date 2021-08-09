@@ -106,6 +106,7 @@ namespace OTS.Ticketing.Win.Softwares
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddSoftware";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddSoftware";
             this.Load += new System.EventHandler(this.AddSoftware_Load);
             this.ResumeLayout(false);

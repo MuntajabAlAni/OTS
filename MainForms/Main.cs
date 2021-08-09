@@ -42,7 +42,12 @@ namespace OTS.Ticketing.Win
         }
         private void ImbClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dr;
+            dr = MessageBox.Show("سيتم إغلاق البرنامج", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
         private void ImbMaximize_Click(object sender, EventArgs e)
         {
@@ -77,7 +82,12 @@ namespace OTS.Ticketing.Win
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            DialogResult dr;
+            dr = MessageBox.Show("سيتم إغلاق البرنامج", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
         private async void Main_Load(object sender, EventArgs e)
         {
@@ -126,7 +136,12 @@ namespace OTS.Ticketing.Win
         {
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                DialogResult dr;
+                dr = MessageBox.Show("سيتم إغلاق البرنامج", "", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    Application.Exit();
+                }
             }
         }
     }

@@ -75,7 +75,7 @@ namespace OTS.Ticketing.Win.Tickets
                 string query = "SELECT * FROM Companies";
                 var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
                 var list = result.ToList();
-                list.Add(new CompanyInfo { Id = 0, Name = "", BranchId = 1, Address = "", Remarks = "" });
+                list.Insert(0, (new CompanyInfo { Id = 0, Name = "الإختيار عن طريق رقم الهاتف" }));
                 return list;
             }
             catch (Exception ex)
@@ -92,7 +92,9 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 string query = "SELECT * FROM Softwares";
                 var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
-                return result.ToList();
+                var list = result.ToList();
+                list.Insert(0, (new SoftwareInfo { Id = 0, Name = "" }));
+                return list;
             }
             catch (Exception ex)
             {
@@ -108,7 +110,9 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 string query = "SELECT * FROM Employees";
                 var result = await dataAccess.QueryAsync<EmployeeInfo>(query, new DynamicParameters());
-                return result.ToList();
+                var list = result.ToList();
+                list.Insert(0, (new EmployeeInfo { Id = 0, DisplayName = "" }));
+                return list;
             }
             catch (Exception ex)
             {
@@ -142,7 +146,9 @@ namespace OTS.Ticketing.Win.Tickets
                 parameters.Add("@companyId", companyId);
                 string query = "SELECT * FROM PhoneNumbers WHERE IIF(@companyId = 0,0,companyId) = @companyId";
                 var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
-                return result.ToList();
+                var list = result.ToList();
+                list.Insert(0, (new PhoneNumberInfo { Id = 0, PhoneNumber = "" }));
+                return list;
             }
             catch (Exception ex)
             {

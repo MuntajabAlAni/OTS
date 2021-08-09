@@ -35,13 +35,13 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.LblServerIp = new System.Windows.Forms.Label();
             this.TxtServerIp = new System.Windows.Forms.TextBox();
             this.PnlContainer = new System.Windows.Forms.Panel();
+            this.ImbRefresh = new System.Windows.Forms.PictureBox();
+            this.ImbTryConnect = new System.Windows.Forms.PictureBox();
             this.CombDatabases = new System.Windows.Forms.ComboBox();
             this.LblDatabases = new System.Windows.Forms.Label();
-            this.ImbTryConnect = new System.Windows.Forms.PictureBox();
-            this.ImbRefresh = new System.Windows.Forms.PictureBox();
             this.PnlContainer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImbTryConnect)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbRefresh)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImbTryConnect)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnExit
@@ -109,6 +109,36 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.PnlContainer.Size = new System.Drawing.Size(425, 231);
             this.PnlContainer.TabIndex = 40;
             // 
+            // ImbRefresh
+            // 
+            this.ImbRefresh.BackColor = System.Drawing.Color.White;
+            this.ImbRefresh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ImbRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImbRefresh.ErrorImage = null;
+            this.ImbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ImbRefresh.Image")));
+            this.ImbRefresh.Location = new System.Drawing.Point(58, 34);
+            this.ImbRefresh.Name = "ImbRefresh";
+            this.ImbRefresh.Size = new System.Drawing.Size(25, 25);
+            this.ImbRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ImbRefresh.TabIndex = 42;
+            this.ImbRefresh.TabStop = false;
+            this.ImbRefresh.Click += new System.EventHandler(this.ImbRefresh_Click);
+            // 
+            // ImbTryConnect
+            // 
+            this.ImbTryConnect.BackColor = System.Drawing.Color.White;
+            this.ImbTryConnect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ImbTryConnect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ImbTryConnect.ErrorImage = null;
+            this.ImbTryConnect.Image = ((System.Drawing.Image)(resources.GetObject("ImbTryConnect.Image")));
+            this.ImbTryConnect.Location = new System.Drawing.Point(83, 34);
+            this.ImbTryConnect.Name = "ImbTryConnect";
+            this.ImbTryConnect.Size = new System.Drawing.Size(25, 25);
+            this.ImbTryConnect.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ImbTryConnect.TabIndex = 42;
+            this.ImbTryConnect.TabStop = false;
+            this.ImbTryConnect.Click += new System.EventHandler(this.ImbTryConnect_Click);
+            // 
             // CombDatabases
             // 
             this.CombDatabases.Font = new System.Drawing.Font("Segoe UI", 10F);
@@ -128,36 +158,6 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.LblDatabases.TabIndex = 41;
             this.LblDatabases.Text = "قاعدة البيانات :";
             // 
-            // ImbTryConnect
-            // 
-            this.ImbTryConnect.BackColor = System.Drawing.Color.White;
-            this.ImbTryConnect.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ImbTryConnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbTryConnect.ErrorImage = null;
-            this.ImbTryConnect.Image = ((System.Drawing.Image)(resources.GetObject("ImbTryConnect.Image")));
-            this.ImbTryConnect.Location = new System.Drawing.Point(83, 34);
-            this.ImbTryConnect.Name = "ImbTryConnect";
-            this.ImbTryConnect.Size = new System.Drawing.Size(25, 25);
-            this.ImbTryConnect.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbTryConnect.TabIndex = 42;
-            this.ImbTryConnect.TabStop = false;
-            this.ImbTryConnect.Click += new System.EventHandler(this.ImbTryConnect_Click);
-            // 
-            // ImbRefresh
-            // 
-            this.ImbRefresh.BackColor = System.Drawing.Color.White;
-            this.ImbRefresh.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ImbRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbRefresh.ErrorImage = null;
-            this.ImbRefresh.Image = ((System.Drawing.Image)(resources.GetObject("ImbRefresh.Image")));
-            this.ImbRefresh.Location = new System.Drawing.Point(58, 34);
-            this.ImbRefresh.Name = "ImbRefresh";
-            this.ImbRefresh.Size = new System.Drawing.Size(25, 25);
-            this.ImbRefresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbRefresh.TabIndex = 42;
-            this.ImbRefresh.TabStop = false;
-            this.ImbRefresh.Click += new System.EventHandler(this.ImbRefresh_Click);
-            // 
             // DatabaseServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,13 +168,14 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.KeyPreview = true;
             this.Name = "DatabaseServer";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DatabaseServer";
             this.Load += new System.EventHandler(this.DatabaseServer_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DatabaseServer_KeyDown);
             this.PnlContainer.ResumeLayout(false);
             this.PnlContainer.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ImbTryConnect)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbRefresh)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ImbTryConnect)).EndInit();
             this.ResumeLayout(false);
 
         }

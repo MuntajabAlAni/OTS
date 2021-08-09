@@ -214,6 +214,7 @@ namespace OTS.Ticketing.Win.Companies
             this.KeyPreview = true;
             this.Name = "AddCompany";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddCompany";
             this.Load += new System.EventHandler(this.AddCompany_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddCompany_KeyDown);

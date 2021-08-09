@@ -126,6 +126,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.KeyPreview = true;
             this.Name = "DisplayPhoneNumbers";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DisplayPhoneNumbers";
             this.Load += new System.EventHandler(this.DisplayPhoneNumbers_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DisplayPhoneNumbers_KeyDown);

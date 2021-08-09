@@ -108,6 +108,7 @@ namespace OTS.Ticketing.Win.Branches
             this.KeyPreview = true;
             this.Name = "AddBranch";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddBranch";
             this.Load += new System.EventHandler(this.AddBranch_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddBranch_KeyDown);

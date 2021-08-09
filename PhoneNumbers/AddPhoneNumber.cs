@@ -15,10 +15,15 @@ namespace OTS.Ticketing.Win.PhoneNumbers
     {
         readonly PhoneNumberRepository phoneNumberRepository = new PhoneNumberRepository();
         private readonly long _id;
-        public AddPhoneNumber(long id)
+        private readonly string _phoneNumber;
+        private readonly long _companyId;
+
+        public AddPhoneNumber(long id,string phoneNumber = "",long companyId = 0)
         {
             InitializeComponent();
             _id = id;
+            _phoneNumber = phoneNumber;
+            _companyId = companyId;
         }
         private async void AddPhoneNumber_Load(object sender, EventArgs e)
         {
@@ -48,7 +53,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 CombCompanies.DataSource = await phoneNumberRepository.GetAllCompanies();
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.SelectedValue = DBNull.Value;
+                TxtPhoneNumber.Text = _phoneNumber;
+                CombCompanies.SelectedValue = _companyId;
             }
             catch (Exception ex)
             {
@@ -128,6 +134,15 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             if (e.KeyCode == Keys.Escape)
             {
                 Application.Exit();
+            }
+        }
+
+        private void TxtPhoneNumber_Leave(object sender, EventArgs e)
+        {
+            if (!(TxtPhoneNumber.Text == "") & TxtPhoneNumber.Text.Length < 11)
+            {
+                MessageBox.Show("يرجى ادخال الرقم كاملاً");
+                TxtPhoneNumber.Focus();
             }
         }
     }

@@ -89,9 +89,11 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             // 
             this.TxtPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.TxtPhoneNumber.Location = new System.Drawing.Point(92, 37);
+            this.TxtPhoneNumber.MaxLength = 11;
             this.TxtPhoneNumber.Name = "TxtPhoneNumber";
             this.TxtPhoneNumber.Size = new System.Drawing.Size(180, 25);
             this.TxtPhoneNumber.TabIndex = 1;
+            this.TxtPhoneNumber.Leave += new System.EventHandler(this.TxtPhoneNumber_Leave);
             // 
             // TxtCustomerName
             // 
@@ -189,6 +191,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.KeyPreview = true;
             this.Name = "AddPhoneNumber";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddPhoneNumber";
             this.Load += new System.EventHandler(this.AddPhoneNumber_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddPhoneNumber_KeyDown);
