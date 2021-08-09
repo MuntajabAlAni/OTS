@@ -1,7 +1,7 @@
 ﻿
-namespace OTS.Ticketing.Win.Branches
+namespace OTS.Ticketing.Win.Softwares
 {
-    partial class AddBranch
+    partial class AddSoftware
     {
         /// <summary>
         /// Required designer variable.
@@ -46,7 +46,7 @@ namespace OTS.Ticketing.Win.Branches
             this.BtnExit.Location = new System.Drawing.Point(28, 101);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 2;
+            this.BtnExit.TabIndex = 38;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -61,7 +61,7 @@ namespace OTS.Ticketing.Win.Branches
             this.BtnAdd.Location = new System.Drawing.Point(212, 101);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 1;
+            this.BtnAdd.TabIndex = 39;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -72,9 +72,9 @@ namespace OTS.Ticketing.Win.Branches
             this.LblName.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.LblName.Location = new System.Drawing.Point(223, 47);
             this.LblName.Name = "LblName";
-            this.LblName.Size = new System.Drawing.Size(61, 15);
-            this.LblName.TabIndex = 32;
-            this.LblName.Text = "اسم الفرع :";
+            this.LblName.Size = new System.Drawing.Size(72, 15);
+            this.LblName.TabIndex = 37;
+            this.LblName.Text = "اسم البرنامج :";
             // 
             // TxtName
             // 
@@ -82,8 +82,7 @@ namespace OTS.Ticketing.Win.Branches
             this.TxtName.Location = new System.Drawing.Point(74, 42);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(143, 25);
-            this.TxtName.TabIndex = 0;
-            this.TxtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyDown);
+            this.TxtName.TabIndex = 36;
             // 
             // panel1
             // 
@@ -92,9 +91,9 @@ namespace OTS.Ticketing.Win.Branches
             this.panel1.Location = new System.Drawing.Point(4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(352, 162);
-            this.panel1.TabIndex = 35;
+            this.panel1.TabIndex = 40;
             // 
-            // AddBranch
+            // AddSoftware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -105,12 +104,10 @@ namespace OTS.Ticketing.Win.Branches
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.KeyPreview = true;
-            this.Name = "AddBranch";
+            this.Name = "AddSoftware";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "AddBranch";
-            this.Load += new System.EventHandler(this.AddBranch_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddBranch_KeyDown);
+            this.Text = "AddSoftware";
+            this.Load += new System.EventHandler(this.AddSoftware_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

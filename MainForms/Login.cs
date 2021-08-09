@@ -22,18 +22,27 @@ namespace OTS.Ticketing.Win.MainForms
 
         public async Task LoginToMain()
         {
-            var result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text, TxtPassword.Text);
-            if (result == null) 
+            try
             {
-                MessageBox.Show("يرجى التأكد من معلومات الدخول !");
-                return;
+                var result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text, TxtPassword.Text);
+                if (result == null)
+                {
+                    MessageBox.Show("يرجى التأكد من معلومات الدخول !");
+                    return;
+                }
+                SystemConstants.loggedInEmployeeId = result.Id;
+                Main main = new Main();
+                this.DialogResult = DialogResult.OK;
+                this.Hide();
+                main.ShowDialog();
+                this.Close();
             }
-            SystemConstants.loggedInEmployeeId = result.Id;
-            Main main = new Main();
-            this.DialogResult = DialogResult.OK;
-            this.Hide();
-            main.ShowDialog();
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "LoginToMain");
+            }
+            
         }
         private async void BtnLogin_Click(object sender, EventArgs e)
         {

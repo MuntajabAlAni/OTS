@@ -17,5 +17,6 @@ namespace OTS.Ticketing.Win.Tickets
         public string CompanyName { get; set; }
         public string State { get; set; }
         public int Revision { get; set; }
+        public string Arrangement { get; set; }
     }
 }

@@ -131,6 +131,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.BtnLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "Login";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

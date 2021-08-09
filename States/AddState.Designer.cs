@@ -46,7 +46,7 @@ namespace OTS.Ticketing.Win.States
             this.BtnExit.Location = new System.Drawing.Point(29, 101);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 28;
+            this.BtnExit.TabIndex = 3;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -61,7 +61,7 @@ namespace OTS.Ticketing.Win.States
             this.BtnAdd.Location = new System.Drawing.Point(213, 101);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 29;
+            this.BtnAdd.TabIndex = 2;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -82,7 +82,8 @@ namespace OTS.Ticketing.Win.States
             this.TxtName.Location = new System.Drawing.Point(75, 42);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(143, 25);
-            this.TxtName.TabIndex = 26;
+            this.TxtName.TabIndex = 1;
+            this.TxtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyDown);
             // 
             // panel1
             // 
@@ -104,10 +105,13 @@ namespace OTS.Ticketing.Win.States
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "AddState";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddState";
+            this.Load += new System.EventHandler(this.AddState_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddState_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

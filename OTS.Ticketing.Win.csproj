@@ -73,12 +73,6 @@
       <DependentUpon>AddCompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Companies\CompanyRepository.cs" />
-    <Compile Include="Companies\DisplayCompanies.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Companies\DisplayCompanies.Designer.cs">
-      <DependentUpon>DisplayCompanies.cs</DependentUpon>
-    </Compile>
     <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="MainForms\Home.cs">
       <SubType>Form</SubType>
@@ -104,7 +98,25 @@
     <Compile Include="DatabaseConnection\DataAccess.cs" />
     <Compile Include="Employees\EmployeeInfo.cs" />
     <Compile Include="DatabaseConnection\ConnectionTools.cs" />
+    <Compile Include="PhoneNumbers\AddPhoneNumber.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhoneNumbers\AddPhoneNumber.Designer.cs">
+      <DependentUpon>AddPhoneNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhoneNumbers\DisplayPhoneNumbers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhoneNumbers\DisplayPhoneNumbers.Designer.cs">
+      <DependentUpon>DisplayPhoneNumbers.cs</DependentUpon>
+    </Compile>
     <Compile Include="PhoneNumbers\PhoneNumberInfo.cs" />
+    <Compile Include="Softwares\AddSoftware.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Softwares\AddSoftware.Designer.cs">
+      <DependentUpon>AddSoftware.cs</DependentUpon>
+    </Compile>
     <Compile Include="States\AddState.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,9 +152,6 @@
     <EmbeddedResource Include="Companies\AddCompany.resx">
       <DependentUpon>AddCompany.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Companies\DisplayCompanies.resx">
-      <DependentUpon>DisplayCompanies.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +160,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhoneNumbers\AddPhoneNumber.resx">
+      <DependentUpon>AddPhoneNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhoneNumbers\DisplayPhoneNumbers.resx">
+      <DependentUpon>DisplayPhoneNumbers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -163,6 +178,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Softwares\AddSoftware.resx">
+      <DependentUpon>AddSoftware.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="States\AddState.resx">
       <DependentUpon>AddState.cs</DependentUpon>
     </EmbeddedResource>

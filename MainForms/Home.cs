@@ -27,7 +27,9 @@ namespace OTS.Ticketing.Win.MainForms
 
         private async void GetDtgLastTicketsData()
         {
-            DtgLastTickets.DataSource = await mainRepository.GetLastFiveCalls();
+            try
+            {
+                DtgLastTickets.DataSource = await mainRepository.GetLastFiveCalls();
             DtgLastTickets.Columns["Number"].HeaderText = "رقم البطاقة";
             DtgLastTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
             DtgLastTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
@@ -37,6 +39,13 @@ namespace OTS.Ticketing.Win.MainForms
             DtgLastTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
             DtgLastTickets.Columns["State"].HeaderText = "الحالة";
             DtgLastTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "GetDtgLastTicketsData");
+            }
+            
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
