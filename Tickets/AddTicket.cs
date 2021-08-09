@@ -29,13 +29,9 @@ namespace OTS.Ticketing.Win.Tickets
                 LblNumber.Text = await ticketRepository.GetLastTicketNumber();
                 LblRevision.Text = "1";
                 FillCompaniesComboBox();
-                CombCompanies.Text = "";
                 FillSoftwaresComboBox();
-                CombSoftware.Text = "";
                 FillEmployeesComboBox();
-                CombEmployee.Text = "";
                 FillPhoneNumbersComboBoxAndDtgUnclosedTickets();
-                CombPhoneNumbers.Text = "";
             }
             catch (Exception ex)
             {
@@ -44,13 +40,22 @@ namespace OTS.Ticketing.Win.Tickets
             }
 
         }
-        private async void FillCompaniesComboBox()
+        private async void FillCompaniesComboBox(long selectedValue = 0)
         {
             try
             {
                 CombCompanies.DataSource = await ticketRepository.GetAllCompanies();
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
+                CombCompanies.SelectedValue = "";
+                if (selectedValue != 0)
+                {
+                    CombPhoneNumbers.SelectedValue = selectedValue;
+                }
+                else
+                {
+                    CombPhoneNumbers.DataSource = null;
+                }
             }
             catch (Exception ex)
             {
@@ -66,6 +71,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombSoftware.DataSource = await ticketRepository.GetAllSoftwares();
                 CombSoftware.DisplayMember = "Name";
                 CombSoftware.ValueMember = "Id";
+                CombSoftware.SelectedValue = DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -81,6 +87,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombEmployee.DataSource = await ticketRepository.GetAllEmployees();
                 CombEmployee.DisplayMember = "displayName";
                 CombEmployee.ValueMember = "Id";
+                CombEmployee.SelectedValue = DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -104,6 +111,7 @@ namespace OTS.Ticketing.Win.Tickets
                             CombPhoneNumbers.DataSource = result;
                             CombPhoneNumbers.DisplayMember = "phoneNumber";
                             CombPhoneNumbers.ValueMember = "Id";
+                            CombPhoneNumbers.SelectedValue = DBNull.Value;
                         }
                         else CombPhoneNumbers.DataSource = null;
                         DtgUnclosedTickets.DataSource = await ticketRepository.GetUnclosedTicketsOnSelectedCompanyId(companyId);
@@ -244,7 +252,6 @@ namespace OTS.Ticketing.Win.Tickets
                 SystemConstants.ErrorLog(ex, "BtnEditCompany_Click");
             }
         }
-
         private void BtnAddPhoneNumber_Click(object sender, EventArgs e)
         {
             try
@@ -252,6 +259,9 @@ namespace OTS.Ticketing.Win.Tickets
                 AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0);
                 addPhoneNumber.ShowDialog();
                 FillPhoneNumbersComboBoxAndDtgUnclosedTickets();
+                FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
             }
             catch (Exception ex)
             {
@@ -259,7 +269,6 @@ namespace OTS.Ticketing.Win.Tickets
                 SystemConstants.ErrorLog(ex, "BtnAddPhoneNumber_Click");
             }
         }
-
         private void BtnEditPhoneNumber_Click(object sender, EventArgs e)
         {
             try
@@ -275,7 +284,6 @@ namespace OTS.Ticketing.Win.Tickets
             }
 
         }
-
         private void BtnSearchPhoneNumber_Click(object sender, EventArgs e)
         {
             try
@@ -292,7 +300,6 @@ namespace OTS.Ticketing.Win.Tickets
                 SystemConstants.ErrorLog(ex, "BtnSearchPhoneNumber_Click");
             }
         }
-
         private void CombPhoneNumbers_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)

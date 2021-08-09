@@ -96,5 +96,21 @@ namespace OTS.Ticketing.Win.Companies
             }
 
         }
+
+        public async Task<CompanyInfo> GetLastCompanyId()
+        {
+            try
+            {
+                string query = "SELECT TOP 1 Id FROM Companies Order by Id DESC";
+                var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
+                return result.FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "GetLastCompanyId");
+                return default;
+            }
+        }
     }
 }

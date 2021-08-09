@@ -120,6 +120,8 @@ namespace OTS.Ticketing.Win.Companies
                         TxtRemarks.Text,
                         _id);
                 }
+                CompanyInfo lastCompany = await companyRepository.GetLastCompanyId();
+                SystemConstants.SelectedCompanyId = lastCompany.Id;
                 this.Close();
 
             }

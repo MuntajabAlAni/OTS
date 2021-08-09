@@ -74,7 +74,9 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 string query = "SELECT * FROM Companies";
                 var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
-                return result.ToList();
+                var list = result.ToList();
+                list.Add(new CompanyInfo { Id = 0, Name = "", BranchId = 1, Address = "", Remarks = "" });
+                return list;
             }
             catch (Exception ex)
             {
@@ -197,7 +199,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join employees e on t.employeeId = e.id
                                                  inner join companies c on t.companyId = c.id 
                                                  left join states st on t.stateId = st.id
-												 inner join (select number,max(revision) revision from tickets where employeeId = 6 group by number) t2 on t.revision = t2.revision and t.number = t2.number 
+												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
 												 WHERE closeDate is null and t.companyId = @companyId
                                                  ORDER BY t.number,t.revision";
 

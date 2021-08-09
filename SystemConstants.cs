@@ -12,6 +12,8 @@ namespace OTS.Ticketing.Win
         public static long loggedInEmployeeId;
         public static long SelectedPhoneNumberId;
         public static long SelectedCompanyId;
+        public static string Database;
+        public static string ServerIp;
 
         public static void ErrorLog(Exception ex, string methodName)
         {

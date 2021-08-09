@@ -29,6 +29,7 @@ namespace OTS.Ticketing.Win.MainForms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.BtnLogin = new System.Windows.Forms.Button();
             this.BtnExit = new System.Windows.Forms.Button();
             this.TxtUserName = new System.Windows.Forms.TextBox();
@@ -36,6 +37,8 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblUserName = new System.Windows.Forms.Label();
             this.LblPassword = new System.Windows.Forms.Label();
             this.LblTitle = new System.Windows.Forms.Label();
+            this.ImbLogo = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnLogin
@@ -111,11 +114,22 @@ namespace OTS.Ticketing.Win.MainForms
             // 
             this.LblTitle.AutoSize = true;
             this.LblTitle.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitle.Location = new System.Drawing.Point(57, 12);
+            this.LblTitle.Location = new System.Drawing.Point(95, 23);
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(219, 25);
+            this.LblTitle.Size = new System.Drawing.Size(179, 25);
             this.LblTitle.TabIndex = 5;
-            this.LblTitle.Text = "OTS Ticketing Software";
+            this.LblTitle.Text = "Ticketing Software";
+            // 
+            // ImbLogo
+            // 
+            this.ImbLogo.Image = ((System.Drawing.Image)(resources.GetObject("ImbLogo.Image")));
+            this.ImbLogo.Location = new System.Drawing.Point(19, 12);
+            this.ImbLogo.Name = "ImbLogo";
+            this.ImbLogo.Size = new System.Drawing.Size(77, 45);
+            this.ImbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.ImbLogo.TabIndex = 6;
+            this.ImbLogo.TabStop = false;
+            this.ImbLogo.Click += new System.EventHandler(this.ImbLogo_Click);
             // 
             // Login
             // 
@@ -123,6 +137,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(332, 215);
+            this.Controls.Add(this.ImbLogo);
             this.Controls.Add(this.LblTitle);
             this.Controls.Add(this.LblPassword);
             this.Controls.Add(this.LblUserName);
@@ -138,6 +153,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.Text = "Login";
             this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
+            ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,5 +168,6 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.Label LblUserName;
         private System.Windows.Forms.Label LblPassword;
         private System.Windows.Forms.Label LblTitle;
+        private System.Windows.Forms.PictureBox ImbLogo;
     }
 }

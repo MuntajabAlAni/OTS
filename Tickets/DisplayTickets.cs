@@ -129,14 +129,19 @@ namespace OTS.Ticketing.Win.Tickets
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                await ticketRepository.UpdateTicket(Convert.ToInt64(LblNumber.Text),
-                 Convert.ToInt32(LblRevision.Text),
-                 DateTime.Now,
-                 Convert.ToInt64(CombStates.SelectedValue),
-                 TxtRemarks.Text,
-                 Convert.ToInt32(ToggleRemotely.Checked),
-                 ToggleArrangement.Checked);
-                GetDtgTicketsData();
+                DialogResult dr;
+                dr = MessageBox.Show("هل انت متأكد من الإضافة ؟", "Confirm", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    await ticketRepository.UpdateTicket(Convert.ToInt64(LblNumber.Text),
+                  Convert.ToInt32(LblRevision.Text),
+                  DateTime.Now,
+                  Convert.ToInt64(CombStates.SelectedValue),
+                  TxtRemarks.Text,
+                  Convert.ToInt32(ToggleRemotely.Checked),
+                  ToggleArrangement.Checked);
+                    GetDtgTicketsData();
+                }
                 LblNumber.Text = "";
                 LblRevision.Text = "";
                 LblCompany.Text = "";

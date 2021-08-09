@@ -48,6 +48,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 CombCompanies.DataSource = await phoneNumberRepository.GetAllCompanies();
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
+                CombCompanies.SelectedValue = DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -60,7 +61,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
-                if (TxtPhoneNumber.Text == "")
+                if (TxtPhoneNumber.Text == "" | CombCompanies.SelectedValue == DBNull.Value)
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;

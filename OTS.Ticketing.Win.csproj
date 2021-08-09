@@ -73,7 +73,15 @@
       <DependentUpon>AddCompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Companies\CompanyRepository.cs" />
+    <Compile Include="DatabaseConnection\DatabaseInfo.cs" />
+    <Compile Include="DatabaseConnection\DatabaseServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
+      <DependentUpon>DatabaseServer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employees\EmployeeRepository.cs" />
+    <Compile Include="IniFile.cs" />
     <Compile Include="MainForms\Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +160,9 @@
     <EmbeddedResource Include="Companies\AddCompany.resx">
       <DependentUpon>AddCompany.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DatabaseConnection\DatabaseServer.resx">
+      <DependentUpon>DatabaseServer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
     </EmbeddedResource>
@@ -190,6 +201,9 @@
     <EmbeddedResource Include="Tickets\DisplayTickets.resx">
       <DependentUpon>DisplayTickets.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="config.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

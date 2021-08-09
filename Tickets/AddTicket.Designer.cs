@@ -102,6 +102,8 @@ namespace OTS.Ticketing.Win.Tickets
             // CombCompanies
             // 
             this.CombCompanies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CombCompanies.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CombCompanies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombCompanies.FormattingEnabled = true;
             this.CombCompanies.Location = new System.Drawing.Point(556, 36);
@@ -200,6 +202,8 @@ namespace OTS.Ticketing.Win.Tickets
             // CombPhoneNumbers
             // 
             this.CombPhoneNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CombPhoneNumbers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CombPhoneNumbers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CombPhoneNumbers.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombPhoneNumbers.FormattingEnabled = true;
             this.CombPhoneNumbers.Location = new System.Drawing.Point(556, 85);

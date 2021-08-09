@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
+using OTS.Ticketing.Win.DatabaseConnection;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -18,12 +20,17 @@ namespace OTS.Ticketing.Win.MainForms
         public Login()
         {
             InitializeComponent();
+            IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"config.ini"));
+            SystemConstants.Database = iniFile.IniReadValue("Connection","Database");
+            SystemConstants.ServerIp = iniFile.IniReadValue("Connection","ServerIp");
+
         }
 
         public async Task LoginToMain()
         {
             try
             {
+                BtnLogin.Enabled = false;
                 var result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text, TxtPassword.Text);
                 if (result == null)
                 {
@@ -42,7 +49,11 @@ namespace OTS.Ticketing.Win.MainForms
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SystemConstants.ErrorLog(ex, "LoginToMain");
             }
-            
+            finally
+            {
+                BtnLogin.Enabled = true;
+            }
+
         }
         private async void BtnLogin_Click(object sender, EventArgs e)
         {
@@ -62,7 +73,7 @@ namespace OTS.Ticketing.Win.MainForms
             }
         }
 
-        private async void TxtUserName_KeyDown(object sender, KeyEventArgs e)
+        private void TxtUserName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -71,17 +82,22 @@ namespace OTS.Ticketing.Win.MainForms
                     TxtPassword.Focus();
                     return;
                 }
-                await LoginToMain();
+                BtnLogin.PerformClick();
             }
         }
 
-        private async void TxtPassword_KeyDown(object sender, KeyEventArgs e)
+        private void TxtPassword_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                await LoginToMain();
+                BtnLogin.PerformClick();
             }
         }
 
+        private void ImbLogo_Click(object sender, EventArgs e)
+        {
+            DatabaseServer database = new DatabaseServer();
+            database.ShowDialog();
+        }
     }
 }

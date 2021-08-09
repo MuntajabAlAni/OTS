@@ -83,7 +83,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                BtnHome_Click(sender, e);
+                BtnHome.PerformClick();
                 var employeeInfo = await ticketRepository.GetEmployeeById(SystemConstants.loggedInEmployeeId);
                 if (employeeInfo.UserName != "admin")
                 {

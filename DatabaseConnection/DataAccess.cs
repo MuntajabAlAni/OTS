@@ -11,9 +11,9 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 {
     public class DataAccess
     {
-        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, DynamicParameters parameters)
+        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, DynamicParameters parameters,bool init = false,string ServerIp = "")
         {
-            using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue("OTS_Ticketing_SoftwareDB")))
+            using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue(init,ServerIp)))
             {
                 return await connection.QueryAsync<T>(sql, parameters);
             }
@@ -21,7 +21,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
         public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters)
         {
-            using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue("OTS_Ticketing_SoftwareDB")))
+            using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
             {
                 return await connection.ExecuteAsync(sql, parameters);
             }
