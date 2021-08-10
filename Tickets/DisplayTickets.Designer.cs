@@ -29,17 +29,20 @@ namespace OTS.Ticketing.Win.Tickets
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayTickets));
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState13 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState14 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState15 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState16 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState17 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState18 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState1 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState2 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState3 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState4 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState5 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState6 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState7 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState8 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState9 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.DtgTickets = new System.Windows.Forms.DataGridView();
             this.LblNumberTitle = new System.Windows.Forms.Label();
@@ -68,6 +71,10 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftware = new System.Windows.Forms.Label();
             this.LblEmployee = new System.Windows.Forms.Label();
             this.LblOpenDate = new System.Windows.Forms.Label();
+            this.TxtProblem = new System.Windows.Forms.TextBox();
+            this.LblProblem = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ToggleClosed = new Bunifu.UI.WinForms.BunifuToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditState)).BeginInit();
@@ -84,7 +91,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnUpdate.Location = new System.Drawing.Point(12, 212);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(120, 45);
-            this.BtnUpdate.TabIndex = 5;
+            this.BtnUpdate.TabIndex = 8;
             this.BtnUpdate.Text = "حفظ";
             this.BtnUpdate.UseVisualStyleBackColor = false;
             this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
@@ -95,13 +102,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.AllowUserToDeleteRows = false;
             this.DtgTickets.AllowUserToOrderColumns = true;
             this.DtgTickets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DtgTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -110,24 +117,24 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.DtgTickets.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.DtgTickets.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DtgTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
-            this.DtgTickets.ColumnHeadersHeight = 28;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DtgTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.DtgTickets.ColumnHeadersHeight = 34;
             this.DtgTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DtgTickets.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DtgTickets.DefaultCellStyle = dataGridViewCellStyle3;
             this.DtgTickets.EnableHeadersVisualStyles = false;
             this.DtgTickets.GridColor = System.Drawing.Color.WhiteSmoke;
             this.DtgTickets.Location = new System.Drawing.Point(12, 262);
@@ -138,13 +145,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DtgTickets.RowHeadersVisible = false;
             this.DtgTickets.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgTickets.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgTickets.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DtgTickets.RowTemplate.Height = 26;
             this.DtgTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgTickets.Size = new System.Drawing.Size(1026, 333);
@@ -225,7 +232,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(498, 121);
-            this.TxtRemarks.TabIndex = 2;
+            this.TxtRemarks.TabIndex = 3;
             // 
             // LblRemarks
             // 
@@ -248,39 +255,39 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleRemotely.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ToggleRemotely.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleRemotely.InnerCirclePadding = 3;
-            this.ToggleRemotely.Location = new System.Drawing.Point(326, 93);
+            this.ToggleRemotely.Location = new System.Drawing.Point(316, 93);
             this.ToggleRemotely.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleRemotely.Name = "ToggleRemotely";
             this.ToggleRemotely.Size = new System.Drawing.Size(51, 26);
-            this.ToggleRemotely.TabIndex = 4;
+            this.ToggleRemotely.TabIndex = 5;
             this.ToggleRemotely.ThumbMargin = 3;
-            toggleState13.BackColor = System.Drawing.Color.DarkGray;
-            toggleState13.BackColorInner = System.Drawing.Color.White;
-            toggleState13.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState13.BorderColorInner = System.Drawing.Color.White;
-            toggleState13.BorderRadius = 25;
-            toggleState13.BorderRadiusInner = 17;
-            toggleState13.BorderThickness = 1;
-            toggleState13.BorderThicknessInner = 1;
-            this.ToggleRemotely.ToggleStateDisabled = toggleState13;
-            toggleState14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState14.BackColorInner = System.Drawing.Color.White;
-            toggleState14.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState14.BorderColorInner = System.Drawing.Color.White;
-            toggleState14.BorderRadius = 25;
-            toggleState14.BorderRadiusInner = 17;
-            toggleState14.BorderThickness = 1;
-            toggleState14.BorderThicknessInner = 1;
-            this.ToggleRemotely.ToggleStateOff = toggleState14;
-            toggleState15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState15.BackColorInner = System.Drawing.Color.White;
-            toggleState15.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState15.BorderColorInner = System.Drawing.Color.White;
-            toggleState15.BorderRadius = 25;
-            toggleState15.BorderRadiusInner = 17;
-            toggleState15.BorderThickness = 1;
-            toggleState15.BorderThicknessInner = 1;
-            this.ToggleRemotely.ToggleStateOn = toggleState15;
+            toggleState1.BackColor = System.Drawing.Color.DarkGray;
+            toggleState1.BackColorInner = System.Drawing.Color.White;
+            toggleState1.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState1.BorderColorInner = System.Drawing.Color.White;
+            toggleState1.BorderRadius = 25;
+            toggleState1.BorderRadiusInner = 17;
+            toggleState1.BorderThickness = 1;
+            toggleState1.BorderThicknessInner = 1;
+            this.ToggleRemotely.ToggleStateDisabled = toggleState1;
+            toggleState2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState2.BackColorInner = System.Drawing.Color.White;
+            toggleState2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState2.BorderColorInner = System.Drawing.Color.White;
+            toggleState2.BorderRadius = 25;
+            toggleState2.BorderRadiusInner = 17;
+            toggleState2.BorderThickness = 1;
+            toggleState2.BorderThicknessInner = 1;
+            this.ToggleRemotely.ToggleStateOff = toggleState2;
+            toggleState3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState3.BackColorInner = System.Drawing.Color.White;
+            toggleState3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState3.BorderColorInner = System.Drawing.Color.White;
+            toggleState3.BorderRadius = 25;
+            toggleState3.BorderRadiusInner = 17;
+            toggleState3.BorderThickness = 1;
+            toggleState3.BorderThicknessInner = 1;
+            this.ToggleRemotely.ToggleStateOn = toggleState3;
             this.ToggleRemotely.Value = false;
             this.ToggleRemotely.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
             // 
@@ -289,7 +296,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemotely.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblRemotely.AutoSize = true;
             this.LblRemotely.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRemotely.Location = new System.Drawing.Point(383, 99);
+            this.LblRemotely.Location = new System.Drawing.Point(373, 99);
             this.LblRemotely.Name = "LblRemotely";
             this.LblRemotely.Size = new System.Drawing.Size(70, 15);
             this.LblRemotely.TabIndex = 7;
@@ -300,7 +307,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblRemote.AutoSize = true;
             this.LblRemote.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRemote.Location = new System.Drawing.Point(221, 99);
+            this.LblRemote.Location = new System.Drawing.Point(214, 99);
             this.LblRemote.Name = "LblRemote";
             this.LblRemote.Size = new System.Drawing.Size(66, 15);
             this.LblRemote.TabIndex = 7;
@@ -325,7 +332,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombStates.Location = new System.Drawing.Point(515, 94);
             this.CombStates.Name = "CombStates";
             this.CombStates.Size = new System.Drawing.Size(121, 25);
-            this.CombStates.TabIndex = 1;
+            this.CombStates.TabIndex = 2;
             // 
             // BtnRefresh
             // 
@@ -338,7 +345,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnRefresh.Location = new System.Drawing.Point(12, 158);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(120, 45);
-            this.BtnRefresh.TabIndex = 6;
+            this.BtnRefresh.TabIndex = 7;
             this.BtnRefresh.Text = "تحديث";
             this.BtnRefresh.UseVisualStyleBackColor = false;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
@@ -411,7 +418,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblArrangement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblArrangement.AutoSize = true;
             this.LblArrangement.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblArrangement.Location = new System.Drawing.Point(383, 53);
+            this.LblArrangement.Location = new System.Drawing.Point(373, 61);
             this.LblArrangement.Name = "LblArrangement";
             this.LblArrangement.Size = new System.Drawing.Size(81, 15);
             this.LblArrangement.TabIndex = 7;
@@ -427,39 +434,39 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleArrangement.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ToggleArrangement.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleArrangement.InnerCirclePadding = 3;
-            this.ToggleArrangement.Location = new System.Drawing.Point(326, 47);
+            this.ToggleArrangement.Location = new System.Drawing.Point(316, 55);
             this.ToggleArrangement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleArrangement.Name = "ToggleArrangement";
             this.ToggleArrangement.Size = new System.Drawing.Size(51, 26);
-            this.ToggleArrangement.TabIndex = 3;
+            this.ToggleArrangement.TabIndex = 4;
             this.ToggleArrangement.ThumbMargin = 3;
-            toggleState16.BackColor = System.Drawing.Color.DarkGray;
-            toggleState16.BackColorInner = System.Drawing.Color.White;
-            toggleState16.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState16.BorderColorInner = System.Drawing.Color.White;
-            toggleState16.BorderRadius = 25;
-            toggleState16.BorderRadiusInner = 17;
-            toggleState16.BorderThickness = 1;
-            toggleState16.BorderThicknessInner = 1;
-            this.ToggleArrangement.ToggleStateDisabled = toggleState16;
-            toggleState17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState17.BackColorInner = System.Drawing.Color.White;
-            toggleState17.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState17.BorderColorInner = System.Drawing.Color.White;
-            toggleState17.BorderRadius = 25;
-            toggleState17.BorderRadiusInner = 17;
-            toggleState17.BorderThickness = 1;
-            toggleState17.BorderThicknessInner = 1;
-            this.ToggleArrangement.ToggleStateOff = toggleState17;
-            toggleState18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState18.BackColorInner = System.Drawing.Color.White;
-            toggleState18.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState18.BorderColorInner = System.Drawing.Color.White;
-            toggleState18.BorderRadius = 25;
-            toggleState18.BorderRadiusInner = 17;
-            toggleState18.BorderThickness = 1;
-            toggleState18.BorderThicknessInner = 1;
-            this.ToggleArrangement.ToggleStateOn = toggleState18;
+            toggleState4.BackColor = System.Drawing.Color.DarkGray;
+            toggleState4.BackColorInner = System.Drawing.Color.White;
+            toggleState4.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState4.BorderColorInner = System.Drawing.Color.White;
+            toggleState4.BorderRadius = 25;
+            toggleState4.BorderRadiusInner = 17;
+            toggleState4.BorderThickness = 1;
+            toggleState4.BorderThicknessInner = 1;
+            this.ToggleArrangement.ToggleStateDisabled = toggleState4;
+            toggleState5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState5.BackColorInner = System.Drawing.Color.White;
+            toggleState5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState5.BorderColorInner = System.Drawing.Color.White;
+            toggleState5.BorderRadius = 25;
+            toggleState5.BorderRadiusInner = 17;
+            toggleState5.BorderThickness = 1;
+            toggleState5.BorderThicknessInner = 1;
+            this.ToggleArrangement.ToggleStateOff = toggleState5;
+            toggleState6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState6.BackColorInner = System.Drawing.Color.White;
+            toggleState6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState6.BorderColorInner = System.Drawing.Color.White;
+            toggleState6.BorderRadius = 25;
+            toggleState6.BorderRadiusInner = 17;
+            toggleState6.BorderThickness = 1;
+            toggleState6.BorderThicknessInner = 1;
+            this.ToggleArrangement.ToggleStateOn = toggleState6;
             this.ToggleArrangement.Value = false;
             this.ToggleArrangement.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
             // 
@@ -513,6 +520,83 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblOpenDate.Size = new System.Drawing.Size(0, 20);
             this.LblOpenDate.TabIndex = 24;
             // 
+            // TxtProblem
+            // 
+            this.TxtProblem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtProblem.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.TxtProblem.Location = new System.Drawing.Point(465, 56);
+            this.TxtProblem.Name = "TxtProblem";
+            this.TxtProblem.Size = new System.Drawing.Size(171, 25);
+            this.TxtProblem.TabIndex = 1;
+            // 
+            // LblProblem
+            // 
+            this.LblProblem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblProblem.AutoSize = true;
+            this.LblProblem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblProblem.Location = new System.Drawing.Point(642, 61);
+            this.LblProblem.Name = "LblProblem";
+            this.LblProblem.Size = new System.Drawing.Size(73, 15);
+            this.LblProblem.TabIndex = 7;
+            this.LblProblem.Text = "نوع المشكلة :";
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label1.Location = new System.Drawing.Point(37, 103);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(72, 15);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "إغلاق البطاقة";
+            // 
+            // ToggleClosed
+            // 
+            this.ToggleClosed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToggleClosed.Animation = 5;
+            this.ToggleClosed.BackColor = System.Drawing.Color.Transparent;
+            this.ToggleClosed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToggleClosed.BackgroundImage")));
+            this.ToggleClosed.Checked = false;
+            this.ToggleClosed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ToggleClosed.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ToggleClosed.InnerCirclePadding = 3;
+            this.ToggleClosed.Location = new System.Drawing.Point(46, 122);
+            this.ToggleClosed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ToggleClosed.Name = "ToggleClosed";
+            this.ToggleClosed.Size = new System.Drawing.Size(51, 26);
+            this.ToggleClosed.TabIndex = 6;
+            this.ToggleClosed.ThumbMargin = 3;
+            toggleState7.BackColor = System.Drawing.Color.DarkGray;
+            toggleState7.BackColorInner = System.Drawing.Color.White;
+            toggleState7.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState7.BorderColorInner = System.Drawing.Color.White;
+            toggleState7.BorderRadius = 25;
+            toggleState7.BorderRadiusInner = 17;
+            toggleState7.BorderThickness = 1;
+            toggleState7.BorderThicknessInner = 1;
+            this.ToggleClosed.ToggleStateDisabled = toggleState7;
+            toggleState8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState8.BackColorInner = System.Drawing.Color.White;
+            toggleState8.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState8.BorderColorInner = System.Drawing.Color.White;
+            toggleState8.BorderRadius = 25;
+            toggleState8.BorderRadiusInner = 17;
+            toggleState8.BorderThickness = 1;
+            toggleState8.BorderThicknessInner = 1;
+            this.ToggleClosed.ToggleStateOff = toggleState8;
+            toggleState9.BackColor = System.Drawing.Color.Crimson;
+            toggleState9.BackColorInner = System.Drawing.Color.White;
+            toggleState9.BorderColor = System.Drawing.Color.Crimson;
+            toggleState9.BorderColorInner = System.Drawing.Color.White;
+            toggleState9.BorderRadius = 25;
+            toggleState9.BorderRadiusInner = 17;
+            toggleState9.BorderThickness = 1;
+            toggleState9.BorderThicknessInner = 1;
+            this.ToggleClosed.ToggleStateOn = toggleState9;
+            this.ToggleClosed.Value = false;
+            this.ToggleClosed.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
+            // 
             // DisplayTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -527,6 +611,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.LblOpenDate);
             this.Controls.Add(this.LblNumber);
             this.Controls.Add(this.BtnAddState);
+            this.Controls.Add(this.ToggleClosed);
             this.Controls.Add(this.ToggleArrangement);
             this.Controls.Add(this.ToggleRemotely);
             this.Controls.Add(this.CombStates);
@@ -535,13 +620,16 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.LblPhoneNumberTitle);
             this.Controls.Add(this.LblOpenDateTitle);
             this.Controls.Add(this.LblCompanyTitle);
+            this.Controls.Add(this.LblProblem);
             this.Controls.Add(this.LblRemarks);
             this.Controls.Add(this.LblRemote);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.LblState);
             this.Controls.Add(this.LblArrangement);
             this.Controls.Add(this.LblRemotely);
             this.Controls.Add(this.LblRevisionTitle);
             this.Controls.Add(this.LblNumberTitle);
+            this.Controls.Add(this.TxtProblem);
             this.Controls.Add(this.TxtRemarks);
             this.Controls.Add(this.DtgTickets);
             this.Controls.Add(this.BtnRefresh);
@@ -588,5 +676,9 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblSoftware;
         private System.Windows.Forms.Label LblEmployee;
         private System.Windows.Forms.Label LblOpenDate;
+        private System.Windows.Forms.TextBox TxtProblem;
+        private System.Windows.Forms.Label LblProblem;
+        private System.Windows.Forms.Label label1;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch ToggleClosed;
     }
 }

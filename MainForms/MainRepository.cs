@@ -38,10 +38,11 @@ namespace OTS.Ticketing.Win.MainForms
             try
             {
                 string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
-                                                c.name as CompanyName, st.name state, t.revision, 
+                                                c.name as CompanyName, t.problem, st.name state, t.revision, 
 												Case when t.arrangement = 1 then 'مرتبة'
 												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement FROM tickets t
+												 end arrangement, case when t.isClosed = 1 then 'مغلقة' 
+                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosed FROM tickets t
                                                  left join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  left join softwares s on t.softwareId = s.id
                                                  left join employees e on t.employeeId = e.id

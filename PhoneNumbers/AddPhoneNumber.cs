@@ -85,6 +85,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                         TxtCustomerName.Text,
                         Convert.ToInt64(CombCompanies.SelectedValue));
                 }
+                SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
+                SystemConstants.SelectedPhoneNumberId = await phoneNumberRepository.GetPhoneNumberIdByPhoneNumber(TxtPhoneNumber.Text);
                 this.Close();
             }
             catch (Exception ex)

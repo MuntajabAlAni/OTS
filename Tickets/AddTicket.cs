@@ -26,15 +26,11 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 LblNumber.Text = await ticketRepository.GetLastTicketNumber();
-                LblRevision.Text = "1";
+                LblRevision.Text = "0";
                 FillCompaniesComboBox();
                 FillSoftwaresComboBox();
                 FillEmployeesComboBox();
                 FillPhoneNumbersComboBox(true);
-                CombPhoneNumbers.SelectedValue = DBNull.Value;
-                CombSoftware.SelectedValue = DBNull.Value;
-                CombEmployee.SelectedValue = DBNull.Value;
-                CombCompanies.SelectedValue = DBNull.Value;
             }
             catch (Exception ex)
             {
@@ -115,6 +111,7 @@ namespace OTS.Ticketing.Win.Tickets
                             CombPhoneNumbers.DataSource = result;
                             CombPhoneNumbers.DisplayMember = "phoneNumber";
                             CombPhoneNumbers.ValueMember = "Id";
+                            CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
                         }
                         else CombPhoneNumbers.DataSource = null;
                         FillDtgUnclosedTickets(Convert.ToInt64(CombCompanies.SelectedValue));
@@ -138,9 +135,12 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
             DtgUnclosedTickets.Columns["EmployeeName"].HeaderText = "الموظف";
             DtgUnclosedTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
+            DtgUnclosedTickets.Columns["Problem"].HeaderText = "المشكلة";
             DtgUnclosedTickets.Columns["State"].HeaderText = "الحالة";
             DtgUnclosedTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
             DtgUnclosedTickets.Columns["Arrangement"].HeaderText = "ترتيب الملفات";
+            DtgUnclosedTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
+            DtgUnclosedTickets.Columns["Remarks"].Visible = false;
         }
         private void BtnExit_Click(object sender, EventArgs e)
         {
@@ -150,7 +150,10 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                if (Convert.ToInt64(CombPhoneNumbers.SelectedValue) < 1)
+                if (Convert.ToInt64(CombPhoneNumbers.SelectedValue) == 0
+                    | Convert.ToInt64(CombCompanies.SelectedValue) == 0
+                    | Convert.ToInt64(CombEmployee.SelectedValue) == 0
+                    | Convert.ToInt64(CombSoftware.SelectedValue) == 0)
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -228,7 +231,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0,CombPhoneNumbers.Text,Convert.ToInt64(CombCompanies.SelectedValue));
+                AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0, CombPhoneNumbers.Text, Convert.ToInt64(CombCompanies.SelectedValue));
                 addPhoneNumber.ShowDialog();
                 FillPhoneNumbersComboBox();
                 FillCompaniesComboBox();
@@ -262,9 +265,8 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(CombPhoneNumbers.Text, Convert.ToInt64(CombCompanies.SelectedValue));
                 displayPhoneNumbers.ShowDialog();
-                FillPhoneNumbersComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
-                CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
+                FillPhoneNumbersComboBox();
             }
             catch (Exception ex)
             {
@@ -285,7 +287,15 @@ namespace OTS.Ticketing.Win.Tickets
                 BtnSearchPhoneNumber_Click(sender, e);
             }
         }
-        private void CombCompanies_SelectionChangeCommitted(object sender, EventArgs e)
+        private void CombPhoneNumbers_Leave(object sender, EventArgs e)
+        {
+            if (!(CombPhoneNumbers.Text == "") & CombPhoneNumbers.Text.Length < 11)
+            {
+                MessageBox.Show("يرجى ادخال الرقم كاملاً");
+                CombPhoneNumbers.Focus();
+            }
+        }
+        private void CombCompanies_SelectedValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -303,15 +313,6 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SystemConstants.ErrorLog(ex, "CombCompanies_SelectedValueChanged");
-            }
-        }
-
-        private void CombPhoneNumbers_Leave(object sender, EventArgs e)
-        {
-            if (!(CombPhoneNumbers.Text=="") & CombPhoneNumbers.Text.Length < 11)
-            {
-                MessageBox.Show("يرجى ادخال الرقم كاملاً");
-                CombPhoneNumbers.Focus();
             }
         }
     }

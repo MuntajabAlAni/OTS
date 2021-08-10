@@ -27,7 +27,7 @@ namespace OTS.Ticketing.Win.Tickets
                 var parameters = new DynamicParameters();
                 parameters.Add("@employeeId", employeeId);
                 string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
-                                                 c.name as CompanyName, st.name state, t.revision, Case when t.arrangement = 1 then 'مرتبة'
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.arrangement = 1 then 'مرتبة'
 												 when t.arrangement = 0 then 'غير مرتبة'
 												 end arrangement FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
@@ -36,7 +36,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
 												 inner join (select number,max(revision) revision from tickets where employeeId = @employeeId group by number) t2 on t.revision = t2.revision and t.number = t2.number
-												 WHERE employeeId = @employeeId and closeDate is null
+												 WHERE employeeId = @employeeId and (isClosed = 0 or isClosed is null)
                                                  ORDER BY t.number DESC,t.revision DESC";
 
                 var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -128,7 +128,9 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 string query = "SELECT * FROM States";
                 var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
-                return result.ToList();
+                var list = result.ToList();
+                list.Insert(0, (new StateInfo { Id = 0, Name = "" }));
+                return list;
             }
             catch (Exception ex)
             {
@@ -197,16 +199,17 @@ namespace OTS.Ticketing.Win.Tickets
                 var parameters = new DynamicParameters();
                 parameters.Add("@companyId", companyId);
                 string query = @" SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
-                                                 c.name as CompanyName,st.name state, t.revision, Case when t.arrangement = 1 then 'مرتبة'
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.arrangement = 1 then 'مرتبة'
 												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement FROM tickets t
+												 end arrangement, case when t.isClosed = 1 then 'مغلقة' 
+                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosed FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join employees e on t.employeeId = e.id
                                                  inner join companies c on t.companyId = c.id 
                                                  left join states st on t.stateId = st.id
 												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
-												 WHERE closeDate is null and t.companyId = @companyId
+												 WHERE isClosed = 0 and t.companyId = @companyId
                                                  ORDER BY t.number,t.revision";
 
                 var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -241,7 +244,7 @@ namespace OTS.Ticketing.Win.Tickets
 
 
         }
-        public async Task<int> UpdateTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, int remotely, bool arrangement)
+        public async Task<int> UpdateTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool arrangement, bool closed)
         {
             try
             {
@@ -251,15 +254,19 @@ namespace OTS.Ticketing.Win.Tickets
                 parameters.Add("@closeDate", closeDate);
                 parameters.Add("@stateId", stateId);
                 parameters.Add("@remarks", remarks);
+                parameters.Add("@problem", problem);
                 parameters.Add("@remotely", remotely);
                 parameters.Add("@arrangement", arrangement);
+                parameters.Add("@closed", closed);
 
                 string command = @"UPDATE tickets
-                             SET closeDate = @closeDate
+                             SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
                            ,stateId = @stateId
                            ,remarks = @remarks
+                           ,problem = @problem
                            ,remotely = @remotely
                            ,arrangement = @arrangement
+                           ,isClosed = @closed
                             WHERE number = @number and revision = @revision";
 
                 return await dataAccess.ExecuteAsync(command, parameters);
@@ -299,10 +306,11 @@ namespace OTS.Ticketing.Win.Tickets
                 parameters.Add("@ticketNumber", ticketNumber);
                 parameters.Add("@revision", revision);
                 string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
-                                                 c.name as CompanyName, st.name state, t.revision, 
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, t.Remarks,
 												 Case when t.arrangement = 1 then 'مرتبة'
 												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement
+												 end arrangement, case when t.isClosed = 1 then 'مغلقة' 
+                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosed
 												  FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id

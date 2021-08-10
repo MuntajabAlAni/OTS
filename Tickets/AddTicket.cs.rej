@@ -1,0 +1,9 @@
+diff a/Tickets/AddTicket.cs b/Tickets/AddTicket.cs	(rejected hunks)
+@@ -16,6 +16,7 @@
+     public partial class AddTicket : Form
+     {
+         readonly TicketRepository ticketRepository = new TicketRepository();
++        bool phoneNumberChangeFlag = false;
+ 
+         public AddTicket()
+         {

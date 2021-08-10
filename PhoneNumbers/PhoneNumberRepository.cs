@@ -116,5 +116,26 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
+
+        public async Task<long> GetPhoneNumberIdByPhoneNumber(string phoneNumber)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@phoneNumber", phoneNumber);
+
+                string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber";
+
+                var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query,parameters);
+                PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
+                return phoneNumberInfo.Id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "GetLastPhoneNumberId");
+                return default;
+            }
+        }
     }
 }

@@ -16,10 +16,12 @@ namespace OTS.Ticketing.Win.Tickets
         public long SoftwareId { get; set; }
         public long EmployeeId { get; set; }
         public long CompanyId { get; set; }
+        public string Problem { get; set; }
         public long State { get; set; }
         public string Remarks { get; set; }
         public int Revision { get; set; }
         public bool Remotely { get; set; }
+        public bool IsClosed { get; set; }
 
     }
 }

@@ -127,9 +127,7 @@ namespace OTS.Ticketing.Win
         }
         private void BtnAddTicket_Click(object sender, EventArgs e)
         {
-            if (PnlContainer.Controls.ContainsKey("AddTicket")) return;
             ApplingFormOnContainer(new AddTicket());
-
         }
 
         private void Main_KeyDown(object sender, KeyEventArgs e)

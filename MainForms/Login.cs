@@ -39,10 +39,10 @@ namespace OTS.Ticketing.Win.MainForms
                 }
                 SystemConstants.loggedInEmployeeId = result.Id;
                 Main main = new Main();
-                this.DialogResult = DialogResult.OK;
+                //this.DialogResult = DialogResult.OK;
                 this.Hide();
                 main.ShowDialog();
-                this.Close();
+                //this.Close();
             }
             catch (Exception ex)
             {
