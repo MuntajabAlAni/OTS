@@ -16,28 +16,18 @@ namespace OTS.Ticketing.Win.MainForms
         public DataAccess dataAccess = new DataAccess();
         public async Task<EmployeeInfo> CheckUserNameAndPasswordAsync(string username, string password)
         {
-            try
-            {
-                DynamicParameters dynamicParameters = new DynamicParameters();
+            DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("UserName", username);
             dynamicParameters.Add("Password", password);
             string query = "SELECT * FROM employees where username like @UserName and password = @Password and State = 1";
 
-            var result =  await dataAccess.QueryAsync<EmployeeInfo>(query, dynamicParameters);
+            var result = await dataAccess.QueryAsync<EmployeeInfo>(query, dynamicParameters);
             return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "CheckUserNameAndPasswordAsync");
-                return default;
-            }
         }
         public async Task<List<TicketsView>> GetLastFiveCalls()
         {
-            try
-            {
-                string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
+
+            string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
                                                 c.name as CompanyName, t.problem, st.name state, t.revision, 
 												Case when t.arrangement = 1 then 'مرتبة'
 												 when t.arrangement = 0 then 'غير مرتبة'
@@ -51,14 +41,6 @@ namespace OTS.Ticketing.Win.MainForms
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
             return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetLastFiveCalls");
-                return default;
-            }
-            
         }
     }
 }

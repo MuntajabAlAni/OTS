@@ -30,10 +30,10 @@ namespace OTS.Ticketing.Win.Tickets
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddTicket));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAddCompany = new System.Windows.Forms.PictureBox();
             this.CombSoftware = new System.Windows.Forms.ComboBox();
             this.CombEmployee = new System.Windows.Forms.ComboBox();
@@ -55,12 +55,14 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEditCompany = new System.Windows.Forms.PictureBox();
             this.BtnEditPhoneNumber = new System.Windows.Forms.PictureBox();
             this.BtnSearchPhoneNumber = new System.Windows.Forms.PictureBox();
+            this.BtnSearchCompany = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddPhoneNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUnclosedTickets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditPhoneNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnSearchPhoneNumber)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnAddCompany
@@ -111,6 +113,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombCompanies.Size = new System.Drawing.Size(180, 25);
             this.CombCompanies.TabIndex = 0;
             this.CombCompanies.SelectedValueChanged += new System.EventHandler(this.CombCompanies_SelectedValueChanged);
+            this.CombCompanies.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CombCompanies_KeyDown);
             // 
             // LblSoftware
             // 
@@ -247,13 +250,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.AllowUserToDeleteRows = false;
             this.DtgUnclosedTickets.AllowUserToOrderColumns = true;
             this.DtgUnclosedTickets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgUnclosedTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgUnclosedTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DtgUnclosedTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -262,24 +265,24 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.DtgUnclosedTickets.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.DtgUnclosedTickets.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DtgUnclosedTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DtgUnclosedTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DtgUnclosedTickets.ColumnHeadersHeight = 34;
             this.DtgUnclosedTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DtgUnclosedTickets.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DtgUnclosedTickets.DefaultCellStyle = dataGridViewCellStyle7;
             this.DtgUnclosedTickets.EnableHeadersVisualStyles = false;
             this.DtgUnclosedTickets.GridColor = System.Drawing.Color.WhiteSmoke;
             this.DtgUnclosedTickets.Location = new System.Drawing.Point(12, 168);
@@ -290,13 +293,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DtgUnclosedTickets.RowHeadersVisible = false;
             this.DtgUnclosedTickets.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgUnclosedTickets.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgUnclosedTickets.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DtgUnclosedTickets.RowTemplate.Height = 26;
             this.DtgUnclosedTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgUnclosedTickets.Size = new System.Drawing.Size(1026, 427);
@@ -386,6 +389,22 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnSearchPhoneNumber.TabStop = false;
             this.BtnSearchPhoneNumber.Click += new System.EventHandler(this.BtnSearchPhoneNumber_Click);
             // 
+            // BtnSearchCompany
+            // 
+            this.BtnSearchCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSearchCompany.BackColor = System.Drawing.Color.White;
+            this.BtnSearchCompany.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BtnSearchCompany.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSearchCompany.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnSearchCompany.ErrorImage")));
+            this.BtnSearchCompany.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchCompany.Image")));
+            this.BtnSearchCompany.Location = new System.Drawing.Point(481, 36);
+            this.BtnSearchCompany.Name = "BtnSearchCompany";
+            this.BtnSearchCompany.Size = new System.Drawing.Size(25, 25);
+            this.BtnSearchCompany.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnSearchCompany.TabIndex = 22;
+            this.BtnSearchCompany.TabStop = false;
+            this.BtnSearchCompany.Click += new System.EventHandler(this.BtnSearchCompany_Click);
+            // 
             // AddTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,6 +413,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.DtgUnclosedTickets);
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.BtnAdd);
+            this.Controls.Add(this.BtnSearchCompany);
             this.Controls.Add(this.BtnSearchPhoneNumber);
             this.Controls.Add(this.BtnEditPhoneNumber);
             this.Controls.Add(this.BtnAddPhoneNumber);
@@ -424,6 +444,7 @@ namespace OTS.Ticketing.Win.Tickets
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditPhoneNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnSearchPhoneNumber)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -452,5 +473,6 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.PictureBox BtnEditCompany;
         private System.Windows.Forms.PictureBox BtnEditPhoneNumber;
         private System.Windows.Forms.PictureBox BtnSearchPhoneNumber;
+        private System.Windows.Forms.PictureBox BtnSearchCompany;
     }
 }

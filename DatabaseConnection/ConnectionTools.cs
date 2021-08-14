@@ -17,11 +17,11 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             {
                 DataSource = ServerIp==""? SystemConstants.ServerIp:ServerIp,
                 InitialCatalog = init==false? SystemConstants.Database:"master",
-                //UserID = "sa_ots",
-                //Password = "123456"
-                IntegratedSecurity = true
+                UserID = "sa",
+                Password = "vULiwCss0SrBrLJ",
+                IntegratedSecurity = true,
             };
-
+            //str["Server"] = str.DataSource + @"\FOTSQLSERVER";
             //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
             return str.ConnectionString;
         }

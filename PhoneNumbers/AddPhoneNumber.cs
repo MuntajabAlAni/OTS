@@ -18,7 +18,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         private readonly string _phoneNumber;
         private readonly long _companyId;
 
-        public AddPhoneNumber(long id,string phoneNumber = "",long companyId = 0)
+        public AddPhoneNumber(long id, string phoneNumber = "", long companyId = 0)
         {
             InitializeComponent();
             _id = id;
@@ -30,6 +30,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             try
             {
                 FillCompaniesComboBox();
+                CombCompanies.SelectedValue = _companyId;
                 if (_id != 0)
                 {
                     PhoneNumberInfo phoneNumberInfo = await phoneNumberRepository.GetPhoneNumberById(_id);
@@ -53,8 +54,11 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 CombCompanies.DataSource = await phoneNumberRepository.GetAllCompanies();
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                TxtPhoneNumber.Text = _phoneNumber;
-                CombCompanies.SelectedValue = _companyId;
+                if (_phoneNumber != "" | _companyId != 0)
+                {
+                    TxtPhoneNumber.Text = _phoneNumber;
+                    CombCompanies.SelectedValue = _companyId;
+                }
             }
             catch (Exception ex)
             {
@@ -104,9 +108,10 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
-                AddCompany addCompany = new AddCompany(0);
+                AddCompany addCompany = new AddCompany(0, CombCompanies.Text);
                 addCompany.ShowDialog();
                 FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -130,7 +135,6 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
-
         private void AddPhoneNumber_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -138,13 +142,34 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 Application.Exit();
             }
         }
-
         private void TxtPhoneNumber_Leave(object sender, EventArgs e)
         {
             if (!(TxtPhoneNumber.Text == "") & TxtPhoneNumber.Text.Length < 11)
             {
                 MessageBox.Show("يرجى ادخال الرقم كاملاً");
                 TxtPhoneNumber.Focus();
+            }
+        }
+        private void BtnSearchCompany_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DisplayCompanies displayCompanies = new DisplayCompanies(CombCompanies.Text);
+                displayCompanies.ShowDialog();
+                FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "BtnSearchPhoneNumber_Click");
+            }
+        }
+        private void CombCompanies_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                BtnSearchCompany_Click(sender, e);
             }
         }
     }

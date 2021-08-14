@@ -116,7 +116,6 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
-
         public async Task<long> GetPhoneNumberIdByPhoneNumber(string phoneNumber)
         {
             try
@@ -133,7 +132,27 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetLastPhoneNumberId");
+                SystemConstants.ErrorLog(ex, "GetPhoneNumberIdByPhoneNumber");
+                return default;
+            }
+        }
+        public async Task<long> GetCompanyIdByName(string name)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@Name", name);
+
+                string query = "SELECT id from Companies WHERE Name = @Name";
+
+                var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+                CompanyInfo companyInfo = result.FirstOrDefault();
+                return companyInfo.Id;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "GetCompanyIdByName");
                 return default;
             }
         }

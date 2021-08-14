@@ -31,6 +31,7 @@ namespace OTS.Ticketing.Win.Tickets
                 FillSoftwaresComboBox();
                 FillEmployeesComboBox();
                 FillPhoneNumbersComboBox(true);
+                SelectDefaultValues();
             }
             catch (Exception ex)
             {
@@ -46,7 +47,6 @@ namespace OTS.Ticketing.Win.Tickets
                 CombCompanies.DataSource = await ticketRepository.GetAllCompanies();
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -97,6 +97,7 @@ namespace OTS.Ticketing.Win.Tickets
                         CombPhoneNumbers.DataSource = allResults;
                         CombPhoneNumbers.DisplayMember = "phoneNumber";
                         CombPhoneNumbers.ValueMember = "Id";
+                        CombPhoneNumbers.SelectedIndex = 0;
                         return;
                     }
                 }
@@ -124,6 +125,12 @@ namespace OTS.Ticketing.Win.Tickets
                 SystemConstants.ErrorLog(ex, "FillPhoneNumbersComboBox");
             }
 
+        }
+        private void SelectDefaultValues()
+        {
+            CombCompanies.SelectedValue = 0;
+            CombSoftware.SelectedValue = 0;
+            CombEmployee.SelectedValue = 0;
         }
         private async void FillDtgUnclosedTickets(long companyId)
         {
@@ -206,6 +213,7 @@ namespace OTS.Ticketing.Win.Tickets
                 AddCompany addCompany = new AddCompany(0);
                 addCompany.ShowDialog();
                 FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -220,6 +228,7 @@ namespace OTS.Ticketing.Win.Tickets
                 AddCompany addCompany = new AddCompany(Convert.ToInt64(CombCompanies.SelectedValue));
                 addCompany.ShowDialog();
                 FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -233,8 +242,8 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0, CombPhoneNumbers.Text, Convert.ToInt64(CombCompanies.SelectedValue));
                 addPhoneNumber.ShowDialog();
-                FillPhoneNumbersComboBox();
                 FillCompaniesComboBox();
+                FillPhoneNumbersComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
                 CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
             }
@@ -265,8 +274,10 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(CombPhoneNumbers.Text, Convert.ToInt64(CombCompanies.SelectedValue));
                 displayPhoneNumbers.ShowDialog();
+                FillCompaniesComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
                 FillPhoneNumbersComboBox();
+                CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
             }
             catch (Exception ex)
             {
@@ -313,6 +324,30 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SystemConstants.ErrorLog(ex, "CombCompanies_SelectedValueChanged");
+            }
+        }
+
+        private void BtnSearchCompany_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DisplayCompanies displayCompanies = new DisplayCompanies(CombCompanies.Text);
+                displayCompanies.ShowDialog();
+                FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "BtnSearchPhoneNumber_Click");
+            }
+        }
+
+        private void CombCompanies_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                BtnSearchCompany_Click(sender, e);
             }
         }
     }

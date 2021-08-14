@@ -15,11 +15,13 @@ namespace OTS.Ticketing.Win.Companies
     {
         readonly CompanyRepository companyRepository = new CompanyRepository();
         private readonly long _id;
+        private readonly string _name;
 
-        public AddCompany(long id)
+        public AddCompany(long id, string name = "")
         {
             InitializeComponent();
             _id = id;
+            _name = name;
         }
 
         private void BtnAddBranch_Click(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace OTS.Ticketing.Win.Companies
 
             try
             {
-
+                TxtName.Text = _name;
                 FillCombBranches();
                 if (_id != 0)
                 {

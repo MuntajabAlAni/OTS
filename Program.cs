@@ -1,4 +1,6 @@
-﻿using OTS.Ticketing.Win.MainForms;
+﻿using NLog;
+using NLog.Config;
+using OTS.Ticketing.Win.MainForms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +17,8 @@ namespace OTS.Ticketing.Win
         [STAThread]
         static void Main()
         {
+            var config = new XmlLoggingConfiguration("NLog.config");
+            LogManager.Configuration = config;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Login());

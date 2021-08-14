@@ -41,8 +41,11 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.CombCompanies = new System.Windows.Forms.ComboBox();
             this.LblCompany = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.BtnSearchCompany = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnExit
@@ -145,12 +148,15 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             // 
             // CombCompanies
             // 
+            this.CombCompanies.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CombCompanies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombCompanies.FormattingEnabled = true;
             this.CombCompanies.Location = new System.Drawing.Point(92, 157);
             this.CombCompanies.Name = "CombCompanies";
             this.CombCompanies.Size = new System.Drawing.Size(180, 25);
             this.CombCompanies.TabIndex = 3;
+            this.CombCompanies.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CombCompanies_KeyDown);
             // 
             // LblCompany
             // 
@@ -166,10 +172,27 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.BtnSearchCompany);
             this.panel1.Location = new System.Drawing.Point(3, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(370, 315);
             this.panel1.TabIndex = 43;
+            // 
+            // BtnSearchCompany
+            // 
+            this.BtnSearchCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSearchCompany.BackColor = System.Drawing.Color.White;
+            this.BtnSearchCompany.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BtnSearchCompany.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSearchCompany.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnSearchCompany.ErrorImage")));
+            this.BtnSearchCompany.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchCompany.Image")));
+            this.BtnSearchCompany.Location = new System.Drawing.Point(13, 151);
+            this.BtnSearchCompany.Name = "BtnSearchCompany";
+            this.BtnSearchCompany.Size = new System.Drawing.Size(25, 25);
+            this.BtnSearchCompany.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnSearchCompany.TabIndex = 44;
+            this.BtnSearchCompany.TabStop = false;
+            this.BtnSearchCompany.Click += new System.EventHandler(this.BtnSearchCompany_Click);
             // 
             // AddPhoneNumber
             // 
@@ -197,6 +220,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddPhoneNumber_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).EndInit();
+            this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,5 +240,6 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         private System.Windows.Forms.ComboBox CombCompanies;
         private System.Windows.Forms.Label LblCompany;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.PictureBox BtnSearchCompany;
     }
 }

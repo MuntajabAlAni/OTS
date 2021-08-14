@@ -22,8 +22,7 @@ namespace OTS.Ticketing.Win
         public string IniReadValue(string Section, string Key)
         {
             StringBuilder temp = new StringBuilder(255);
-            GetPrivateProfileString(Section, Key, "", temp,
-                                            255, this.path);
+            GetPrivateProfileString(Section, Key, "", temp, 255, this.path);
             return temp.ToString();
         }
 

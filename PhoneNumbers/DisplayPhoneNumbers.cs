@@ -81,7 +81,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                this.Close();
             }
         }
     }

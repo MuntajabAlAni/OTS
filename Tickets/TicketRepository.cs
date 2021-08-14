@@ -58,6 +58,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                 var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
                 TicketsView ticketDetails = result.FirstOrDefault();
+                if (ticketDetails == null) return "1";
                 return (ticketDetails.Number + 1).ToString();
             }
             catch (Exception ex)
@@ -108,7 +109,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                string query = "SELECT * FROM Employees";
+                string query = "SELECT * FROM Employees where username not in ('admin','Noor') ";
                 var result = await dataAccess.QueryAsync<EmployeeInfo>(query, new DynamicParameters());
                 var list = result.ToList();
                 list.Insert(0, (new EmployeeInfo { Id = 0, DisplayName = "" }));

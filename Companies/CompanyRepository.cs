@@ -96,7 +96,6 @@ namespace OTS.Ticketing.Win.Companies
             }
 
         }
-
         public async Task<CompanyInfo> GetLastCompanyId()
         {
             try
@@ -109,6 +108,24 @@ namespace OTS.Ticketing.Win.Companies
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 SystemConstants.ErrorLog(ex, "GetLastCompanyId");
+                return default;
+            }
+        }
+        public async Task<List<CompanyInfo>> GetCompanyByName(string companyName)
+        {
+            try
+            {
+                DynamicParameters parameters = new DynamicParameters();
+                parameters.Add("@companyName", companyName);
+
+                string query = "SELECT * from companies WHERE name LIKE '%'+@companyName+'%'";
+                var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SystemConstants.ErrorLog(ex, "GetPhoneNumbersBySearch");
                 return default;
             }
         }

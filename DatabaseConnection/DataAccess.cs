@@ -13,7 +13,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
     {
         public async Task<IEnumerable<T>> QueryAsync<T>(string sql, DynamicParameters parameters,bool init = false,string ServerIp = "")
         {
-            using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue(init,ServerIp)))
+            using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue(init,ServerIp)))
             {
                 return await connection.QueryAsync<T>(sql, parameters);
             }
@@ -21,7 +21,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
         public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters)
         {
-            using (IDbConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
+            using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
             {
                 return await connection.ExecuteAsync(sql, parameters);
             }

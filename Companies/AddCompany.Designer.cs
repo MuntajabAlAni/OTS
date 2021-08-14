@@ -149,6 +149,8 @@ namespace OTS.Ticketing.Win.Companies
             // 
             // CombBranches
             // 
+            this.CombBranches.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CombBranches.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CombBranches.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombBranches.FormattingEnabled = true;
             this.CombBranches.Location = new System.Drawing.Point(138, 131);

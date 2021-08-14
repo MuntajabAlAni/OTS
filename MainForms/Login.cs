@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using OTS.Ticketing.Win.DatabaseConnection;
+using NLog;
 
 namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Login : Form
     {
-        readonly MainRepository mainRepository = new MainRepository();
+        private readonly MainRepository mainRepository = new MainRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public Login()
         {
@@ -35,6 +37,7 @@ namespace OTS.Ticketing.Win.MainForms
                 if (result == null)
                 {
                     MessageBox.Show("يرجى التأكد من معلومات الدخول !");
+                    Logger.Info("Invalid login attempt");
                     return;
                 }
                 SystemConstants.loggedInEmployeeId = result.Id;
@@ -47,7 +50,7 @@ namespace OTS.Ticketing.Win.MainForms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "LoginToMain");
+                Logger.Error(ex);
             }
             finally
             {
@@ -96,8 +99,10 @@ namespace OTS.Ticketing.Win.MainForms
 
         private void ImbLogo_Click(object sender, EventArgs e)
         {
+            this.Hide();
             DatabaseServer database = new DatabaseServer();
             database.ShowDialog();
+            this.Show();
         }
     }
 }
