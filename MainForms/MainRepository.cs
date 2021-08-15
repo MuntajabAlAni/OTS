@@ -27,17 +27,21 @@ namespace OTS.Ticketing.Win.MainForms
         public async Task<List<TicketsView>> GetLastFiveCalls()
         {
 
-            string query = @"SELECT TOP 5 t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as EmployeeName,
                                                 c.name as CompanyName, t.problem, st.name state, t.revision, 
-												Case when t.arrangement = 1 then 'مرتبة'
-												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement, case when t.isClosed = 1 then 'مغلقة' 
-                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosed FROM tickets t
+												Case t.arrangement when 1 then 'مرتبة'
+												 else 'غير مرتبة'
+												 end arrangement,
+												 case t.isClosed when 1 then 'مغلقة' 
+                                                 else 'غير مغلقة' end isClosed
+												 FROM tickets t
                                                  left join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  left join softwares s on t.softwareId = s.id
                                                  left join employees e on t.employeeId = e.id
                                                  left join companies c on t.companyId = c.id
-                                                 left join states st on t.stateId = st.id ORDER BY t.number DESC,t.revision DESC";
+                                                 left join states st on t.stateId = st.id 
+												 WHERE CAST( openDate AS Date )  = CAST( GETDATE() AS Date )
+												 ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
             return result.ToList();

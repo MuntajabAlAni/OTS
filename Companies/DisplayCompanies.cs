@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace OTS.Ticketing.Win.Companies
     public partial class DisplayCompanies : Form
     {
         readonly CompanyRepository companyRepository = new CompanyRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         readonly string _companyName;
         public DisplayCompanies(string companyName)
         {
@@ -48,7 +51,7 @@ namespace OTS.Ticketing.Win.Companies
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "DisplayCompanies_Load");
+                Logger.Error(ex);
             }
         }
 
@@ -64,7 +67,7 @@ namespace OTS.Ticketing.Win.Companies
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "DtgCompanies_DoubleClick");
+                Logger.Error(ex);
             }
         }
 

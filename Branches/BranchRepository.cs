@@ -15,65 +15,36 @@ namespace OTS.Ticketing.Win.Branches
 
         public async Task<int> AddBranch(string name)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@name", name);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@name", name);
 
-                string command = "INSERT INTO Branches (Name) VALUES (@name)";
+            string command = "INSERT INTO Branches (Name) VALUES (@name)";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddBranch");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
 
         public async Task<BranchInfo> GetBranchById(long id)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
 
-                string query = "SELECT * FROM Branches WHERE Id = @Id";
+            string query = "SELECT * FROM Branches WHERE Id = @Id";
 
-                var result = await dataAccess.QueryAsync<BranchInfo>(query, parameters);
-                return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetBranchById");
-                return default;
-            }
+            var result = await dataAccess.QueryAsync<BranchInfo>(query, parameters);
+            return result.FirstOrDefault();
 
         }
 
         public async Task<int> UpdateBranch(long id, string name)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
-                parameters.Add("@name", name);
-                string command = @"UPDATE Branches SET 
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            parameters.Add("@name", name);
+            string command = @"UPDATE Branches SET 
                                 Name = @name
                                WHERE Id = @id";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "UpdateBranch");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

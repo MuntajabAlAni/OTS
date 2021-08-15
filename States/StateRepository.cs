@@ -15,63 +15,32 @@ namespace OTS.Ticketing.Win.States
 
         public async Task<int> AddState(string name)
         {
-            try
-            {
-                var parameters = new DynamicParameters();
-                parameters.Add("@name", name);
+            var parameters = new DynamicParameters();
+            parameters.Add("@name", name);
 
-                string command = "INSERT INTO States (name) VALUES (@name)";
+            string command = "INSERT INTO States (name) VALUES (@name)";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddState");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<StateInfo> GetStateById(long id)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
 
-                string query = "SELECT * FROM States WHERE Id = @id";
-                var result = await dataAccess.QueryAsync<StateInfo>(query, parameters);
-                return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetStateById");
-                return default;
-            }
-
+            string query = "SELECT * FROM States WHERE Id = @id";
+            var result = await dataAccess.QueryAsync<StateInfo>(query, parameters);
+            return result.FirstOrDefault();
         }
         public async Task<int> UpdateState(long id, string name)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
-                parameters.Add("@name", name);
-                string command = @"UPDATE States SET 
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            parameters.Add("@name", name);
+            string command = @"UPDATE States SET 
                                 Name = @name
                                WHERE Id = @id";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "UpdateState");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
-
     }
 }

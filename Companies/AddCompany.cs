@@ -1,4 +1,5 @@
-﻿using OTS.Ticketing.Win.Branches;
+﻿using NLog;
+using OTS.Ticketing.Win.Branches;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace OTS.Ticketing.Win.Companies
     public partial class AddCompany : Form
     {
         readonly CompanyRepository companyRepository = new CompanyRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
         private readonly string _name;
 
@@ -36,7 +38,7 @@ namespace OTS.Ticketing.Win.Companies
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAddBranch_Click");
+                Logger.Error(ex);
             }
 
         }
@@ -61,7 +63,7 @@ namespace OTS.Ticketing.Win.Companies
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddCompany_Load");
+                Logger.Error(ex);
             }
         }
 
@@ -78,7 +80,7 @@ namespace OTS.Ticketing.Win.Companies
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnEditBranch_Click");
+                Logger.Error(ex);
             }
         }
 
@@ -87,14 +89,14 @@ namespace OTS.Ticketing.Win.Companies
 
             try
             {
-                CombBranches.DataSource = await companyRepository.GetAllBranches();
                 CombBranches.DisplayMember = "Name";
                 CombBranches.ValueMember = "Id";
+                CombBranches.DataSource = await companyRepository.GetAllBranches();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "FillCombBranches");
+                Logger.Error(ex);
             }
         }
 
@@ -130,7 +132,7 @@ namespace OTS.Ticketing.Win.Companies
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAdd_Click");
+                Logger.Error(ex);
             }
 
         }

@@ -9,29 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Softwares
+namespace OTS.Ticketing.Win.Employees
 {
-    public partial class AddSoftware : Form
+    public partial class AddEmployee : Form
     {
-        readonly SoftwareRepository softwareRepository = new SoftwareRepository();
+        private readonly EmployeeRepository employeeRepository = new EmployeeRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
-
-
-        public AddSoftware(long id)
+        public AddEmployee(long id)
         {
-            _id = id;
             InitializeComponent();
+            _id = id;
         }
 
-        private async void AddSoftware_Load(object sender, EventArgs e)
+        private async void AddEmployee_Load(object sender, EventArgs e)
         {
             try
             {
                 if (_id != 0)
                 {
-                    SoftwareInfo softwareInfo = await softwareRepository.GetSoftwareById(_id);
-                    TxtName.Text = softwareInfo.Name;
+                    EmployeeInfo employeeInfo = await employeeRepository.GetEmployeeById(_id);
+                    TxtDisplayName.Text = employeeInfo.DisplayName;
+                    TxtUserName.Text = employeeInfo.UserName;
+                    TxtPassword.Text = employeeInfo.Password;
+                    TxtIp.Text = employeeInfo.Ip;
+                    TxtRemarks.Text = employeeInfo.Remarks;
+                    CbState.Checked = employeeInfo.State;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -40,7 +43,11 @@ namespace OTS.Ticketing.Win.Softwares
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
+        }
 
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private async void BtnAdd_Click(object sender, EventArgs e)
@@ -49,14 +56,14 @@ namespace OTS.Ticketing.Win.Softwares
             {
                 if (_id == 0)
                 {
-                    await softwareRepository.AddSoftware(TxtName.Text);
+                    await employeeRepository.AddEmployee(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
+                        CbState.Checked, TxtIp.Text, TxtRemarks.Text);
                 }
                 else
                 {
-                    await softwareRepository.UpdateSoftware(_id, TxtName.Text);
+                    await employeeRepository.UpdateEmployee(_id, TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
+                        CbState.Checked, TxtIp.Text, TxtRemarks.Text);
                 }
-                SoftwareInfo softwareInfo = await softwareRepository.GetSoftwareByName(TxtName.Text);
-                SystemConstants.SelectedSoftware = softwareInfo.Id;
                 this.Close();
             }
             catch (Exception ex)
@@ -64,12 +71,6 @@ namespace OTS.Ticketing.Win.Softwares
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
-
-        }
-
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

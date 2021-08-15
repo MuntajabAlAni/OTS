@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace OTS.Ticketing.Win.Branches
     public partial class AddBranch : Form
     {
         readonly BranchRepository branchRepository = new BranchRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly long _id;
 
         public AddBranch(long id)
@@ -35,7 +38,7 @@ namespace OTS.Ticketing.Win.Branches
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddBranch_Load");
+                Logger.Error(ex);
             }
 
         }
@@ -62,7 +65,7 @@ namespace OTS.Ticketing.Win.Branches
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAdd_Click");
+                Logger.Error(ex);
             }
 
         }

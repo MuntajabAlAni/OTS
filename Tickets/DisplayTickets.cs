@@ -14,12 +14,15 @@ using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Employees;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Softwares;
+using NLog;
 
 namespace OTS.Ticketing.Win.Tickets
 {
     public partial class DisplayTickets : Form
     {
         readonly TicketRepository ticketRepository = new TicketRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public DisplayTickets()
         {
             InitializeComponent();
@@ -41,7 +44,7 @@ namespace OTS.Ticketing.Win.Tickets
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "DisplayTickets_Load");
+                Logger.Error(ex);
             }
 
         }
@@ -50,15 +53,15 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                CombStates.DataSource = await ticketRepository.GetAllStates();
                 CombStates.DisplayMember = "Name";
                 CombStates.ValueMember = "Id";
+                CombStates.DataSource = await ticketRepository.GetAllStates();
                 CombStates.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "FillStatesComboBox");
+                Logger.Error(ex);
             }
 
         }
@@ -86,7 +89,7 @@ namespace OTS.Ticketing.Win.Tickets
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetDtgTicketsData");
+                Logger.Error(ex);
             }
 
         }
@@ -112,16 +115,16 @@ namespace OTS.Ticketing.Win.Tickets
                 LblPhoneNumber.Text = selectedTicket.PhoneNumber.ToString();
                 LblSoftware.Text = selectedTicket.SoftwareName.ToString();
                 LblOpenDate.Text = selectedTicket.OpenDate.ToString("yyyy-MM-dd hh:mm tt dddd");
-                //TxtProblem.Text = selectedTicket.Problem;
-                //TxtRemarks.Text = selectedTicket.Remarks;
-                //CombStates.Text = selectedTicket.State;
-                //ToggleArrangement.Checked = selectedTicket.Arrangement;
-                //ToggleClosed.Checked = selectedTicket.IsClosed;
+                TxtProblem.Text = selectedTicket.Problem;
+                TxtRemarks.Text = selectedTicket.Remarks;
+                CombStates.Text = selectedTicket.State;
+                ToggleArrangement.Checked = selectedTicket.Arrangement == "مرتبة";
+                ToggleClosed.Checked = selectedTicket.IsClosed == "مغلقة";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "DtgTickets_DoubleClick");
+                Logger.Error(ex);
             }
         }
 
@@ -163,7 +166,7 @@ namespace OTS.Ticketing.Win.Tickets
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnUpdate_Click");
+                Logger.Error(ex);
             }
         }
         private void RefreshAllData()
@@ -187,7 +190,7 @@ namespace OTS.Ticketing.Win.Tickets
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "RefreshAllData");
+                Logger.Error(ex);
             }
         }
         private void BtnAddState_Click(object sender, EventArgs e)
@@ -201,7 +204,7 @@ namespace OTS.Ticketing.Win.Tickets
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAddState_Click");
+                Logger.Error(ex);
             }
 
         }
@@ -217,8 +220,9 @@ namespace OTS.Ticketing.Win.Tickets
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnEditState_Click");
+                Logger.Error(ex);
             }
+
         }
     }
 }

@@ -21,11 +21,18 @@ namespace OTS.Ticketing.Win.MainForms
 
         public Login()
         {
+            try
+            {
             InitializeComponent();
             IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"config.ini"));
             SystemConstants.Database = iniFile.IniReadValue("Connection","Database");
             SystemConstants.ServerIp = iniFile.IniReadValue("Connection","ServerIp");
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
 
         public async Task LoginToMain()
@@ -42,10 +49,8 @@ namespace OTS.Ticketing.Win.MainForms
                 }
                 SystemConstants.loggedInEmployeeId = result.Id;
                 Main main = new Main();
-                //this.DialogResult = DialogResult.OK;
                 this.Hide();
                 main.ShowDialog();
-                //this.Close();
             }
             catch (Exception ex)
             {
@@ -56,7 +61,6 @@ namespace OTS.Ticketing.Win.MainForms
             {
                 BtnLogin.Enabled = true;
             }
-
         }
         private async void BtnLogin_Click(object sender, EventArgs e)
         {

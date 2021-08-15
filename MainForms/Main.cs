@@ -1,4 +1,5 @@
-﻿using OTS.Ticketing.Win.MainForms;
+﻿using NLog;
+using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.Tickets;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace OTS.Ticketing.Win
     public partial class Main : Form
     {
         readonly TicketRepository ticketRepository = new TicketRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public Main()
         {
             InitializeComponent();
@@ -36,7 +39,7 @@ namespace OTS.Ticketing.Win
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "ApplingFormOnContainer");
+                Logger.Error(ex);
             }
 
         }
@@ -116,7 +119,7 @@ namespace OTS.Ticketing.Win
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "Main_Load");
+                Logger.Error(ex);
             }
 
         }
@@ -125,11 +128,15 @@ namespace OTS.Ticketing.Win
             if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
             ApplingFormOnContainer(new DisplayTickets());
         }
-        private void BtnAddTicket_Click(object sender, EventArgs e)
+        private async void BtnAddTicket_Click(object sender, EventArgs e)
         {
+            var employeeInfo = await ticketRepository.GetEmployeeById(SystemConstants.loggedInEmployeeId);
+            if (employeeInfo.UserName != "admin" & employeeInfo.UserName != "Noor")
+            {
+                return;
+            }
             ApplingFormOnContainer(new AddTicket());
         }
-
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)

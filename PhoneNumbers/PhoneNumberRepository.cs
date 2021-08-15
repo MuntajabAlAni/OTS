@@ -15,146 +15,77 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         public DataAccess dataAccess = new DataAccess();
         public async Task<int> AddPhoneNumber(string phoneNumber, string customerName, long companyId)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@phoneNumber", phoneNumber);
-                parameters.Add("@customerName", customerName);
-                parameters.Add("@companyId", companyId);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@phoneNumber", phoneNumber);
+            parameters.Add("@customerName", customerName);
+            parameters.Add("@companyId", companyId);
 
-                string command = "INSERT INTO PhoneNumbers (phoneNumber, customerName, companyId) VALUES (@phoneNumber, @customerName, @companyId)";
+            string command = "INSERT INTO PhoneNumbers (phoneNumber, customerName, companyId) VALUES (@phoneNumber, @customerName, @companyId)";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddPhoneNumber");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<PhoneNumberInfo> GetPhoneNumberById(long id)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
 
-                string query = "SELECT * FROM PhoneNumbers WHERE Id = @Id";
+            string query = "SELECT * FROM PhoneNumbers WHERE Id = @Id";
 
-                var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
-                return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetPhoneNumberById");
-                return default;
-            }
-
-
+            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            return result.FirstOrDefault();
         }
         public async Task<int> UpdatePhoneNumber(long id, string phoneNumber, string customerName, long companyId)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
-                parameters.Add("@phoneNumber", phoneNumber);
-                parameters.Add("@customerName", customerName);
-                parameters.Add("@companyId", companyId);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            parameters.Add("@phoneNumber", phoneNumber);
+            parameters.Add("@customerName", customerName);
+            parameters.Add("@companyId", companyId);
 
-                string command = @"UPDATE PhoneNumbers SET 
+            string command = @"UPDATE PhoneNumbers SET 
                                 phoneNumber = @phoneNumber,
                                 customerName = @customerName,
                                 companyId = @companyId
                                WHERE Id = @id";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "UpdatePhoneNumber");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<List<CompanyInfo>> GetAllCompanies()
         {
-            try
-            {
-                string query = "SELECT * FROM Companies";
-                var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetAllCompanies");
-                return default;
-            }
-
+            string query = "SELECT * FROM Companies";
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
+            return result.ToList();
         }
         public async Task<List<PhoneNumberInfo>> GetPhoneNumbersBySearch(string phoneNumber)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@phoneNumber", phoneNumber);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@phoneNumber", phoneNumber);
 
-                string query = "SELECT * from phoneNumbers WHERE phoneNumber LIKE '%'+@phoneNumber";
-                var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetPhoneNumbersBySearch");
-                return default;
-            }
-
+            string query = "SELECT * from phoneNumbers WHERE phoneNumber LIKE '%'+@phoneNumber";
+            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            return result.ToList();
         }
         public async Task<long> GetPhoneNumberIdByPhoneNumber(string phoneNumber)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@phoneNumber", phoneNumber);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@phoneNumber", phoneNumber);
 
-                string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber";
+            string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber";
 
-                var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query,parameters);
-                PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
-                return phoneNumberInfo.Id;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetPhoneNumberIdByPhoneNumber");
-                return default;
-            }
+            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
+            return phoneNumberInfo.Id;
         }
         public async Task<long> GetCompanyIdByName(string name)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@Name", name);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Name", name);
 
-                string query = "SELECT id from Companies WHERE Name = @Name";
+            string query = "SELECT id from Companies WHERE Name = @Name";
 
-                var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
-                CompanyInfo companyInfo = result.FirstOrDefault();
-                return companyInfo.Id;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetCompanyIdByName");
-                return default;
-            }
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            CompanyInfo companyInfo = result.FirstOrDefault();
+            return companyInfo.Id;
         }
     }
 }

@@ -15,66 +15,45 @@ namespace OTS.Ticketing.Win.Softwares
 
         public async Task<int> AddSoftware(string name)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@name", name);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@name", name);
 
-                string command = "INSERT INTO Softwares (Name) VALUES (@name)";
+            string command = "INSERT INTO Softwares (Name) VALUES (@name)";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddSoftware");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
 
         public async Task<SoftwareInfo> GetSoftwareById(long id)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
 
-                string query = "SELECT * FROM Softwares WHERE Id = @Id";
+            string query = "SELECT * FROM Softwares WHERE Id = @Id";
 
-                var result = await dataAccess.QueryAsync<SoftwareInfo>(query, parameters);
-                return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetSoftwareById");
-                return default;
-            }
-
-
+            var result = await dataAccess.QueryAsync<SoftwareInfo>(query, parameters);
+            return result.FirstOrDefault();
         }
 
         public async Task<int> UpdateSoftware(long id, string name)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
-                parameters.Add("@name", name);
-                string command = @"UPDATE Softwares SET 
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+            parameters.Add("@name", name);
+            string command = @"UPDATE Softwares SET 
                                 Name = @name
                                WHERE Id = @id";
 
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "UpdateSoftware");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
+        public async Task<SoftwareInfo> GetSoftwareByName(string name)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@name", name);
+
+            string query = "SELECT * FROM Softwares WHERE name = @name";
+            var result = await dataAccess.QueryAsync<SoftwareInfo>(query, parameters);
+            return result.FirstOrDefault();
+        }
+
     }
 }

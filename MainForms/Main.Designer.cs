@@ -94,7 +94,7 @@ namespace OTS.Ticketing.Win
             this.BtnAddTicket.Name = "BtnAddTicket";
             this.BtnAddTicket.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnAddTicket.Size = new System.Drawing.Size(250, 45);
-            this.BtnAddTicket.TabIndex = 1;
+            this.BtnAddTicket.TabIndex = 7;
             this.BtnAddTicket.Text = "بطاقة جديدة";
             this.BtnAddTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnAddTicket.UseVisualStyleBackColor = true;
@@ -113,7 +113,7 @@ namespace OTS.Ticketing.Win
             this.BtnTickets.Name = "BtnTickets";
             this.BtnTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnTickets.Size = new System.Drawing.Size(250, 45);
-            this.BtnTickets.TabIndex = 1;
+            this.BtnTickets.TabIndex = 6;
             this.BtnTickets.Text = "البطاقات";
             this.BtnTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnTickets.UseVisualStyleBackColor = true;
@@ -132,7 +132,7 @@ namespace OTS.Ticketing.Win
             this.BtnStates.Name = "BtnStates";
             this.BtnStates.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnStates.Size = new System.Drawing.Size(250, 45);
-            this.BtnStates.TabIndex = 1;
+            this.BtnStates.TabIndex = 4;
             this.BtnStates.Text = "حالات البطاقات";
             this.BtnStates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnStates.UseVisualStyleBackColor = true;
@@ -150,7 +150,7 @@ namespace OTS.Ticketing.Win
             this.BtnSoftwares.Name = "BtnSoftwares";
             this.BtnSoftwares.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnSoftwares.Size = new System.Drawing.Size(250, 45);
-            this.BtnSoftwares.TabIndex = 1;
+            this.BtnSoftwares.TabIndex = 5;
             this.BtnSoftwares.Text = "البرامج";
             this.BtnSoftwares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSoftwares.UseVisualStyleBackColor = true;
@@ -168,7 +168,7 @@ namespace OTS.Ticketing.Win
             this.BtnPhoneNumbres.Name = "BtnPhoneNumbres";
             this.BtnPhoneNumbres.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnPhoneNumbres.Size = new System.Drawing.Size(250, 45);
-            this.BtnPhoneNumbres.TabIndex = 1;
+            this.BtnPhoneNumbres.TabIndex = 3;
             this.BtnPhoneNumbres.Text = "ارقام الهاتف";
             this.BtnPhoneNumbres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
@@ -186,7 +186,7 @@ namespace OTS.Ticketing.Win
             this.BtnEmployees.Name = "BtnEmployees";
             this.BtnEmployees.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnEmployees.Size = new System.Drawing.Size(250, 45);
-            this.BtnEmployees.TabIndex = 1;
+            this.BtnEmployees.TabIndex = 2;
             this.BtnEmployees.Text = "الموظفين";
             this.BtnEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnEmployees.UseVisualStyleBackColor = true;
@@ -204,7 +204,7 @@ namespace OTS.Ticketing.Win
             this.BtnHome.Name = "BtnHome";
             this.BtnHome.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnHome.Size = new System.Drawing.Size(250, 45);
-            this.BtnHome.TabIndex = 1;
+            this.BtnHome.TabIndex = 0;
             this.BtnHome.Text = "الصفحة الرئيسية";
             this.BtnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnHome.UseVisualStyleBackColor = true;

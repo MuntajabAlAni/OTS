@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ namespace OTS.Ticketing.Win.States
     public partial class AddState : Form
     {
         readonly StateRepository stateRepository = new StateRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
         public AddState(long id)
         {
@@ -37,7 +39,7 @@ namespace OTS.Ticketing.Win.States
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAdd_Click");
+                Logger.Error(ex);
             }
 
         }
@@ -66,7 +68,7 @@ namespace OTS.Ticketing.Win.States
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddState_Load");
+                Logger.Error(ex);
             }
 
         }

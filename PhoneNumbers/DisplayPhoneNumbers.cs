@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,13 +14,12 @@ namespace OTS.Ticketing.Win.PhoneNumbers
     public partial class DisplayPhoneNumbers : Form
     {
         readonly PhoneNumberRepository phoneNumberRepository = new PhoneNumberRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         readonly private string _phoneNumber;
-        private readonly long _companyId;
-        public DisplayPhoneNumbers(string phoneNumber, long companyId = 0)
+        public DisplayPhoneNumbers(string phoneNumber)
         {
             InitializeComponent();
             _phoneNumber = phoneNumber;
-            _companyId = companyId;
         }
 
         private async void DisplayPhoneNumbers_Load(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 if (DtgPhoneNumbers.Rows.Count == 0)
                 {
                     MessageBox.Show("عذراً.. هذا الرقم غير معرف", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0,_phoneNumber, _companyId);
+                    AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0, _phoneNumber);
                     addPhoneNumber.ShowDialog();
                     this.Close();
                 }
@@ -49,7 +49,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "DisplayPhoneNumbers_Load");
+                Logger.Error(ex);
             }
 
         }
@@ -67,7 +67,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "DtgPhoneNumbers_DoubleClick");
+                Logger.Error(ex);
             }
 
         }

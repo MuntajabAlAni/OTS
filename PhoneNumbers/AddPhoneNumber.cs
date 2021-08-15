@@ -1,4 +1,5 @@
-﻿using OTS.Ticketing.Win.Companies;
+﻿using NLog;
+using OTS.Ticketing.Win.Companies;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,23 +15,26 @@ namespace OTS.Ticketing.Win.PhoneNumbers
     public partial class AddPhoneNumber : Form
     {
         readonly PhoneNumberRepository phoneNumberRepository = new PhoneNumberRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         private readonly long _id;
         private readonly string _phoneNumber;
-        private readonly long _companyId;
 
-        public AddPhoneNumber(long id, string phoneNumber = "", long companyId = 0)
+        public AddPhoneNumber(long id, string phoneNumber = "")
         {
             InitializeComponent();
             _id = id;
             _phoneNumber = phoneNumber;
-            _companyId = companyId;
         }
         private async void AddPhoneNumber_Load(object sender, EventArgs e)
         {
             try
             {
+                if (_phoneNumber != "")
+                {
+                    TxtPhoneNumber.Text = _phoneNumber;
+                }
                 FillCompaniesComboBox();
-                CombCompanies.SelectedValue = _companyId;
                 if (_id != 0)
                 {
                     PhoneNumberInfo phoneNumberInfo = await phoneNumberRepository.GetPhoneNumberById(_id);
@@ -43,7 +47,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddPhoneNumber_Load");
+                Logger.Error(ex);
             }
 
         }
@@ -51,19 +55,15 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
-                CombCompanies.DataSource = await phoneNumberRepository.GetAllCompanies();
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                if (_phoneNumber != "" | _companyId != 0)
-                {
-                    TxtPhoneNumber.Text = _phoneNumber;
-                    CombCompanies.SelectedValue = _companyId;
-                }
+                CombCompanies.DataSource = await phoneNumberRepository.GetAllCompanies();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "FillCompaniesComboBox");
+                Logger.Error(ex);
             }
 
         }
@@ -71,7 +71,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
-                if (TxtPhoneNumber.Text == "" | CombCompanies.SelectedValue == DBNull.Value)
+                if (TxtPhoneNumber.Text == "" | CombCompanies.SelectedValue == DBNull.Value | Convert.ToInt64(CombCompanies.SelectedValue) == 0)
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -96,7 +96,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAdd_Click");
+                Logger.Error(ex);
             }
 
         }
@@ -116,7 +116,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnAddCompany_Click");
+                Logger.Error(ex);
             }
 
         }
@@ -131,7 +131,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnEditCompany_Click");
+                Logger.Error(ex);
             }
 
         }
@@ -162,7 +162,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "BtnSearchPhoneNumber_Click");
+                Logger.Error(ex);
             }
         }
         private void CombCompanies_KeyDown(object sender, KeyEventArgs e)

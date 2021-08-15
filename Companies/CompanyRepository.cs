@@ -15,119 +15,61 @@ namespace OTS.Ticketing.Win.Companies
         public DataAccess dataAccess = new DataAccess();
         public async Task<int> AddCompany(string name, string address, long branchId, string remarks)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@Name", name);
-                parameters.Add("@Address", address);
-                parameters.Add("@BranchId", branchId);
-                parameters.Add("@Remarks", remarks);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Name", name);
+            parameters.Add("@Address", address);
+            parameters.Add("@BranchId", branchId);
+            parameters.Add("@Remarks", remarks);
 
-                string command = "INSERT INTO Companies (Name, Address, BranchId, Remarks) VALUES (@Name, @Address, @BranchId, @Remarks)";
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "AddCompany");
-                return default;
-            }
-
+            string command = "INSERT INTO Companies (Name, Address, BranchId, Remarks) VALUES (@Name, @Address, @BranchId, @Remarks)";
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<CompanyInfo> GetCompanyInfoById(long id)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@id", id);
 
-                string query = "SELECT * FROM Companies WHERE Id = @id";
-                var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
-                return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetCompanyInfoById");
-                return default;
-            }
-
+            string query = "SELECT * FROM Companies WHERE Id = @id";
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            return result.FirstOrDefault();
         }
         public async Task<int> UpdateCompany(string name, string address, long branchId, string remarks, long id)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@Name", name);
-                parameters.Add("@Address", address);
-                parameters.Add("@BranchId", branchId);
-                parameters.Add("@Remarks", remarks);
-                parameters.Add("@Id", id);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@Name", name);
+            parameters.Add("@Address", address);
+            parameters.Add("@BranchId", branchId);
+            parameters.Add("@Remarks", remarks);
+            parameters.Add("@Id", id);
 
-                string command = @"UPDATE Companies SET 
+            string command = @"UPDATE Companies SET 
                              Name = @Name,
                              Address = @Address,
                              BranchId =  @BranchId,
                              Remarks = @Remarks
                              WHERE Id = @id";
-                return await dataAccess.ExecuteAsync(command, parameters);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "UpdateCompany");
-                return default;
-            }
-
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<List<BranchInfo>> GetAllBranches()
         {
-            try
-            {
-                string query = "SELECT * FROM Branches";
-                var result = await dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetAllBranches");
-                return default;
-            }
-
+            string query = "SELECT * FROM Branches";
+            var result = await dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
+            return result.ToList();
         }
         public async Task<CompanyInfo> GetLastCompanyId()
         {
-            try
-            {
-                string query = "SELECT TOP 1 Id FROM Companies Order by Id DESC";
-                var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
-                return result.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetLastCompanyId");
-                return default;
-            }
+            string query = "SELECT TOP 1 Id FROM Companies Order by Id DESC";
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
+            return result.FirstOrDefault();
         }
         public async Task<List<CompanyInfo>> GetCompanyByName(string companyName)
         {
-            try
-            {
-                DynamicParameters parameters = new DynamicParameters();
-                parameters.Add("@companyName", companyName);
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@companyName", companyName);
 
-                string query = "SELECT * from companies WHERE name LIKE '%'+@companyName+'%'";
-                var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
-                return result.ToList();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetPhoneNumbersBySearch");
-                return default;
-            }
+            string query = "SELECT * from companies WHERE name LIKE '%'+@companyName+'%'";
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            return result.ToList();
         }
     }
 }

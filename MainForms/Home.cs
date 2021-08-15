@@ -8,12 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using NLog;
 
 namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Home : Form
     {
         readonly public MainRepository mainRepository = new MainRepository();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
 
         public Home()
         {
@@ -47,7 +50,7 @@ namespace OTS.Ticketing.Win.MainForms
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                SystemConstants.ErrorLog(ex, "GetDtgLastTicketsData");
+                Logger.Error(ex);
             }
 
         }

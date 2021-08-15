@@ -116,6 +116,12 @@
     <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employees\AddEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Employees\AddEmployee.Designer.cs">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </Compile>
     <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="MainForms\Home.cs">
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DatabaseConnection\DatabaseServer.resx">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Employees\AddEmployee.resx">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>
