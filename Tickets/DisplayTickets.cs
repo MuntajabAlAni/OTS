@@ -11,7 +11,7 @@ using System.Threading;
 using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Companies;
-using OTS.Ticketing.Win.Employees;
+using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Softwares;
 using NLog;
@@ -32,8 +32,8 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                var employeeInfo = await ticketRepository.GetEmployeeById(SystemConstants.loggedInEmployeeId);
-                if (employeeInfo.UserName != "admin")
+                var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+                if (UserInfo.UserName != "admin")
                 {
                     BtnAddState.Visible = false;
                     BtnEditState.Visible = false;
@@ -69,13 +69,13 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                DtgTickets.DataSource = await ticketRepository.GetAllTicketsByEmployeeId(SystemConstants.loggedInEmployeeId);
+                DtgTickets.DataSource = await ticketRepository.GetAllTicketsByUserId(SystemConstants.loggedInUserId);
                 DtgTickets.Columns["Number"].HeaderText = "رقم البطاقة";
                 DtgTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
                 DtgTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
                 DtgTickets.Columns["PhoneNumber"].HeaderText = "رقم الهاتف";
                 DtgTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
-                DtgTickets.Columns["EmployeeName"].HeaderText = "الموظف";
+                DtgTickets.Columns["UserName"].HeaderText = "الموظف";
                 DtgTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
                 DtgTickets.Columns["Problem"].HeaderText = "المشكلة";
                 DtgTickets.Columns["State"].HeaderText = "الحالة";
@@ -83,8 +83,6 @@ namespace OTS.Ticketing.Win.Tickets
                 DtgTickets.Columns["Arrangement"].HeaderText = "ترتيب الملفات";
                 DtgTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
                 DtgTickets.Columns["Remarks"].Visible = false;
-
-
             }
             catch (Exception ex)
             {
@@ -111,7 +109,7 @@ namespace OTS.Ticketing.Win.Tickets
                 LblNumber.Text = selectedTicket.Number.ToString();
                 LblRevision.Text = selectedTicket.Revision.ToString();
                 LblCompany.Text = selectedTicket.CompanyName.ToString();
-                LblEmployee.Text = selectedTicket.EmployeeName.ToString();
+                LblUser.Text = selectedTicket.UserName.ToString();
                 LblPhoneNumber.Text = selectedTicket.PhoneNumber.ToString();
                 LblSoftware.Text = selectedTicket.SoftwareName.ToString();
                 LblOpenDate.Text = selectedTicket.OpenDate.ToString("yyyy-MM-dd hh:mm tt dddd");
@@ -176,7 +174,7 @@ namespace OTS.Ticketing.Win.Tickets
                 LblNumber.Text = "";
                 LblRevision.Text = "";
                 LblCompany.Text = "";
-                LblEmployee.Text = "";
+                LblUser.Text = "";
                 LblPhoneNumber.Text = "";
                 LblSoftware.Text = "";
                 LblOpenDate.Text = "";

@@ -9,32 +9,32 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Employees
+namespace OTS.Ticketing.Win.Users
 {
-    public partial class AddEmployee : Form
+    public partial class AddUser : Form
     {
-        private readonly EmployeeRepository employeeRepository = new EmployeeRepository();
+        private readonly UserRepository UserRepository = new UserRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
-        public AddEmployee(long id)
+        public AddUser(long id)
         {
             InitializeComponent();
             _id = id;
         }
 
-        private async void AddEmployee_Load(object sender, EventArgs e)
+        private async void AddUser_Load(object sender, EventArgs e)
         {
             try
             {
                 if (_id != 0)
                 {
-                    EmployeeInfo employeeInfo = await employeeRepository.GetEmployeeById(_id);
-                    TxtDisplayName.Text = employeeInfo.DisplayName;
-                    TxtUserName.Text = employeeInfo.UserName;
-                    TxtPassword.Text = employeeInfo.Password;
-                    TxtIp.Text = employeeInfo.Ip;
-                    TxtRemarks.Text = employeeInfo.Remarks;
-                    CbState.Checked = employeeInfo.State;
+                    UserInfo UserInfo = await UserRepository.GetUserById(_id);
+                    TxtDisplayName.Text = UserInfo.DisplayName;
+                    TxtUserName.Text = UserInfo.UserName;
+                    TxtPassword.Text = UserInfo.Password;
+                    TxtIp.Text = UserInfo.Ip;
+                    TxtRemarks.Text = UserInfo.Remarks;
+                    CbState.Checked = UserInfo.State;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -56,12 +56,12 @@ namespace OTS.Ticketing.Win.Employees
             {
                 if (_id == 0)
                 {
-                    await employeeRepository.AddEmployee(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
+                    await UserRepository.AddUser(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
                         CbState.Checked, TxtIp.Text, TxtRemarks.Text);
                 }
                 else
                 {
-                    await employeeRepository.UpdateEmployee(_id, TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
+                    await UserRepository.UpdateUser(_id, TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
                         CbState.Checked, TxtIp.Text, TxtRemarks.Text);
                 }
                 this.Close();

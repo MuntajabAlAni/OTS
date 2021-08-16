@@ -38,7 +38,7 @@ namespace OTS.Ticketing.Win.MainForms
                 DtgLastTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
                 DtgLastTickets.Columns["PhoneNumber"].HeaderText = "رقم الهاتف";
                 DtgLastTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
-                DtgLastTickets.Columns["EmployeeName"].HeaderText = "الموظف";
+                DtgLastTickets.Columns["UserName"].HeaderText = "الموظف";
                 DtgLastTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
                 DtgLastTickets.Columns["Arrangement"].HeaderText = "ترتيب الملفات";
                 DtgLastTickets.Columns["State"].HeaderText = "الحالة";

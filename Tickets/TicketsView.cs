@@ -13,7 +13,7 @@ namespace OTS.Ticketing.Win.Tickets
         public DateTime CloseDate { get; set; }
         public string PhoneNumber { get; set; }
         public string SoftwareName { get; set; }
-        public string EmployeeName { get; set; }
+        public string UserName { get; set; }
         public string CompanyName { get; set; }
         public string Problem { get; set; }
         public string State { get; set; }

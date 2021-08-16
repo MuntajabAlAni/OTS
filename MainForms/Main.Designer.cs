@@ -36,7 +36,7 @@ namespace OTS.Ticketing.Win
             this.BtnStates = new System.Windows.Forms.Button();
             this.BtnSoftwares = new System.Windows.Forms.Button();
             this.BtnPhoneNumbres = new System.Windows.Forms.Button();
-            this.BtnEmployees = new System.Windows.Forms.Button();
+            this.BtnUsers = new System.Windows.Forms.Button();
             this.BtnHome = new System.Windows.Forms.Button();
             this.BtnCompanies = new System.Windows.Forms.Button();
             this.LOGO = new System.Windows.Forms.PictureBox();
@@ -71,7 +71,7 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.Controls.Add(this.BtnStates);
             this.PnlMenuVertical.Controls.Add(this.BtnSoftwares);
             this.PnlMenuVertical.Controls.Add(this.BtnPhoneNumbres);
-            this.PnlMenuVertical.Controls.Add(this.BtnEmployees);
+            this.PnlMenuVertical.Controls.Add(this.BtnUsers);
             this.PnlMenuVertical.Controls.Add(this.BtnHome);
             this.PnlMenuVertical.Controls.Add(this.BtnCompanies);
             this.PnlMenuVertical.Controls.Add(this.LOGO);
@@ -173,23 +173,23 @@ namespace OTS.Ticketing.Win
             this.BtnPhoneNumbres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
             // 
-            // BtnEmployees
+            // BtnUsers
             // 
-            this.BtnEmployees.FlatAppearance.BorderSize = 0;
-            this.BtnEmployees.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnEmployees.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEmployees.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BtnEmployees.ForeColor = System.Drawing.Color.White;
-            this.BtnEmployees.Image = ((System.Drawing.Image)(resources.GetObject("BtnEmployees.Image")));
-            this.BtnEmployees.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnEmployees.Location = new System.Drawing.Point(0, 214);
-            this.BtnEmployees.Name = "BtnEmployees";
-            this.BtnEmployees.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnEmployees.Size = new System.Drawing.Size(250, 45);
-            this.BtnEmployees.TabIndex = 2;
-            this.BtnEmployees.Text = "الموظفين";
-            this.BtnEmployees.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEmployees.UseVisualStyleBackColor = true;
+            this.BtnUsers.FlatAppearance.BorderSize = 0;
+            this.BtnUsers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnUsers.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnUsers.ForeColor = System.Drawing.Color.White;
+            this.BtnUsers.Image = ((System.Drawing.Image)(resources.GetObject("BtnUsers.Image")));
+            this.BtnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnUsers.Location = new System.Drawing.Point(0, 214);
+            this.BtnUsers.Name = "BtnUsers";
+            this.BtnUsers.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BtnUsers.Size = new System.Drawing.Size(250, 45);
+            this.BtnUsers.TabIndex = 2;
+            this.BtnUsers.Text = "الموظفين";
+            this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnUsers.UseVisualStyleBackColor = true;
             // 
             // BtnHome
             // 
@@ -448,7 +448,7 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.Button BtnTickets;
         private System.Windows.Forms.Button BtnSoftwares;
         private System.Windows.Forms.Button BtnPhoneNumbres;
-        private System.Windows.Forms.Button BtnEmployees;
+        private System.Windows.Forms.Button BtnUsers;
         private System.Windows.Forms.Button BtnHome;
         private System.Windows.Forms.MenuStrip MenuStrip;
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;

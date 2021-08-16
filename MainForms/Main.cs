@@ -97,17 +97,17 @@ namespace OTS.Ticketing.Win
             try
             {
                 BtnHome.PerformClick();
-                var employeeInfo = await ticketRepository.GetEmployeeById(SystemConstants.loggedInEmployeeId);
-                if (employeeInfo.UserName != "admin")
+                var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+                if (UserInfo.UserName != "admin")
                 {
                     BtnAddTicket.Visible = false;
                     BtnCompanies.Visible = false;
-                    BtnEmployees.Visible = false;
+                    BtnUsers.Visible = false;
                     BtnPhoneNumbres.Visible = false;
                     BtnSoftwares.Visible = false;
                     BtnStates.Visible = false;
                     BtnTickets.Location = new Point(0, 162);
-                    if (employeeInfo.UserName == "Noor")
+                    if (UserInfo.UserName == "Noor")
                     {
                         BtnTickets.Visible = false;
                         BtnAddTicket.Visible = true;
@@ -130,8 +130,8 @@ namespace OTS.Ticketing.Win
         }
         private async void BtnAddTicket_Click(object sender, EventArgs e)
         {
-            var employeeInfo = await ticketRepository.GetEmployeeById(SystemConstants.loggedInEmployeeId);
-            if (employeeInfo.UserName != "admin" & employeeInfo.UserName != "Noor")
+            var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+            if (UserInfo.UserName != "admin" & UserInfo.UserName != "Noor")
             {
                 return;
             }

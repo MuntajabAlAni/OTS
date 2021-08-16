@@ -47,7 +47,7 @@ namespace OTS.Ticketing.Win.MainForms
                     Logger.Info("Invalid login attempt");
                     return;
                 }
-                SystemConstants.loggedInEmployeeId = result.Id;
+                SystemConstants.loggedInUserId = result.Id;
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();

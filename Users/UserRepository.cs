@@ -7,13 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Employees
+namespace OTS.Ticketing.Win.Users
 {
-    public class EmployeeRepository
+    public class UserRepository
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
-        public async Task<int> AddEmployee(string displayName, string userName, string password, bool state, string ip, string remarks)
+        public async Task<int> AddUser(string displayName, string userName, string password, bool state, string ip, string remarks)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@displayName", displayName);
@@ -23,7 +23,7 @@ namespace OTS.Ticketing.Win.Employees
             parameters.Add("@ip", ip);
             parameters.Add("@remarks", remarks);
 
-            string command = @"INSERT INTO Employees (DisplayName, UserName, Password, State, Ip, Remarks)
+            string command = @"INSERT INTO Users (DisplayName, UserName, Password, State, Ip, Remarks)
                                 VALUES (@displayName,
                                         @userName,
                                         @password,
@@ -33,16 +33,16 @@ namespace OTS.Ticketing.Win.Employees
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<EmployeeInfo> GetEmployeeById(long id)
+        public async Task<UserInfo> GetUserById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
-            string query = @"SELECT * FROM EMPLOYEES WHERE ID = @ID";
-            var result = await dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
+            string query = @"SELECT * FROM Users WHERE ID = @ID";
+            var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<int> UpdateEmployee(long id, string displayName, string userName, string password, bool state, string ip, string remarks)
+        public async Task<int> UpdateUser(long id, string displayName, string userName, string password, bool state, string ip, string remarks)
         {
 
             DynamicParameters parameters = new DynamicParameters();
@@ -54,7 +54,7 @@ namespace OTS.Ticketing.Win.Employees
             parameters.Add("@ip", ip);
             parameters.Add("@remarks", remarks);
 
-            string command = @"UPDATE Employees SET 
+            string command = @"UPDATE Users SET 
                                 displayName = @displayName,
                                 userName = @userName,
                                 password = @password,

@@ -48,7 +48,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumberTitle = new System.Windows.Forms.Label();
             this.LblOpenDateTitle = new System.Windows.Forms.Label();
             this.LblCompanyTitle = new System.Windows.Forms.Label();
-            this.LblEmployeeTitle = new System.Windows.Forms.Label();
+            this.LblUserTitle = new System.Windows.Forms.Label();
             this.LblSoftwareTitle = new System.Windows.Forms.Label();
             this.LblRevisionTitle = new System.Windows.Forms.Label();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
@@ -69,7 +69,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompany = new System.Windows.Forms.Label();
             this.LblPhoneNumber = new System.Windows.Forms.Label();
             this.LblSoftware = new System.Windows.Forms.Label();
-            this.LblEmployee = new System.Windows.Forms.Label();
+            this.LblUser = new System.Windows.Forms.Label();
             this.LblOpenDate = new System.Windows.Forms.Label();
             this.TxtProblem = new System.Windows.Forms.TextBox();
             this.LblProblem = new System.Windows.Forms.Label();
@@ -191,16 +191,16 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompanyTitle.TabIndex = 7;
             this.LblCompanyTitle.Text = "الشركة :";
             // 
-            // LblEmployeeTitle
+            // LblUserTitle
             // 
-            this.LblEmployeeTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblEmployeeTitle.AutoSize = true;
-            this.LblEmployeeTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblEmployeeTitle.Location = new System.Drawing.Point(950, 202);
-            this.LblEmployeeTitle.Name = "LblEmployeeTitle";
-            this.LblEmployeeTitle.Size = new System.Drawing.Size(55, 15);
-            this.LblEmployeeTitle.TabIndex = 7;
-            this.LblEmployeeTitle.Text = "الموظف :";
+            this.LblUserTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblUserTitle.AutoSize = true;
+            this.LblUserTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblUserTitle.Location = new System.Drawing.Point(950, 202);
+            this.LblUserTitle.Name = "LblUserTitle";
+            this.LblUserTitle.Size = new System.Drawing.Size(55, 15);
+            this.LblUserTitle.TabIndex = 7;
+            this.LblUserTitle.Text = "الموظف :";
             // 
             // LblSoftwareTitle
             // 
@@ -500,15 +500,15 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftware.Size = new System.Drawing.Size(0, 20);
             this.LblSoftware.TabIndex = 24;
             // 
-            // LblEmployee
+            // LblUser
             // 
-            this.LblEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblEmployee.AutoSize = true;
-            this.LblEmployee.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.LblEmployee.Location = new System.Drawing.Point(787, 194);
-            this.LblEmployee.Name = "LblEmployee";
-            this.LblEmployee.Size = new System.Drawing.Size(0, 20);
-            this.LblEmployee.TabIndex = 24;
+            this.LblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblUser.AutoSize = true;
+            this.LblUser.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
+            this.LblUser.Location = new System.Drawing.Point(787, 194);
+            this.LblUser.Name = "LblUser";
+            this.LblUser.Size = new System.Drawing.Size(0, 20);
+            this.LblUser.TabIndex = 24;
             // 
             // LblOpenDate
             // 
@@ -603,7 +603,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 606);
             this.Controls.Add(this.BtnEditState);
-            this.Controls.Add(this.LblEmployee);
+            this.Controls.Add(this.LblUser);
             this.Controls.Add(this.LblSoftware);
             this.Controls.Add(this.LblPhoneNumber);
             this.Controls.Add(this.LblCompany);
@@ -616,7 +616,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.ToggleRemotely);
             this.Controls.Add(this.CombStates);
             this.Controls.Add(this.LblSoftwareTitle);
-            this.Controls.Add(this.LblEmployeeTitle);
+            this.Controls.Add(this.LblUserTitle);
             this.Controls.Add(this.LblPhoneNumberTitle);
             this.Controls.Add(this.LblOpenDateTitle);
             this.Controls.Add(this.LblCompanyTitle);
@@ -653,7 +653,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblNumberTitle;
         private System.Windows.Forms.Label LblOpenDateTitle;
         private System.Windows.Forms.Label LblCompanyTitle;
-        private System.Windows.Forms.Label LblEmployeeTitle;
+        private System.Windows.Forms.Label LblUserTitle;
         private System.Windows.Forms.Label LblSoftwareTitle;
         private System.Windows.Forms.Label LblRevisionTitle;
         private System.Windows.Forms.TextBox TxtRemarks;
@@ -674,7 +674,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblCompany;
         private System.Windows.Forms.Label LblPhoneNumber;
         private System.Windows.Forms.Label LblSoftware;
-        private System.Windows.Forms.Label LblEmployee;
+        private System.Windows.Forms.Label LblUser;
         private System.Windows.Forms.Label LblOpenDate;
         private System.Windows.Forms.TextBox TxtProblem;
         private System.Windows.Forms.Label LblProblem;

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OTS.Ticketing.Win.Employees
+namespace OTS.Ticketing.Win.Users
 {
-    public class EmployeeInfo
+    public class UserInfo
     {
         public long Id { get; set; }
         public string DisplayName { get; set; }

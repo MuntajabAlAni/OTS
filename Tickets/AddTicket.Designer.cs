@@ -36,10 +36,10 @@ namespace OTS.Ticketing.Win.Tickets
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.BtnAddCompany = new System.Windows.Forms.PictureBox();
             this.CombSoftware = new System.Windows.Forms.ComboBox();
-            this.CombEmployee = new System.Windows.Forms.ComboBox();
+            this.CombUser = new System.Windows.Forms.ComboBox();
             this.CombCompanies = new System.Windows.Forms.ComboBox();
             this.LblSoftware = new System.Windows.Forms.Label();
-            this.LblEmployee = new System.Windows.Forms.Label();
+            this.LblUser = new System.Windows.Forms.Label();
             this.LblCompany = new System.Windows.Forms.Label();
             this.LblRevisionTitle = new System.Windows.Forms.Label();
             this.LblNumberTitle = new System.Windows.Forms.Label();
@@ -58,8 +58,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnSearchCompany = new System.Windows.Forms.PictureBox();
             this.BtnAddSoftware = new System.Windows.Forms.PictureBox();
             this.BtnEditSoftware = new System.Windows.Forms.PictureBox();
-            this.BtnAddEmployee = new System.Windows.Forms.PictureBox();
-            this.BtnEditEmployee = new System.Windows.Forms.PictureBox();
+            this.BtnAddUser = new System.Windows.Forms.PictureBox();
+            this.BtnEditUser = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddPhoneNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUnclosedTickets)).BeginInit();
@@ -69,8 +69,8 @@ namespace OTS.Ticketing.Win.Tickets
             ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddSoftware)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditSoftware)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnAddEmployee)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnEditEmployee)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAddUser)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnEditUser)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnAddCompany
@@ -99,15 +99,15 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombSoftware.Size = new System.Drawing.Size(180, 25);
             this.CombSoftware.TabIndex = 2;
             // 
-            // CombEmployee
+            // CombUser
             // 
-            this.CombEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CombEmployee.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombEmployee.FormattingEnabled = true;
-            this.CombEmployee.Location = new System.Drawing.Point(232, 85);
-            this.CombEmployee.Name = "CombEmployee";
-            this.CombEmployee.Size = new System.Drawing.Size(180, 25);
-            this.CombEmployee.TabIndex = 3;
+            this.CombUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CombUser.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombUser.FormattingEnabled = true;
+            this.CombUser.Location = new System.Drawing.Point(232, 85);
+            this.CombUser.Name = "CombUser";
+            this.CombUser.Size = new System.Drawing.Size(180, 25);
+            this.CombUser.TabIndex = 3;
             // 
             // CombCompanies
             // 
@@ -134,16 +134,16 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftware.TabIndex = 14;
             this.LblSoftware.Text = "البرنامج :";
             // 
-            // LblEmployee
+            // LblUser
             // 
-            this.LblEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblEmployee.AutoSize = true;
-            this.LblEmployee.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblEmployee.Location = new System.Drawing.Point(418, 90);
-            this.LblEmployee.Name = "LblEmployee";
-            this.LblEmployee.Size = new System.Drawing.Size(55, 15);
-            this.LblEmployee.TabIndex = 15;
-            this.LblEmployee.Text = "الموظف :";
+            this.LblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblUser.AutoSize = true;
+            this.LblUser.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblUser.Location = new System.Drawing.Point(418, 90);
+            this.LblUser.Name = "LblUser";
+            this.LblUser.Size = new System.Drawing.Size(55, 15);
+            this.LblUser.TabIndex = 15;
+            this.LblUser.Text = "الموظف :";
             // 
             // LblCompany
             // 
@@ -445,37 +445,37 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEditSoftware.TabStop = false;
             this.BtnEditSoftware.Click += new System.EventHandler(this.BtnEditSoftware_Click);
             // 
-            // BtnAddEmployee
+            // BtnAddUser
             // 
-            this.BtnAddEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnAddEmployee.BackColor = System.Drawing.Color.White;
-            this.BtnAddEmployee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BtnAddEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnAddEmployee.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnAddEmployee.ErrorImage")));
-            this.BtnAddEmployee.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddEmployee.Image")));
-            this.BtnAddEmployee.Location = new System.Drawing.Point(207, 85);
-            this.BtnAddEmployee.Name = "BtnAddEmployee";
-            this.BtnAddEmployee.Size = new System.Drawing.Size(25, 25);
-            this.BtnAddEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.BtnAddEmployee.TabIndex = 22;
-            this.BtnAddEmployee.TabStop = false;
-            this.BtnAddEmployee.Click += new System.EventHandler(this.BtnAddEmployee_Click);
+            this.BtnAddUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnAddUser.BackColor = System.Drawing.Color.White;
+            this.BtnAddUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BtnAddUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnAddUser.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnAddUser.ErrorImage")));
+            this.BtnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddUser.Image")));
+            this.BtnAddUser.Location = new System.Drawing.Point(207, 85);
+            this.BtnAddUser.Name = "BtnAddUser";
+            this.BtnAddUser.Size = new System.Drawing.Size(25, 25);
+            this.BtnAddUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnAddUser.TabIndex = 22;
+            this.BtnAddUser.TabStop = false;
+            this.BtnAddUser.Click += new System.EventHandler(this.BtnAddUser_Click);
             // 
-            // BtnEditEmployee
+            // BtnEditUser
             // 
-            this.BtnEditEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnEditEmployee.BackColor = System.Drawing.Color.White;
-            this.BtnEditEmployee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.BtnEditEmployee.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.BtnEditEmployee.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnEditEmployee.ErrorImage")));
-            this.BtnEditEmployee.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditEmployee.Image")));
-            this.BtnEditEmployee.Location = new System.Drawing.Point(182, 85);
-            this.BtnEditEmployee.Name = "BtnEditEmployee";
-            this.BtnEditEmployee.Size = new System.Drawing.Size(25, 25);
-            this.BtnEditEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.BtnEditEmployee.TabIndex = 22;
-            this.BtnEditEmployee.TabStop = false;
-            this.BtnEditEmployee.Click += new System.EventHandler(this.BtnEditEmployee_Click);
+            this.BtnEditUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnEditUser.BackColor = System.Drawing.Color.White;
+            this.BtnEditUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BtnEditUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnEditUser.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnEditUser.ErrorImage")));
+            this.BtnEditUser.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditUser.Image")));
+            this.BtnEditUser.Location = new System.Drawing.Point(182, 85);
+            this.BtnEditUser.Name = "BtnEditUser";
+            this.BtnEditUser.Size = new System.Drawing.Size(25, 25);
+            this.BtnEditUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnEditUser.TabIndex = 22;
+            this.BtnEditUser.TabStop = false;
+            this.BtnEditUser.Click += new System.EventHandler(this.BtnEditUser_Click);
             // 
             // AddTicket
             // 
@@ -488,19 +488,19 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.BtnSearchCompany);
             this.Controls.Add(this.BtnSearchPhoneNumber);
             this.Controls.Add(this.BtnEditPhoneNumber);
-            this.Controls.Add(this.BtnEditEmployee);
+            this.Controls.Add(this.BtnEditUser);
             this.Controls.Add(this.BtnEditSoftware);
             this.Controls.Add(this.BtnAddPhoneNumber);
-            this.Controls.Add(this.BtnAddEmployee);
+            this.Controls.Add(this.BtnAddUser);
             this.Controls.Add(this.BtnAddSoftware);
             this.Controls.Add(this.BtnEditCompany);
             this.Controls.Add(this.BtnAddCompany);
             this.Controls.Add(this.CombSoftware);
-            this.Controls.Add(this.CombEmployee);
+            this.Controls.Add(this.CombUser);
             this.Controls.Add(this.CombPhoneNumbers);
             this.Controls.Add(this.CombCompanies);
             this.Controls.Add(this.LblSoftware);
-            this.Controls.Add(this.LblEmployee);
+            this.Controls.Add(this.LblUser);
             this.Controls.Add(this.LblPhoneNumber);
             this.Controls.Add(this.LblCompany);
             this.Controls.Add(this.LblUnclosedTickets);
@@ -523,8 +523,8 @@ namespace OTS.Ticketing.Win.Tickets
             ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddSoftware)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditSoftware)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnAddEmployee)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.BtnEditEmployee)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnAddUser)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnEditUser)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -534,10 +534,10 @@ namespace OTS.Ticketing.Win.Tickets
 
         private System.Windows.Forms.PictureBox BtnAddCompany;
         private System.Windows.Forms.ComboBox CombSoftware;
-        private System.Windows.Forms.ComboBox CombEmployee;
+        private System.Windows.Forms.ComboBox CombUser;
         private System.Windows.Forms.ComboBox CombCompanies;
         private System.Windows.Forms.Label LblSoftware;
-        private System.Windows.Forms.Label LblEmployee;
+        private System.Windows.Forms.Label LblUser;
         private System.Windows.Forms.Label LblCompany;
         private System.Windows.Forms.Label LblRevisionTitle;
         private System.Windows.Forms.Label LblNumberTitle;
@@ -556,7 +556,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.PictureBox BtnSearchCompany;
         private System.Windows.Forms.PictureBox BtnAddSoftware;
         private System.Windows.Forms.PictureBox BtnEditSoftware;
-        private System.Windows.Forms.PictureBox BtnAddEmployee;
-        private System.Windows.Forms.PictureBox BtnEditEmployee;
+        private System.Windows.Forms.PictureBox BtnAddUser;
+        private System.Windows.Forms.PictureBox BtnEditUser;
     }
 }

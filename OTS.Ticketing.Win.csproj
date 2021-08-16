@@ -116,13 +116,13 @@
     <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Employees\AddEmployee.cs">
+    <Compile Include="Users\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Employees\AddEmployee.Designer.cs">
-      <DependentUpon>AddEmployee.cs</DependentUpon>
+    <Compile Include="Users\AddUser.Designer.cs">
+      <DependentUpon>AddUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Employees\EmployeeRepository.cs" />
+    <Compile Include="Users\UserRepository.cs" />
     <Compile Include="IniFile.cs" />
     <Compile Include="MainForms\Home.cs">
       <SubType>Form</SubType>
@@ -146,7 +146,7 @@
     <Compile Include="Branches\BranchInfo.cs" />
     <Compile Include="Companies\CompanyInfo.cs" />
     <Compile Include="DatabaseConnection\DataAccess.cs" />
-    <Compile Include="Employees\EmployeeInfo.cs" />
+    <Compile Include="Users\UserInfo.cs" />
     <Compile Include="DatabaseConnection\ConnectionTools.cs" />
     <Compile Include="PhoneNumbers\AddPhoneNumber.cs">
       <SubType>Form</SubType>
@@ -208,8 +208,8 @@
     <EmbeddedResource Include="DatabaseConnection\DatabaseServer.resx">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Employees\AddEmployee.resx">
-      <DependentUpon>AddEmployee.cs</DependentUpon>
+    <EmbeddedResource Include="Users\AddUser.resx">
+      <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Home.resx">
       <DependentUpon>Home.cs</DependentUpon>

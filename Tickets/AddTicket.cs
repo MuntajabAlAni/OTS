@@ -1,6 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Companies;
-using OTS.Ticketing.Win.Employees;
+using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Softwares;
 using System;
@@ -29,11 +29,11 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                var employeeInfo = await ticketRepository.GetEmployeeById(SystemConstants.loggedInEmployeeId);
-                if (employeeInfo.UserName != "admin")
+                var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+                if (UserInfo.UserName != "admin")
                 {
-                    BtnAddEmployee.Visible = false;
-                    BtnEditEmployee.Visible = false;
+                    BtnAddUser.Visible = false;
+                    BtnEditUser.Visible = false;
                     BtnAddSoftware.Visible = false;
                     BtnEditSoftware.Visible = false;
                 }
@@ -41,7 +41,7 @@ namespace OTS.Ticketing.Win.Tickets
                 LblRevision.Text = "0";
                 FillCompaniesComboBox();
                 FillSoftwaresComboBox();
-                FillEmployeesComboBox();
+                FillUsersComboBox();
                 FillPhoneNumbersComboBox();
             }
             catch (Exception ex)
@@ -83,14 +83,14 @@ namespace OTS.Ticketing.Win.Tickets
             }
 
         }
-        private async void FillEmployeesComboBox()
+        private async void FillUsersComboBox()
         {
             try
             {
-                CombEmployee.DisplayMember = "displayName";
-                CombEmployee.ValueMember = "Id";
-                CombEmployee.DataSource = await ticketRepository.GetAllEmployees();
-                CombEmployee.SelectedValue = SystemConstants.SelectedEmployee;
+                CombUser.DisplayMember = "displayName";
+                CombUser.ValueMember = "Id";
+                CombUser.DataSource = await ticketRepository.GetAllUsers();
+                CombUser.SelectedValue = SystemConstants.SelectedUser;
             }
             catch (Exception ex)
             {
@@ -131,7 +131,7 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
             DtgUnclosedTickets.Columns["PhoneNumber"].HeaderText = "رقم الهاتف";
             DtgUnclosedTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
-            DtgUnclosedTickets.Columns["EmployeeName"].HeaderText = "الموظف";
+            DtgUnclosedTickets.Columns["UserName"].HeaderText = "الموظف";
             DtgUnclosedTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
             DtgUnclosedTickets.Columns["Problem"].HeaderText = "المشكلة";
             DtgUnclosedTickets.Columns["State"].HeaderText = "الحالة";
@@ -150,7 +150,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 if (Convert.ToInt64(CombPhoneNumbers.SelectedValue) == 0
                     | Convert.ToInt64(CombCompanies.SelectedValue) == 0
-                    | Convert.ToInt64(CombEmployee.SelectedValue) == 0
+                    | Convert.ToInt64(CombUser.SelectedValue) == 0
                     | Convert.ToInt64(CombSoftware.SelectedValue) == 0)
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -165,7 +165,11 @@ namespace OTS.Ticketing.Win.Tickets
                 Convert.ToInt64(CombCompanies.SelectedValue),
                 Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                 Convert.ToInt64(CombSoftware.SelectedValue),
-                Convert.ToInt64(CombEmployee.SelectedValue));
+                Convert.ToInt64(CombUser.SelectedValue));
+                    SystemConstants.SelectedCompanyId = 0;
+                    SystemConstants.SelectedPhoneNumberId = 0;
+                    SystemConstants.SelectedSoftware = 0;
+                    SystemConstants.SelectedUser = 0;
                     this.Close();
                 }
 
@@ -187,7 +191,7 @@ namespace OTS.Ticketing.Win.Tickets
                 LblNumber.Text = selectedTicket.Number.ToString();
                 LblRevision.Text = (selectedTicket.Revision + 1).ToString();
                 CombCompanies.SelectedValue = selectedTicket.CompanyId;
-                CombEmployee.SelectedValue = selectedTicket.EmployeeId;
+                CombUser.SelectedValue = selectedTicket.UserId;
                 CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
                 CombSoftware.SelectedValue = selectedTicket.SoftwareId;
             }
@@ -349,13 +353,13 @@ namespace OTS.Ticketing.Win.Tickets
                 Logger.Error(ex);
             }
         }
-        private void BtnAddEmployee_Click(object sender, EventArgs e)
+        private void BtnAddUser_Click(object sender, EventArgs e)
         {
             try
             {
-                AddEmployee addEmployee = new AddEmployee(0);
-                addEmployee.ShowDialog();
-                FillEmployeesComboBox();
+                AddUser addUser = new AddUser(0);
+                addUser.ShowDialog();
+                FillUsersComboBox();
             }
             catch (Exception ex)
             {
@@ -363,13 +367,13 @@ namespace OTS.Ticketing.Win.Tickets
                 Logger.Error(ex);
             }
         }
-        private void BtnEditEmployee_Click(object sender, EventArgs e)
+        private void BtnEditUser_Click(object sender, EventArgs e)
         {
             try
             {
-                AddEmployee addEmployee = new AddEmployee(Convert.ToInt64(CombEmployee.SelectedValue));
-                addEmployee.ShowDialog();
-                FillEmployeesComboBox();
+                AddUser addUser = new AddUser(Convert.ToInt64(CombUser.SelectedValue));
+                addUser.ShowDialog();
+                FillUsersComboBox();
             }
             catch (Exception ex)
             {

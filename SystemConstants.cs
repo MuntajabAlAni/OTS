@@ -9,11 +9,11 @@ namespace OTS.Ticketing.Win
 {
     public class SystemConstants
     {
-        public static long loggedInEmployeeId = 0;
+        public static long loggedInUserId = 0;
         public static long SelectedPhoneNumberId = 0;
         public static long SelectedCompanyId = 0;
         public static long SelectedSoftware = 0;
-        public static long SelectedEmployee = 0;
+        public static long SelectedUser = 0;
         public static string Database;
         public static string ServerIp;
 

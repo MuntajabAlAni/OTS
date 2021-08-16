@@ -472,7 +472,7 @@
         ueS6i9FkNHs0N5hbqa8ZY4wxU+i6FzVFzb576irNAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="BtnAddEmployee.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnAddUser.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAaZSURBVHhe7dtniDNVGMXxV0WxomIXO2JBBbGCDfWD
@@ -506,7 +506,7 @@
         CHae8YjlacJfVc8tu3WwxbE2Wxxrs8WxNlsca7PFsTZbHAsT0/4HtxWfc1R0XiEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="BtnAddEmployee.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnAddUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAACASURBVGhD7dVBCoAwEEPRHtWjeDOPps1CGKRIhTZO
@@ -514,7 +514,7 @@
         ZGjpJf/pL/R4LK07PUq7UNqF0i6UdlmytKZY033nt2kGAKBTKRfxM8Nk4HeIZwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="BtnEditEmployee.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnEditUser.ErrorImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEgAAABICAYAAABV7bNHAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAaZSURBVHhe7dtniDNVGMXxV0WxomIXO2JBBbGCDfWD
@@ -548,7 +548,7 @@
         CHae8YjlacJfVc8tu3WwxbE2Wxxrs8WxNlsca7PFsTZbHAsT0/4HtxWfc1R0XiEAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="BtnEditEmployee.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnEditUser.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
         dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADoSURBVGhD7ZdhCcJQFEYXwQhGMIIRjGAEI9jACEYw

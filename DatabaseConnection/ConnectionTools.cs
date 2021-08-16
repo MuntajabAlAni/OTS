@@ -21,7 +21,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
                 Password = "vULiwCss0SrBrLJ",
                 //IntegratedSecurity = true,
             };
-            str["Server"] = str.DataSource + @"\OTSSQLSERVER";
+            str["Server"] = str.DataSource + @"\FOTSQLSERVER";
             //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
             return str.ConnectionString;
         }

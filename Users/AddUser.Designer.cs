@@ -1,7 +1,7 @@
 ﻿
-namespace OTS.Ticketing.Win.Employees
+namespace OTS.Ticketing.Win.Users
 {
-    partial class AddEmployee
+    partial class AddUser
     {
         /// <summary>
         /// Required designer variable.
@@ -203,17 +203,17 @@ namespace OTS.Ticketing.Win.Employees
             this.CbState.Text = "فعال";
             this.CbState.UseVisualStyleBackColor = true;
             // 
-            // AddEmployee
+            // AddUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(440, 400);
             this.Controls.Add(this.PnlContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AddEmployee";
+            this.Name = "AddUser";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.Text = "AddEmployee";
-            this.Load += new System.EventHandler(this.AddEmployee_Load);
+            this.Text = "AddUser";
+            this.Load += new System.EventHandler(this.AddUser_Load);
             this.PnlContainer.ResumeLayout(false);
             this.PnlContainer.PerformLayout();
             this.ResumeLayout(false);

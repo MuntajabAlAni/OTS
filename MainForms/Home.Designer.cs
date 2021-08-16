@@ -141,12 +141,12 @@ namespace OTS.Ticketing.Win.MainForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblDataGridTitle.AutoSize = true;
             this.LblDataGridTitle.Font = new System.Drawing.Font("Segoe UI", 17F);
-            this.LblDataGridTitle.Location = new System.Drawing.Point(740, 311);
+            this.LblDataGridTitle.Location = new System.Drawing.Point(871, 314);
             this.LblDataGridTitle.Name = "LblDataGridTitle";
             this.LblDataGridTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LblDataGridTitle.Size = new System.Drawing.Size(278, 31);
+            this.LblDataGridTitle.Size = new System.Drawing.Size(150, 31);
             this.LblDataGridTitle.TabIndex = 3;
-            this.LblDataGridTitle.Text = "آخر 5 بطاقات تم إستخدامها :";
+            this.LblDataGridTitle.Text = "بطاقات اليوم :";
             // 
             // panel1
             // 

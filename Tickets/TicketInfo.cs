@@ -14,7 +14,7 @@ namespace OTS.Ticketing.Win.Tickets
         public DateTime CloseDate { get; set; }
         public long PhoneNumberId { get; set; }
         public long SoftwareId { get; set; }
-        public long EmployeeId { get; set; }
+        public long UserId { get; set; }
         public long CompanyId { get; set; }
         public string Problem { get; set; }
         public long State { get; set; }
