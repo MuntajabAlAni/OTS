@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,17 +19,38 @@ namespace OTS.Ticketing.Win
         public static string Database;
         public static string ServerIp;
 
-        public static void ErrorLog(Exception ex, string methodName)
-        {
-            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
-            if (!Directory.Exists(path))
-            {
-                Directory.CreateDirectory(path);
-            }
+        //public static void ErrorLog(Exception ex, string methodName)
+        //{
+        //    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
+        //    if (!Directory.Exists(path))
+        //    {
+        //        Directory.CreateDirectory(path);
+        //    }
 
-            File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), methodName + Environment.NewLine);
-            File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), ex.Message + Environment.NewLine);
-            File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), "=========================================================" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
+        //    File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), methodName + Environment.NewLine);
+        //    File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), ex.Message + Environment.NewLine);
+        //    File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), "=========================================================" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
+        //}
+        public static DataTable ToDataTable<T>(IList<T> data)
+        {
+            PropertyDescriptorCollection props =
+                TypeDescriptor.GetProperties(typeof(T));
+            DataTable table = new DataTable();
+            for (int i = 0; i < props.Count; i++)
+            {
+                PropertyDescriptor prop = props[i];
+                table.Columns.Add(prop.Name, prop.PropertyType);
+            }
+            object[] values = new object[props.Count];
+            foreach (T item in data)
+            {
+                for (int i = 0; i < values.Length; i++)
+                {
+                    values[i] = props[i].GetValue(item);
+                }
+                table.Rows.Add(values);
+            }
+            return table;
         }
     }
 }

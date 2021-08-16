@@ -69,7 +69,8 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                DtgTickets.DataSource = await ticketRepository.GetAllTicketsByUserId(SystemConstants.loggedInUserId);
+                DtgTickets.DataSource = SystemConstants.ToDataTable(
+                    await ticketRepository.GetAllTicketsByUserId(SystemConstants.loggedInUserId));
                 DtgTickets.Columns["Number"].HeaderText = "رقم البطاقة";
                 DtgTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
                 DtgTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";

@@ -54,7 +54,9 @@ namespace OTS.Ticketing.Win.Companies
         {
             string query = "SELECT * FROM Branches";
             var result = await dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
-            return result.ToList();
+            var list = result.ToList();
+            list.Insert(0, (new BranchInfo { Id = 0, Name = "" }));
+            return list;
         }
         public async Task<CompanyInfo> GetLastCompanyId()
         {

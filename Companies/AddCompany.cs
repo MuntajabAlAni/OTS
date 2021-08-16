@@ -104,7 +104,7 @@ namespace OTS.Ticketing.Win.Companies
         {
             try
             {
-                if (TxtName.Text == "")
+                if (TxtName.Text == "" | Convert.ToInt64(CombBranches.SelectedValue) == 0)
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;

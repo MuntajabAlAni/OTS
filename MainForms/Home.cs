@@ -32,7 +32,7 @@ namespace OTS.Ticketing.Win.MainForms
         {
             try
             {
-                DtgLastTickets.DataSource = await mainRepository.GetLastFiveCalls();
+                DtgLastTickets.DataSource = SystemConstants.ToDataTable(await mainRepository.GetLastFiveCalls());
                 DtgLastTickets.Columns["Number"].HeaderText = "رقم البطاقة";
                 DtgLastTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
                 DtgLastTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
