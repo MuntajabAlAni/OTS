@@ -114,11 +114,14 @@ namespace OTS.Ticketing.Win.Tickets
                 LblPhoneNumber.Text = selectedTicket.PhoneNumber.ToString();
                 LblSoftware.Text = selectedTicket.SoftwareName.ToString();
                 LblOpenDate.Text = selectedTicket.OpenDate.ToString("yyyy-MM-dd hh:mm tt dddd");
-                TxtProblem.Text = selectedTicket.Problem;
-                TxtRemarks.Text = selectedTicket.Remarks;
-                CombStates.Text = selectedTicket.State;
-                ToggleArrangement.Checked = selectedTicket.Arrangement == "مرتبة";
-                ToggleClosed.Checked = selectedTicket.IsClosed == "مغلقة";
+                if (selectedTicket.State != null)
+                {
+                    TxtProblem.Text = selectedTicket.Problem;
+                    TxtRemarks.Text = selectedTicket.Remarks;
+                    CombStates.Text = selectedTicket.State;
+                    ToggleArrangement.Checked = selectedTicket.Arrangement == "مرتبة";
+                    ToggleClosed.Checked = selectedTicket.IsClosed == "مغلقة";
+                }
             }
             catch (Exception ex)
             {
