@@ -43,6 +43,10 @@ namespace OTS.Ticketing.Win.Tickets
                 FillSoftwaresComboBox();
                 FillUsersComboBox();
                 FillPhoneNumbersComboBox();
+                SystemConstants.SelectedCompanyId = 0;
+                SystemConstants.SelectedPhoneNumberId = 0;
+                SystemConstants.SelectedSoftware = 0;
+                SystemConstants.SelectedUser = 0;
             }
             catch (Exception ex)
             {
