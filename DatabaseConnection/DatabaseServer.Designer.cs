@@ -54,7 +54,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.BtnExit.Location = new System.Drawing.Point(62, 169);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 38;
+            this.BtnExit.TabIndex = 3;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -69,7 +69,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.BtnSave.Location = new System.Drawing.Point(241, 169);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(120, 45);
-            this.BtnSave.TabIndex = 37;
+            this.BtnSave.TabIndex = 2;
             this.BtnSave.Text = "تخزين";
             this.BtnSave.UseVisualStyleBackColor = false;
             this.BtnSave.Click += new System.EventHandler(this.BtnSave_Click);
@@ -81,7 +81,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.LblServerIp.Location = new System.Drawing.Point(264, 39);
             this.LblServerIp.Name = "LblServerIp";
             this.LblServerIp.Size = new System.Drawing.Size(51, 15);
-            this.LblServerIp.TabIndex = 39;
+            this.LblServerIp.TabIndex = 4;
             this.LblServerIp.Text = "عنوان IP:";
             // 
             // TxtServerIp
@@ -90,7 +90,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.TxtServerIp.Location = new System.Drawing.Point(108, 34);
             this.TxtServerIp.Name = "TxtServerIp";
             this.TxtServerIp.Size = new System.Drawing.Size(150, 25);
-            this.TxtServerIp.TabIndex = 36;
+            this.TxtServerIp.TabIndex = 0;
             // 
             // PnlContainer
             // 
@@ -107,7 +107,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.PnlContainer.Location = new System.Drawing.Point(12, 12);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(425, 231);
-            this.PnlContainer.TabIndex = 40;
+            this.PnlContainer.TabIndex = 0;
             // 
             // ImbRefresh
             // 
@@ -146,7 +146,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.CombDatabases.Location = new System.Drawing.Point(108, 80);
             this.CombDatabases.Name = "CombDatabases";
             this.CombDatabases.Size = new System.Drawing.Size(150, 25);
-            this.CombDatabases.TabIndex = 40;
+            this.CombDatabases.TabIndex = 1;
             // 
             // LblDatabases
             // 
@@ -155,7 +155,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             this.LblDatabases.Location = new System.Drawing.Point(264, 85);
             this.LblDatabases.Name = "LblDatabases";
             this.LblDatabases.Size = new System.Drawing.Size(80, 15);
-            this.LblDatabases.TabIndex = 41;
+            this.LblDatabases.TabIndex = 5;
             this.LblDatabases.Text = "قاعدة البيانات :";
             // 
             // DatabaseServer

@@ -42,6 +42,7 @@ namespace OTS.Ticketing.Win.Users
             DtgUsers.Columns["state"].Visible = false;
             DtgUsers.Columns["ip"].Visible = false;
             DtgUsers.Columns["remarks"].Visible = false;
+            DtgUsers.Columns["salt"].Visible = false;
         }
 
         private void DtgUsers_DoubleClick(object sender, EventArgs e)

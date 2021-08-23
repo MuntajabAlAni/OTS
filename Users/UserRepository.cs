@@ -16,20 +16,24 @@ namespace OTS.Ticketing.Win.Users
         public async Task<int> AddUser(string displayName, string userName, string password, bool state, string ip, string remarks)
         {
             DynamicParameters parameters = new DynamicParameters();
+            Guid salt = Guid.NewGuid();
+            Byte[] passwordHash = SystemConstants.SHA512(password + salt.ToString().ToUpper());
             parameters.Add("@displayName", displayName);
             parameters.Add("@userName", userName);
-            parameters.Add("@password", password);
+            parameters.Add("@password", passwordHash);
             parameters.Add("@state", state);
             parameters.Add("@ip", ip);
             parameters.Add("@remarks", remarks);
+            parameters.Add("@Salt", salt);
 
-            string command = @"INSERT INTO Users (DisplayName, UserName, Password, State, Ip, Remarks)
+            string command = @"INSERT INTO Users (DisplayName, UserName, Password, State, Ip, Remarks, Salt)
                                 VALUES (@displayName,
                                         @userName,
                                         @password,
                                         @state,
                                         @ip,
-                                        @remarks)";
+                                        @remarks,
+                                        @Salt)";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
@@ -44,30 +48,34 @@ namespace OTS.Ticketing.Win.Users
         }
         public async Task<List<UserInfo>> GetAllUsers()
         {
-            string query = "select * from users";
+            string query = "select id, displayName from users";
             var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             return result.ToList();
         }
-
         public async Task<int> UpdateUser(long id, string displayName, string userName, string password, bool state, string ip, string remarks)
         {
 
             DynamicParameters parameters = new DynamicParameters();
+            Guid salt = Guid.NewGuid();
+            Byte[] passwordHash = SystemConstants.SHA512(password + salt.ToString().ToUpper());
             parameters.Add("@id", id);
             parameters.Add("@displayName", displayName);
             parameters.Add("@userName", userName);
-            parameters.Add("@password", password);
+            parameters.Add("@passwordHash", passwordHash);
             parameters.Add("@state", state);
             parameters.Add("@ip", ip);
             parameters.Add("@remarks", remarks);
+            parameters.Add("@Salt", salt);
+
 
             string command = @"UPDATE Users SET 
                                 displayName = @displayName,
                                 userName = @userName,
-                                password = @password,
+                                password = @PasswordHash,
                                 state = @state,
                                 ip = @ip,
-                                remarks = @remarks
+                                remarks = @remarks,
+                                salt = @Salt
                                WHERE Id = @id";
             return await dataAccess.ExecuteAsync(command, parameters);
         }

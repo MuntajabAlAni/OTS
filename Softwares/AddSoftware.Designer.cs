@@ -46,7 +46,7 @@ namespace OTS.Ticketing.Win.Softwares
             this.BtnExit.Location = new System.Drawing.Point(28, 101);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 38;
+            this.BtnExit.TabIndex = 2;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -61,7 +61,7 @@ namespace OTS.Ticketing.Win.Softwares
             this.BtnAdd.Location = new System.Drawing.Point(212, 101);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 39;
+            this.BtnAdd.TabIndex = 1;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -73,7 +73,7 @@ namespace OTS.Ticketing.Win.Softwares
             this.LblName.Location = new System.Drawing.Point(223, 47);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(72, 15);
-            this.LblName.TabIndex = 37;
+            this.LblName.TabIndex = 3;
             this.LblName.Text = "اسم البرنامج :";
             // 
             // TxtName
@@ -82,7 +82,7 @@ namespace OTS.Ticketing.Win.Softwares
             this.TxtName.Location = new System.Drawing.Point(74, 42);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(143, 25);
-            this.TxtName.TabIndex = 36;
+            this.TxtName.TabIndex = 0;
             // 
             // panel1
             // 
@@ -91,7 +91,7 @@ namespace OTS.Ticketing.Win.Softwares
             this.panel1.Location = new System.Drawing.Point(4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(352, 162);
-            this.panel1.TabIndex = 40;
+            this.panel1.TabIndex = 4;
             // 
             // AddSoftware
             // 

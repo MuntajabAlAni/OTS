@@ -53,7 +53,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblRemarks.Location = new System.Drawing.Point(289, 187);
             this.LblRemarks.Name = "LblRemarks";
             this.LblRemarks.Size = new System.Drawing.Size(58, 15);
-            this.LblRemarks.TabIndex = 35;
+            this.LblRemarks.TabIndex = 12;
             this.LblRemarks.Text = "ملاحظات :";
             // 
             // LblDisplayName
@@ -63,7 +63,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblDisplayName.Location = new System.Drawing.Point(289, 39);
             this.LblDisplayName.Name = "LblDisplayName";
             this.LblDisplayName.Size = new System.Drawing.Size(78, 15);
-            this.LblDisplayName.TabIndex = 36;
+            this.LblDisplayName.TabIndex = 8;
             this.LblDisplayName.Text = "اسم الموظف :";
             // 
             // TxtRemarks
@@ -73,7 +73,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(208, 74);
-            this.TxtRemarks.TabIndex = 34;
+            this.TxtRemarks.TabIndex = 4;
             // 
             // TxtDisplayName
             // 
@@ -81,7 +81,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtDisplayName.Location = new System.Drawing.Point(140, 34);
             this.TxtDisplayName.Name = "TxtDisplayName";
             this.TxtDisplayName.Size = new System.Drawing.Size(143, 25);
-            this.TxtDisplayName.TabIndex = 33;
+            this.TxtDisplayName.TabIndex = 0;
             // 
             // PnlContainer
             // 
@@ -103,7 +103,7 @@ namespace OTS.Ticketing.Win.Users
             this.PnlContainer.Location = new System.Drawing.Point(11, 12);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(418, 376);
-            this.PnlContainer.TabIndex = 37;
+            this.PnlContainer.TabIndex = 0;
             // 
             // CbState
             // 
@@ -114,7 +114,7 @@ namespace OTS.Ticketing.Win.Users
             this.CbState.Location = new System.Drawing.Point(233, 268);
             this.CbState.Name = "CbState";
             this.CbState.Size = new System.Drawing.Size(50, 19);
-            this.CbState.TabIndex = 37;
+            this.CbState.TabIndex = 5;
             this.CbState.Text = "فعال";
             this.CbState.UseVisualStyleBackColor = true;
             // 
@@ -128,7 +128,7 @@ namespace OTS.Ticketing.Win.Users
             this.BtnExit.Location = new System.Drawing.Point(13, 306);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 6;
+            this.BtnExit.TabIndex = 7;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -140,7 +140,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblIp.Location = new System.Drawing.Point(289, 150);
             this.LblIp.Name = "LblIp";
             this.LblIp.Size = new System.Drawing.Size(68, 15);
-            this.LblIp.TabIndex = 36;
+            this.LblIp.TabIndex = 11;
             this.LblIp.Text = "IP Address :";
             // 
             // LblPassword
@@ -150,7 +150,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblPassword.Location = new System.Drawing.Point(289, 113);
             this.LblPassword.Name = "LblPassword";
             this.LblPassword.Size = new System.Drawing.Size(60, 15);
-            this.LblPassword.TabIndex = 36;
+            this.LblPassword.TabIndex = 10;
             this.LblPassword.Text = "كلمة السر :";
             // 
             // LblUserName
@@ -160,7 +160,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblUserName.Location = new System.Drawing.Point(289, 76);
             this.LblUserName.Name = "LblUserName";
             this.LblUserName.Size = new System.Drawing.Size(84, 15);
-            this.LblUserName.TabIndex = 36;
+            this.LblUserName.TabIndex = 9;
             this.LblUserName.Text = "اسم المستخدم :";
             // 
             // BtnAdd
@@ -173,7 +173,7 @@ namespace OTS.Ticketing.Win.Users
             this.BtnAdd.Location = new System.Drawing.Point(269, 306);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 5;
+            this.BtnAdd.TabIndex = 6;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -184,7 +184,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtIp.Location = new System.Drawing.Point(140, 145);
             this.TxtIp.Name = "TxtIp";
             this.TxtIp.Size = new System.Drawing.Size(143, 25);
-            this.TxtIp.TabIndex = 33;
+            this.TxtIp.TabIndex = 3;
             // 
             // TxtPassword
             // 
@@ -192,7 +192,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtPassword.Location = new System.Drawing.Point(140, 108);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.Size = new System.Drawing.Size(143, 25);
-            this.TxtPassword.TabIndex = 33;
+            this.TxtPassword.TabIndex = 2;
             this.TxtPassword.UseSystemPasswordChar = true;
             // 
             // TxtUserName
@@ -201,7 +201,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtUserName.Location = new System.Drawing.Point(140, 71);
             this.TxtUserName.Name = "TxtUserName";
             this.TxtUserName.Size = new System.Drawing.Size(143, 25);
-            this.TxtUserName.TabIndex = 33;
+            this.TxtUserName.TabIndex = 1;
             // 
             // AddUser
             // 

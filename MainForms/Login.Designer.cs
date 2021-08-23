@@ -50,7 +50,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.BtnLogin.Location = new System.Drawing.Point(200, 159);
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.Size = new System.Drawing.Size(75, 31);
-            this.BtnLogin.TabIndex = 3;
+            this.BtnLogin.TabIndex = 2;
             this.BtnLogin.Text = "دخول";
             this.BtnLogin.UseVisualStyleBackColor = false;
             this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
@@ -64,7 +64,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.BtnExit.Location = new System.Drawing.Point(57, 159);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(75, 31);
-            this.BtnExit.TabIndex = 4;
+            this.BtnExit.TabIndex = 3;
             this.BtnExit.Text = "خروج";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -75,7 +75,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.TxtUserName.Location = new System.Drawing.Point(37, 67);
             this.TxtUserName.Name = "TxtUserName";
             this.TxtUserName.Size = new System.Drawing.Size(169, 23);
-            this.TxtUserName.TabIndex = 1;
+            this.TxtUserName.TabIndex = 0;
             this.TxtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUserName_KeyDown);
             // 
             // TxtPassword
@@ -84,7 +84,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.TxtPassword.Location = new System.Drawing.Point(37, 113);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.Size = new System.Drawing.Size(169, 23);
-            this.TxtPassword.TabIndex = 2;
+            this.TxtPassword.TabIndex = 1;
             this.TxtPassword.UseSystemPasswordChar = true;
             this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
             // 
@@ -96,7 +96,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblUserName.Name = "LblUserName";
             this.LblUserName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LblUserName.Size = new System.Drawing.Size(84, 15);
-            this.LblUserName.TabIndex = 2;
+            this.LblUserName.TabIndex = 5;
             this.LblUserName.Text = "اسم المستخدم :";
             // 
             // LblPassword
@@ -107,7 +107,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblPassword.Name = "LblPassword";
             this.LblPassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LblPassword.Size = new System.Drawing.Size(60, 15);
-            this.LblPassword.TabIndex = 2;
+            this.LblPassword.TabIndex = 6;
             this.LblPassword.Text = "كلمة السر :";
             // 
             // LblTitle
@@ -117,7 +117,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblTitle.Location = new System.Drawing.Point(95, 23);
             this.LblTitle.Name = "LblTitle";
             this.LblTitle.Size = new System.Drawing.Size(179, 25);
-            this.LblTitle.TabIndex = 5;
+            this.LblTitle.TabIndex = 4;
             this.LblTitle.Text = "Ticketing Software";
             // 
             // ImbLogo

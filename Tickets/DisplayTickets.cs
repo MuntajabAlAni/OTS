@@ -161,6 +161,11 @@ namespace OTS.Ticketing.Win.Tickets
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == SystemConstants.loggedInUserId)
+                {
+                    MessageBox.Show(" !!! لا يمكن تحويل بطاقة لنفس المستخدم الحالي", "محاولة ادخال خاطئة", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0)
                 {
                     DialogResult dr;

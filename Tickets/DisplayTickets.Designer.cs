@@ -157,7 +157,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.RowTemplate.Height = 26;
             this.DtgTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgTickets.Size = new System.Drawing.Size(1026, 333);
-            this.DtgTickets.TabIndex = 0;
+            this.DtgTickets.TabIndex = 31;
             this.DtgTickets.DoubleClick += new System.EventHandler(this.DtgTickets_DoubleClick);
             // 
             // LblNumberTitle
@@ -168,7 +168,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumberTitle.Location = new System.Drawing.Point(950, 22);
             this.LblNumberTitle.Name = "LblNumberTitle";
             this.LblNumberTitle.Size = new System.Drawing.Size(69, 15);
-            this.LblNumberTitle.TabIndex = 7;
+            this.LblNumberTitle.TabIndex = 10;
             this.LblNumberTitle.Text = "رقم البطاقة :";
             // 
             // LblOpenDateTitle
@@ -179,7 +179,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblOpenDateTitle.Location = new System.Drawing.Point(642, 22);
             this.LblOpenDateTitle.Name = "LblOpenDateTitle";
             this.LblOpenDateTitle.Size = new System.Drawing.Size(96, 15);
-            this.LblOpenDateTitle.TabIndex = 7;
+            this.LblOpenDateTitle.TabIndex = 25;
             this.LblOpenDateTitle.Text = "تاريخ فتح البطاقة :";
             // 
             // LblCompanyTitle
@@ -190,7 +190,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompanyTitle.Location = new System.Drawing.Point(950, 94);
             this.LblCompanyTitle.Name = "LblCompanyTitle";
             this.LblCompanyTitle.Size = new System.Drawing.Size(45, 15);
-            this.LblCompanyTitle.TabIndex = 7;
+            this.LblCompanyTitle.TabIndex = 12;
             this.LblCompanyTitle.Text = "الشركة :";
             // 
             // LblUserTitle
@@ -201,7 +201,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUserTitle.Location = new System.Drawing.Point(950, 202);
             this.LblUserTitle.Name = "LblUserTitle";
             this.LblUserTitle.Size = new System.Drawing.Size(55, 15);
-            this.LblUserTitle.TabIndex = 7;
+            this.LblUserTitle.TabIndex = 15;
             this.LblUserTitle.Text = "الموظف :";
             // 
             // LblSoftwareTitle
@@ -212,7 +212,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftwareTitle.Location = new System.Drawing.Point(950, 166);
             this.LblSoftwareTitle.Name = "LblSoftwareTitle";
             this.LblSoftwareTitle.Size = new System.Drawing.Size(49, 15);
-            this.LblSoftwareTitle.TabIndex = 7;
+            this.LblSoftwareTitle.TabIndex = 14;
             this.LblSoftwareTitle.Text = "البرنامج :";
             // 
             // LblRevisionTitle
@@ -223,7 +223,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRevisionTitle.Location = new System.Drawing.Point(950, 58);
             this.LblRevisionTitle.Name = "LblRevisionTitle";
             this.LblRevisionTitle.Size = new System.Drawing.Size(74, 15);
-            this.LblRevisionTitle.TabIndex = 7;
+            this.LblRevisionTitle.TabIndex = 11;
             this.LblRevisionTitle.Text = "رقم المراجعة :";
             // 
             // TxtRemarks
@@ -234,7 +234,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(498, 121);
-            this.TxtRemarks.TabIndex = 4;
+            this.TxtRemarks.TabIndex = 3;
             // 
             // LblRemarks
             // 
@@ -244,7 +244,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemarks.Location = new System.Drawing.Point(642, 141);
             this.LblRemarks.Name = "LblRemarks";
             this.LblRemarks.Size = new System.Drawing.Size(58, 15);
-            this.LblRemarks.TabIndex = 7;
+            this.LblRemarks.TabIndex = 22;
             this.LblRemarks.Text = "ملاحظات :";
             // 
             // ToggleRemotely
@@ -261,7 +261,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleRemotely.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleRemotely.Name = "ToggleRemotely";
             this.ToggleRemotely.Size = new System.Drawing.Size(51, 26);
-            this.ToggleRemotely.TabIndex = 6;
+            this.ToggleRemotely.TabIndex = 5;
             this.ToggleRemotely.ThumbMargin = 3;
             toggleState1.BackColor = System.Drawing.Color.DarkGray;
             toggleState1.BackColorInner = System.Drawing.Color.White;
@@ -301,7 +301,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemotely.Location = new System.Drawing.Point(365, 61);
             this.LblRemotely.Name = "LblRemotely";
             this.LblRemotely.Size = new System.Drawing.Size(70, 15);
-            this.LblRemotely.TabIndex = 7;
+            this.LblRemotely.TabIndex = 28;
             this.LblRemotely.Text = "طريقة الحل :";
             // 
             // LblRemote
@@ -312,7 +312,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemote.Location = new System.Drawing.Point(206, 61);
             this.LblRemote.Name = "LblRemote";
             this.LblRemote.Size = new System.Drawing.Size(66, 15);
-            this.LblRemote.TabIndex = 7;
+            this.LblRemote.TabIndex = 29;
             this.LblRemote.Text = "بإتصال فقط";
             // 
             // LblState
@@ -323,7 +323,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblState.Location = new System.Drawing.Point(642, 99);
             this.LblState.Name = "LblState";
             this.LblState.Size = new System.Drawing.Size(40, 15);
-            this.LblState.TabIndex = 7;
+            this.LblState.TabIndex = 23;
             this.LblState.Text = "الحالة :";
             // 
             // CombStates
@@ -334,7 +334,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombStates.Location = new System.Drawing.Point(515, 94);
             this.CombStates.Name = "CombStates";
             this.CombStates.Size = new System.Drawing.Size(121, 25);
-            this.CombStates.TabIndex = 2;
+            this.CombStates.TabIndex = 1;
             this.CombStates.SelectedValueChanged += new System.EventHandler(this.CombStates_SelectedValueChanged);
             // 
             // BtnRefresh
@@ -361,7 +361,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblPhoneNumberTitle.Location = new System.Drawing.Point(950, 130);
             this.LblPhoneNumberTitle.Name = "LblPhoneNumberTitle";
             this.LblPhoneNumberTitle.Size = new System.Drawing.Size(65, 15);
-            this.LblPhoneNumberTitle.TabIndex = 7;
+            this.LblPhoneNumberTitle.TabIndex = 13;
             this.LblPhoneNumberTitle.Text = "رقم الهاتف :";
             // 
             // BtnAddState
@@ -388,7 +388,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumber.Location = new System.Drawing.Point(916, 17);
             this.LblNumber.Name = "LblNumber";
             this.LblNumber.Size = new System.Drawing.Size(0, 25);
-            this.LblNumber.TabIndex = 24;
+            this.LblNumber.TabIndex = 17;
             // 
             // LblRevision
             // 
@@ -398,7 +398,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRevision.Location = new System.Drawing.Point(916, 53);
             this.LblRevision.Name = "LblRevision";
             this.LblRevision.Size = new System.Drawing.Size(0, 25);
-            this.LblRevision.TabIndex = 24;
+            this.LblRevision.TabIndex = 16;
             // 
             // BtnEditState
             // 
@@ -424,7 +424,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblIsIndexed.Location = new System.Drawing.Point(365, 23);
             this.LblIsIndexed.Name = "LblIsIndexed";
             this.LblIsIndexed.Size = new System.Drawing.Size(81, 15);
-            this.LblIsIndexed.TabIndex = 7;
+            this.LblIsIndexed.TabIndex = 27;
             this.LblIsIndexed.Text = "ترتيب الملفات :";
             // 
             // ToggleIsIndexed
@@ -441,7 +441,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleIsIndexed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleIsIndexed.Name = "ToggleIsIndexed";
             this.ToggleIsIndexed.Size = new System.Drawing.Size(51, 26);
-            this.ToggleIsIndexed.TabIndex = 5;
+            this.ToggleIsIndexed.TabIndex = 4;
             this.ToggleIsIndexed.ThumbMargin = 3;
             toggleState4.BackColor = System.Drawing.Color.DarkGray;
             toggleState4.BackColorInner = System.Drawing.Color.White;
@@ -481,7 +481,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompany.Location = new System.Drawing.Point(787, 86);
             this.LblCompany.Name = "LblCompany";
             this.LblCompany.Size = new System.Drawing.Size(0, 20);
-            this.LblCompany.TabIndex = 24;
+            this.LblCompany.TabIndex = 18;
             // 
             // LblPhoneNumber
             // 
@@ -491,7 +491,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblPhoneNumber.Location = new System.Drawing.Point(787, 122);
             this.LblPhoneNumber.Name = "LblPhoneNumber";
             this.LblPhoneNumber.Size = new System.Drawing.Size(0, 20);
-            this.LblPhoneNumber.TabIndex = 24;
+            this.LblPhoneNumber.TabIndex = 19;
             // 
             // LblSoftware
             // 
@@ -501,7 +501,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftware.Location = new System.Drawing.Point(787, 158);
             this.LblSoftware.Name = "LblSoftware";
             this.LblSoftware.Size = new System.Drawing.Size(0, 20);
-            this.LblSoftware.TabIndex = 24;
+            this.LblSoftware.TabIndex = 20;
             // 
             // LblUser
             // 
@@ -511,7 +511,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUser.Location = new System.Drawing.Point(787, 194);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(0, 20);
-            this.LblUser.TabIndex = 24;
+            this.LblUser.TabIndex = 21;
             // 
             // LblOpenDate
             // 
@@ -521,7 +521,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblOpenDate.Location = new System.Drawing.Point(436, 18);
             this.LblOpenDate.Name = "LblOpenDate";
             this.LblOpenDate.Size = new System.Drawing.Size(0, 20);
-            this.LblOpenDate.TabIndex = 24;
+            this.LblOpenDate.TabIndex = 26;
             // 
             // TxtProblem
             // 
@@ -530,7 +530,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtProblem.Location = new System.Drawing.Point(465, 56);
             this.TxtProblem.Name = "TxtProblem";
             this.TxtProblem.Size = new System.Drawing.Size(171, 25);
-            this.TxtProblem.TabIndex = 1;
+            this.TxtProblem.TabIndex = 0;
             // 
             // LblProblem
             // 
@@ -540,7 +540,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblProblem.Location = new System.Drawing.Point(642, 61);
             this.LblProblem.Name = "LblProblem";
             this.LblProblem.Size = new System.Drawing.Size(73, 15);
-            this.LblProblem.TabIndex = 7;
+            this.LblProblem.TabIndex = 24;
             this.LblProblem.Text = "نوع المشكلة :";
             // 
             // label1
@@ -551,7 +551,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.label1.Location = new System.Drawing.Point(36, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 15);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 30;
             this.label1.Text = "إغلاق البطاقة";
             // 
             // ToggleClosed
@@ -624,7 +624,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombTransferedTo.Location = new System.Drawing.Point(338, 94);
             this.CombTransferedTo.Name = "CombTransferedTo";
             this.CombTransferedTo.Size = new System.Drawing.Size(121, 25);
-            this.CombTransferedTo.TabIndex = 3;
+            this.CombTransferedTo.TabIndex = 2;
             this.CombTransferedTo.Visible = false;
             // 
             // DisplayTickets

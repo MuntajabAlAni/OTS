@@ -36,7 +36,7 @@ namespace OTS.Ticketing.Win.Users
                     }
                     TxtDisplayName.Text = UserInfo.DisplayName;
                     TxtUserName.Text = UserInfo.UserName;
-                    TxtPassword.Text = UserInfo.Password;
+                    TxtPassword.Text = "            ";
                     TxtIp.Text = UserInfo.Ip;
                     TxtRemarks.Text = UserInfo.Remarks;
                     CbState.Checked = UserInfo.State;
@@ -59,6 +59,12 @@ namespace OTS.Ticketing.Win.Users
         {
             try
             {
+                if (TxtPassword.Text.Trim() == "")
+                {
+                    MessageBox.Show("الرجاء ادخال كلمة السر");
+                    return;
+                }
+
                 if (_id == 0)
                 {
                     await UserRepository.AddUser(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,

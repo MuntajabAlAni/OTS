@@ -46,7 +46,7 @@ namespace OTS.Ticketing.Win.States
             this.BtnExit.Location = new System.Drawing.Point(29, 101);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 3;
+            this.BtnExit.TabIndex = 2;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -61,7 +61,7 @@ namespace OTS.Ticketing.Win.States
             this.BtnAdd.Location = new System.Drawing.Point(213, 101);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 2;
+            this.BtnAdd.TabIndex = 1;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -73,7 +73,7 @@ namespace OTS.Ticketing.Win.States
             this.LblName.Location = new System.Drawing.Point(224, 47);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(63, 15);
-            this.LblName.TabIndex = 27;
+            this.LblName.TabIndex = 3;
             this.LblName.Text = "اسم الحالة :";
             // 
             // TxtName
@@ -82,7 +82,7 @@ namespace OTS.Ticketing.Win.States
             this.TxtName.Location = new System.Drawing.Point(75, 42);
             this.TxtName.Name = "TxtName";
             this.TxtName.Size = new System.Drawing.Size(143, 25);
-            this.TxtName.TabIndex = 1;
+            this.TxtName.TabIndex = 0;
             this.TxtName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtName_KeyDown);
             // 
             // panel1
@@ -92,7 +92,7 @@ namespace OTS.Ticketing.Win.States
             this.panel1.Location = new System.Drawing.Point(5, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(352, 162);
-            this.panel1.TabIndex = 30;
+            this.panel1.TabIndex = 4;
             // 
             // AddState
             // 

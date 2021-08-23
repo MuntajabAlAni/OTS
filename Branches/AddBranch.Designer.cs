@@ -73,7 +73,7 @@ namespace OTS.Ticketing.Win.Branches
             this.LblName.Location = new System.Drawing.Point(223, 47);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(61, 15);
-            this.LblName.TabIndex = 32;
+            this.LblName.TabIndex = 3;
             this.LblName.Text = "اسم الفرع :";
             // 
             // TxtName
@@ -92,7 +92,7 @@ namespace OTS.Ticketing.Win.Branches
             this.panel1.Location = new System.Drawing.Point(4, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(352, 162);
-            this.panel1.TabIndex = 35;
+            this.panel1.TabIndex = 4;
             // 
             // AddBranch
             // 

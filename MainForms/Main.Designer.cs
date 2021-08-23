@@ -81,7 +81,7 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.Location = new System.Drawing.Point(0, 0);
             this.PnlMenuVertical.Name = "PnlMenuVertical";
             this.PnlMenuVertical.Size = new System.Drawing.Size(250, 650);
-            this.PnlMenuVertical.TabIndex = 0;
+            this.PnlMenuVertical.TabIndex = 2;
             // 
             // BtnOldTickets
             // 
@@ -96,7 +96,7 @@ namespace OTS.Ticketing.Win
             this.BtnOldTickets.Name = "BtnOldTickets";
             this.BtnOldTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.BtnOldTickets.Size = new System.Drawing.Size(250, 45);
-            this.BtnOldTickets.TabIndex = 7;
+            this.BtnOldTickets.TabIndex = 8;
             this.BtnOldTickets.Text = "البطاقات السابقة";
             this.BtnOldTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnOldTickets.UseVisualStyleBackColor = true;
@@ -341,7 +341,7 @@ namespace OTS.Ticketing.Win
             this.MenuStrip.Location = new System.Drawing.Point(0, 36);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1050, 24);
-            this.MenuStrip.TabIndex = 2;
+            this.MenuStrip.TabIndex = 0;
             this.MenuStrip.Text = "menuStrip1";
             // 
             // FileToolStripMenuItem
@@ -378,7 +378,7 @@ namespace OTS.Ticketing.Win
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.AboutToolStripMenuItem.Text = "عن";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
@@ -388,7 +388,7 @@ namespace OTS.Ticketing.Win
             this.PnlContainer.Location = new System.Drawing.Point(250, 60);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(1050, 590);
-            this.PnlContainer.TabIndex = 2;
+            this.PnlContainer.TabIndex = 0;
             // 
             // bunifuFormDock1
             // 

@@ -58,7 +58,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.BtnExit.Location = new System.Drawing.Point(30, 257);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 5;
+            this.BtnExit.TabIndex = 4;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -73,7 +73,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.BtnAdd.Location = new System.Drawing.Point(214, 257);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 4;
+            this.BtnAdd.TabIndex = 3;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -85,7 +85,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.LblPhoneNumber.Location = new System.Drawing.Point(278, 42);
             this.LblPhoneNumber.Name = "LblPhoneNumber";
             this.LblPhoneNumber.Size = new System.Drawing.Size(65, 15);
-            this.LblPhoneNumber.TabIndex = 36;
+            this.LblPhoneNumber.TabIndex = 5;
             this.LblPhoneNumber.Text = "رقم الهاتف :";
             // 
             // TxtPhoneNumber
@@ -95,7 +95,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.TxtPhoneNumber.MaxLength = 11;
             this.TxtPhoneNumber.Name = "TxtPhoneNumber";
             this.TxtPhoneNumber.Size = new System.Drawing.Size(180, 25);
-            this.TxtPhoneNumber.TabIndex = 1;
+            this.TxtPhoneNumber.TabIndex = 0;
             this.TxtPhoneNumber.Leave += new System.EventHandler(this.TxtPhoneNumber_Leave);
             // 
             // TxtCustomerName
@@ -104,7 +104,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.TxtCustomerName.Location = new System.Drawing.Point(92, 97);
             this.TxtCustomerName.Name = "TxtCustomerName";
             this.TxtCustomerName.Size = new System.Drawing.Size(180, 25);
-            this.TxtCustomerName.TabIndex = 2;
+            this.TxtCustomerName.TabIndex = 1;
             // 
             // LblCustomerName
             // 
@@ -113,7 +113,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.LblCustomerName.Location = new System.Drawing.Point(278, 102);
             this.LblCustomerName.Name = "LblCustomerName";
             this.LblCustomerName.Size = new System.Drawing.Size(69, 15);
-            this.LblCustomerName.TabIndex = 36;
+            this.LblCustomerName.TabIndex = 6;
             this.LblCustomerName.Text = "اسم العميل :";
             // 
             // BtnEditCompany
@@ -155,7 +155,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.CombCompanies.Location = new System.Drawing.Point(92, 157);
             this.CombCompanies.Name = "CombCompanies";
             this.CombCompanies.Size = new System.Drawing.Size(180, 25);
-            this.CombCompanies.TabIndex = 3;
+            this.CombCompanies.TabIndex = 2;
             this.CombCompanies.KeyDown += new System.Windows.Forms.KeyEventHandler(this.CombCompanies_KeyDown);
             // 
             // LblCompany
@@ -165,7 +165,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.LblCompany.Location = new System.Drawing.Point(278, 162);
             this.LblCompany.Name = "LblCompany";
             this.LblCompany.Size = new System.Drawing.Size(45, 15);
-            this.LblCompany.TabIndex = 39;
+            this.LblCompany.TabIndex = 7;
             this.LblCompany.Text = "الشركة :";
             // 
             // panel1
@@ -176,7 +176,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.panel1.Location = new System.Drawing.Point(3, 5);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(370, 315);
-            this.panel1.TabIndex = 43;
+            this.panel1.TabIndex = 8;
             // 
             // BtnSearchCompany
             // 

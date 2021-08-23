@@ -61,7 +61,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEdit.Location = new System.Drawing.Point(893, 453);
             this.BtnEdit.Name = "BtnEdit";
             this.BtnEdit.Size = new System.Drawing.Size(120, 45);
-            this.BtnEdit.TabIndex = 22;
+            this.BtnEdit.TabIndex = 8;
             this.BtnEdit.Text = "تعديل";
             this.BtnEdit.UseVisualStyleBackColor = false;
             // 
@@ -124,7 +124,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.RowTemplate.Height = 26;
             this.DtgOldTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgOldTickets.Size = new System.Drawing.Size(1001, 386);
-            this.DtgOldTickets.TabIndex = 21;
+            this.DtgOldTickets.TabIndex = 11;
             // 
             // BtnExit
             // 
@@ -137,7 +137,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnExit.Location = new System.Drawing.Point(12, 453);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 20;
+            this.BtnExit.TabIndex = 10;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -152,7 +152,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnUpdate.Location = new System.Drawing.Point(12, 12);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(120, 45);
-            this.BtnUpdate.TabIndex = 22;
+            this.BtnUpdate.TabIndex = 7;
             this.BtnUpdate.Text = "تحديث";
             this.BtnUpdate.UseVisualStyleBackColor = false;
             this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
@@ -166,7 +166,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpToDate.Location = new System.Drawing.Point(249, 22);
             this.DtpToDate.Name = "DtpToDate";
             this.DtpToDate.Size = new System.Drawing.Size(106, 25);
-            this.DtpToDate.TabIndex = 23;
+            this.DtpToDate.TabIndex = 5;
             // 
             // DtpFromDate
             // 
@@ -178,7 +178,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpFromDate.Location = new System.Drawing.Point(416, 22);
             this.DtpFromDate.Name = "DtpFromDate";
             this.DtpFromDate.Size = new System.Drawing.Size(104, 25);
-            this.DtpFromDate.TabIndex = 23;
+            this.DtpFromDate.TabIndex = 3;
             this.DtpFromDate.Value = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             // 
             // CombUser
@@ -189,7 +189,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombUser.Location = new System.Drawing.Point(579, 22);
             this.CombUser.Name = "CombUser";
             this.CombUser.Size = new System.Drawing.Size(126, 25);
-            this.CombUser.TabIndex = 24;
+            this.CombUser.TabIndex = 1;
             this.CombUser.SelectedValueChanged += new System.EventHandler(this.CombUser_SelectedValueChanged);
             // 
             // CombCompanies
@@ -202,7 +202,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombCompanies.Location = new System.Drawing.Point(772, 22);
             this.CombCompanies.Name = "CombCompanies";
             this.CombCompanies.Size = new System.Drawing.Size(180, 25);
-            this.CombCompanies.TabIndex = 25;
+            this.CombCompanies.TabIndex = 0;
             // 
             // LblUser
             // 
@@ -235,7 +235,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CbToDate.Location = new System.Drawing.Point(361, 26);
             this.CbToDate.Name = "CbToDate";
             this.CbToDate.Size = new System.Drawing.Size(49, 19);
-            this.CbToDate.TabIndex = 38;
+            this.CbToDate.TabIndex = 4;
             this.CbToDate.Text = "الى :";
             this.CbToDate.UseVisualStyleBackColor = true;
             this.CbToDate.CheckedChanged += new System.EventHandler(this.CbToDate_CheckedChanged);
@@ -247,7 +247,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CbFromDate.Location = new System.Drawing.Point(526, 26);
             this.CbFromDate.Name = "CbFromDate";
             this.CbFromDate.Size = new System.Drawing.Size(47, 19);
-            this.CbFromDate.TabIndex = 38;
+            this.CbFromDate.TabIndex = 2;
             this.CbFromDate.Text = "من :";
             this.CbFromDate.UseVisualStyleBackColor = true;
             this.CbFromDate.CheckedChanged += new System.EventHandler(this.CbFromDate_CheckedChanged);
@@ -259,7 +259,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CbUnclosed.Location = new System.Drawing.Point(161, 26);
             this.CbUnclosed.Name = "CbUnclosed";
             this.CbUnclosed.Size = new System.Drawing.Size(82, 19);
-            this.CbUnclosed.TabIndex = 39;
+            this.CbUnclosed.TabIndex = 6;
             this.CbUnclosed.Text = "الغير مغلقة";
             this.CbUnclosed.UseVisualStyleBackColor = true;
             // 
@@ -275,7 +275,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnExcel.Location = new System.Drawing.Point(767, 453);
             this.BtnExcel.Name = "BtnExcel";
             this.BtnExcel.Size = new System.Drawing.Size(120, 45);
-            this.BtnExcel.TabIndex = 22;
+            this.BtnExcel.TabIndex = 9;
             this.BtnExcel.Text = "تصدير";
             this.BtnExcel.UseVisualStyleBackColor = false;
             this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);

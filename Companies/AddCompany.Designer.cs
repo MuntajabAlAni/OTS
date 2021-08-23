@@ -58,7 +58,7 @@ namespace OTS.Ticketing.Win.Companies
             this.BtnExit.Location = new System.Drawing.Point(37, 274);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 6;
+            this.BtnExit.TabIndex = 5;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -73,7 +73,7 @@ namespace OTS.Ticketing.Win.Companies
             this.BtnAdd.Location = new System.Drawing.Point(251, 274);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 5;
+            this.BtnAdd.TabIndex = 4;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
@@ -85,7 +85,7 @@ namespace OTS.Ticketing.Win.Companies
             this.LblName.Location = new System.Drawing.Point(287, 40);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(68, 15);
-            this.LblName.TabIndex = 32;
+            this.LblName.TabIndex = 6;
             this.LblName.Text = "اسم الشركة :";
             // 
             // TxtName
@@ -115,7 +115,7 @@ namespace OTS.Ticketing.Win.Companies
             this.PnlContainer.Location = new System.Drawing.Point(10, 10);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(418, 344);
-            this.PnlContainer.TabIndex = 35;
+            this.PnlContainer.TabIndex = 0;
             // 
             // BtnEditBranch
             // 
@@ -156,7 +156,7 @@ namespace OTS.Ticketing.Win.Companies
             this.CombBranches.Location = new System.Drawing.Point(138, 131);
             this.CombBranches.Name = "CombBranches";
             this.CombBranches.Size = new System.Drawing.Size(143, 25);
-            this.CombBranches.TabIndex = 3;
+            this.CombBranches.TabIndex = 2;
             // 
             // LblBranches
             // 
@@ -165,7 +165,7 @@ namespace OTS.Ticketing.Win.Companies
             this.LblBranches.Location = new System.Drawing.Point(287, 136);
             this.LblBranches.Name = "LblBranches";
             this.LblBranches.Size = new System.Drawing.Size(38, 15);
-            this.LblBranches.TabIndex = 32;
+            this.LblBranches.TabIndex = 8;
             this.LblBranches.Text = "الفرع :";
             // 
             // LblRemarks
@@ -175,7 +175,7 @@ namespace OTS.Ticketing.Win.Companies
             this.LblRemarks.Location = new System.Drawing.Point(287, 174);
             this.LblRemarks.Name = "LblRemarks";
             this.LblRemarks.Size = new System.Drawing.Size(58, 15);
-            this.LblRemarks.TabIndex = 32;
+            this.LblRemarks.TabIndex = 9;
             this.LblRemarks.Text = "ملاحظات :";
             // 
             // LblAddress
@@ -185,7 +185,7 @@ namespace OTS.Ticketing.Win.Companies
             this.LblAddress.Location = new System.Drawing.Point(287, 78);
             this.LblAddress.Name = "LblAddress";
             this.LblAddress.Size = new System.Drawing.Size(48, 15);
-            this.LblAddress.TabIndex = 32;
+            this.LblAddress.TabIndex = 7;
             this.LblAddress.Text = "العنوان :";
             // 
             // TxtRemarks
@@ -195,7 +195,7 @@ namespace OTS.Ticketing.Win.Companies
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(208, 74);
-            this.TxtRemarks.TabIndex = 4;
+            this.TxtRemarks.TabIndex = 3;
             // 
             // TxtAddress
             // 

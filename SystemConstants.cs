@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,18 +20,6 @@ namespace OTS.Ticketing.Win
         public static string Database;
         public static string ServerIp;
 
-        //public static void Notes(string notes)
-        //{
-        //    //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
-        //    //if (!Directory.Exists(path))
-        //    //{
-        //    //    Directory.CreateDirectory(path);
-        //    //}
-
-        //    File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"), notes);
-        //    //File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), ex.Message + Environment.NewLine);
-        //    //File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), "=========================================================" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
-        //}
         public static DataTable ToDataTable<T>(IList<T> data)
         {
             PropertyDescriptorCollection props =
@@ -60,6 +49,17 @@ namespace OTS.Ticketing.Win
             SelectedCompanyId = 0;
             SelectedSoftware = 0;
             SelectedUser = 0;
+        }
+
+        public static byte[] SHA512(string plaintext)
+        {
+            ASCIIEncoding AE = new ASCIIEncoding();
+            byte[] passBuff = AE.GetBytes(plaintext);
+
+            SHA512Managed hashVal = new SHA512Managed();
+            byte[] passHash = hashVal.ComputeHash(passBuff);
+
+            return passHash;
         }
     }
 }

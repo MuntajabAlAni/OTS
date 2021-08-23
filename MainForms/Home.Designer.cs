@@ -107,7 +107,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.DtgLastTickets.RowTemplate.Height = 26;
             this.DtgLastTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgLastTickets.Size = new System.Drawing.Size(997, 218);
-            this.DtgLastTickets.TabIndex = 2;
+            this.DtgLastTickets.TabIndex = 1;
             // 
             // LblTime
             // 
@@ -118,7 +118,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblTime.Location = new System.Drawing.Point(8, 0);
             this.LblTime.Name = "LblTime";
             this.LblTime.Size = new System.Drawing.Size(0, 89);
-            this.LblTime.TabIndex = 3;
+            this.LblTime.TabIndex = 1;
             // 
             // LblDate
             // 
@@ -129,7 +129,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblDate.Location = new System.Drawing.Point(52, 89);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(0, 31);
-            this.LblDate.TabIndex = 3;
+            this.LblDate.TabIndex = 0;
             // 
             // Timer
             // 
@@ -147,7 +147,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblDataGridTitle.Name = "LblDataGridTitle";
             this.LblDataGridTitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.LblDataGridTitle.Size = new System.Drawing.Size(150, 31);
-            this.LblDataGridTitle.TabIndex = 3;
+            this.LblDataGridTitle.TabIndex = 2;
             this.LblDataGridTitle.Text = "بطاقات اليوم :";
             // 
             // panel1
@@ -160,7 +160,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.panel1.Location = new System.Drawing.Point(727, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(297, 137);
-            this.panel1.TabIndex = 4;
+            this.panel1.TabIndex = 3;
             // 
             // RtbNotes
             // 
@@ -171,7 +171,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.RtbNotes.Location = new System.Drawing.Point(27, 45);
             this.RtbNotes.Name = "RtbNotes";
             this.RtbNotes.Size = new System.Drawing.Size(325, 299);
-            this.RtbNotes.TabIndex = 5;
+            this.RtbNotes.TabIndex = 0;
             this.RtbNotes.Text = "";
             this.RtbNotes.TextChanged += new System.EventHandler(this.RtbNotes_TextChanged);
             this.RtbNotes.Leave += new System.EventHandler(this.RtbNotes_Leave);
@@ -195,7 +195,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblNotes.Location = new System.Drawing.Point(117, 2);
             this.LblNotes.Name = "LblNotes";
             this.LblNotes.Size = new System.Drawing.Size(88, 28);
-            this.LblNotes.TabIndex = 3;
+            this.LblNotes.TabIndex = 0;
             this.LblNotes.Text = "ملاحظات";
             // 
             // Home

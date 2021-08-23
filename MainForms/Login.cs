@@ -11,6 +11,7 @@ using System.Threading;
 using System.IO;
 using OTS.Ticketing.Win.DatabaseConnection;
 using NLog;
+using OTS.Ticketing.Win.Users;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -23,10 +24,10 @@ namespace OTS.Ticketing.Win.MainForms
         {
             try
             {
-            InitializeComponent();
-            IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"config.ini"));
-            SystemConstants.Database = iniFile.IniReadValue("Connection","Database");
-            SystemConstants.ServerIp = iniFile.IniReadValue("Connection","ServerIp");
+                InitializeComponent();
+                IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
+                SystemConstants.Database = iniFile.IniReadValue("Connection", "Database");
+                SystemConstants.ServerIp = iniFile.IniReadValue("Connection", "ServerIp");
             }
             catch (Exception ex)
             {
@@ -40,11 +41,12 @@ namespace OTS.Ticketing.Win.MainForms
             try
             {
                 BtnLogin.Enabled = false;
-                var result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text, TxtPassword.Text);
+                UserInfo result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text,
+                    TxtPassword.Text);
+
                 if (result == null)
                 {
                     MessageBox.Show("يرجى التأكد من معلومات الدخول !");
-                    Logger.Info("Invalid login attempt");
                     return;
                 }
                 SystemConstants.loggedInUserId = result.Id;

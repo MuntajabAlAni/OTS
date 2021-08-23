@@ -98,7 +98,7 @@ namespace OTS.Ticketing.Win.Companies
             this.DtgCompanies.RowTemplate.Height = 26;
             this.DtgCompanies.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgCompanies.Size = new System.Drawing.Size(421, 377);
-            this.DtgCompanies.TabIndex = 9;
+            this.DtgCompanies.TabIndex = 0;
             this.DtgCompanies.DoubleClick += new System.EventHandler(this.DtgCompanies_DoubleClick);
             // 
             // BtnExit
@@ -112,7 +112,7 @@ namespace OTS.Ticketing.Win.Companies
             this.BtnExit.Location = new System.Drawing.Point(12, 394);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 8;
+            this.BtnExit.TabIndex = 2;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -128,7 +128,7 @@ namespace OTS.Ticketing.Win.Companies
             this.BtnAdd.Location = new System.Drawing.Point(313, 394);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 10;
+            this.BtnAdd.TabIndex = 1;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);

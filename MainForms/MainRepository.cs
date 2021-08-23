@@ -14,12 +14,25 @@ namespace OTS.Ticketing.Win.MainForms
     public class MainRepository
     {
         public DataAccess dataAccess = new DataAccess();
+        public async Task<UserInfo> GetUserByUserName(string userName)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userName", userName);
+
+            string query = @"SELECT * FROM Users WHERE userName = @userName";
+            var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
+            return result.FirstOrDefault();
+        }
         public async Task<UserInfo> CheckUserNameAndPasswordAsync(string username, string password)
         {
+            UserInfo userInfo = await GetUserByUserName(username);
+            Byte[] passwordHash = SystemConstants.SHA512(password + userInfo.Salt.ToString().ToUpper());
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("UserName", username);
-            dynamicParameters.Add("Password", password);
-            string query = "SELECT * FROM Users where username like @UserName and password = @Password and State = 1";
+            dynamicParameters.Add("Password", passwordHash);
+
+            string query = @"SELECT * FROM Users where username = @UserName and 
+                             password = @password and State = 1";
 
             var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
             return result.FirstOrDefault();
