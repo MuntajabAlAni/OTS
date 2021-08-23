@@ -42,6 +42,13 @@ namespace OTS.Ticketing.Win.Users
             var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
+        public async Task<List<UserInfo>> GetAllUsers()
+        {
+            string query = "select * from users";
+            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            return result.ToList();
+        }
+
         public async Task<int> UpdateUser(long id, string displayName, string userName, string password, bool state, string ip, string remarks)
         {
 

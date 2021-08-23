@@ -22,7 +22,7 @@ namespace OTS.Ticketing.Win
 
             if (!createdNew)
             {
-                MessageBox.Show("التطبيق يعمل .. لا يمكن فتحه أكثر من مرة !");
+                MessageBox.Show("لا يمكن تشغيل البرنامج أكثر من مرة !!");
                 return;
             }
             var config = new XmlLoggingConfiguration("NLog.config");

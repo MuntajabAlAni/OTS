@@ -54,6 +54,12 @@ namespace OTS.Ticketing.Win.Softwares
             var result = await dataAccess.QueryAsync<SoftwareInfo>(query, parameters);
             return result.FirstOrDefault();
         }
+        public async Task<List<SoftwareInfo>> GetAllSoftwares()
+        {
+            string query = "SELECT * FROM softwares";
+            var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
+            return result.ToList();
+        }
 
     }
 }

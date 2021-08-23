@@ -1,6 +1,11 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.MainForms;
+using OTS.Ticketing.Win.PhoneNumbers;
+using OTS.Ticketing.Win.Softwares;
+using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Tickets;
+using OTS.Ticketing.Win.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -45,12 +50,7 @@ namespace OTS.Ticketing.Win
         }
         private void ImbClose_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("سيتم إغلاق البرنامج", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            Exit();
         }
         private void ImbMaximize_Click(object sender, EventArgs e)
         {
@@ -81,16 +81,14 @@ namespace OTS.Ticketing.Win
         }
         private void ChangeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Restart();
+            this.Close();
+            SystemConstants.Initialize();
+            Login login = new Login();
+            login.Show();
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DialogResult dr;
-            dr = MessageBox.Show("سيتم إغلاق البرنامج", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
-            {
-                Application.Exit();
-            }
+            Exit();
         }
         private async void Main_Load(object sender, EventArgs e)
         {
@@ -106,6 +104,7 @@ namespace OTS.Ticketing.Win
                     BtnPhoneNumbres.Visible = false;
                     BtnSoftwares.Visible = false;
                     BtnStates.Visible = false;
+                    BtnOldTickets.Visible = false;
                     BtnTickets.Location = new Point(0, 162);
                     if (UserInfo.UserName == "Noor")
                     {
@@ -141,13 +140,59 @@ namespace OTS.Ticketing.Win
         {
             if (e.KeyCode == Keys.Escape)
             {
-                DialogResult dr;
-                dr = MessageBox.Show("سيتم إغلاق البرنامج", "", MessageBoxButtons.YesNo);
-                if (dr == DialogResult.Yes)
-                {
-                    Application.Exit();
-                }
+                Exit();
             }
+        }
+
+        private void BtnCompanies_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayCompanies")) return;
+            ApplingFormOnContainer(new DisplayCompanies(false));
+        }
+
+        private void BtnUsers_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayUsers")) return;
+            ApplingFormOnContainer(new DisplayUsers());
+        }
+
+        private void BtnPhoneNumbres_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayPhoneNumbers")) return;
+            ApplingFormOnContainer(new DisplayPhoneNumbers(false));
+        }
+
+        private void Exit()
+        {
+            DialogResult dr;
+            dr = MessageBox.Show("هل انت متأكد من إغلاق البرنامج ؟", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void BtnStates_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayStates")) return;
+            ApplingFormOnContainer(new DisplayStates());
+        }
+
+        private void BtnSoftwares_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplaySoftwares")) return;
+            ApplingFormOnContainer(new DisplaySoftwares());
+        }
+
+        private void BtnOldTickets_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
+            ApplingFormOnContainer(new DisplayOldTickets());
+        }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Online Technical Support 6059\n1.0.0.2\nFuture of Technology Co.\n2021 ", "عن", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

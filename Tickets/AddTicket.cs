@@ -140,9 +140,10 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["Problem"].HeaderText = "المشكلة";
             DtgUnclosedTickets.Columns["State"].HeaderText = "الحالة";
             DtgUnclosedTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
-            DtgUnclosedTickets.Columns["Arrangement"].HeaderText = "ترتيب الملفات";
+            DtgUnclosedTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
             DtgUnclosedTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
             DtgUnclosedTickets.Columns["Remarks"].Visible = false;
+            DtgUnclosedTickets.Columns["TransferedTo"].Visible = false;
         }
         private void BtnExit_Click(object sender, EventArgs e)
         {
@@ -189,6 +190,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
+                if (DtgUnclosedTickets.RowCount == 0) return;
                 long selectedNumber = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
                 TicketInfo selectedTicket = await ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
@@ -273,7 +275,7 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
-                DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(CombPhoneNumbers.Text);
+                DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(true, CombPhoneNumbers.Text);
                 displayPhoneNumbers.ShowDialog();
                 FillCompaniesComboBox();
                 FillPhoneNumbersComboBox();
@@ -309,7 +311,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                DisplayCompanies displayCompanies = new DisplayCompanies(CombCompanies.Text);
+                DisplayCompanies displayCompanies = new DisplayCompanies(true, CombCompanies.Text);
                 displayCompanies.ShowDialog();
                 FillCompaniesComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;

@@ -154,7 +154,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
-                DisplayCompanies displayCompanies = new DisplayCompanies(CombCompanies.Text);
+                DisplayCompanies displayCompanies = new DisplayCompanies(true, CombCompanies.Text);
                 displayCompanies.ShowDialog();
                 FillCompaniesComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;

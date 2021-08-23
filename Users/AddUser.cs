@@ -29,6 +29,11 @@ namespace OTS.Ticketing.Win.Users
                 if (_id != 0)
                 {
                     UserInfo UserInfo = await UserRepository.GetUserById(_id);
+                    if (UserInfo.UserName == "admin")
+                    {
+                        TxtUserName.Enabled = false;
+                        CbState.Enabled = false;
+                    }
                     TxtDisplayName.Text = UserInfo.DisplayName;
                     TxtUserName.Text = UserInfo.UserName;
                     TxtPassword.Text = UserInfo.Password;

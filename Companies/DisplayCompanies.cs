@@ -17,35 +17,36 @@ namespace OTS.Ticketing.Win.Companies
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         readonly string _companyName;
-        public DisplayCompanies(string companyName)
+        readonly bool _search;
+        public DisplayCompanies(bool serach, string companyName = "")
         {
             InitializeComponent();
             _companyName = companyName;
+            _search = serach;
         }
 
         private async void DisplayCompanies_Load(object sender, EventArgs e)
         {
             try
             {
-                DtgCompanies.DataSource = await companyRepository.GetCompanyByName(_companyName);
-                DtgCompanies.Columns["Id"].Visible = false;
-                DtgCompanies.Columns["Name"].HeaderText = "اسم الشركة";
-                DtgCompanies.Columns["Address"].HeaderText = "العنوان";
-                DtgCompanies.Columns["BranchId"].HeaderText = "الفرع";
-                DtgCompanies.Columns["Remarks"].Visible = false;
-                if (DtgCompanies.Rows.Count == 1)
+                GetDtgCompaniesData();
+                if (_search)
                 {
-                    long id = Convert.ToInt64(DtgCompanies.Rows[0].Cells["Id"].Value.ToString());
-                    CompanyInfo selectedCompany = await companyRepository.GetCompanyInfoById(id);
-                    SystemConstants.SelectedCompanyId = selectedCompany.Id;
-                    this.Close();
-                }
-                if (DtgCompanies.Rows.Count == 0)
-                {
-                    MessageBox.Show("عذراً.. هذه الشركة غير معرفة", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    AddCompany addCompany = new AddCompany(0, _companyName);
-                    addCompany.ShowDialog();
-                    this.Close();
+                    BtnAdd.Visible = false;
+                    if (DtgCompanies.Rows.Count == 1)
+                    {
+                        long id = Convert.ToInt64(DtgCompanies.Rows[0].Cells["Id"].Value.ToString());
+                        CompanyInfo selectedCompany = await companyRepository.GetCompanyInfoById(id);
+                        SystemConstants.SelectedCompanyId = selectedCompany.Id;
+                        this.Close();
+                    }
+                    if (DtgCompanies.Rows.Count == 0)
+                    {
+                        MessageBox.Show("عذراً.. هذه الشركة غير معرفة", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        AddCompany addCompany = new AddCompany(0, _companyName);
+                        addCompany.ShowDialog();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -55,14 +56,33 @@ namespace OTS.Ticketing.Win.Companies
             }
         }
 
+        private async void GetDtgCompaniesData()
+        {
+            DtgCompanies.DataSource = await companyRepository.GetCompanyByName(_companyName);
+            DtgCompanies.Columns["Id"].Visible = false;
+            DtgCompanies.Columns["Name"].HeaderText = "اسم الشركة";
+            DtgCompanies.Columns["Address"].HeaderText = "العنوان";
+            DtgCompanies.Columns["BranchName"].HeaderText = "الفرع";
+            DtgCompanies.Columns["Remarks"].Visible = false;
+        }
         private async void DtgCompanies_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
-                CompanyInfo selectedCompany = await companyRepository.GetCompanyInfoById(id);
-                SystemConstants.SelectedCompanyId = selectedCompany.Id;
-                this.Close();
+                if (_search)
+                {
+                    long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
+                    CompanyInfo selectedCompany = await companyRepository.GetCompanyInfoById(id);
+                    SystemConstants.SelectedCompanyId = selectedCompany.Id;
+                    this.Close();
+                }
+                else
+                {
+                    long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
+                    AddCompany addCompany = new AddCompany(id);
+                    addCompany.ShowDialog();
+                    GetDtgCompaniesData();
+                }
             }
             catch (Exception ex)
             {
@@ -82,6 +102,13 @@ namespace OTS.Ticketing.Win.Companies
             {
                 this.Close();
             }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            AddCompany addCompany = new AddCompany(0);
+            addCompany.ShowDialog();
+            GetDtgCompaniesData();
         }
     }
 }

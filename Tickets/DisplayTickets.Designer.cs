@@ -64,8 +64,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumber = new System.Windows.Forms.Label();
             this.LblRevision = new System.Windows.Forms.Label();
             this.BtnEditState = new System.Windows.Forms.PictureBox();
-            this.LblArrangement = new System.Windows.Forms.Label();
-            this.ToggleArrangement = new Bunifu.UI.WinForms.BunifuToggleSwitch();
+            this.LblIsIndexed = new System.Windows.Forms.Label();
+            this.ToggleIsIndexed = new Bunifu.UI.WinForms.BunifuToggleSwitch();
             this.LblCompany = new System.Windows.Forms.Label();
             this.LblPhoneNumber = new System.Windows.Forms.Label();
             this.LblSoftware = new System.Windows.Forms.Label();
@@ -75,6 +75,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblProblem = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ToggleClosed = new Bunifu.UI.WinForms.BunifuToggleSwitch();
+            this.BtnOldTickets = new System.Windows.Forms.Button();
+            this.CombTransferedTo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddState)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditState)).BeginInit();
@@ -91,7 +93,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnUpdate.Location = new System.Drawing.Point(12, 212);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(120, 45);
-            this.BtnUpdate.TabIndex = 8;
+            this.BtnUpdate.TabIndex = 7;
             this.BtnUpdate.Text = "حفظ";
             this.BtnUpdate.UseVisualStyleBackColor = false;
             this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
@@ -232,7 +234,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(498, 121);
-            this.TxtRemarks.TabIndex = 3;
+            this.TxtRemarks.TabIndex = 4;
             // 
             // LblRemarks
             // 
@@ -255,11 +257,11 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleRemotely.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ToggleRemotely.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleRemotely.InnerCirclePadding = 3;
-            this.ToggleRemotely.Location = new System.Drawing.Point(316, 93);
+            this.ToggleRemotely.Location = new System.Drawing.Point(308, 55);
             this.ToggleRemotely.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleRemotely.Name = "ToggleRemotely";
             this.ToggleRemotely.Size = new System.Drawing.Size(51, 26);
-            this.ToggleRemotely.TabIndex = 5;
+            this.ToggleRemotely.TabIndex = 6;
             this.ToggleRemotely.ThumbMargin = 3;
             toggleState1.BackColor = System.Drawing.Color.DarkGray;
             toggleState1.BackColorInner = System.Drawing.Color.White;
@@ -296,7 +298,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemotely.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblRemotely.AutoSize = true;
             this.LblRemotely.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRemotely.Location = new System.Drawing.Point(373, 99);
+            this.LblRemotely.Location = new System.Drawing.Point(365, 61);
             this.LblRemotely.Name = "LblRemotely";
             this.LblRemotely.Size = new System.Drawing.Size(70, 15);
             this.LblRemotely.TabIndex = 7;
@@ -307,7 +309,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblRemote.AutoSize = true;
             this.LblRemote.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRemote.Location = new System.Drawing.Point(214, 99);
+            this.LblRemote.Location = new System.Drawing.Point(206, 61);
             this.LblRemote.Name = "LblRemote";
             this.LblRemote.Size = new System.Drawing.Size(66, 15);
             this.LblRemote.TabIndex = 7;
@@ -333,6 +335,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombStates.Name = "CombStates";
             this.CombStates.Size = new System.Drawing.Size(121, 25);
             this.CombStates.TabIndex = 2;
+            this.CombStates.SelectedValueChanged += new System.EventHandler(this.CombStates_SelectedValueChanged);
             // 
             // BtnRefresh
             // 
@@ -345,7 +348,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnRefresh.Location = new System.Drawing.Point(12, 158);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(120, 45);
-            this.BtnRefresh.TabIndex = 7;
+            this.BtnRefresh.TabIndex = 8;
             this.BtnRefresh.Text = "تحديث";
             this.BtnRefresh.UseVisualStyleBackColor = false;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
@@ -413,33 +416,33 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEditState.TabStop = false;
             this.BtnEditState.Click += new System.EventHandler(this.BtnEditState_Click);
             // 
-            // LblArrangement
+            // LblIsIndexed
             // 
-            this.LblArrangement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblArrangement.AutoSize = true;
-            this.LblArrangement.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblArrangement.Location = new System.Drawing.Point(373, 61);
-            this.LblArrangement.Name = "LblArrangement";
-            this.LblArrangement.Size = new System.Drawing.Size(81, 15);
-            this.LblArrangement.TabIndex = 7;
-            this.LblArrangement.Text = "ترتيب الملفات :";
+            this.LblIsIndexed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblIsIndexed.AutoSize = true;
+            this.LblIsIndexed.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblIsIndexed.Location = new System.Drawing.Point(365, 23);
+            this.LblIsIndexed.Name = "LblIsIndexed";
+            this.LblIsIndexed.Size = new System.Drawing.Size(81, 15);
+            this.LblIsIndexed.TabIndex = 7;
+            this.LblIsIndexed.Text = "ترتيب الملفات :";
             // 
-            // ToggleArrangement
+            // ToggleIsIndexed
             // 
-            this.ToggleArrangement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ToggleArrangement.Animation = 5;
-            this.ToggleArrangement.BackColor = System.Drawing.Color.Transparent;
-            this.ToggleArrangement.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToggleArrangement.BackgroundImage")));
-            this.ToggleArrangement.Checked = false;
-            this.ToggleArrangement.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ToggleArrangement.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.ToggleArrangement.InnerCirclePadding = 3;
-            this.ToggleArrangement.Location = new System.Drawing.Point(316, 55);
-            this.ToggleArrangement.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.ToggleArrangement.Name = "ToggleArrangement";
-            this.ToggleArrangement.Size = new System.Drawing.Size(51, 26);
-            this.ToggleArrangement.TabIndex = 4;
-            this.ToggleArrangement.ThumbMargin = 3;
+            this.ToggleIsIndexed.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToggleIsIndexed.Animation = 5;
+            this.ToggleIsIndexed.BackColor = System.Drawing.Color.Transparent;
+            this.ToggleIsIndexed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToggleIsIndexed.BackgroundImage")));
+            this.ToggleIsIndexed.Checked = false;
+            this.ToggleIsIndexed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ToggleIsIndexed.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.ToggleIsIndexed.InnerCirclePadding = 3;
+            this.ToggleIsIndexed.Location = new System.Drawing.Point(308, 17);
+            this.ToggleIsIndexed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.ToggleIsIndexed.Name = "ToggleIsIndexed";
+            this.ToggleIsIndexed.Size = new System.Drawing.Size(51, 26);
+            this.ToggleIsIndexed.TabIndex = 5;
+            this.ToggleIsIndexed.ThumbMargin = 3;
             toggleState4.BackColor = System.Drawing.Color.DarkGray;
             toggleState4.BackColorInner = System.Drawing.Color.White;
             toggleState4.BorderColor = System.Drawing.Color.DarkGray;
@@ -448,7 +451,7 @@ namespace OTS.Ticketing.Win.Tickets
             toggleState4.BorderRadiusInner = 17;
             toggleState4.BorderThickness = 1;
             toggleState4.BorderThicknessInner = 1;
-            this.ToggleArrangement.ToggleStateDisabled = toggleState4;
+            this.ToggleIsIndexed.ToggleStateDisabled = toggleState4;
             toggleState5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             toggleState5.BackColorInner = System.Drawing.Color.White;
             toggleState5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -457,7 +460,7 @@ namespace OTS.Ticketing.Win.Tickets
             toggleState5.BorderRadiusInner = 17;
             toggleState5.BorderThickness = 1;
             toggleState5.BorderThicknessInner = 1;
-            this.ToggleArrangement.ToggleStateOff = toggleState5;
+            this.ToggleIsIndexed.ToggleStateOff = toggleState5;
             toggleState6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             toggleState6.BackColorInner = System.Drawing.Color.White;
             toggleState6.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
@@ -466,9 +469,9 @@ namespace OTS.Ticketing.Win.Tickets
             toggleState6.BorderRadiusInner = 17;
             toggleState6.BorderThickness = 1;
             toggleState6.BorderThicknessInner = 1;
-            this.ToggleArrangement.ToggleStateOn = toggleState6;
-            this.ToggleArrangement.Value = false;
-            this.ToggleArrangement.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
+            this.ToggleIsIndexed.ToggleStateOn = toggleState6;
+            this.ToggleIsIndexed.Value = false;
+            this.ToggleIsIndexed.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
             // 
             // LblCompany
             // 
@@ -545,7 +548,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label1.Location = new System.Drawing.Point(37, 103);
+            this.label1.Location = new System.Drawing.Point(36, 55);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 15);
             this.label1.TabIndex = 7;
@@ -561,7 +564,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleClosed.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ToggleClosed.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleClosed.InnerCirclePadding = 3;
-            this.ToggleClosed.Location = new System.Drawing.Point(46, 122);
+            this.ToggleClosed.Location = new System.Drawing.Point(45, 74);
             this.ToggleClosed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleClosed.Name = "ToggleClosed";
             this.ToggleClosed.Size = new System.Drawing.Size(51, 26);
@@ -597,6 +600,33 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleClosed.Value = false;
             this.ToggleClosed.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
             // 
+            // BtnOldTickets
+            // 
+            this.BtnOldTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnOldTickets.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BtnOldTickets.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnOldTickets.FlatAppearance.BorderSize = 2;
+            this.BtnOldTickets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnOldTickets.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnOldTickets.Location = new System.Drawing.Point(12, 107);
+            this.BtnOldTickets.Name = "BtnOldTickets";
+            this.BtnOldTickets.Size = new System.Drawing.Size(120, 45);
+            this.BtnOldTickets.TabIndex = 9;
+            this.BtnOldTickets.Text = "عرض البطاقات السابقة";
+            this.BtnOldTickets.UseVisualStyleBackColor = false;
+            this.BtnOldTickets.Click += new System.EventHandler(this.BtnOldTickets_Click);
+            // 
+            // CombTransferedTo
+            // 
+            this.CombTransferedTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CombTransferedTo.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombTransferedTo.FormattingEnabled = true;
+            this.CombTransferedTo.Location = new System.Drawing.Point(338, 94);
+            this.CombTransferedTo.Name = "CombTransferedTo";
+            this.CombTransferedTo.Size = new System.Drawing.Size(121, 25);
+            this.CombTransferedTo.TabIndex = 3;
+            this.CombTransferedTo.Visible = false;
+            // 
             // DisplayTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -612,8 +642,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.LblNumber);
             this.Controls.Add(this.BtnAddState);
             this.Controls.Add(this.ToggleClosed);
-            this.Controls.Add(this.ToggleArrangement);
+            this.Controls.Add(this.ToggleIsIndexed);
             this.Controls.Add(this.ToggleRemotely);
+            this.Controls.Add(this.CombTransferedTo);
             this.Controls.Add(this.CombStates);
             this.Controls.Add(this.LblSoftwareTitle);
             this.Controls.Add(this.LblUserTitle);
@@ -625,18 +656,20 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.LblRemote);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.LblState);
-            this.Controls.Add(this.LblArrangement);
+            this.Controls.Add(this.LblIsIndexed);
             this.Controls.Add(this.LblRemotely);
             this.Controls.Add(this.LblRevisionTitle);
             this.Controls.Add(this.LblNumberTitle);
             this.Controls.Add(this.TxtProblem);
             this.Controls.Add(this.TxtRemarks);
             this.Controls.Add(this.DtgTickets);
+            this.Controls.Add(this.BtnOldTickets);
             this.Controls.Add(this.BtnRefresh);
             this.Controls.Add(this.BtnUpdate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DisplayTickets";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "DisplayTickets";
             this.Load += new System.EventHandler(this.DisplayTickets_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtgTickets)).EndInit();
@@ -669,8 +702,8 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblNumber;
         private System.Windows.Forms.Label LblRevision;
         private System.Windows.Forms.PictureBox BtnEditState;
-        private System.Windows.Forms.Label LblArrangement;
-        private Bunifu.UI.WinForms.BunifuToggleSwitch ToggleArrangement;
+        private System.Windows.Forms.Label LblIsIndexed;
+        private Bunifu.UI.WinForms.BunifuToggleSwitch ToggleIsIndexed;
         private System.Windows.Forms.Label LblCompany;
         private System.Windows.Forms.Label LblPhoneNumber;
         private System.Windows.Forms.Label LblSoftware;
@@ -680,5 +713,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblProblem;
         private System.Windows.Forms.Label label1;
         private Bunifu.UI.WinForms.BunifuToggleSwitch ToggleClosed;
+        private System.Windows.Forms.Button BtnOldTickets;
+        private System.Windows.Forms.ComboBox CombTransferedTo;
     }
 }

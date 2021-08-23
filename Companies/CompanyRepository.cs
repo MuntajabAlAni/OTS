@@ -64,13 +64,17 @@ namespace OTS.Ticketing.Win.Companies
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             return result.FirstOrDefault();
         }
-        public async Task<List<CompanyInfo>> GetCompanyByName(string companyName)
+        public async Task<List<CompanyView>> GetCompanyByName(string companyName)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyName", companyName);
 
-            string query = "SELECT * from companies WHERE name LIKE '%'+@companyName+'%'";
-            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            string query = @"SELECT c.id, c.name, c.address, c.remarks, b.name branchName
+                            from companies c
+                            left join branches b on c.branchId = b.id
+                            WHERE c.name LIKE '%' + @companyName + '%'";
+
+            var result = await dataAccess.QueryAsync<CompanyView>(query, parameters);
             return result.ToList();
         }
     }

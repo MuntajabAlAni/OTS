@@ -19,17 +19,17 @@ namespace OTS.Ticketing.Win
         public static string Database;
         public static string ServerIp;
 
-        //public static void ErrorLog(Exception ex, string methodName)
+        //public static void Notes(string notes)
         //{
-        //    string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Log");
-        //    if (!Directory.Exists(path))
-        //    {
-        //        Directory.CreateDirectory(path);
-        //    }
+        //    //string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory);
+        //    //if (!Directory.Exists(path))
+        //    //{
+        //    //    Directory.CreateDirectory(path);
+        //    //}
 
-        //    File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), methodName + Environment.NewLine);
-        //    File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), ex.Message + Environment.NewLine);
-        //    File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), "=========================================================" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
+        //    File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"), notes);
+        //    //File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), ex.Message + Environment.NewLine);
+        //    //File.AppendAllText(Path.Combine(path, "Log" + DateTime.Now.ToString("yyyy-MM-dd") + ".txt"), "=========================================================" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + Environment.NewLine);
         //}
         public static DataTable ToDataTable<T>(IList<T> data)
         {
@@ -51,6 +51,15 @@ namespace OTS.Ticketing.Win
                 table.Rows.Add(values);
             }
             return table;
+        }
+
+        public static void Initialize()
+        {
+            loggedInUserId = 0;
+            SelectedPhoneNumberId = 0;
+            SelectedCompanyId = 0;
+            SelectedSoftware = 0;
+            SelectedUser = 0;
         }
     }
 }

@@ -19,7 +19,8 @@ namespace OTS.Ticketing.Win.Tickets
         public string State { get; set; }
         public int Revision { get; set; }
         public string Remarks { get; set; }
-        public string Arrangement { get; set; }
+        public string IsIndexed { get; set; }
         public string IsClosed { get; set; }
+        public string TransferedTo { get; set; }
     }
 }

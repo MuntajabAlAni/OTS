@@ -67,6 +67,10 @@
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -103,6 +107,7 @@
       <DependentUpon>AddCompany.cs</DependentUpon>
     </Compile>
     <Compile Include="Companies\CompanyRepository.cs" />
+    <Compile Include="Companies\CompanyView.cs" />
     <Compile Include="Companies\DisplayCompanies.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,11 +121,36 @@
     <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhoneNumbers\PhoneNumberView.cs" />
+    <Compile Include="Softwares\DisplaySoftwares.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Softwares\DisplaySoftwares.Designer.cs">
+      <DependentUpon>DisplaySoftwares.cs</DependentUpon>
+    </Compile>
+    <Compile Include="States\DisplayStates.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="States\DisplayStates.Designer.cs">
+      <DependentUpon>DisplayStates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\DisplayOldTickets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\DisplayOldTickets.Designer.cs">
+      <DependentUpon>DisplayOldTickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Users\AddUser.Designer.cs">
       <DependentUpon>AddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Users\DisplayUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Users\DisplayUsers.Designer.cs">
+      <DependentUpon>DisplayUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\UserRepository.cs" />
     <Compile Include="IniFile.cs" />
@@ -208,6 +238,15 @@
     <EmbeddedResource Include="DatabaseConnection\DatabaseServer.resx">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Softwares\DisplaySoftwares.resx">
+      <DependentUpon>DisplaySoftwares.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="States\DisplayStates.resx">
+      <DependentUpon>DisplayStates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\DisplayOldTickets.resx">
+      <DependentUpon>DisplayOldTickets.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Users\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>
     </EmbeddedResource>
@@ -248,6 +287,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\DisplayTickets.resx">
       <DependentUpon>DisplayTickets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Users\DisplayUsers.resx">
+      <DependentUpon>DisplayUsers.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="config.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

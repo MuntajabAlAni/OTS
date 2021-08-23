@@ -24,14 +24,14 @@ namespace OTS.Ticketing.Win.MainForms
             var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
             return result.FirstOrDefault();
         }
-        public async Task<List<TicketsView>> GetLastFiveCalls()
+        public async Task<List<TicketsView>> GetTodaysTickets()
         {
 
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                 c.name as CompanyName, t.problem, st.name state, t.revision, 
-												Case t.arrangement when 1 then 'مرتبة'
+												Case t.IsIndexed when 1 then 'مرتبة'
 												 else 'غير مرتبة'
-												 end arrangement,
+												 end IsIndexed,
 												 case t.isClosed when 1 then 'مغلقة' 
                                                  else 'غير مغلقة' end isClosed
 												 FROM tickets t

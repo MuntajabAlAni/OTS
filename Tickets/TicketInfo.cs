@@ -22,6 +22,7 @@ namespace OTS.Ticketing.Win.Tickets
         public int Revision { get; set; }
         public bool Remotely { get; set; }
         public bool IsClosed { get; set; }
-
+        public bool IsIndexed { get; set; }
+        public long TransferedTo { get; set; }
     }
 }

@@ -42,5 +42,11 @@ namespace OTS.Ticketing.Win.States
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
+        public async Task<List<StateInfo>> GetAllStates()
+        {
+            string query = "SELECT * FROM states";
+            var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
+            return result.ToList();
+        }
     }
 }

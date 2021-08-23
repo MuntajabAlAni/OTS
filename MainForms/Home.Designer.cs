@@ -40,8 +40,12 @@ namespace OTS.Ticketing.Win.MainForms
             this.Timer = new System.Windows.Forms.Timer(this.components);
             this.LblDataGridTitle = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.RtbNotes = new System.Windows.Forms.RichTextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.LblNotes = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DtgLastTickets)).BeginInit();
             this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // DtgLastTickets
@@ -111,11 +115,10 @@ namespace OTS.Ticketing.Win.MainForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblTime.AutoSize = true;
             this.LblTime.Font = new System.Drawing.Font("Segoe UI", 50F);
-            this.LblTime.Location = new System.Drawing.Point(6, 0);
+            this.LblTime.Location = new System.Drawing.Point(8, 0);
             this.LblTime.Name = "LblTime";
-            this.LblTime.Size = new System.Drawing.Size(284, 89);
+            this.LblTime.Size = new System.Drawing.Size(0, 89);
             this.LblTime.TabIndex = 3;
-            this.LblTime.Text = "00:00:00";
             // 
             // LblDate
             // 
@@ -123,11 +126,10 @@ namespace OTS.Ticketing.Win.MainForms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblDate.AutoSize = true;
             this.LblDate.Font = new System.Drawing.Font("Segoe UI", 17F);
-            this.LblDate.Location = new System.Drawing.Point(50, 89);
+            this.LblDate.Location = new System.Drawing.Point(52, 89);
             this.LblDate.Name = "LblDate";
-            this.LblDate.Size = new System.Drawing.Size(196, 31);
+            this.LblDate.Size = new System.Drawing.Size(0, 31);
             this.LblDate.TabIndex = 3;
-            this.LblDate.Text = "00-00-0000 السبت";
             // 
             // Timer
             // 
@@ -150,30 +152,73 @@ namespace OTS.Ticketing.Win.MainForms
             // 
             // panel1
             // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.panel1.Controls.Add(this.LblTime);
             this.panel1.Controls.Add(this.LblDate);
+            this.panel1.ForeColor = System.Drawing.Color.White;
             this.panel1.Location = new System.Drawing.Point(727, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(297, 137);
             this.panel1.TabIndex = 4;
+            // 
+            // RtbNotes
+            // 
+            this.RtbNotes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.RtbNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.RtbNotes.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.RtbNotes.ForeColor = System.Drawing.Color.White;
+            this.RtbNotes.Location = new System.Drawing.Point(27, 45);
+            this.RtbNotes.Name = "RtbNotes";
+            this.RtbNotes.Size = new System.Drawing.Size(325, 299);
+            this.RtbNotes.TabIndex = 5;
+            this.RtbNotes.Text = "";
+            this.RtbNotes.TextChanged += new System.EventHandler(this.RtbNotes_TextChanged);
+            this.RtbNotes.Leave += new System.EventHandler(this.RtbNotes_Leave);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.panel2.Controls.Add(this.LblNotes);
+            this.panel2.ForeColor = System.Drawing.Color.White;
+            this.panel2.Location = new System.Drawing.Point(27, 8);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(325, 37);
+            this.panel2.TabIndex = 4;
+            // 
+            // LblNotes
+            // 
+            this.LblNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblNotes.AutoSize = true;
+            this.LblNotes.Font = new System.Drawing.Font("Segoe UI", 15F);
+            this.LblNotes.Location = new System.Drawing.Point(117, 2);
+            this.LblNotes.Name = "LblNotes";
+            this.LblNotes.Size = new System.Drawing.Size(88, 28);
+            this.LblNotes.TabIndex = 3;
+            this.LblNotes.Text = "ملاحظات";
             // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 606);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.RtbNotes);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblDataGridTitle);
             this.Controls.Add(this.DtgLastTickets);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Home";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Home";
             this.Load += new System.EventHandler(this.Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtgLastTickets)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +232,8 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Label LblDataGridTitle;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RichTextBox RtbNotes;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label LblNotes;
     }
 }

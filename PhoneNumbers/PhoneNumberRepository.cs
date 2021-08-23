@@ -56,13 +56,17 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             return result.ToList();
         }
-        public async Task<List<PhoneNumberInfo>> GetPhoneNumbersBySearch(string phoneNumber)
+        public async Task<List<PhoneNumberView>> GetPhoneNumbersBySearch(string phoneNumber)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@phoneNumber", phoneNumber);
 
-            string query = "SELECT * from phoneNumbers WHERE phoneNumber LIKE '%'+@phoneNumber";
-            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            string query = @"SELECT p.id, p.phoneNumber, p.customerName, c.name companyName
+                            from phoneNumbers p
+                            left join companies c on p.companyId = c.id
+                            WHERE phoneNumber LIKE '%'+@phoneNumber";
+
+            var result = await dataAccess.QueryAsync<PhoneNumberView>(query, parameters);
             return result.ToList();
         }
         public async Task<long> GetPhoneNumberIdByPhoneNumber(string phoneNumber)

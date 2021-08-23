@@ -25,16 +25,16 @@ namespace OTS.Ticketing.Win.Tickets
             var parameters = new DynamicParameters();
             parameters.Add("@UserId", UserId);
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.arrangement = 1 then 'مرتبة'
-												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement FROM tickets t
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+												 when t.IsIndexed = 0 then 'غير مرتبة'
+												 end IsIndexed FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
 												 inner join (select number,max(revision) revision from tickets where UserId = @UserId group by number) t2 on t.revision = t2.revision and t.number = t2.number
-												 WHERE UserId = @UserId and (isClosed = 0 or isClosed is null)
+												 WHERE UserId = @UserId and isClosed is null
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -54,7 +54,7 @@ namespace OTS.Ticketing.Win.Tickets
             string query = "SELECT * FROM Companies";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             var list = result.ToList();
-            list.Insert(0, (new CompanyInfo { Id = 0, Name = "الإختيار عن طريق رقم الهاتف" }));
+            list.Insert(0, (new CompanyInfo { Id = 0, Name = "إختيار عن طريق رقم الهاتف" }));
             return list;
         }
         public async Task<List<SoftwareInfo>> GetAllSoftwares()
@@ -62,7 +62,7 @@ namespace OTS.Ticketing.Win.Tickets
             string query = "SELECT * FROM Softwares";
             var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
             var list = result.ToList();
-            list.Insert(0, (new SoftwareInfo { Id = 0, Name = "" }));
+            list.Insert(0, (new SoftwareInfo { Id = 0, Name = "الكل" }));
             return list;
         }
         public async Task<List<UserInfo>> GetAllUsers()
@@ -118,9 +118,9 @@ namespace OTS.Ticketing.Win.Tickets
             var parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
             string query = @" SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.arrangement = 1 then 'مرتبة'
-												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement, case when t.isClosed = 1 then 'مغلقة' 
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+												 when t.IsIndexed = 0 then 'غير مرتبة'
+												 end IsIndexed, case when t.isClosed = 1 then 'مغلقة' 
                                                  when t.isClosed = 0 then 'غير مغلقة' end isClosed FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
@@ -144,7 +144,7 @@ namespace OTS.Ticketing.Win.Tickets
             var result = await dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<int> UpdateTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool arrangement, bool closed)
+        public async Task<int> UpdateTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool IsIndexed, bool closed, long transferedTo)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@number", number);
@@ -154,8 +154,9 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@remarks", remarks);
             parameters.Add("@problem", problem);
             parameters.Add("@remotely", remotely);
-            parameters.Add("@arrangement", arrangement);
+            parameters.Add("@IsIndexed", IsIndexed);
             parameters.Add("@closed", closed);
+            parameters.Add("@transferedTo", transferedTo);
 
             string command = @"UPDATE tickets
                              SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
@@ -163,8 +164,9 @@ namespace OTS.Ticketing.Win.Tickets
                            ,remarks = @remarks
                            ,problem = @problem
                            ,remotely = @remotely
-                           ,arrangement = @arrangement
+                           ,IsIndexed = @IsIndexed
                            ,isClosed = @closed
+                           ,transferedTo = @transferedTo
                             WHERE number = @number and revision = @revision";
 
             return await dataAccess.ExecuteAsync(command, parameters);
@@ -185,9 +187,9 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@revision", revision);
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, t.problem, st.name state, t.revision, t.Remarks,
-												 Case when t.arrangement = 1 then 'مرتبة'
-												 when t.arrangement = 0 then 'غير مرتبة'
-												 end arrangement, case when t.isClosed = 1 then 'مغلقة' 
+												 Case when t.IsIndexed = 1 then 'مرتبة'
+												 when t.IsIndexed = 0 then 'غير مرتبة'
+												 end IsIndexed, case when t.isClosed = 1 then 'مغلقة' 
                                                  when t.isClosed = 0 then 'غير مغلقة' end isClosed
 												  FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
@@ -200,6 +202,138 @@ namespace OTS.Ticketing.Win.Tickets
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.FirstOrDefault();
+        }
+        public async Task<List<TicketsView>> GetOldUnClosedTicketsByUserIdOrCompanyId(
+            long companyId, long userId, DateTime fromDate, DateTime toDate)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@companyId", companyId);
+            parameters.Add("@userId", userId);
+            parameters.Add("@fromDate", fromDate);
+            parameters.Add("@toDate", toDate);
+
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+												 when t.IsIndexed = 0 then 'غير مرتبة'
+												 end IsIndexed FROM tickets t
+                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
+                                                 inner join softwares s on t.softwareId = s.id
+                                                 inner join Users e on t.UserId = e.id
+                                                 inner join companies c on t.companyId = c.id 
+												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
+												 left join states st on t.stateId = st.id
+												 WHERE IIF(@userId = 0,0,t.UserId) = @userId 
+												 and IIF(@companyId = 0,0,t.CompanyId) = @companyId
+												 and t.openDate between @fromDate and @toDate
+												 and (isClosed = 0 or isClosed is null)
+                                                 ORDER BY t.number DESC,t.revision DESC";
+
+            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            return result.ToList();
+        }
+        public async Task<List<TicketsView>> GetOldTicketsByUserIdOrCompanyId(
+            long companyId, long userId, DateTime fromDate, DateTime toDate)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@companyId", companyId);
+            parameters.Add("@userId", userId);
+            parameters.Add("@fromDate", fromDate);
+            parameters.Add("@toDate", toDate);
+
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+												 when t.IsIndexed = 0 then 'غير مرتبة'
+												 end IsIndexed FROM tickets t
+                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
+                                                 inner join softwares s on t.softwareId = s.id
+                                                 inner join Users e on t.UserId = e.id
+                                                 inner join companies c on t.companyId = c.id 
+												 left join states st on t.stateId = st.id
+												 WHERE IIF(@userId = 0,0,t.UserId) = @userId 
+												 and IIF(@companyId = 0,0,t.CompanyId) = @companyId
+												 and t.openDate between @fromDate and @toDate
+												 and isClosed = 1
+                                                 ORDER BY t.number DESC,t.revision DESC";
+
+            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            return result.ToList();
+        }
+        public async Task<List<CompanyView>> GetCompaniesOnUserId(long userId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userId", userId);
+
+            string query = @"Select distinct c.id, c.name 
+                           from companies c
+                           left join tickets t on t.companyId = c.id
+                           where IIF(@userId = 0,0,t.userId) = @userId";
+
+            var result = await dataAccess.QueryAsync<CompanyView>(query, parameters);
+            return result.ToList();
+        }
+        public async void UpdateInsertTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool IsIndexed, bool closed, long transferedTo)
+        {
+            var updateParameters = new DynamicParameters();
+            updateParameters.Add("@number", number);
+            updateParameters.Add("@revision", revision);
+            updateParameters.Add("@closeDate", closeDate);
+            updateParameters.Add("@stateId", stateId);
+            updateParameters.Add("@remarks", remarks);
+            updateParameters.Add("@problem", problem);
+            updateParameters.Add("@remotely", remotely);
+            updateParameters.Add("@IsIndexed", IsIndexed);
+            updateParameters.Add("@closed", closed);
+            updateParameters.Add("@transferedTo", transferedTo);
+
+            TicketInfo ticketInfo = await GetTicketByNumberAndRevision(number, revision);
+
+            var insertParameters = new DynamicParameters();
+            insertParameters.Add("@number", number);
+            insertParameters.Add("@revision", revision + 1);
+            insertParameters.Add("@companyId", ticketInfo.CompanyId);
+            insertParameters.Add("@phoneNumberId", ticketInfo.PhoneNumberId);
+            insertParameters.Add("@softwareId", ticketInfo.SoftwareId);
+            insertParameters.Add("@UserId", ticketInfo.TransferedTo);
+
+            string updateCommand = @"UPDATE tickets
+                             SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
+                           ,stateId = @stateId
+                           ,remarks = @remarks
+                           ,problem = @problem
+                           ,remotely = @remotely
+                           ,IsIndexed = @IsIndexed
+                           ,isClosed = @closed
+                           ,transferedTo = @transferedTo
+                            WHERE number = @number and revision = @revision";
+
+            string insertCommand = @"INSERT INTO tickets
+                            (number, phoneNumberId, softwareId, UserId, companyId, revision)
+                              VALUES
+                           (@number,
+                            @phoneNumberId,
+                            @softwareId,
+                            @UserId,
+                            @companyId,
+                            @revision)";
+
+            using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
+            {
+                connection.Open();
+                using (var trans = connection.BeginTransaction())
+                {
+                    int recordsUpdated = await dataAccess.ExecuteAsync(updateCommand, updateParameters);
+                    try
+                    {
+                        await dataAccess.ExecuteAsync(insertCommand, insertParameters);
+                        trans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        trans.Rollback();
+                    }
+                }
+            }
         }
     }
 }

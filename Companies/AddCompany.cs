@@ -124,8 +124,9 @@ namespace OTS.Ticketing.Win.Companies
                         TxtRemarks.Text,
                         _id);
                 }
-                CompanyInfo lastCompany = await companyRepository.GetLastCompanyId();
-                SystemConstants.SelectedCompanyId = lastCompany.Id;
+                List<CompanyView> companies = await companyRepository.GetCompanyByName(TxtName.Text);
+                CompanyView selectedCompany = companies.FirstOrDefault();
+                SystemConstants.SelectedCompanyId = selectedCompany.Id;
                 this.Close();
 
             }

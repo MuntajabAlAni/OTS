@@ -31,6 +31,7 @@ namespace OTS.Ticketing.Win
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PnlMenuVertical = new System.Windows.Forms.Panel();
+            this.BtnOldTickets = new System.Windows.Forms.Button();
             this.BtnAddTicket = new System.Windows.Forms.Button();
             this.BtnTickets = new System.Windows.Forms.Button();
             this.BtnStates = new System.Windows.Forms.Button();
@@ -66,6 +67,7 @@ namespace OTS.Ticketing.Win
             // PnlMenuVertical
             // 
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.PnlMenuVertical.Controls.Add(this.BtnOldTickets);
             this.PnlMenuVertical.Controls.Add(this.BtnAddTicket);
             this.PnlMenuVertical.Controls.Add(this.BtnTickets);
             this.PnlMenuVertical.Controls.Add(this.BtnStates);
@@ -80,6 +82,25 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.Name = "PnlMenuVertical";
             this.PnlMenuVertical.Size = new System.Drawing.Size(250, 650);
             this.PnlMenuVertical.TabIndex = 0;
+            // 
+            // BtnOldTickets
+            // 
+            this.BtnOldTickets.FlatAppearance.BorderSize = 0;
+            this.BtnOldTickets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnOldTickets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnOldTickets.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnOldTickets.ForeColor = System.Drawing.Color.White;
+            this.BtnOldTickets.Image = ((System.Drawing.Image)(resources.GetObject("BtnOldTickets.Image")));
+            this.BtnOldTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.BtnOldTickets.Location = new System.Drawing.Point(0, 520);
+            this.BtnOldTickets.Name = "BtnOldTickets";
+            this.BtnOldTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.BtnOldTickets.Size = new System.Drawing.Size(250, 45);
+            this.BtnOldTickets.TabIndex = 7;
+            this.BtnOldTickets.Text = "البطاقات السابقة";
+            this.BtnOldTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnOldTickets.UseVisualStyleBackColor = true;
+            this.BtnOldTickets.Click += new System.EventHandler(this.BtnOldTickets_Click);
             // 
             // BtnAddTicket
             // 
@@ -136,6 +157,7 @@ namespace OTS.Ticketing.Win
             this.BtnStates.Text = "حالات البطاقات";
             this.BtnStates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnStates.UseVisualStyleBackColor = true;
+            this.BtnStates.Click += new System.EventHandler(this.BtnStates_Click);
             // 
             // BtnSoftwares
             // 
@@ -154,6 +176,7 @@ namespace OTS.Ticketing.Win
             this.BtnSoftwares.Text = "البرامج";
             this.BtnSoftwares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSoftwares.UseVisualStyleBackColor = true;
+            this.BtnSoftwares.Click += new System.EventHandler(this.BtnSoftwares_Click);
             // 
             // BtnPhoneNumbres
             // 
@@ -172,6 +195,7 @@ namespace OTS.Ticketing.Win
             this.BtnPhoneNumbres.Text = "ارقام الهاتف";
             this.BtnPhoneNumbres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
+            this.BtnPhoneNumbres.Click += new System.EventHandler(this.BtnPhoneNumbres_Click);
             // 
             // BtnUsers
             // 
@@ -190,6 +214,7 @@ namespace OTS.Ticketing.Win
             this.BtnUsers.Text = "الموظفين";
             this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnUsers.UseVisualStyleBackColor = true;
+            this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
             // 
             // BtnHome
             // 
@@ -227,6 +252,7 @@ namespace OTS.Ticketing.Win
             this.BtnCompanies.Text = "الشركات";
             this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCompanies.UseVisualStyleBackColor = true;
+            this.BtnCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);
             // 
             // LOGO
             // 
@@ -352,8 +378,9 @@ namespace OTS.Ticketing.Win
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AboutToolStripMenuItem.Text = "عن";
+            this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // PnlContainer
             // 
@@ -416,6 +443,7 @@ namespace OTS.Ticketing.Win
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "Main";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
@@ -458,5 +486,6 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
         private System.Windows.Forms.Button BtnAddTicket;
         private System.Windows.Forms.Button BtnStates;
+        private System.Windows.Forms.Button BtnOldTickets;
     }
 }

@@ -34,15 +34,15 @@ namespace OTS.Ticketing.Win.Users
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.TxtDisplayName = new System.Windows.Forms.TextBox();
             this.PnlContainer = new System.Windows.Forms.Panel();
-            this.BtnExit = new System.Windows.Forms.Button();
-            this.BtnAdd = new System.Windows.Forms.Button();
-            this.TxtUserName = new System.Windows.Forms.TextBox();
-            this.TxtPassword = new System.Windows.Forms.TextBox();
-            this.TxtIp = new System.Windows.Forms.TextBox();
-            this.LblUserName = new System.Windows.Forms.Label();
-            this.LblPassword = new System.Windows.Forms.Label();
-            this.LblIp = new System.Windows.Forms.Label();
             this.CbState = new System.Windows.Forms.CheckBox();
+            this.BtnExit = new System.Windows.Forms.Button();
+            this.LblIp = new System.Windows.Forms.Label();
+            this.LblPassword = new System.Windows.Forms.Label();
+            this.LblUserName = new System.Windows.Forms.Label();
+            this.BtnAdd = new System.Windows.Forms.Button();
+            this.TxtIp = new System.Windows.Forms.TextBox();
+            this.TxtPassword = new System.Windows.Forms.TextBox();
+            this.TxtUserName = new System.Windows.Forms.TextBox();
             this.PnlContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -105,6 +105,19 @@ namespace OTS.Ticketing.Win.Users
             this.PnlContainer.Size = new System.Drawing.Size(418, 376);
             this.PnlContainer.TabIndex = 37;
             // 
+            // CbState
+            // 
+            this.CbState.AutoSize = true;
+            this.CbState.Checked = true;
+            this.CbState.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbState.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CbState.Location = new System.Drawing.Point(233, 268);
+            this.CbState.Name = "CbState";
+            this.CbState.Size = new System.Drawing.Size(50, 19);
+            this.CbState.TabIndex = 37;
+            this.CbState.Text = "فعال";
+            this.CbState.UseVisualStyleBackColor = true;
+            // 
             // BtnExit
             // 
             this.BtnExit.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -119,6 +132,36 @@ namespace OTS.Ticketing.Win.Users
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            // 
+            // LblIp
+            // 
+            this.LblIp.AutoSize = true;
+            this.LblIp.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblIp.Location = new System.Drawing.Point(289, 150);
+            this.LblIp.Name = "LblIp";
+            this.LblIp.Size = new System.Drawing.Size(68, 15);
+            this.LblIp.TabIndex = 36;
+            this.LblIp.Text = "IP Address :";
+            // 
+            // LblPassword
+            // 
+            this.LblPassword.AutoSize = true;
+            this.LblPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblPassword.Location = new System.Drawing.Point(289, 113);
+            this.LblPassword.Name = "LblPassword";
+            this.LblPassword.Size = new System.Drawing.Size(60, 15);
+            this.LblPassword.TabIndex = 36;
+            this.LblPassword.Text = "كلمة السر :";
+            // 
+            // LblUserName
+            // 
+            this.LblUserName.AutoSize = true;
+            this.LblUserName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblUserName.Location = new System.Drawing.Point(289, 76);
+            this.LblUserName.Name = "LblUserName";
+            this.LblUserName.Size = new System.Drawing.Size(84, 15);
+            this.LblUserName.TabIndex = 36;
+            this.LblUserName.Text = "اسم المستخدم :";
             // 
             // BtnAdd
             // 
@@ -135,13 +178,13 @@ namespace OTS.Ticketing.Win.Users
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
-            // TxtUserName
+            // TxtIp
             // 
-            this.TxtUserName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtUserName.Location = new System.Drawing.Point(140, 71);
-            this.TxtUserName.Name = "TxtUserName";
-            this.TxtUserName.Size = new System.Drawing.Size(143, 25);
-            this.TxtUserName.TabIndex = 33;
+            this.TxtIp.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.TxtIp.Location = new System.Drawing.Point(140, 145);
+            this.TxtIp.Name = "TxtIp";
+            this.TxtIp.Size = new System.Drawing.Size(143, 25);
+            this.TxtIp.TabIndex = 33;
             // 
             // TxtPassword
             // 
@@ -152,56 +195,13 @@ namespace OTS.Ticketing.Win.Users
             this.TxtPassword.TabIndex = 33;
             this.TxtPassword.UseSystemPasswordChar = true;
             // 
-            // TxtIp
+            // TxtUserName
             // 
-            this.TxtIp.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtIp.Location = new System.Drawing.Point(140, 145);
-            this.TxtIp.Name = "TxtIp";
-            this.TxtIp.Size = new System.Drawing.Size(143, 25);
-            this.TxtIp.TabIndex = 33;
-            // 
-            // LblUserName
-            // 
-            this.LblUserName.AutoSize = true;
-            this.LblUserName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblUserName.Location = new System.Drawing.Point(289, 76);
-            this.LblUserName.Name = "LblUserName";
-            this.LblUserName.Size = new System.Drawing.Size(84, 15);
-            this.LblUserName.TabIndex = 36;
-            this.LblUserName.Text = "اسم المستخدم :";
-            // 
-            // LblPassword
-            // 
-            this.LblPassword.AutoSize = true;
-            this.LblPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblPassword.Location = new System.Drawing.Point(289, 113);
-            this.LblPassword.Name = "LblPassword";
-            this.LblPassword.Size = new System.Drawing.Size(60, 15);
-            this.LblPassword.TabIndex = 36;
-            this.LblPassword.Text = "كلمة السر :";
-            // 
-            // LblIp
-            // 
-            this.LblIp.AutoSize = true;
-            this.LblIp.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblIp.Location = new System.Drawing.Point(289, 150);
-            this.LblIp.Name = "LblIp";
-            this.LblIp.Size = new System.Drawing.Size(68, 15);
-            this.LblIp.TabIndex = 36;
-            this.LblIp.Text = "IP Address :";
-            // 
-            // CbState
-            // 
-            this.CbState.AutoSize = true;
-            this.CbState.Checked = true;
-            this.CbState.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CbState.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbState.Location = new System.Drawing.Point(233, 268);
-            this.CbState.Name = "CbState";
-            this.CbState.Size = new System.Drawing.Size(50, 19);
-            this.CbState.TabIndex = 37;
-            this.CbState.Text = "فعال";
-            this.CbState.UseVisualStyleBackColor = true;
+            this.TxtUserName.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.TxtUserName.Location = new System.Drawing.Point(140, 71);
+            this.TxtUserName.Name = "TxtUserName";
+            this.TxtUserName.Size = new System.Drawing.Size(143, 25);
+            this.TxtUserName.TabIndex = 33;
             // 
             // AddUser
             // 
@@ -212,6 +212,7 @@ namespace OTS.Ticketing.Win.Users
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AddUser";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddUser";
             this.Load += new System.EventHandler(this.AddUser_Load);
             this.PnlContainer.ResumeLayout(false);

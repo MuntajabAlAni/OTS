@@ -39,6 +39,7 @@ namespace OTS.Ticketing.Win.Tickets
                     BtnEditState.Visible = false;
                 }
                 GetDtgTicketsData();
+                FillUsersComboBox();
                 FillStatesComboBox();
             }
             catch (Exception ex)
@@ -48,7 +49,22 @@ namespace OTS.Ticketing.Win.Tickets
             }
 
         }
+        private async void FillUsersComboBox()
+        {
+            try
+            {
+                CombTransferedTo.DisplayMember = "displayName";
+                CombTransferedTo.ValueMember = "Id";
+                CombTransferedTo.DataSource = await ticketRepository.GetAllUsers();
+                CombTransferedTo.SelectedValue = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
 
+        }
         private async void FillStatesComboBox()
         {
             try
@@ -56,7 +72,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombStates.DisplayMember = "Name";
                 CombStates.ValueMember = "Id";
                 CombStates.DataSource = await ticketRepository.GetAllStates();
-                CombStates.SelectedIndex = 0;
+                CombStates.SelectedValue = 0;
             }
             catch (Exception ex)
             {
@@ -81,9 +97,10 @@ namespace OTS.Ticketing.Win.Tickets
                 DtgTickets.Columns["Problem"].HeaderText = "المشكلة";
                 DtgTickets.Columns["State"].HeaderText = "الحالة";
                 DtgTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
-                DtgTickets.Columns["Arrangement"].HeaderText = "ترتيب الملفات";
+                DtgTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
                 DtgTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
                 DtgTickets.Columns["Remarks"].Visible = false;
+                DtgTickets.Columns["TransferedTo"].Visible = false;
             }
             catch (Exception ex)
             {
@@ -119,7 +136,7 @@ namespace OTS.Ticketing.Win.Tickets
                     TxtProblem.Text = selectedTicket.Problem;
                     TxtRemarks.Text = selectedTicket.Remarks;
                     CombStates.Text = selectedTicket.State;
-                    ToggleArrangement.Checked = selectedTicket.Arrangement == "مرتبة";
+                    ToggleIsIndexed.Checked = selectedTicket.IsIndexed == "مرتبة";
                     ToggleClosed.Checked = selectedTicket.IsClosed == "مغلقة";
                 }
             }
@@ -144,22 +161,38 @@ namespace OTS.Ticketing.Win.Tickets
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                DialogResult dr;
-                dr = MessageBox.Show("إغلاق البطاقة ؟؟", "إغلاق", MessageBoxButtons.YesNo);
-                ToggleClosed.Checked = dr == DialogResult.Yes;
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0)
+                {
+                    DialogResult dr;
+                    dr = MessageBox.Show("إغلاق البطاقة ؟؟", "إغلاق", MessageBoxButtons.YesNo);
+                    ToggleClosed.Checked = dr == DialogResult.Yes;
+                }
                 DialogResult dr2;
-                dr2 = MessageBox.Show("هل انت متأكد من الإضافة ؟", "Confirm", MessageBoxButtons.YesNo);
+                dr2 = MessageBox.Show("هل انت متأكد من الإضافة ؟", "تأكيد", MessageBoxButtons.YesNo);
                 if (dr2 == DialogResult.Yes)
                 {
-                    await ticketRepository.UpdateTicket(Convert.ToInt64(LblNumber.Text),
-                  Convert.ToInt32(LblRevision.Text),
-                  DateTime.Now,
-                  Convert.ToInt64(CombStates.SelectedValue),
-                  TxtRemarks.Text,
-                  TxtProblem.Text,
-                  Convert.ToInt32(ToggleRemotely.Checked),
-                  ToggleArrangement.Checked,
-                  ToggleClosed.Checked);
+                    if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0 & Convert.ToInt64(CombStates.SelectedValue) != 4)
+                        await ticketRepository.UpdateTicket(Convert.ToInt64(LblNumber.Text),
+                   Convert.ToInt32(LblRevision.Text),
+                   DateTime.Now,
+                   Convert.ToInt64(CombStates.SelectedValue),
+                   TxtRemarks.Text,
+                   TxtProblem.Text,
+                   Convert.ToInt32(ToggleRemotely.Checked),
+                   ToggleIsIndexed.Checked,
+                   ToggleClosed.Checked,
+                   Convert.ToInt64(CombTransferedTo.SelectedValue));
+                    else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
+                        ticketRepository.UpdateInsertTicket(Convert.ToInt64(LblNumber.Text),
+                   Convert.ToInt32(LblRevision.Text),
+                   DateTime.Now,
+                   Convert.ToInt64(CombStates.SelectedValue),
+                   TxtRemarks.Text,
+                   TxtProblem.Text,
+                   Convert.ToInt32(ToggleRemotely.Checked),
+                   ToggleIsIndexed.Checked,
+                   false,
+                   Convert.ToInt64(CombTransferedTo.SelectedValue));
                     GetDtgTicketsData();
                     RefreshAllData();
                 }
@@ -184,8 +217,9 @@ namespace OTS.Ticketing.Win.Tickets
                 LblOpenDate.Text = "";
                 TxtProblem.Text = "";
                 TxtRemarks.Text = "";
-                CombStates.SelectedIndex = 0;
-                ToggleArrangement.Checked = false;
+                CombStates.SelectedValue = 0;
+                CombTransferedTo.SelectedValue = 0;
+                ToggleIsIndexed.Checked = false;
                 ToggleRemotely.Checked = false;
                 ToggleClosed.Checked = false;
             }
@@ -225,6 +259,22 @@ namespace OTS.Ticketing.Win.Tickets
                 Logger.Error(ex);
             }
 
+        }
+
+        private void BtnOldTickets_Click(object sender, EventArgs e)
+        {
+            DisplayOldTickets displayOldTickets = new DisplayOldTickets(LblCompany.Text);
+            displayOldTickets.ShowDialog();
+        }
+
+        private void CombStates_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt64(CombStates.SelectedValue) == 4) CombTransferedTo.Visible = true;
+            else
+            {
+                CombTransferedTo.Visible = false;
+                FillUsersComboBox();
+            }
         }
     }
 }

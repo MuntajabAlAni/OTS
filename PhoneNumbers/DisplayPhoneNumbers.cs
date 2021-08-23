@@ -16,34 +16,38 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         readonly PhoneNumberRepository phoneNumberRepository = new PhoneNumberRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         readonly private string _phoneNumber;
-        public DisplayPhoneNumbers(string phoneNumber)
+        readonly bool _search;
+
+        public DisplayPhoneNumbers(bool search, string phoneNumber = "")
         {
             InitializeComponent();
             _phoneNumber = phoneNumber;
+            _search = search;
         }
 
         private async void DisplayPhoneNumbers_Load(object sender, EventArgs e)
         {
             try
             {
-                DtgPhoneNumbers.DataSource = await phoneNumberRepository.GetPhoneNumbersBySearch(_phoneNumber);
-                DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
-                DtgPhoneNumbers.Columns["CustomerName"].HeaderText = "اسم الزبون";
-                DtgPhoneNumbers.Columns["CompanyId"].HeaderText = "اسم الشركة";
-                if (DtgPhoneNumbers.Rows.Count == 1)
+                GetDtgPhoneNumbersData();
+                if (_search)
                 {
-                    long id = Convert.ToInt64(DtgPhoneNumbers.Rows[0].Cells["Id"].Value.ToString());
-                    PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
-                    SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
-                    SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
-                    this.Close();
-                }
-                if (DtgPhoneNumbers.Rows.Count == 0)
-                {
-                    MessageBox.Show("عذراً.. هذا الرقم غير معرف", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0, _phoneNumber);
-                    addPhoneNumber.ShowDialog();
-                    this.Close();
+                    BtnAdd.Visible = false;
+                    if (DtgPhoneNumbers.Rows.Count == 1)
+                    {
+                        long id = Convert.ToInt64(DtgPhoneNumbers.Rows[0].Cells["Id"].Value.ToString());
+                        PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
+                        SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
+                        SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
+                        this.Close();
+                    }
+                    if (DtgPhoneNumbers.Rows.Count == 0)
+                    {
+                        MessageBox.Show("عذراً.. هذا الرقم غير معرف", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0, _phoneNumber);
+                        addPhoneNumber.ShowDialog();
+                        this.Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -53,16 +57,33 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
-
+        private async void GetDtgPhoneNumbersData()
+        {
+            DtgPhoneNumbers.DataSource = await phoneNumberRepository.GetPhoneNumbersBySearch(_phoneNumber);
+            DtgPhoneNumbers.Columns["Id"].Visible = false;
+            DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
+            DtgPhoneNumbers.Columns["CustomerName"].HeaderText = "اسم الزبون";
+            DtgPhoneNumbers.Columns["CompanyName"].HeaderText = "اسم الشركة";
+        }
         private async void DtgPhoneNumbers_DoubleClick(object sender, EventArgs e)
         {
             try
             {
-                long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
-                PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
-                SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
-                SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
-                this.Close();
+                if (_search)
+                {
+                    long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
+                    PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
+                    SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
+                    SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
+                    this.Close();
+                }
+                else
+                {
+                    long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
+                    AddPhoneNumber addPhoneNumber = new AddPhoneNumber(id);
+                    addPhoneNumber.ShowDialog();
+                    GetDtgPhoneNumbersData();
+                }
             }
             catch (Exception ex)
             {
@@ -83,6 +104,13 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             {
                 this.Close();
             }
+        }
+
+        private void BtnAdd_Click(object sender, EventArgs e)
+        {
+            AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0);
+            addPhoneNumber.ShowDialog();
+            GetDtgPhoneNumbersData();
         }
     }
 }

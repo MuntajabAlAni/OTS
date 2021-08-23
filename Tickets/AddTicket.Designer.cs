@@ -333,9 +333,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumber.Location = new System.Drawing.Point(873, 36);
             this.LblNumber.Name = "LblNumber";
             this.LblNumber.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LblNumber.Size = new System.Drawing.Size(34, 25);
+            this.LblNumber.Size = new System.Drawing.Size(0, 25);
             this.LblNumber.TabIndex = 8;
-            this.LblNumber.Text = "99";
             // 
             // LblRevision
             // 
@@ -345,9 +344,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRevision.Location = new System.Drawing.Point(873, 85);
             this.LblRevision.Name = "LblRevision";
             this.LblRevision.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LblRevision.Size = new System.Drawing.Size(34, 25);
+            this.LblRevision.Size = new System.Drawing.Size(0, 25);
             this.LblRevision.TabIndex = 10;
-            this.LblRevision.Text = "99";
             // 
             // BtnEditCompany
             // 
