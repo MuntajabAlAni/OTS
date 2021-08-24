@@ -285,16 +285,6 @@ namespace OTS.Ticketing.Win.Tickets
             updateParameters.Add("@closed", closed);
             updateParameters.Add("@transferedTo", transferedTo);
 
-            TicketInfo ticketInfo = await GetTicketByNumberAndRevision(number, revision);
-
-            var insertParameters = new DynamicParameters();
-            insertParameters.Add("@number", number);
-            insertParameters.Add("@revision", revision + 1);
-            insertParameters.Add("@companyId", ticketInfo.CompanyId);
-            insertParameters.Add("@phoneNumberId", ticketInfo.PhoneNumberId);
-            insertParameters.Add("@softwareId", ticketInfo.SoftwareId);
-            insertParameters.Add("@UserId", ticketInfo.TransferedTo);
-
             string updateCommand = @"UPDATE tickets
                              SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
                            ,stateId = @stateId
@@ -306,7 +296,25 @@ namespace OTS.Ticketing.Win.Tickets
                            ,transferedTo = @transferedTo
                             WHERE number = @number and revision = @revision";
 
-            string insertCommand = @"INSERT INTO tickets
+            using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
+            {
+                connection.Open();
+                using (var trans = connection.BeginTransaction())
+                {
+                    int recordsUpdated = await connection.ExecuteAsync(updateCommand, updateParameters, trans);
+                    try
+                    {
+                        TicketInfo ticketInfo = await GetTicketByNumberAndRevision(number, revision);
+
+                        var insertParameters = new DynamicParameters();
+                        insertParameters.Add("@number", number);
+                        insertParameters.Add("@revision", revision + 1);
+                        insertParameters.Add("@companyId", ticketInfo.CompanyId);
+                        insertParameters.Add("@phoneNumberId", ticketInfo.PhoneNumberId);
+                        insertParameters.Add("@softwareId", ticketInfo.SoftwareId);
+                        insertParameters.Add("@UserId", ticketInfo.TransferedTo);
+
+                        string insertCommand = @"INSERT INTO tickets
                             (number, phoneNumberId, softwareId, UserId, companyId, revision)
                               VALUES
                            (@number,
@@ -316,15 +324,7 @@ namespace OTS.Ticketing.Win.Tickets
                             @companyId,
                             @revision)";
 
-            using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
-            {
-                connection.Open();
-                using (var trans = connection.BeginTransaction())
-                {
-                    int recordsUpdated = await dataAccess.ExecuteAsync(updateCommand, updateParameters);
-                    try
-                    {
-                        await dataAccess.ExecuteAsync(insertCommand, insertParameters);
+                        await connection.ExecuteAsync(insertCommand, insertParameters , transaction: trans);
                         trans.Commit();
                     }
                     catch (Exception ex)

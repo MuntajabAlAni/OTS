@@ -54,6 +54,7 @@ namespace OTS.Ticketing.Win
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
+            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
             this.PnlTop.SuspendLayout();
@@ -337,7 +338,8 @@ namespace OTS.Ticketing.Win
             this.MenuStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
-            this.HelpToolStripMenuItem});
+            this.HelpToolStripMenuItem,
+            this.EditUserToolStripMenuItem});
             this.MenuStrip.Location = new System.Drawing.Point(0, 36);
             this.MenuStrip.Name = "MenuStrip";
             this.MenuStrip.Size = new System.Drawing.Size(1050, 24);
@@ -356,14 +358,14 @@ namespace OTS.Ticketing.Win
             // ChangeUserToolStripMenuItem
             // 
             this.ChangeUserToolStripMenuItem.Name = "ChangeUserToolStripMenuItem";
-            this.ChangeUserToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ChangeUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ChangeUserToolStripMenuItem.Text = "دخول بمستخدم آخر";
             this.ChangeUserToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ExitToolStripMenuItem.Text = "خروج";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -430,6 +432,13 @@ namespace OTS.Ticketing.Win
             this.bunifuFormDock1.TitleBarOptions.TitleBarControl = this.PnlTop;
             this.bunifuFormDock1.TitleBarOptions.UseBackColorOnDockingIndicators = false;
             // 
+            // EditUserToolStripMenuItem
+            // 
+            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
+            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(147, 20);
+            this.EditUserToolStripMenuItem.Text = "تعديل معلومات المستخدم";
+            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -487,5 +496,6 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.Button BtnAddTicket;
         private System.Windows.Forms.Button BtnStates;
         private System.Windows.Forms.Button BtnOldTickets;
+        private System.Windows.Forms.ToolStripMenuItem EditUserToolStripMenuItem;
     }
 }

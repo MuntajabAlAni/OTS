@@ -194,5 +194,11 @@ namespace OTS.Ticketing.Win
         {
             MessageBox.Show("Online Technical Support 6059\n1.0.0.2\nFuture of Technology Co.\n2021 ", "عن", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddUser displayUser = new AddUser(SystemConstants.loggedInUserId);
+            displayUser.ShowDialog();
+        }
     }
 }

@@ -29,7 +29,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
-                GetDtgPhoneNumbersData();
+                await GetDtgPhoneNumbersData();
                 if (_search)
                 {
                     BtnAdd.Visible = false;
@@ -57,7 +57,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
-        private async void GetDtgPhoneNumbersData()
+        private async Task GetDtgPhoneNumbersData()
         {
             DtgPhoneNumbers.DataSource = await phoneNumberRepository.GetPhoneNumbersBySearch(_phoneNumber);
             DtgPhoneNumbers.Columns["Id"].Visible = false;
@@ -82,7 +82,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
                     AddPhoneNumber addPhoneNumber = new AddPhoneNumber(id);
                     addPhoneNumber.ShowDialog();
-                    GetDtgPhoneNumbersData();
+                    await GetDtgPhoneNumbersData();
                 }
             }
             catch (Exception ex)
@@ -106,11 +106,11 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private async void BtnAdd_Click(object sender, EventArgs e)
         {
             AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0);
             addPhoneNumber.ShowDialog();
-            GetDtgPhoneNumbersData();
+            await GetDtgPhoneNumbersData();
         }
     }
 }

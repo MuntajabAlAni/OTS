@@ -273,7 +273,7 @@ namespace OTS.Ticketing.Win.Tickets
         private void BtnSearchPhoneNumber_Click(object sender, EventArgs e)
         {
             try
-            {
+            {   
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
                 DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(true, CombPhoneNumbers.Text);
                 displayPhoneNumbers.ShowDialog();

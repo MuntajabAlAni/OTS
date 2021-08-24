@@ -44,6 +44,8 @@ namespace OTS.Ticketing.Win.Tickets
                     CompanyView company = result.FirstOrDefault();
                     CombCompanies.SelectedValue = company.Id;
                     BtnUpdate.PerformClick();
+                    BtnEdit.Visible = false;
+                    BtnExcel.Visible = false;
                 }
 
             }
