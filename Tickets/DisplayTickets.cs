@@ -26,6 +26,8 @@ namespace OTS.Ticketing.Win.Tickets
         public DisplayTickets()
         {
             InitializeComponent();
+            CombStates.DropDownStyle = ComboBoxStyle.DropDownList;
+            CombTransferedTo.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private async void DisplayTickets_Load(object sender, EventArgs e)
@@ -164,6 +166,11 @@ namespace OTS.Ticketing.Win.Tickets
                 if (Convert.ToInt64(CombTransferedTo.SelectedValue) == SystemConstants.loggedInUserId)
                 {
                     MessageBox.Show(" !!! لا يمكن تحويل بطاقة لنفس المستخدم الحالي", "محاولة ادخال خاطئة", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
+                {
+                    MessageBox.Show("! يجب إختيار اسم المستخدم عند تحويل البطاقة", "محاولة ادخال خاطئة", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0)

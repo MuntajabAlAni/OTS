@@ -1,5 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Companies;
+using SpreadsheetLight;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -158,30 +159,12 @@ namespace OTS.Ticketing.Win.Tickets
 
         private void BtnExcel_Click(object sender, EventArgs e)
         {
-            StreamWriter wr = new StreamWriter(@"G:\\Book1.xls");
-            // Write Columns to excel file
-            for (int i = 0; i < _dt.Columns.Count; i++)
-            {
-                wr.Write(_dt.Columns[i].ToString().ToUpper() + "\t");
-            }
-            wr.WriteLine();
-            //write rows to excel file
-            for (int i = 0; i < (_dt.Rows.Count); i++)
-            {
-                for (int j = 0; j < _dt.Columns.Count; j++)
-                {
-                    if (_dt.Rows[i][j] != null)
-                    {
-                        wr.Write(Convert.ToString(_dt.Rows[i][j]) + "\t");
-                    }
-                    else
-                    {
-                        wr.Write("\t");
-                    }
-                }
-                wr.WriteLine();
-            }
-            wr.Close();
+
+        }
+
+        private void BtnEdit_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

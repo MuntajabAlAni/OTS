@@ -1,0 +1,229 @@
+﻿using NLog;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OTS.Ticketing.Win.Tickets
+{
+    public partial class EditTicket : Form
+    {
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly TicketRepository _ticketRepository;
+        private readonly long _number;
+        private readonly long _revision;
+        public EditTicket(long number, long revision)
+        {
+            InitializeComponent();
+            _ticketRepository = new TicketRepository();
+            _number = number;
+            _revision = revision;
+        }
+
+        private void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private async void EditTicket_Load(object sender, EventArgs e)
+        {
+
+            FillTransferedToComboBox();
+            FillStatesComboBox();
+
+            TicketInfo ticketInfo = await _ticketRepository.GetTicketByNumberAndRevision(_number, _revision);
+            LblNumber.Text = ticketInfo.Number.ToString();
+            LblRevision.Text = ticketInfo.Revision.ToString();
+            SystemConstants.SelectedCompanyId = ticketInfo.CompanyId;
+            SystemConstants.SelectedPhoneNumberId = ticketInfo.PhoneNumberId;
+            SystemConstants.SelectedSoftware = ticketInfo.SoftwareId;
+            SystemConstants.SelectedUser = ticketInfo.UserId;
+            LblOpenDate.Text = ticketInfo.OpenDate.ToString();
+            TxtProblem.Text = ticketInfo.Problem.ToString();
+            CombStates.SelectedValue = ticketInfo.StateId;
+            CombTransferedTo.SelectedValue = ticketInfo.TransferedTo;
+            TxtRemarks.Text = ticketInfo.Remarks.ToString();
+            ToggleClosed.Checked = ticketInfo.IsClosed;
+            ToggleIsIndexed.Checked = ticketInfo.IsIndexed;
+            ToggleRemotely.Checked = ticketInfo.Remotely;
+
+            FillCompaniesComboBox();
+            FillSoftwaresComboBox();
+            FillUsersComboBox();
+            FillPhoneNumbersComboBox();
+        }
+        private async void FillCompaniesComboBox()
+        {
+            try
+            {
+                CombCompanies.DisplayMember = "Name";
+                CombCompanies.ValueMember = "Id";
+                CombCompanies.DataSource = await _ticketRepository.GetAllCompanies();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+        private async void FillSoftwaresComboBox()
+        {
+            try
+            {
+                CombSoftwares.DisplayMember = "Name";
+                CombSoftwares.ValueMember = "Id";
+                CombSoftwares.DataSource = await _ticketRepository.GetAllSoftwares();
+                CombSoftwares.SelectedValue = SystemConstants.SelectedSoftware;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+        private async void FillUsersComboBox()
+        {
+            try
+            {
+                CombUsers.DisplayMember = "displayName";
+                CombUsers.ValueMember = "Id";
+                CombUsers.DataSource = await _ticketRepository.GetAllUsers();
+                CombUsers.SelectedValue = SystemConstants.SelectedUser;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+        private async void FillPhoneNumbersComboBox()
+        {
+            try
+            {
+                //companyId = CombCompanies.SelectedValue != null ? Convert.ToInt64(CombCompanies.SelectedValue) : 0;
+                var result = await _ticketRepository.GetPhoneNumbersOnSelectedCompanyId(Convert.ToInt64(CombCompanies.SelectedValue));
+                if (result.Count != 0)
+                {
+                    CombPhoneNumbers.DisplayMember = "phoneNumber";
+                    CombPhoneNumbers.ValueMember = "Id";
+                    CombPhoneNumbers.DataSource = result;
+                    CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
+                }
+                else CombPhoneNumbers.DataSource = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+        private async void FillTransferedToComboBox()
+        {
+            try
+            {
+                CombTransferedTo.DisplayMember = "displayName";
+                CombTransferedTo.ValueMember = "Id";
+                CombTransferedTo.DataSource = await _ticketRepository.GetAllUsers();
+                CombTransferedTo.SelectedValue = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+        private async void FillStatesComboBox()
+        {
+            try
+            {
+                CombStates.DisplayMember = "Name";
+                CombStates.ValueMember = "Id";
+                CombStates.DataSource = await _ticketRepository.GetAllStates();
+                CombStates.SelectedValue = 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+
+        private async void BtnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (LblNumber.Text == "" | Convert.ToInt64(CombStates.SelectedValue) == 0)
+                {
+                    MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == SystemConstants.loggedInUserId)
+                {
+                    MessageBox.Show(" !!! لا يمكن تحويل بطاقة لنفس المستخدم الحالي", "محاولة ادخال خاطئة", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
+                {
+                    MessageBox.Show("! يجب إختيار اسم المستخدم عند تحويل البطاقة", "محاولة ادخال خاطئة", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0)
+                {
+                    DialogResult dr;
+                    dr = MessageBox.Show("إغلاق البطاقة ؟؟", "إغلاق", MessageBoxButtons.YesNo);
+                    ToggleClosed.Checked = dr == DialogResult.Yes;
+                }
+                DialogResult dr2;
+                dr2 = MessageBox.Show("هل انت متأكد من الإضافة ؟", "تأكيد", MessageBoxButtons.YesNo);
+                if (dr2 == DialogResult.Yes)
+                {
+                    if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0 & Convert.ToInt64(CombStates.SelectedValue) != 4)
+                        await _ticketRepository.UpdateEntireTicket(Convert.ToInt64(LblNumber.Text),
+                   Convert.ToInt32(LblRevision.Text),
+                   DateTime.Now,
+                   Convert.ToInt64(CombStates.SelectedValue),
+                   TxtRemarks.Text,
+                   TxtProblem.Text,
+                   Convert.ToInt32(ToggleRemotely.Checked),
+                   ToggleIsIndexed.Checked,
+                   ToggleClosed.Checked,
+                   Convert.ToInt64(CombTransferedTo.SelectedValue),
+                   Convert.ToInt64(CombCompanies.SelectedValue),
+                   Convert.ToInt64(CombPhoneNumbers.SelectedValue),
+                   Convert.ToInt64(CombSoftwares.SelectedValue),
+                   Convert.ToInt64(CombUsers.SelectedValue));
+           /*         else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
+                        _ticketRepository.UpdateInsertTicket(Convert.ToInt64(LblNumber.Text),
+                   Convert.ToInt32(LblRevision.Text),
+                   DateTime.Now,
+                   Convert.ToInt64(CombStates.SelectedValue),
+                   TxtRemarks.Text,
+                   TxtProblem.Text,
+                   Convert.ToInt32(ToggleRemotely.Checked),
+                   ToggleIsIndexed.Checked,
+                   false,
+                   Convert.ToInt64(CombTransferedTo.SelectedValue));
+                    this.Close();  */
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+        }
+    }
+}

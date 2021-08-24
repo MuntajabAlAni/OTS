@@ -74,6 +74,9 @@
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="SpreadsheetLight">
+      <HintPath>F:\Downloads\Compressed\SpreadsheetLight3.5\SpreadsheetLight.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -140,6 +143,12 @@
     </Compile>
     <Compile Include="Tickets\DisplayOldTickets.Designer.cs">
       <DependentUpon>DisplayOldTickets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tickets\EditTicket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\EditTicket.Designer.cs">
+      <DependentUpon>EditTicket.cs</DependentUpon>
     </Compile>
     <Compile Include="Users\AddUser.cs">
       <SubType>Form</SubType>
@@ -247,6 +256,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\DisplayOldTickets.resx">
       <DependentUpon>DisplayOldTickets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\EditTicket.resx">
+      <DependentUpon>EditTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>

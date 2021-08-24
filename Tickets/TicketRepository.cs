@@ -91,7 +91,7 @@ namespace OTS.Ticketing.Win.Tickets
             list.Insert(0, (new PhoneNumberInfo { Id = 0, PhoneNumber = "" }));
             return list;
         }
-        public async Task<int> AddTicket(long number, int revision, long companyId, long phoneNumberId, long softwareId, long UserId)
+        public async Task<int> AddTicket(long number, int revision, long companyId, long phoneNumberId, long softwareId, long userId)
         {
             DynamicParameters parameters1 = new DynamicParameters();
             parameters1.Add("@number", number);
@@ -99,7 +99,7 @@ namespace OTS.Ticketing.Win.Tickets
             parameters1.Add("@companyId", companyId);
             parameters1.Add("@phoneNumberId", phoneNumberId);
             parameters1.Add("@softwareId", softwareId);
-            parameters1.Add("@UserId", UserId);
+            parameters1.Add("@userId", userId);
 
             string command1 = @"INSERT INTO tickets
            (number, phoneNumberId, softwareId, UserId, companyId, revision)
@@ -334,6 +334,42 @@ namespace OTS.Ticketing.Win.Tickets
                     }
                 }
             }
+        }
+        public async Task<int> UpdateEntireTicket(long number, int revision, DateTime closeDate, long stateId, string remarks,
+            string problem, int remotely, bool IsIndexed, bool closed, long transferedTo, long companyId, long phoneNumberId, long softwareId, long userId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@number", number);
+            parameters.Add("@revision", revision);
+            parameters.Add("@closeDate", closeDate);
+            parameters.Add("@stateId", stateId);
+            parameters.Add("@remarks", remarks);
+            parameters.Add("@problem", problem);
+            parameters.Add("@remotely", remotely);
+            parameters.Add("@IsIndexed", IsIndexed);
+            parameters.Add("@closed", closed);
+            parameters.Add("@transferedTo", transferedTo);
+            parameters.Add("@companyId", companyId);
+            parameters.Add("@phoneNumberId", phoneNumberId);
+            parameters.Add("@softwareId", softwareId);
+            parameters.Add("@userId", userId);
+
+            string command = @"UPDATE tickets
+                             SET companyId = @companyId
+                           ,phoneNumberId = @phoneNumberId
+                           ,softwareId = @softwareId
+                           ,userId = @userId
+                           ,closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
+                           ,stateId = @stateId
+                           ,remarks = @remarks
+                           ,problem = @problem
+                           ,remotely = @remotely
+                           ,IsIndexed = @IsIndexed
+                           ,isClosed = @closed
+                           ,transferedTo = @transferedTo
+                            WHERE number = @number and revision = @revision";
+
+            return await dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

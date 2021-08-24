@@ -34,15 +34,23 @@ namespace OTS.Ticketing.Win.Users
         }
         private async void GetDtgUsersData()
         {
-            DtgUsers.DataSource = await userRepository.GetAllUsers();
-            DtgUsers.Columns["Id"].HeaderText = "ت";
-            DtgUsers.Columns["displayName"].HeaderText = "اسم الموظف";
-            DtgUsers.Columns["userName"].Visible = false;
-            DtgUsers.Columns["password"].Visible = false;
-            DtgUsers.Columns["state"].Visible = false;
-            DtgUsers.Columns["ip"].Visible = false;
-            DtgUsers.Columns["remarks"].Visible = false;
-            DtgUsers.Columns["salt"].Visible = false;
+            try
+            {
+                DtgUsers.DataSource = await userRepository.GetAllUsers();
+                DtgUsers.Columns["Id"].HeaderText = "ت";
+                DtgUsers.Columns["displayName"].HeaderText = "اسم الموظف";
+                DtgUsers.Columns["userName"].Visible = false;
+                DtgUsers.Columns["password"].Visible = false;
+                DtgUsers.Columns["state"].Visible = false;
+                DtgUsers.Columns["ip"].Visible = false;
+                DtgUsers.Columns["remarks"].Visible = false;
+                DtgUsers.Columns["salt"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
 
         private void DtgUsers_DoubleClick(object sender, EventArgs e)

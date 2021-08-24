@@ -17,7 +17,7 @@ namespace OTS.Ticketing.Win.Tickets
         public long UserId { get; set; }
         public long CompanyId { get; set; }
         public string Problem { get; set; }
-        public long State { get; set; }
+        public long StateId { get; set; }
         public string Remarks { get; set; }
         public int Revision { get; set; }
         public bool Remotely { get; set; }
