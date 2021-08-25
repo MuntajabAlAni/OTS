@@ -54,15 +54,27 @@ namespace OTS.Ticketing.Win.Tickets
             string query = "SELECT * FROM Companies";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             var list = result.ToList();
-            list.Insert(0, (new CompanyInfo { Id = 0, Name = "إختيار عن طريق رقم الهاتف" }));
+            list.Insert(0, (new CompanyInfo { Id = 0, Name = "يرجى إختيار شركة" }));
             return list;
         }
+        public async Task<List<CompanyInfo>> GetCompaniesByUserId(long userId = 0)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userId", userId);
+
+            string query = @"SELECT DISTINCT C.ID, C.Name from companies C
+                            inner join tickets T on c.id = t.companyId and IIF (@userId = 0,0,t.userId) = @userId";
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            var list = result.ToList();
+            return list;
+        }
+
         public async Task<List<SoftwareInfo>> GetAllSoftwares()
         {
             string query = "SELECT * FROM Softwares";
             var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
             var list = result.ToList();
-            list.Insert(0, (new SoftwareInfo { Id = 0, Name = "الكل" }));
+            list.Insert(0, (new SoftwareInfo { Id = 0, Name = "" }));
             return list;
         }
         public async Task<List<UserInfo>> GetAllUsers()
@@ -204,11 +216,10 @@ namespace OTS.Ticketing.Win.Tickets
             return result.FirstOrDefault();
         }
         public async Task<List<TicketsView>> GetOldUnClosedTicketsByUserIdOrCompanyId(
-            long companyId, long userId, DateTime fromDate, DateTime toDate)
+            long companyId, DateTime fromDate, DateTime toDate)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            parameters.Add("@userId", userId);
             parameters.Add("@fromDate", fromDate);
             parameters.Add("@toDate", toDate);
 
@@ -222,8 +233,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join companies c on t.companyId = c.id 
 												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
 												 left join states st on t.stateId = st.id
-												 WHERE IIF(@userId = 0,0,t.UserId) = @userId 
-												 and IIF(@companyId = 0,0,t.CompanyId) = @companyId
+												 WHERE IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and t.openDate between @fromDate and @toDate
 												 and (isClosed = 0 or isClosed is null)
                                                  ORDER BY t.number DESC,t.revision DESC";
@@ -232,11 +242,10 @@ namespace OTS.Ticketing.Win.Tickets
             return result.ToList();
         }
         public async Task<List<TicketsView>> GetOldTicketsByUserIdOrCompanyId(
-            long companyId, long userId, DateTime fromDate, DateTime toDate)
+            long companyId, DateTime fromDate, DateTime toDate)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            parameters.Add("@userId", userId);
             parameters.Add("@fromDate", fromDate);
             parameters.Add("@toDate", toDate);
 
@@ -249,8 +258,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join Users e on t.UserId = e.id
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
-												 WHERE IIF(@userId = 0,0,t.UserId) = @userId 
-												 and IIF(@companyId = 0,0,t.CompanyId) = @companyId
+												 WHERE IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and t.openDate between @fromDate and @toDate
 												 and isClosed = 1
                                                  ORDER BY t.number DESC,t.revision DESC";
@@ -258,32 +266,19 @@ namespace OTS.Ticketing.Win.Tickets
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
-        public async Task<List<CompanyView>> GetCompaniesOnUserId(long userId)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@userId", userId);
-
-            string query = @"Select distinct c.id, c.name 
-                           from companies c
-                           left join tickets t on t.companyId = c.id
-                           where IIF(@userId = 0,0,t.userId) = @userId";
-
-            var result = await dataAccess.QueryAsync<CompanyView>(query, parameters);
-            return result.ToList();
-        }
-        public async void UpdateInsertTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool IsIndexed, bool closed, long transferedTo)
+        public async Task UpdateInsertTicket(TicketInfo ticket)
         {
             var updateParameters = new DynamicParameters();
-            updateParameters.Add("@number", number);
-            updateParameters.Add("@revision", revision);
-            updateParameters.Add("@closeDate", closeDate);
-            updateParameters.Add("@stateId", stateId);
-            updateParameters.Add("@remarks", remarks);
-            updateParameters.Add("@problem", problem);
-            updateParameters.Add("@remotely", remotely);
-            updateParameters.Add("@IsIndexed", IsIndexed);
-            updateParameters.Add("@closed", closed);
-            updateParameters.Add("@transferedTo", transferedTo);
+            updateParameters.Add("@number", ticket.Number);
+            updateParameters.Add("@revision", ticket.Revision);
+            updateParameters.Add("@closeDate", ticket.CloseDate);
+            updateParameters.Add("@stateId", ticket.StateId);
+            updateParameters.Add("@remarks", ticket.Remarks);
+            updateParameters.Add("@problem", ticket.Problem);
+            updateParameters.Add("@remotely", ticket.Remotely);
+            updateParameters.Add("@IsIndexed", ticket.IsIndexed);
+            updateParameters.Add("@closed", ticket.IsClosed);
+            updateParameters.Add("@transferedTo", ticket.TransferedTo);
 
             string updateCommand = @"UPDATE tickets
                              SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
@@ -298,23 +293,20 @@ namespace OTS.Ticketing.Win.Tickets
 
             using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
             {
-                connection.Open();
+                await connection.OpenAsync();
                 using (var trans = connection.BeginTransaction())
                 {
                     int recordsUpdated = await connection.ExecuteAsync(updateCommand, updateParameters, trans);
-                    try
-                    {
-                        TicketInfo ticketInfo = await GetTicketByNumberAndRevision(number, revision);
 
-                        var insertParameters = new DynamicParameters();
-                        insertParameters.Add("@number", number);
-                        insertParameters.Add("@revision", revision + 1);
-                        insertParameters.Add("@companyId", ticketInfo.CompanyId);
-                        insertParameters.Add("@phoneNumberId", ticketInfo.PhoneNumberId);
-                        insertParameters.Add("@softwareId", ticketInfo.SoftwareId);
-                        insertParameters.Add("@UserId", ticketInfo.TransferedTo);
+                    var insertParameters = new DynamicParameters();
+                    insertParameters.Add("@number", ticket.Number);
+                    insertParameters.Add("@revision", ticket.Revision + 1);
+                    insertParameters.Add("@companyId", ticket.CompanyId);
+                    insertParameters.Add("@phoneNumberId", ticket.PhoneNumberId);
+                    insertParameters.Add("@softwareId", ticket.SoftwareId);
+                    insertParameters.Add("@UserId", ticket.TransferedTo);
 
-                        string insertCommand = @"INSERT INTO tickets
+                    string insertCommand = @"INSERT INTO tickets
                             (number, phoneNumberId, softwareId, UserId, companyId, revision)
                               VALUES
                            (@number,
@@ -324,7 +316,10 @@ namespace OTS.Ticketing.Win.Tickets
                             @companyId,
                             @revision)";
 
-                        await connection.ExecuteAsync(insertCommand, insertParameters , transaction: trans);
+                    try
+                    {
+
+                        await connection.ExecuteAsync(insertCommand, insertParameters, transaction: trans);
                         trans.Commit();
                     }
                     catch (Exception ex)

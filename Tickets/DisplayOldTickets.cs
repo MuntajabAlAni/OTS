@@ -34,12 +34,13 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 FillUsersComboBox();
-                FillCompaniesComboBox();
+                FillCompaniesComboBox(0);
                 var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUserId);
                 if (UserInfo.UserName != "admin")
                 {
-                    CombUser.SelectedValue = SystemConstants.loggedInUserId;
                     CombUser.Enabled = false;
+                    CombUser.DropDownStyle = ComboBoxStyle.DropDownList;
+                    CombUser.SelectedValue = SystemConstants.loggedInUserId;
                     var result = await _companyRepository.GetCompanyByName(_companyName);
                     CompanyView company = result.FirstOrDefault();
                     CombCompanies.SelectedValue = company.Id;
@@ -59,12 +60,10 @@ namespace OTS.Ticketing.Win.Tickets
         {
             if (CbUnclosed.Checked) _dt = SystemConstants.ToDataTable(await _ticketRepository.GetOldUnClosedTicketsByUserIdOrCompanyId(
                 Convert.ToInt64(CombCompanies.SelectedValue),
-                Convert.ToInt64(CombUser.SelectedValue),
                 DtpFromDate.Value,
                 DtpToDate.Value));
             else _dt = SystemConstants.ToDataTable(await _ticketRepository.GetOldTicketsByUserIdOrCompanyId(
                 Convert.ToInt64(CombCompanies.SelectedValue),
-                Convert.ToInt64(CombUser.SelectedValue),
                 DtpFromDate.Value,
                 DtpToDate.Value));
             DtgOldTickets.DataSource = _dt;
@@ -81,15 +80,15 @@ namespace OTS.Ticketing.Win.Tickets
             DtgOldTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
             DtgOldTickets.Columns["IsClosed"].Visible = false;
             DtgOldTickets.Columns["Remarks"].Visible = false;
+            DtgOldTickets.Columns["TransferedTo"].HeaderText = "تم التحويل الى";
         }
-        private async void FillCompaniesComboBox(long userId = 0)
+        private async void FillCompaniesComboBox(long userId)
         {
             try
             {
-                userId = userId != 0 ? Convert.ToInt64(CombUser.SelectedValue) : 0;
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.DataSource = await _ticketRepository.GetCompaniesOnUserId(userId);
+                CombCompanies.DataSource = await _ticketRepository.GetCompaniesByUserId(userId);
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
@@ -154,11 +153,6 @@ namespace OTS.Ticketing.Win.Tickets
             }
         }
 
-        private void CombUser_SelectedValueChanged(object sender, EventArgs e)
-        {
-            FillCompaniesComboBox(Convert.ToInt64(CombUser.SelectedValue));
-        }
-
         private void BtnExcel_Click(object sender, EventArgs e)
         {
 
@@ -167,6 +161,11 @@ namespace OTS.Ticketing.Win.Tickets
         private void BtnEdit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CombUser_SelectedValueChanged(object sender, EventArgs e)
+        {
+            FillCompaniesComboBox(Convert.ToInt64(CombUser.SelectedValue));
         }
     }
 }

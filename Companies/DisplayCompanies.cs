@@ -29,7 +29,7 @@ namespace OTS.Ticketing.Win.Companies
         {
             try
             {
-                GetDtgCompaniesData();
+                await GetDtgCompaniesData();
                 if (_search)
                 {
                     BtnAdd.Visible = false;
@@ -56,7 +56,7 @@ namespace OTS.Ticketing.Win.Companies
             }
         }
 
-        private async void GetDtgCompaniesData()
+        private async Task GetDtgCompaniesData()
         {
             DtgCompanies.DataSource = await companyRepository.GetCompanyByName(_companyName);
             DtgCompanies.Columns["Id"].Visible = false;
@@ -81,7 +81,7 @@ namespace OTS.Ticketing.Win.Companies
                     long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
                     AddCompany addCompany = new AddCompany(id);
                     addCompany.ShowDialog();
-                    GetDtgCompaniesData();
+                    await GetDtgCompaniesData();
                 }
             }
             catch (Exception ex)
@@ -104,11 +104,11 @@ namespace OTS.Ticketing.Win.Companies
             }
         }
 
-        private void BtnAdd_Click(object sender, EventArgs e)
+        private async void BtnAdd_Click(object sender, EventArgs e)
         {
             AddCompany addCompany = new AddCompany(0);
             addCompany.ShowDialog();
-            GetDtgCompaniesData();
+            await GetDtgCompaniesData();
         }
     }
 }

@@ -195,16 +195,20 @@ namespace OTS.Ticketing.Win.Tickets
                    ToggleClosed.Checked,
                    Convert.ToInt64(CombTransferedTo.SelectedValue));
                     else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
-                        ticketRepository.UpdateInsertTicket(Convert.ToInt64(LblNumber.Text),
-                   Convert.ToInt32(LblRevision.Text),
-                   DateTime.Now,
-                   Convert.ToInt64(CombStates.SelectedValue),
-                   TxtRemarks.Text,
-                   TxtProblem.Text,
-                   Convert.ToInt32(ToggleRemotely.Checked),
-                   ToggleIsIndexed.Checked,
-                   false,
-                   Convert.ToInt64(CombTransferedTo.SelectedValue));
+                    {
+                        TicketInfo ticket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+                            Convert.ToInt64(LblRevision.Text));
+                        ticket.CloseDate = DateTime.Now;
+                        ticket.Problem = TxtProblem.Text;
+                        ticket.StateId = Convert.ToInt64(CombStates.SelectedValue);
+                        ticket.TransferedTo = Convert.ToInt64(CombTransferedTo.SelectedValue);
+                        ticket.Remarks = TxtRemarks.Text;
+                        ticket.IsIndexed = ToggleIsIndexed.Checked;
+                        ticket.Remotely = ToggleRemotely.Checked;
+                        ticket.IsClosed = ToggleClosed.Checked;
+
+                        await ticketRepository.UpdateInsertTicket(ticket);
+                    }
                     GetDtgTicketsData();
                     RefreshAllData();
                 }
