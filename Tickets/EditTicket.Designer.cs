@@ -30,15 +30,15 @@ namespace OTS.Ticketing.Win.Tickets
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditTicket));
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState19 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState20 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState21 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState22 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState23 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState24 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState25 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState26 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
-            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState27 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState10 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState11 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState12 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState13 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState14 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState15 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState16 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState17 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
+            Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState toggleState18 = new Bunifu.UI.WinForms.BunifuToggleSwitch.ToggleState();
             this.LblRevision = new System.Windows.Forms.Label();
             this.LblOpenDate = new System.Windows.Forms.Label();
             this.LblNumber = new System.Windows.Forms.Label();
@@ -65,10 +65,10 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.BtnUpdate = new System.Windows.Forms.Button();
             this.BtnRefresh = new System.Windows.Forms.Button();
-            this.CombCompanies = new System.Windows.Forms.ComboBox();
             this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
             this.CombSoftwares = new System.Windows.Forms.ComboBox();
             this.CombUsers = new System.Windows.Forms.ComboBox();
+            this.LblCompanyName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // LblRevision
@@ -76,10 +76,10 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRevision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblRevision.AutoSize = true;
             this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.LblRevision.Location = new System.Drawing.Point(916, 50);
+            this.LblRevision.Location = new System.Drawing.Point(841, 53);
             this.LblRevision.Name = "LblRevision";
             this.LblRevision.Size = new System.Drawing.Size(0, 25);
-            this.LblRevision.TabIndex = 48;
+            this.LblRevision.TabIndex = 19;
             // 
             // LblOpenDate
             // 
@@ -89,17 +89,17 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblOpenDate.Location = new System.Drawing.Point(436, 15);
             this.LblOpenDate.Name = "LblOpenDate";
             this.LblOpenDate.Size = new System.Drawing.Size(0, 20);
-            this.LblOpenDate.TabIndex = 60;
+            this.LblOpenDate.TabIndex = 27;
             // 
             // LblNumber
             // 
             this.LblNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblNumber.AutoSize = true;
             this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.LblNumber.Location = new System.Drawing.Point(916, 14);
+            this.LblNumber.Location = new System.Drawing.Point(841, 17);
             this.LblNumber.Name = "LblNumber";
             this.LblNumber.Size = new System.Drawing.Size(0, 25);
-            this.LblNumber.TabIndex = 49;
+            this.LblNumber.TabIndex = 18;
             // 
             // ToggleClosed
             // 
@@ -115,35 +115,35 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleClosed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleClosed.Name = "ToggleClosed";
             this.ToggleClosed.Size = new System.Drawing.Size(51, 26);
-            this.ToggleClosed.TabIndex = 38;
+            this.ToggleClosed.TabIndex = 9;
             this.ToggleClosed.ThumbMargin = 3;
-            toggleState19.BackColor = System.Drawing.Color.DarkGray;
-            toggleState19.BackColorInner = System.Drawing.Color.White;
-            toggleState19.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState19.BorderColorInner = System.Drawing.Color.White;
-            toggleState19.BorderRadius = 25;
-            toggleState19.BorderRadiusInner = 17;
-            toggleState19.BorderThickness = 1;
-            toggleState19.BorderThicknessInner = 1;
-            this.ToggleClosed.ToggleStateDisabled = toggleState19;
-            toggleState20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState20.BackColorInner = System.Drawing.Color.White;
-            toggleState20.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState20.BorderColorInner = System.Drawing.Color.White;
-            toggleState20.BorderRadius = 25;
-            toggleState20.BorderRadiusInner = 17;
-            toggleState20.BorderThickness = 1;
-            toggleState20.BorderThicknessInner = 1;
-            this.ToggleClosed.ToggleStateOff = toggleState20;
-            toggleState21.BackColor = System.Drawing.Color.Crimson;
-            toggleState21.BackColorInner = System.Drawing.Color.White;
-            toggleState21.BorderColor = System.Drawing.Color.Crimson;
-            toggleState21.BorderColorInner = System.Drawing.Color.White;
-            toggleState21.BorderRadius = 25;
-            toggleState21.BorderRadiusInner = 17;
-            toggleState21.BorderThickness = 1;
-            toggleState21.BorderThicknessInner = 1;
-            this.ToggleClosed.ToggleStateOn = toggleState21;
+            toggleState10.BackColor = System.Drawing.Color.DarkGray;
+            toggleState10.BackColorInner = System.Drawing.Color.White;
+            toggleState10.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState10.BorderColorInner = System.Drawing.Color.White;
+            toggleState10.BorderRadius = 25;
+            toggleState10.BorderRadiusInner = 17;
+            toggleState10.BorderThickness = 1;
+            toggleState10.BorderThicknessInner = 1;
+            this.ToggleClosed.ToggleStateDisabled = toggleState10;
+            toggleState11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState11.BackColorInner = System.Drawing.Color.White;
+            toggleState11.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState11.BorderColorInner = System.Drawing.Color.White;
+            toggleState11.BorderRadius = 25;
+            toggleState11.BorderRadiusInner = 17;
+            toggleState11.BorderThickness = 1;
+            toggleState11.BorderThicknessInner = 1;
+            this.ToggleClosed.ToggleStateOff = toggleState11;
+            toggleState12.BackColor = System.Drawing.Color.Crimson;
+            toggleState12.BackColorInner = System.Drawing.Color.White;
+            toggleState12.BorderColor = System.Drawing.Color.Crimson;
+            toggleState12.BorderColorInner = System.Drawing.Color.White;
+            toggleState12.BorderRadius = 25;
+            toggleState12.BorderRadiusInner = 17;
+            toggleState12.BorderThickness = 1;
+            toggleState12.BorderThicknessInner = 1;
+            this.ToggleClosed.ToggleStateOn = toggleState12;
             this.ToggleClosed.Value = false;
             // 
             // ToggleIsIndexed
@@ -160,35 +160,35 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleIsIndexed.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleIsIndexed.Name = "ToggleIsIndexed";
             this.ToggleIsIndexed.Size = new System.Drawing.Size(51, 26);
-            this.ToggleIsIndexed.TabIndex = 36;
+            this.ToggleIsIndexed.TabIndex = 8;
             this.ToggleIsIndexed.ThumbMargin = 3;
-            toggleState22.BackColor = System.Drawing.Color.DarkGray;
-            toggleState22.BackColorInner = System.Drawing.Color.White;
-            toggleState22.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState22.BorderColorInner = System.Drawing.Color.White;
-            toggleState22.BorderRadius = 25;
-            toggleState22.BorderRadiusInner = 17;
-            toggleState22.BorderThickness = 1;
-            toggleState22.BorderThicknessInner = 1;
-            this.ToggleIsIndexed.ToggleStateDisabled = toggleState22;
-            toggleState23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState23.BackColorInner = System.Drawing.Color.White;
-            toggleState23.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState23.BorderColorInner = System.Drawing.Color.White;
-            toggleState23.BorderRadius = 25;
-            toggleState23.BorderRadiusInner = 17;
-            toggleState23.BorderThickness = 1;
-            toggleState23.BorderThicknessInner = 1;
-            this.ToggleIsIndexed.ToggleStateOff = toggleState23;
-            toggleState24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState24.BackColorInner = System.Drawing.Color.White;
-            toggleState24.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState24.BorderColorInner = System.Drawing.Color.White;
-            toggleState24.BorderRadius = 25;
-            toggleState24.BorderRadiusInner = 17;
-            toggleState24.BorderThickness = 1;
-            toggleState24.BorderThicknessInner = 1;
-            this.ToggleIsIndexed.ToggleStateOn = toggleState24;
+            toggleState13.BackColor = System.Drawing.Color.DarkGray;
+            toggleState13.BackColorInner = System.Drawing.Color.White;
+            toggleState13.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState13.BorderColorInner = System.Drawing.Color.White;
+            toggleState13.BorderRadius = 25;
+            toggleState13.BorderRadiusInner = 17;
+            toggleState13.BorderThickness = 1;
+            toggleState13.BorderThicknessInner = 1;
+            this.ToggleIsIndexed.ToggleStateDisabled = toggleState13;
+            toggleState14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState14.BackColorInner = System.Drawing.Color.White;
+            toggleState14.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState14.BorderColorInner = System.Drawing.Color.White;
+            toggleState14.BorderRadius = 25;
+            toggleState14.BorderRadiusInner = 17;
+            toggleState14.BorderThickness = 1;
+            toggleState14.BorderThicknessInner = 1;
+            this.ToggleIsIndexed.ToggleStateOff = toggleState14;
+            toggleState15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState15.BackColorInner = System.Drawing.Color.White;
+            toggleState15.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState15.BorderColorInner = System.Drawing.Color.White;
+            toggleState15.BorderRadius = 25;
+            toggleState15.BorderRadiusInner = 17;
+            toggleState15.BorderThickness = 1;
+            toggleState15.BorderThicknessInner = 1;
+            this.ToggleIsIndexed.ToggleStateOn = toggleState15;
             this.ToggleIsIndexed.Value = false;
             // 
             // ToggleRemotely
@@ -205,35 +205,35 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleRemotely.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.ToggleRemotely.Name = "ToggleRemotely";
             this.ToggleRemotely.Size = new System.Drawing.Size(51, 26);
-            this.ToggleRemotely.TabIndex = 37;
+            this.ToggleRemotely.TabIndex = 7;
             this.ToggleRemotely.ThumbMargin = 3;
-            toggleState25.BackColor = System.Drawing.Color.DarkGray;
-            toggleState25.BackColorInner = System.Drawing.Color.White;
-            toggleState25.BorderColor = System.Drawing.Color.DarkGray;
-            toggleState25.BorderColorInner = System.Drawing.Color.White;
-            toggleState25.BorderRadius = 25;
-            toggleState25.BorderRadiusInner = 17;
-            toggleState25.BorderThickness = 1;
-            toggleState25.BorderThicknessInner = 1;
-            this.ToggleRemotely.ToggleStateDisabled = toggleState25;
-            toggleState26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState26.BackColorInner = System.Drawing.Color.White;
-            toggleState26.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            toggleState26.BorderColorInner = System.Drawing.Color.White;
-            toggleState26.BorderRadius = 25;
-            toggleState26.BorderRadiusInner = 17;
-            toggleState26.BorderThickness = 1;
-            toggleState26.BorderThicknessInner = 1;
-            this.ToggleRemotely.ToggleStateOff = toggleState26;
-            toggleState27.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState27.BackColorInner = System.Drawing.Color.White;
-            toggleState27.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            toggleState27.BorderColorInner = System.Drawing.Color.White;
-            toggleState27.BorderRadius = 25;
-            toggleState27.BorderRadiusInner = 17;
-            toggleState27.BorderThickness = 1;
-            toggleState27.BorderThicknessInner = 1;
-            this.ToggleRemotely.ToggleStateOn = toggleState27;
+            toggleState16.BackColor = System.Drawing.Color.DarkGray;
+            toggleState16.BackColorInner = System.Drawing.Color.White;
+            toggleState16.BorderColor = System.Drawing.Color.DarkGray;
+            toggleState16.BorderColorInner = System.Drawing.Color.White;
+            toggleState16.BorderRadius = 25;
+            toggleState16.BorderRadiusInner = 17;
+            toggleState16.BorderThickness = 1;
+            toggleState16.BorderThicknessInner = 1;
+            this.ToggleRemotely.ToggleStateDisabled = toggleState16;
+            toggleState17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState17.BackColorInner = System.Drawing.Color.White;
+            toggleState17.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            toggleState17.BorderColorInner = System.Drawing.Color.White;
+            toggleState17.BorderRadius = 25;
+            toggleState17.BorderRadiusInner = 17;
+            toggleState17.BorderThickness = 1;
+            toggleState17.BorderThicknessInner = 1;
+            this.ToggleRemotely.ToggleStateOff = toggleState17;
+            toggleState18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState18.BackColorInner = System.Drawing.Color.White;
+            toggleState18.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            toggleState18.BorderColorInner = System.Drawing.Color.White;
+            toggleState18.BorderRadius = 25;
+            toggleState18.BorderRadiusInner = 17;
+            toggleState18.BorderThickness = 1;
+            toggleState18.BorderThicknessInner = 1;
+            this.ToggleRemotely.ToggleStateOn = toggleState18;
             this.ToggleRemotely.Value = false;
             // 
             // CombTransferedTo
@@ -244,7 +244,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombTransferedTo.Location = new System.Drawing.Point(388, 91);
             this.CombTransferedTo.Name = "CombTransferedTo";
             this.CombTransferedTo.Size = new System.Drawing.Size(121, 25);
-            this.CombTransferedTo.TabIndex = 34;
+            this.CombTransferedTo.TabIndex = 5;
             this.CombTransferedTo.Visible = false;
             // 
             // CombStates
@@ -255,7 +255,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombStates.Location = new System.Drawing.Point(515, 91);
             this.CombStates.Name = "CombStates";
             this.CombStates.Size = new System.Drawing.Size(121, 25);
-            this.CombStates.TabIndex = 33;
+            this.CombStates.TabIndex = 4;
             // 
             // LblSoftwareTitle
             // 
@@ -265,7 +265,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftwareTitle.Location = new System.Drawing.Point(950, 185);
             this.LblSoftwareTitle.Name = "LblSoftwareTitle";
             this.LblSoftwareTitle.Size = new System.Drawing.Size(49, 15);
-            this.LblSoftwareTitle.TabIndex = 46;
+            this.LblSoftwareTitle.TabIndex = 16;
             this.LblSoftwareTitle.Text = "البرنامج :";
             // 
             // LblUserTitle
@@ -276,7 +276,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUserTitle.Location = new System.Drawing.Point(950, 232);
             this.LblUserTitle.Name = "LblUserTitle";
             this.LblUserTitle.Size = new System.Drawing.Size(55, 15);
-            this.LblUserTitle.TabIndex = 47;
+            this.LblUserTitle.TabIndex = 17;
             this.LblUserTitle.Text = "الموظف :";
             // 
             // LblPhoneNumberTitle
@@ -287,7 +287,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblPhoneNumberTitle.Location = new System.Drawing.Point(950, 138);
             this.LblPhoneNumberTitle.Name = "LblPhoneNumberTitle";
             this.LblPhoneNumberTitle.Size = new System.Drawing.Size(65, 15);
-            this.LblPhoneNumberTitle.TabIndex = 45;
+            this.LblPhoneNumberTitle.TabIndex = 15;
             this.LblPhoneNumberTitle.Text = "رقم الهاتف :";
             // 
             // LblOpenDateTitle
@@ -298,7 +298,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblOpenDateTitle.Location = new System.Drawing.Point(642, 19);
             this.LblOpenDateTitle.Name = "LblOpenDateTitle";
             this.LblOpenDateTitle.Size = new System.Drawing.Size(96, 15);
-            this.LblOpenDateTitle.TabIndex = 58;
+            this.LblOpenDateTitle.TabIndex = 23;
             this.LblOpenDateTitle.Text = "تاريخ فتح البطاقة :";
             // 
             // LblCompanyTitle
@@ -309,7 +309,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompanyTitle.Location = new System.Drawing.Point(950, 91);
             this.LblCompanyTitle.Name = "LblCompanyTitle";
             this.LblCompanyTitle.Size = new System.Drawing.Size(45, 15);
-            this.LblCompanyTitle.TabIndex = 44;
+            this.LblCompanyTitle.TabIndex = 14;
             this.LblCompanyTitle.Text = "الشركة :";
             // 
             // LblProblem
@@ -320,7 +320,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblProblem.Location = new System.Drawing.Point(642, 58);
             this.LblProblem.Name = "LblProblem";
             this.LblProblem.Size = new System.Drawing.Size(73, 15);
-            this.LblProblem.TabIndex = 57;
+            this.LblProblem.TabIndex = 24;
             this.LblProblem.Text = "نوع المشكلة :";
             // 
             // LblRemarks
@@ -331,7 +331,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemarks.Location = new System.Drawing.Point(642, 138);
             this.LblRemarks.Name = "LblRemarks";
             this.LblRemarks.Size = new System.Drawing.Size(58, 15);
-            this.LblRemarks.TabIndex = 54;
+            this.LblRemarks.TabIndex = 26;
             this.LblRemarks.Text = "ملاحظات :";
             // 
             // LblRemote
@@ -342,7 +342,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemote.Location = new System.Drawing.Point(206, 58);
             this.LblRemote.Name = "LblRemote";
             this.LblRemote.Size = new System.Drawing.Size(66, 15);
-            this.LblRemote.TabIndex = 63;
+            this.LblRemote.TabIndex = 30;
             this.LblRemote.Text = "بإتصال فقط";
             // 
             // label1
@@ -353,7 +353,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.label1.Location = new System.Drawing.Point(36, 97);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 15);
-            this.label1.TabIndex = 64;
+            this.label1.TabIndex = 31;
             this.label1.Text = "إغلاق البطاقة";
             // 
             // LblState
@@ -364,7 +364,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblState.Location = new System.Drawing.Point(642, 96);
             this.LblState.Name = "LblState";
             this.LblState.Size = new System.Drawing.Size(40, 15);
-            this.LblState.TabIndex = 55;
+            this.LblState.TabIndex = 25;
             this.LblState.Text = "الحالة :";
             // 
             // LblIsIndexed
@@ -375,7 +375,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblIsIndexed.Location = new System.Drawing.Point(281, 19);
             this.LblIsIndexed.Name = "LblIsIndexed";
             this.LblIsIndexed.Size = new System.Drawing.Size(81, 15);
-            this.LblIsIndexed.TabIndex = 61;
+            this.LblIsIndexed.TabIndex = 29;
             this.LblIsIndexed.Text = "ترتيب الملفات :";
             // 
             // LblRemotely
@@ -386,7 +386,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRemotely.Location = new System.Drawing.Point(365, 58);
             this.LblRemotely.Name = "LblRemotely";
             this.LblRemotely.Size = new System.Drawing.Size(70, 15);
-            this.LblRemotely.TabIndex = 62;
+            this.LblRemotely.TabIndex = 28;
             this.LblRemotely.Text = "طريقة الحل :";
             // 
             // LblRevisionTitle
@@ -397,7 +397,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRevisionTitle.Location = new System.Drawing.Point(950, 55);
             this.LblRevisionTitle.Name = "LblRevisionTitle";
             this.LblRevisionTitle.Size = new System.Drawing.Size(74, 15);
-            this.LblRevisionTitle.TabIndex = 43;
+            this.LblRevisionTitle.TabIndex = 13;
             this.LblRevisionTitle.Text = "رقم المراجعة :";
             // 
             // LblNumberTitle
@@ -408,7 +408,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumberTitle.Location = new System.Drawing.Point(950, 19);
             this.LblNumberTitle.Name = "LblNumberTitle";
             this.LblNumberTitle.Size = new System.Drawing.Size(69, 15);
-            this.LblNumberTitle.TabIndex = 42;
+            this.LblNumberTitle.TabIndex = 12;
             this.LblNumberTitle.Text = "رقم البطاقة :";
             // 
             // TxtProblem
@@ -418,7 +418,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtProblem.Location = new System.Drawing.Point(465, 53);
             this.TxtProblem.Name = "TxtProblem";
             this.TxtProblem.Size = new System.Drawing.Size(171, 25);
-            this.TxtProblem.TabIndex = 32;
+            this.TxtProblem.TabIndex = 3;
             // 
             // TxtRemarks
             // 
@@ -428,7 +428,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(498, 121);
-            this.TxtRemarks.TabIndex = 35;
+            this.TxtRemarks.TabIndex = 6;
             // 
             // BtnUpdate
             // 
@@ -441,7 +441,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnUpdate.Location = new System.Drawing.Point(12, 209);
             this.BtnUpdate.Name = "BtnUpdate";
             this.BtnUpdate.Size = new System.Drawing.Size(120, 45);
-            this.BtnUpdate.TabIndex = 39;
+            this.BtnUpdate.TabIndex = 10;
             this.BtnUpdate.Text = "تعديل";
             this.BtnUpdate.UseVisualStyleBackColor = false;
             this.BtnUpdate.Click += new System.EventHandler(this.BtnUpdate_Click);
@@ -457,20 +457,10 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnRefresh.Location = new System.Drawing.Point(12, 155);
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(120, 45);
-            this.BtnRefresh.TabIndex = 40;
+            this.BtnRefresh.TabIndex = 11;
             this.BtnRefresh.Text = "تراجع";
             this.BtnRefresh.UseVisualStyleBackColor = false;
             this.BtnRefresh.Click += new System.EventHandler(this.BtnRefresh_Click);
-            // 
-            // CombCompanies
-            // 
-            this.CombCompanies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.CombCompanies.FormattingEnabled = true;
-            this.CombCompanies.Location = new System.Drawing.Point(763, 86);
-            this.CombCompanies.Name = "CombCompanies";
-            this.CombCompanies.Size = new System.Drawing.Size(181, 25);
-            this.CombCompanies.TabIndex = 33;
             // 
             // CombPhoneNumbers
             // 
@@ -480,7 +470,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombPhoneNumbers.Location = new System.Drawing.Point(763, 133);
             this.CombPhoneNumbers.Name = "CombPhoneNumbers";
             this.CombPhoneNumbers.Size = new System.Drawing.Size(181, 25);
-            this.CombPhoneNumbers.TabIndex = 33;
+            this.CombPhoneNumbers.TabIndex = 0;
             // 
             // CombSoftwares
             // 
@@ -490,7 +480,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombSoftwares.Location = new System.Drawing.Point(763, 180);
             this.CombSoftwares.Name = "CombSoftwares";
             this.CombSoftwares.Size = new System.Drawing.Size(181, 25);
-            this.CombSoftwares.TabIndex = 33;
+            this.CombSoftwares.TabIndex = 1;
             // 
             // CombUsers
             // 
@@ -500,13 +490,24 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombUsers.Location = new System.Drawing.Point(763, 227);
             this.CombUsers.Name = "CombUsers";
             this.CombUsers.Size = new System.Drawing.Size(181, 25);
-            this.CombUsers.TabIndex = 33;
+            this.CombUsers.TabIndex = 2;
+            // 
+            // LblCompanyName
+            // 
+            this.LblCompanyName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblCompanyName.AutoSize = true;
+            this.LblCompanyName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.LblCompanyName.Location = new System.Drawing.Point(773, 91);
+            this.LblCompanyName.Name = "LblCompanyName";
+            this.LblCompanyName.Size = new System.Drawing.Size(0, 25);
+            this.LblCompanyName.TabIndex = 22;
             // 
             // EditTicket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1050, 268);
+            this.Controls.Add(this.LblCompanyName);
             this.Controls.Add(this.LblRevision);
             this.Controls.Add(this.LblOpenDate);
             this.Controls.Add(this.LblNumber);
@@ -517,7 +518,6 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.CombUsers);
             this.Controls.Add(this.CombSoftwares);
             this.Controls.Add(this.CombPhoneNumbers);
-            this.Controls.Add(this.CombCompanies);
             this.Controls.Add(this.CombStates);
             this.Controls.Add(this.LblSoftwareTitle);
             this.Controls.Add(this.LblUserTitle);
@@ -577,9 +577,9 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.TextBox TxtRemarks;
         private System.Windows.Forms.Button BtnUpdate;
         private System.Windows.Forms.Button BtnRefresh;
-        private System.Windows.Forms.ComboBox CombCompanies;
         private System.Windows.Forms.ComboBox CombPhoneNumbers;
         private System.Windows.Forms.ComboBox CombSoftwares;
         private System.Windows.Forms.ComboBox CombUsers;
+        private System.Windows.Forms.Label LblCompanyName;
     }
 }

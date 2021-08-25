@@ -33,6 +33,7 @@ namespace OTS.Ticketing.Win.Tickets
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayOldTickets));
             this.BtnEdit = new System.Windows.Forms.Button();
             this.DtgOldTickets = new System.Windows.Forms.DataGridView();
             this.BtnExit = new System.Windows.Forms.Button();
@@ -43,11 +44,15 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombCompanies = new System.Windows.Forms.ComboBox();
             this.LblUser = new System.Windows.Forms.Label();
             this.LblCompany = new System.Windows.Forms.Label();
-            this.CbToDate = new System.Windows.Forms.CheckBox();
-            this.CbFromDate = new System.Windows.Forms.CheckBox();
             this.CbUnclosed = new System.Windows.Forms.CheckBox();
             this.BtnExcel = new System.Windows.Forms.Button();
+            this.LblFrom = new System.Windows.Forms.Label();
+            this.LblTo = new System.Windows.Forms.Label();
+            this.PnlLoad = new System.Windows.Forms.Panel();
+            this.PbLoading = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DtgOldTickets)).BeginInit();
+            this.PnlLoad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnEdit
@@ -126,6 +131,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgOldTickets.Size = new System.Drawing.Size(1001, 386);
             this.DtgOldTickets.TabIndex = 11;
+            this.DtgOldTickets.DoubleClick += new System.EventHandler(this.DtgOldTickets_DoubleClick);
             // 
             // BtnExit
             // 
@@ -173,14 +179,13 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.DtpFromDate.CalendarFont = new System.Drawing.Font("Segoe UI", 12F);
             this.DtpFromDate.CustomFormat = "";
-            this.DtpFromDate.Enabled = false;
             this.DtpFromDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpFromDate.Location = new System.Drawing.Point(416, 22);
             this.DtpFromDate.Name = "DtpFromDate";
             this.DtpFromDate.Size = new System.Drawing.Size(104, 25);
             this.DtpFromDate.TabIndex = 3;
-            this.DtpFromDate.Value = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.DtpFromDate.Value = new System.DateTime(2021, 8, 4, 0, 0, 0, 0);
             // 
             // CombUser
             // 
@@ -227,32 +232,6 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompany.TabIndex = 26;
             this.LblCompany.Text = "الشركة :";
             // 
-            // CbToDate
-            // 
-            this.CbToDate.AutoSize = true;
-            this.CbToDate.Checked = true;
-            this.CbToDate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CbToDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbToDate.Location = new System.Drawing.Point(361, 26);
-            this.CbToDate.Name = "CbToDate";
-            this.CbToDate.Size = new System.Drawing.Size(49, 19);
-            this.CbToDate.TabIndex = 4;
-            this.CbToDate.Text = "الى :";
-            this.CbToDate.UseVisualStyleBackColor = true;
-            this.CbToDate.CheckedChanged += new System.EventHandler(this.CbToDate_CheckedChanged);
-            // 
-            // CbFromDate
-            // 
-            this.CbFromDate.AutoSize = true;
-            this.CbFromDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbFromDate.Location = new System.Drawing.Point(526, 26);
-            this.CbFromDate.Name = "CbFromDate";
-            this.CbFromDate.Size = new System.Drawing.Size(47, 19);
-            this.CbFromDate.TabIndex = 2;
-            this.CbFromDate.Text = "من :";
-            this.CbFromDate.UseVisualStyleBackColor = true;
-            this.CbFromDate.CheckedChanged += new System.EventHandler(this.CbFromDate_CheckedChanged);
-            // 
             // CbUnclosed
             // 
             this.CbUnclosed.AutoSize = true;
@@ -280,14 +259,53 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnExcel.UseVisualStyleBackColor = false;
             this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
+            // LblFrom
+            // 
+            this.LblFrom.AutoSize = true;
+            this.LblFrom.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblFrom.Location = new System.Drawing.Point(526, 27);
+            this.LblFrom.Name = "LblFrom";
+            this.LblFrom.Size = new System.Drawing.Size(28, 15);
+            this.LblFrom.TabIndex = 27;
+            this.LblFrom.Text = "من :";
+            // 
+            // LblTo
+            // 
+            this.LblTo.AutoSize = true;
+            this.LblTo.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblTo.Location = new System.Drawing.Point(361, 27);
+            this.LblTo.Name = "LblTo";
+            this.LblTo.Size = new System.Drawing.Size(30, 15);
+            this.LblTo.TabIndex = 27;
+            this.LblTo.Text = "الى :";
+            // 
+            // PnlLoad
+            // 
+            this.PnlLoad.Controls.Add(this.PbLoading);
+            this.PnlLoad.Location = new System.Drawing.Point(454, 190);
+            this.PnlLoad.Name = "PnlLoad";
+            this.PnlLoad.Size = new System.Drawing.Size(200, 100);
+            this.PnlLoad.TabIndex = 28;
+            // 
+            // PbLoading
+            // 
+            this.PbLoading.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.PbLoading.Image = ((System.Drawing.Image)(resources.GetObject("PbLoading.Image")));
+            this.PbLoading.Location = new System.Drawing.Point(-129, -150);
+            this.PbLoading.Name = "PbLoading";
+            this.PbLoading.Size = new System.Drawing.Size(458, 400);
+            this.PbLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.PbLoading.TabIndex = 0;
+            this.PbLoading.TabStop = false;
+            // 
             // DisplayOldTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 509);
             this.Controls.Add(this.CbUnclosed);
-            this.Controls.Add(this.CbFromDate);
-            this.Controls.Add(this.CbToDate);
+            this.Controls.Add(this.LblTo);
+            this.Controls.Add(this.LblFrom);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.LblCompany);
             this.Controls.Add(this.CombCompanies);
@@ -299,6 +317,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.BtnEdit);
             this.Controls.Add(this.DtgOldTickets);
             this.Controls.Add(this.BtnExit);
+            this.Controls.Add(this.PnlLoad);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "DisplayOldTickets";
@@ -308,6 +327,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.Load += new System.EventHandler(this.DisplayOldTickets_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DisplayOldTickets_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.DtgOldTickets)).EndInit();
+            this.PnlLoad.ResumeLayout(false);
+            this.PnlLoad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -325,9 +347,11 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.ComboBox CombCompanies;
         private System.Windows.Forms.Label LblUser;
         private System.Windows.Forms.Label LblCompany;
-        private System.Windows.Forms.CheckBox CbToDate;
-        private System.Windows.Forms.CheckBox CbFromDate;
         private System.Windows.Forms.CheckBox CbUnclosed;
         private System.Windows.Forms.Button BtnExcel;
+        private System.Windows.Forms.Label LblFrom;
+        private System.Windows.Forms.Label LblTo;
+        private System.Windows.Forms.Panel PnlLoad;
+        private System.Windows.Forms.PictureBox PbLoading;
     }
 }

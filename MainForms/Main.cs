@@ -96,24 +96,25 @@ namespace OTS.Ticketing.Win
             {
                 BtnHome.PerformClick();
                 var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
-                if (UserInfo.UserName != "admin")
+                if (UserInfo.UserName == "admin")
                 {
-                    BtnAddTicket.Visible = false;
-                    BtnCompanies.Visible = false;
-                    BtnUsers.Visible = false;
-                    BtnPhoneNumbres.Visible = false;
-                    BtnSoftwares.Visible = false;
-                    BtnStates.Visible = false;
-                    BtnOldTickets.Visible = false;
-                    BtnTickets.Location = new Point(0, 162);
-                    if (UserInfo.UserName == "Noor")
-                    {
-                        BtnTickets.Visible = false;
-                        BtnAddTicket.Visible = true;
-                        BtnAddTicket.Location = new Point(0, 162);
-                    }
+                    BtnAddTicket.Visible = true;
+                    BtnCompanies.Visible = true;
+                    BtnUsers.Visible = true;
+                    BtnPhoneNumbres.Visible = true;
+                    BtnSoftwares.Visible = true;
+                    BtnStates.Visible = true;
+                    BtnOldTickets.Visible = true;
                     return;
                 }
+                if (UserInfo.UserName == "Noor")
+                {
+                    BtnTickets.Visible = false;
+                    BtnAddTicket.Visible = true;
+                    BtnAddTicket.Location = new Point(0, 162);
+                    return;
+                }
+                BtnTickets.Location = new Point(0, 162);
             }
             catch (Exception ex)
             {

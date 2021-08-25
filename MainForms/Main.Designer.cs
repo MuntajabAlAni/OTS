@@ -52,9 +52,9 @@ namespace OTS.Ticketing.Win
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
-            this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
             this.PnlTop.SuspendLayout();
@@ -101,6 +101,7 @@ namespace OTS.Ticketing.Win
             this.BtnOldTickets.Text = "البطاقات السابقة";
             this.BtnOldTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnOldTickets.UseVisualStyleBackColor = true;
+            this.BtnOldTickets.Visible = false;
             this.BtnOldTickets.Click += new System.EventHandler(this.BtnOldTickets_Click);
             // 
             // BtnAddTicket
@@ -120,6 +121,7 @@ namespace OTS.Ticketing.Win
             this.BtnAddTicket.Text = "بطاقة جديدة";
             this.BtnAddTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnAddTicket.UseVisualStyleBackColor = true;
+            this.BtnAddTicket.Visible = false;
             this.BtnAddTicket.Click += new System.EventHandler(this.BtnAddTicket_Click);
             // 
             // BtnTickets
@@ -158,6 +160,7 @@ namespace OTS.Ticketing.Win
             this.BtnStates.Text = "حالات البطاقات";
             this.BtnStates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnStates.UseVisualStyleBackColor = true;
+            this.BtnStates.Visible = false;
             this.BtnStates.Click += new System.EventHandler(this.BtnStates_Click);
             // 
             // BtnSoftwares
@@ -177,6 +180,7 @@ namespace OTS.Ticketing.Win
             this.BtnSoftwares.Text = "البرامج";
             this.BtnSoftwares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSoftwares.UseVisualStyleBackColor = true;
+            this.BtnSoftwares.Visible = false;
             this.BtnSoftwares.Click += new System.EventHandler(this.BtnSoftwares_Click);
             // 
             // BtnPhoneNumbres
@@ -196,6 +200,7 @@ namespace OTS.Ticketing.Win
             this.BtnPhoneNumbres.Text = "ارقام الهاتف";
             this.BtnPhoneNumbres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
+            this.BtnPhoneNumbres.Visible = false;
             this.BtnPhoneNumbres.Click += new System.EventHandler(this.BtnPhoneNumbres_Click);
             // 
             // BtnUsers
@@ -215,6 +220,7 @@ namespace OTS.Ticketing.Win
             this.BtnUsers.Text = "الموظفين";
             this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnUsers.UseVisualStyleBackColor = true;
+            this.BtnUsers.Visible = false;
             this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
             // 
             // BtnHome
@@ -253,6 +259,7 @@ namespace OTS.Ticketing.Win
             this.BtnCompanies.Text = "الشركات";
             this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCompanies.UseVisualStyleBackColor = true;
+            this.BtnCompanies.Visible = false;
             this.BtnCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);
             // 
             // LOGO
@@ -358,14 +365,14 @@ namespace OTS.Ticketing.Win
             // ChangeUserToolStripMenuItem
             // 
             this.ChangeUserToolStripMenuItem.Name = "ChangeUserToolStripMenuItem";
-            this.ChangeUserToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ChangeUserToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.ChangeUserToolStripMenuItem.Text = "دخول بمستخدم آخر";
             this.ChangeUserToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
             this.ExitToolStripMenuItem.Text = "خروج";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
@@ -383,6 +390,13 @@ namespace OTS.Ticketing.Win
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
             this.AboutToolStripMenuItem.Text = "عن";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // EditUserToolStripMenuItem
+            // 
+            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
+            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(147, 20);
+            this.EditUserToolStripMenuItem.Text = "تعديل معلومات المستخدم";
+            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
             // PnlContainer
             // 
@@ -431,13 +445,6 @@ namespace OTS.Ticketing.Win
             this.bunifuFormDock1.TitleBarOptions.DoubleClickToExpandWindow = false;
             this.bunifuFormDock1.TitleBarOptions.TitleBarControl = this.PnlTop;
             this.bunifuFormDock1.TitleBarOptions.UseBackColorOnDockingIndicators = false;
-            // 
-            // EditUserToolStripMenuItem
-            // 
-            this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
-            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(147, 20);
-            this.EditUserToolStripMenuItem.Text = "تعديل معلومات المستخدم";
-            this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
             // Main
             // 

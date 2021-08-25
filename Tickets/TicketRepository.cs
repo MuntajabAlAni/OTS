@@ -57,6 +57,15 @@ namespace OTS.Ticketing.Win.Tickets
             list.Insert(0, (new CompanyInfo { Id = 0, Name = "يرجى إختيار شركة" }));
             return list;
         }
+        public async Task<CompanyInfo> GetCompanyById(long companyId)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@companyId", companyId);
+
+            string query = "SELECT * FROM Companies where Id = @companyId";
+            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            return result.FirstOrDefault();
+        }
         public async Task<List<CompanyInfo>> GetCompaniesByUserId(long userId = 0)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -68,7 +77,6 @@ namespace OTS.Ticketing.Win.Tickets
             var list = result.ToList();
             return list;
         }
-
         public async Task<List<SoftwareInfo>> GetAllSoftwares()
         {
             string query = "SELECT * FROM Softwares";
@@ -216,21 +224,22 @@ namespace OTS.Ticketing.Win.Tickets
             return result.FirstOrDefault();
         }
         public async Task<List<TicketsView>> GetOldUnClosedTicketsByUserIdOrCompanyId(
-            long companyId, DateTime fromDate, DateTime toDate)
+            long companyId, long userId, DateTime fromDate, DateTime toDate)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
             parameters.Add("@fromDate", fromDate);
+            parameters.Add("@userId", userId);
             parameters.Add("@toDate", toDate);
 
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+                                                 c.name as CompanyName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
 												 end IsIndexed FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
-                                                 inner join companies c on t.companyId = c.id 
+                                                 inner join companies c on t.companyId = c.id  and IIF(@userId = 0,0,t.UserId) = @userId 
 												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
 												 left join states st on t.stateId = st.id
 												 WHERE IIF(@companyId = 0,0,t.CompanyId) = @companyId
@@ -242,22 +251,24 @@ namespace OTS.Ticketing.Win.Tickets
             return result.ToList();
         }
         public async Task<List<TicketsView>> GetOldTicketsByUserIdOrCompanyId(
-            long companyId, DateTime fromDate, DateTime toDate)
+            long companyId, long userId, DateTime fromDate, DateTime toDate)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
             parameters.Add("@fromDate", fromDate);
+            parameters.Add("@userId", userId);
             parameters.Add("@toDate", toDate);
 
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+                                                 c.name as CompanyName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed FROM tickets t
+												 end IsIndexed,  k.displayName TransferedTo FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
-                                                 inner join companies c on t.companyId = c.id 
+                                                 inner join companies c on t.companyId = c.id  and IIF(@userId = 0,0,t.UserId) = @userId 
 												 left join states st on t.stateId = st.id
+                                                 left join (select u.id, u.displayName from users u inner join tickets t on t.transferedTo = u.id) k on t.transferedTo = k.id
 												 WHERE IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and t.openDate between @fromDate and @toDate
 												 and isClosed = 1
@@ -331,7 +342,7 @@ namespace OTS.Ticketing.Win.Tickets
             }
         }
         public async Task<int> UpdateEntireTicket(long number, int revision, DateTime closeDate, long stateId, string remarks,
-            string problem, int remotely, bool IsIndexed, bool closed, long transferedTo, long companyId, long phoneNumberId, long softwareId, long userId)
+            string problem, int remotely, bool IsIndexed, bool closed, long transferedTo, long phoneNumberId, long softwareId, long userId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@number", number);
@@ -344,14 +355,12 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@IsIndexed", IsIndexed);
             parameters.Add("@closed", closed);
             parameters.Add("@transferedTo", transferedTo);
-            parameters.Add("@companyId", companyId);
             parameters.Add("@phoneNumberId", phoneNumberId);
             parameters.Add("@softwareId", softwareId);
             parameters.Add("@userId", userId);
 
             string command = @"UPDATE tickets
-                             SET companyId = @companyId
-                           ,phoneNumberId = @phoneNumberId
+                             SET phoneNumberId = @phoneNumberId
                            ,softwareId = @softwareId
                            ,userId = @userId
                            ,closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end

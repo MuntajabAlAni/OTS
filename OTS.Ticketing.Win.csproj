@@ -150,6 +150,12 @@
     <Compile Include="Tickets\EditTicket.Designer.cs">
       <DependentUpon>EditTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\TicketRemarks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tickets\TicketRemarks.Designer.cs">
+      <DependentUpon>TicketRemarks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Users\AddUser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -259,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\EditTicket.resx">
       <DependentUpon>EditTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\TicketRemarks.resx">
+      <DependentUpon>TicketRemarks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Users\AddUser.resx">
       <DependentUpon>AddUser.cs</DependentUpon>

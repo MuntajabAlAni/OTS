@@ -19,9 +19,9 @@ namespace OTS.Ticketing.Win.DatabaseConnection
                 InitialCatalog = init==false? SystemConstants.Database:"master",
                 UserID = "sa",
                 Password = "vULiwCss0SrBrLJ",
-                //IntegratedSecurity = true,
+                IntegratedSecurity = true,
             };
-            str["Server"] = str.DataSource + @"\FOTSQLSERVER";
+            //str["Server"] = str.DataSource + @"\FOTSQLSERVER";
             //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
             return str.ConnectionString;
         }

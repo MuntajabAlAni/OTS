@@ -205,7 +205,7 @@ namespace OTS.Ticketing.Win.Tickets
                         ticket.Remarks = TxtRemarks.Text;
                         ticket.IsIndexed = ToggleIsIndexed.Checked;
                         ticket.Remotely = ToggleRemotely.Checked;
-                        ticket.IsClosed = ToggleClosed.Checked;
+                        ticket.IsClosed = true;
 
                         await ticketRepository.UpdateInsertTicket(ticket);
                     }
