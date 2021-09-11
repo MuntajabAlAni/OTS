@@ -48,5 +48,14 @@ namespace OTS.Ticketing.Win.States
             var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
             return result.ToList();
         }
+        public async Task<long> GetLastAddedStateId()
+        {
+            string query = "SELECT TOP 1 id FROM States Order by id DESC";
+
+            var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
+            StateInfo stateInfo = result.FirstOrDefault();
+            return stateInfo.Id;
+
+        }
     }
 }

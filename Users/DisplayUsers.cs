@@ -36,7 +36,7 @@ namespace OTS.Ticketing.Win.Users
         {
             try
             {
-                DtgUsers.DataSource = await userRepository.GetAllUsers();
+                DtgUsers.DataSource = SystemConstants.ToDataTable(await userRepository.GetAllUsers());
                 DtgUsers.Columns["Id"].HeaderText = "ت";
                 DtgUsers.Columns["displayName"].HeaderText = "اسم الموظف";
                 DtgUsers.Columns["userName"].Visible = false;

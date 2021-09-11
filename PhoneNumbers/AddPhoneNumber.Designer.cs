@@ -96,6 +96,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.TxtPhoneNumber.Name = "TxtPhoneNumber";
             this.TxtPhoneNumber.Size = new System.Drawing.Size(180, 25);
             this.TxtPhoneNumber.TabIndex = 0;
+            this.TxtPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPhoneNumber_KeyPress);
             this.TxtPhoneNumber.Leave += new System.EventHandler(this.TxtPhoneNumber_Leave);
             // 
             // TxtCustomerName

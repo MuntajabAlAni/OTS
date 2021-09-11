@@ -60,6 +60,15 @@ namespace OTS.Ticketing.Win.Softwares
             var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
             return result.ToList();
         }
+        public async Task<long> GetLastAddedSoftwareId()
+        {
+            string query = "SELECT TOP 1 id FROM Softwares Order by id DESC";
+
+            var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
+            SoftwareInfo softwareInfo = result.FirstOrDefault();
+            return softwareInfo.Id;
+
+        }
 
     }
 }

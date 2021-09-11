@@ -64,18 +64,20 @@
     <Reference Include="Bunifu.UI.WinForms.BunifuToggleSwitch">
       <HintPath>..\Bunifu_UI_WinForms_5.0.3_Downloadly.ir\Bunifu UI WinForms 5.0.3\ui.winforms.5.0.3\Bunifu.UI.WinForms.BunifuToggleSwitch.dll</HintPath>
     </Reference>
+    <Reference Include="ClosedXML, Version=0.95.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ClosedXML.0.95.4\lib\net40\ClosedXML.dll</HintPath>
+    </Reference>
     <Reference Include="Dapper, Version=1.60.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Dapper.1.60.6\lib\net451\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
-      <EmbedInteropTypes>True</EmbedInteropTypes>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>packages\DocumentFormat.OpenXml.2.7.2\lib\net40\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.10.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>packages\ExcelNumberFormat.1.0.10\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>packages\NLog.4.7.10\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="SpreadsheetLight">
-      <HintPath>F:\Downloads\Compressed\SpreadsheetLight3.5\SpreadsheetLight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -95,6 +97,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Branches\AddBranch.cs">
@@ -125,7 +128,22 @@
     <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="messages-ar.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages-ar.resx</DependentUpon>
+    </Compile>
+    <Compile Include="messages-en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>messages-en.resx</DependentUpon>
+    </Compile>
     <Compile Include="PhoneNumbers\PhoneNumberView.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Softwares\DisplaySoftwares.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -242,11 +260,19 @@
       <DependentUpon>DisplayTickets.cs</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketRepository.cs" />
+    <Compile Include="Utils\ActivityInfo.cs" />
+    <Compile Include="Utils\ActivityLogUtility.cs" />
+    <Compile Include="Utils\Enums.cs" />
+    <Compile Include="Utils\ExcelUtility.cs" />
+    <Compile Include="Utils\LocalizationMessages.cs" />
     <EmbeddedResource Include="Branches\AddBranch.resx">
       <DependentUpon>AddBranch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Companies\AddCompany.resx">
       <DependentUpon>AddCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Companies\DisplayCompanies.en.resx">
+      <DependentUpon>DisplayCompanies.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Companies\DisplayCompanies.resx">
       <DependentUpon>DisplayCompanies.cs</DependentUpon>
@@ -254,11 +280,44 @@
     <EmbeddedResource Include="DatabaseConnection\DatabaseServer.resx">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Home.en.resx">
+      <DependentUpon>Home.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Login.ar.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Login.en.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Main.ar.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Main.en.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="messages-ar.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages-ar.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="messages-en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>messages-en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Softwares\DisplaySoftwares.resx">
       <DependentUpon>DisplaySoftwares.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="States\DisplayStates.resx">
       <DependentUpon>DisplayStates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\AddTicket.ar.resx">
+      <DependentUpon>AddTicket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tickets\AddTicket.en.resx">
+      <DependentUpon>AddTicket.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\DisplayOldTickets.resx">
       <DependentUpon>DisplayOldTickets.cs</DependentUpon>
@@ -288,16 +347,6 @@
       <DependentUpon>DisplayPhoneNumbers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Softwares\AddSoftware.resx">
       <DependentUpon>AddSoftware.cs</DependentUpon>
     </EmbeddedResource>

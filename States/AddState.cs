@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,10 +30,13 @@ namespace OTS.Ticketing.Win.States
                 if (_id == 0)
                 {
                     await stateRepository.AddState(TxtName.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddState, "إضافة حالة",
+                        await stateRepository.GetLastAddedStateId());
                 }
                 else
                 {
                     await stateRepository.UpdateState(_id, TxtName.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditState, "تعديل حالة", _id);
                 }
                 this.Close();
             }

@@ -67,6 +67,7 @@ namespace OTS.Ticketing.Win
             // 
             // PnlMenuVertical
             // 
+            resources.ApplyResources(this.PnlMenuVertical, "PnlMenuVertical");
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.PnlMenuVertical.Controls.Add(this.BtnOldTickets);
             this.PnlMenuVertical.Controls.Add(this.BtnAddTicket);
@@ -78,333 +79,200 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.Controls.Add(this.BtnHome);
             this.PnlMenuVertical.Controls.Add(this.BtnCompanies);
             this.PnlMenuVertical.Controls.Add(this.LOGO);
-            this.PnlMenuVertical.Dock = System.Windows.Forms.DockStyle.Left;
-            this.PnlMenuVertical.Location = new System.Drawing.Point(0, 0);
             this.PnlMenuVertical.Name = "PnlMenuVertical";
-            this.PnlMenuVertical.Size = new System.Drawing.Size(250, 650);
-            this.PnlMenuVertical.TabIndex = 2;
             // 
             // BtnOldTickets
             // 
+            resources.ApplyResources(this.BtnOldTickets, "BtnOldTickets");
             this.BtnOldTickets.FlatAppearance.BorderSize = 0;
             this.BtnOldTickets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnOldTickets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnOldTickets.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnOldTickets.ForeColor = System.Drawing.Color.White;
-            this.BtnOldTickets.Image = ((System.Drawing.Image)(resources.GetObject("BtnOldTickets.Image")));
-            this.BtnOldTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnOldTickets.Location = new System.Drawing.Point(0, 520);
             this.BtnOldTickets.Name = "BtnOldTickets";
-            this.BtnOldTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnOldTickets.Size = new System.Drawing.Size(250, 45);
-            this.BtnOldTickets.TabIndex = 8;
-            this.BtnOldTickets.Text = "البطاقات السابقة";
-            this.BtnOldTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnOldTickets.UseVisualStyleBackColor = true;
-            this.BtnOldTickets.Visible = false;
             this.BtnOldTickets.Click += new System.EventHandler(this.BtnOldTickets_Click);
             // 
             // BtnAddTicket
             // 
+            resources.ApplyResources(this.BtnAddTicket, "BtnAddTicket");
             this.BtnAddTicket.FlatAppearance.BorderSize = 0;
             this.BtnAddTicket.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnAddTicket.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnAddTicket.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnAddTicket.ForeColor = System.Drawing.Color.White;
-            this.BtnAddTicket.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddTicket.Image")));
-            this.BtnAddTicket.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnAddTicket.Location = new System.Drawing.Point(0, 469);
             this.BtnAddTicket.Name = "BtnAddTicket";
-            this.BtnAddTicket.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnAddTicket.Size = new System.Drawing.Size(250, 45);
-            this.BtnAddTicket.TabIndex = 7;
-            this.BtnAddTicket.Text = "بطاقة جديدة";
-            this.BtnAddTicket.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnAddTicket.UseVisualStyleBackColor = true;
-            this.BtnAddTicket.Visible = false;
             this.BtnAddTicket.Click += new System.EventHandler(this.BtnAddTicket_Click);
             // 
             // BtnTickets
             // 
+            resources.ApplyResources(this.BtnTickets, "BtnTickets");
             this.BtnTickets.FlatAppearance.BorderSize = 0;
             this.BtnTickets.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnTickets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnTickets.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnTickets.ForeColor = System.Drawing.Color.White;
-            this.BtnTickets.Image = ((System.Drawing.Image)(resources.GetObject("BtnTickets.Image")));
-            this.BtnTickets.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnTickets.Location = new System.Drawing.Point(0, 418);
             this.BtnTickets.Name = "BtnTickets";
-            this.BtnTickets.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnTickets.Size = new System.Drawing.Size(250, 45);
-            this.BtnTickets.TabIndex = 6;
-            this.BtnTickets.Text = "البطاقات";
-            this.BtnTickets.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnTickets.UseVisualStyleBackColor = true;
             this.BtnTickets.Click += new System.EventHandler(this.BtnTickets_Click);
             // 
             // BtnStates
             // 
+            resources.ApplyResources(this.BtnStates, "BtnStates");
             this.BtnStates.FlatAppearance.BorderSize = 0;
             this.BtnStates.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnStates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnStates.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnStates.ForeColor = System.Drawing.Color.White;
-            this.BtnStates.Image = ((System.Drawing.Image)(resources.GetObject("BtnStates.Image")));
-            this.BtnStates.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnStates.Location = new System.Drawing.Point(0, 316);
             this.BtnStates.Name = "BtnStates";
-            this.BtnStates.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnStates.Size = new System.Drawing.Size(250, 45);
-            this.BtnStates.TabIndex = 4;
-            this.BtnStates.Text = "حالات البطاقات";
-            this.BtnStates.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnStates.UseVisualStyleBackColor = true;
-            this.BtnStates.Visible = false;
             this.BtnStates.Click += new System.EventHandler(this.BtnStates_Click);
             // 
             // BtnSoftwares
             // 
+            resources.ApplyResources(this.BtnSoftwares, "BtnSoftwares");
             this.BtnSoftwares.FlatAppearance.BorderSize = 0;
             this.BtnSoftwares.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnSoftwares.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnSoftwares.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnSoftwares.ForeColor = System.Drawing.Color.White;
-            this.BtnSoftwares.Image = ((System.Drawing.Image)(resources.GetObject("BtnSoftwares.Image")));
-            this.BtnSoftwares.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnSoftwares.Location = new System.Drawing.Point(0, 367);
             this.BtnSoftwares.Name = "BtnSoftwares";
-            this.BtnSoftwares.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnSoftwares.Size = new System.Drawing.Size(250, 45);
-            this.BtnSoftwares.TabIndex = 5;
-            this.BtnSoftwares.Text = "البرامج";
-            this.BtnSoftwares.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnSoftwares.UseVisualStyleBackColor = true;
-            this.BtnSoftwares.Visible = false;
             this.BtnSoftwares.Click += new System.EventHandler(this.BtnSoftwares_Click);
             // 
             // BtnPhoneNumbres
             // 
+            resources.ApplyResources(this.BtnPhoneNumbres, "BtnPhoneNumbres");
             this.BtnPhoneNumbres.FlatAppearance.BorderSize = 0;
             this.BtnPhoneNumbres.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnPhoneNumbres.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnPhoneNumbres.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnPhoneNumbres.ForeColor = System.Drawing.Color.White;
-            this.BtnPhoneNumbres.Image = ((System.Drawing.Image)(resources.GetObject("BtnPhoneNumbres.Image")));
-            this.BtnPhoneNumbres.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnPhoneNumbres.Location = new System.Drawing.Point(0, 265);
             this.BtnPhoneNumbres.Name = "BtnPhoneNumbres";
-            this.BtnPhoneNumbres.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnPhoneNumbres.Size = new System.Drawing.Size(250, 45);
-            this.BtnPhoneNumbres.TabIndex = 3;
-            this.BtnPhoneNumbres.Text = "ارقام الهاتف";
-            this.BtnPhoneNumbres.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnPhoneNumbres.UseVisualStyleBackColor = true;
-            this.BtnPhoneNumbres.Visible = false;
             this.BtnPhoneNumbres.Click += new System.EventHandler(this.BtnPhoneNumbres_Click);
             // 
             // BtnUsers
             // 
+            resources.ApplyResources(this.BtnUsers, "BtnUsers");
             this.BtnUsers.FlatAppearance.BorderSize = 0;
             this.BtnUsers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnUsers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnUsers.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnUsers.ForeColor = System.Drawing.Color.White;
-            this.BtnUsers.Image = ((System.Drawing.Image)(resources.GetObject("BtnUsers.Image")));
-            this.BtnUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnUsers.Location = new System.Drawing.Point(0, 214);
             this.BtnUsers.Name = "BtnUsers";
-            this.BtnUsers.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnUsers.Size = new System.Drawing.Size(250, 45);
-            this.BtnUsers.TabIndex = 2;
-            this.BtnUsers.Text = "الموظفين";
-            this.BtnUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnUsers.UseVisualStyleBackColor = true;
-            this.BtnUsers.Visible = false;
             this.BtnUsers.Click += new System.EventHandler(this.BtnUsers_Click);
             // 
             // BtnHome
             // 
+            resources.ApplyResources(this.BtnHome, "BtnHome");
             this.BtnHome.FlatAppearance.BorderSize = 0;
             this.BtnHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnHome.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnHome.ForeColor = System.Drawing.Color.White;
-            this.BtnHome.Image = ((System.Drawing.Image)(resources.GetObject("BtnHome.Image")));
-            this.BtnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnHome.Location = new System.Drawing.Point(0, 111);
             this.BtnHome.Name = "BtnHome";
-            this.BtnHome.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnHome.Size = new System.Drawing.Size(250, 45);
-            this.BtnHome.TabIndex = 0;
-            this.BtnHome.Text = "الصفحة الرئيسية";
-            this.BtnHome.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnHome.UseVisualStyleBackColor = true;
             this.BtnHome.Click += new System.EventHandler(this.BtnHome_Click);
             // 
             // BtnCompanies
             // 
+            resources.ApplyResources(this.BtnCompanies, "BtnCompanies");
             this.BtnCompanies.FlatAppearance.BorderSize = 0;
             this.BtnCompanies.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.BtnCompanies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCompanies.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.BtnCompanies.ForeColor = System.Drawing.Color.White;
-            this.BtnCompanies.Image = ((System.Drawing.Image)(resources.GetObject("BtnCompanies.Image")));
-            this.BtnCompanies.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.BtnCompanies.Location = new System.Drawing.Point(0, 162);
             this.BtnCompanies.Name = "BtnCompanies";
-            this.BtnCompanies.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.BtnCompanies.Size = new System.Drawing.Size(250, 45);
-            this.BtnCompanies.TabIndex = 1;
-            this.BtnCompanies.Text = "الشركات";
-            this.BtnCompanies.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnCompanies.UseVisualStyleBackColor = true;
-            this.BtnCompanies.Visible = false;
             this.BtnCompanies.Click += new System.EventHandler(this.BtnCompanies_Click);
             // 
             // LOGO
             // 
-            this.LOGO.Image = ((System.Drawing.Image)(resources.GetObject("LOGO.Image")));
-            this.LOGO.Location = new System.Drawing.Point(7, 12);
+            resources.ApplyResources(this.LOGO, "LOGO");
             this.LOGO.Name = "LOGO";
-            this.LOGO.Size = new System.Drawing.Size(232, 81);
-            this.LOGO.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.LOGO.TabIndex = 0;
             this.LOGO.TabStop = false;
             this.LOGO.Click += new System.EventHandler(this.LOGO_Click);
             // 
             // PnlTop
             // 
+            resources.ApplyResources(this.PnlTop, "PnlTop");
             this.PnlTop.BackColor = System.Drawing.Color.WhiteSmoke;
             this.PnlTop.Controls.Add(this.ImbMinimize);
             this.PnlTop.Controls.Add(this.ImbNormalSize);
             this.PnlTop.Controls.Add(this.ImbMaximize);
             this.PnlTop.Controls.Add(this.ImbClose);
             this.PnlTop.Controls.Add(this.MenuStrip);
-            this.PnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PnlTop.Location = new System.Drawing.Point(250, 0);
             this.PnlTop.Name = "PnlTop";
-            this.PnlTop.Size = new System.Drawing.Size(1050, 60);
-            this.PnlTop.TabIndex = 1;
             // 
             // ImbMinimize
             // 
-            this.ImbMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ImbMinimize, "ImbMinimize");
             this.ImbMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbMinimize.Image = ((System.Drawing.Image)(resources.GetObject("ImbMinimize.Image")));
-            this.ImbMinimize.Location = new System.Drawing.Point(975, 3);
             this.ImbMinimize.Name = "ImbMinimize";
-            this.ImbMinimize.Size = new System.Drawing.Size(20, 20);
-            this.ImbMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbMinimize.TabIndex = 1;
             this.ImbMinimize.TabStop = false;
             this.ImbMinimize.Click += new System.EventHandler(this.ImbMinimize_Click);
             // 
             // ImbNormalSize
             // 
-            this.ImbNormalSize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ImbNormalSize, "ImbNormalSize");
             this.ImbNormalSize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbNormalSize.Image = ((System.Drawing.Image)(resources.GetObject("ImbNormalSize.Image")));
-            this.ImbNormalSize.Location = new System.Drawing.Point(1001, 3);
             this.ImbNormalSize.Name = "ImbNormalSize";
-            this.ImbNormalSize.Size = new System.Drawing.Size(20, 20);
-            this.ImbNormalSize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbNormalSize.TabIndex = 1;
             this.ImbNormalSize.TabStop = false;
-            this.ImbNormalSize.Visible = false;
             this.ImbNormalSize.Click += new System.EventHandler(this.ImbNormalSize_Click);
             // 
             // ImbMaximize
             // 
-            this.ImbMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ImbMaximize, "ImbMaximize");
             this.ImbMaximize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbMaximize.Image = ((System.Drawing.Image)(resources.GetObject("ImbMaximize.Image")));
-            this.ImbMaximize.Location = new System.Drawing.Point(1001, 3);
             this.ImbMaximize.Name = "ImbMaximize";
-            this.ImbMaximize.Size = new System.Drawing.Size(20, 20);
-            this.ImbMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbMaximize.TabIndex = 1;
             this.ImbMaximize.TabStop = false;
             this.ImbMaximize.Click += new System.EventHandler(this.ImbMaximize_Click);
             // 
             // ImbClose
             // 
-            this.ImbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.ImbClose, "ImbClose");
             this.ImbClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ImbClose.Image = ((System.Drawing.Image)(resources.GetObject("ImbClose.Image")));
-            this.ImbClose.Location = new System.Drawing.Point(1027, 3);
             this.ImbClose.Name = "ImbClose";
-            this.ImbClose.Size = new System.Drawing.Size(20, 20);
-            this.ImbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbClose.TabIndex = 1;
             this.ImbClose.TabStop = false;
             this.ImbClose.Click += new System.EventHandler(this.ImbClose_Click);
             // 
             // MenuStrip
             // 
-            this.MenuStrip.Dock = System.Windows.Forms.DockStyle.Bottom;
+            resources.ApplyResources(this.MenuStrip, "MenuStrip");
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.HelpToolStripMenuItem,
             this.EditUserToolStripMenuItem});
-            this.MenuStrip.Location = new System.Drawing.Point(0, 36);
             this.MenuStrip.Name = "MenuStrip";
-            this.MenuStrip.Size = new System.Drawing.Size(1050, 24);
-            this.MenuStrip.TabIndex = 0;
-            this.MenuStrip.Text = "menuStrip1";
             // 
             // FileToolStripMenuItem
             // 
+            resources.ApplyResources(this.FileToolStripMenuItem, "FileToolStripMenuItem");
             this.FileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ChangeUserToolStripMenuItem,
             this.ExitToolStripMenuItem});
             this.FileToolStripMenuItem.Name = "FileToolStripMenuItem";
-            this.FileToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
-            this.FileToolStripMenuItem.Text = "ملف";
             // 
             // ChangeUserToolStripMenuItem
             // 
+            resources.ApplyResources(this.ChangeUserToolStripMenuItem, "ChangeUserToolStripMenuItem");
             this.ChangeUserToolStripMenuItem.Name = "ChangeUserToolStripMenuItem";
-            this.ChangeUserToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.ChangeUserToolStripMenuItem.Text = "دخول بمستخدم آخر";
             this.ChangeUserToolStripMenuItem.Click += new System.EventHandler(this.ChangeUserToolStripMenuItem_Click);
             // 
             // ExitToolStripMenuItem
             // 
+            resources.ApplyResources(this.ExitToolStripMenuItem, "ExitToolStripMenuItem");
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
-            this.ExitToolStripMenuItem.Text = "خروج";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // HelpToolStripMenuItem
             // 
+            resources.ApplyResources(this.HelpToolStripMenuItem, "HelpToolStripMenuItem");
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.AboutToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
-            this.HelpToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
-            this.HelpToolStripMenuItem.Text = "مساعدة";
             // 
             // AboutToolStripMenuItem
             // 
+            resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(89, 22);
-            this.AboutToolStripMenuItem.Text = "عن";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // EditUserToolStripMenuItem
             // 
+            resources.ApplyResources(this.EditUserToolStripMenuItem, "EditUserToolStripMenuItem");
             this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
-            this.EditUserToolStripMenuItem.Size = new System.Drawing.Size(147, 20);
-            this.EditUserToolStripMenuItem.Text = "تعديل معلومات المستخدم";
             this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
             // 
             // PnlContainer
             // 
-            this.PnlContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PnlContainer.Location = new System.Drawing.Point(250, 60);
+            resources.ApplyResources(this.PnlContainer, "PnlContainer");
             this.PnlContainer.Name = "PnlContainer";
-            this.PnlContainer.Size = new System.Drawing.Size(1050, 590);
-            this.PnlContainer.TabIndex = 0;
             // 
             // bunifuFormDock1
             // 
@@ -448,9 +316,8 @@ namespace OTS.Ticketing.Win
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1300, 650);
             this.Controls.Add(this.PnlContainer);
             this.Controls.Add(this.PnlTop);
             this.Controls.Add(this.PnlMenuVertical);
@@ -458,9 +325,6 @@ namespace OTS.Ticketing.Win
             this.KeyPreview = true;
             this.MainMenuStrip = this.MenuStrip;
             this.Name = "Main";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.PnlMenuVertical.ResumeLayout(false);

@@ -35,7 +35,7 @@ namespace OTS.Ticketing.Win.States
 
         private async void GetDtgStatesData()
         {
-            DtgStates.DataSource = await stateRepository.GetAllStates();
+            DtgStates.DataSource = SystemConstants.ToDataTable(await stateRepository.GetAllStates());
             DtgStates.Columns["Id"].HeaderText = "ت";
             DtgStates.Columns["Name"].HeaderText = "الحالة";      
         }

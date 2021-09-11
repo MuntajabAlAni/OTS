@@ -12,6 +12,10 @@ using System.IO;
 using OTS.Ticketing.Win.DatabaseConnection;
 using NLog;
 using OTS.Ticketing.Win.Users;
+using System.Globalization;
+using OTS.Ticketing.Win.Utils;
+using System.Resources;
+using System.Reflection;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -46,10 +50,11 @@ namespace OTS.Ticketing.Win.MainForms
 
                 if (result == null)
                 {
-                    MessageBox.Show("يرجى التأكد من معلومات الدخول !");
+                    MessageBox.Show(LocalizationMessages.GetMessage("WrongInformations"));
                     return;
                 }
                 SystemConstants.loggedInUserId = result.Id;
+                await ActivityLogUtility.ActivityLog(Enums.Activities.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();
@@ -110,5 +115,15 @@ namespace OTS.Ticketing.Win.MainForms
             database.ShowDialog();
             this.Show();
         }
+
+        private void TxtUserName_Enter(object sender, EventArgs e)
+        {
+            InputLanguage myCurrentLanguage = InputLanguage.CurrentInputLanguage;
+            if (myCurrentLanguage.Culture.TwoLetterISOLanguageName != "en")
+            {
+                SendKeys.Send("%+");
+            }
+        }
+
     }
 }

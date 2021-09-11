@@ -117,4 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>58, 159</value>
+  </data>
+  <data name="BtnLogin.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="BtnExit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>215, 159</value>
+  </data>
+  <data name="BtnExit.Text" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="TxtUserName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 80</value>
+  </data>
+  <data name="TxtPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>121, 115</value>
+  </data>
+  <data name="LblUserName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 83</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="LblUserName.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="LblUserName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 15</value>
+  </data>
+  <data name="LblUserName.Text" xml:space="preserve">
+    <value>User Name :</value>
+  </data>
+  <data name="LblPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>33, 118</value>
+  </data>
+  <data name="LblPassword.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="LblPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 15</value>
+  </data>
+  <data name="LblPassword.Text" xml:space="preserve">
+    <value>Password :</value>
+  </data>
+  <data name="ImbLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAE0AAAAtCAYAAADr/ebqAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAMZSURBVGhD7ZnNaxNBGIdz8hxPHq0XESJYwY+DHqIV
+        QQWth9oKWgr1pKA5eBKqQfCUYg4KBa2tIIgIEhDaWy0qLYjoKkUFhfYgCJ7yJ6zzxKxs0ndnJ5ukTeL7
+        wAObZD6S387Ozk5SiqIoiqIoiqIo6/F9v+/lyu+xwsJqvlmfffiVN+2lq033HoR16enK4r7Ckj9w751/
+        9uHHlsgJqHbRWxDYgcnlMvIjM5kMP3TWuNhlDhoZ2aXQe3FSNr3txkLRuBhh3pSphRFGYHdmSlnzkob8
+        LpSTTGBe6L04y1u278maUDyjH+GssXaKWVotZ3fefh1cRqQuNd7pJgnM23rhbmxgptx6rpe+zZ5//GnN
+        HDLKpMY73SSBlaqBletCChs9F3NpEpw5RKmDTjZJYFxuY3UBhSVI5sZoCI3lgTm0zWWMwjilehiM4iij
+        TpZUtl5bYDmjVCdlQmGURdlHGSuOobkg1UPatUHfUj0XoupiJaCWw8Iz9+Krd3Pue9G81NBcuPL8S8kM
+        R5+75/5D2bJ5S+ocXZDq4WaFFnV5SvYb3eDSJDQ8PnpN6jjQBaketjM0gpHqJpFBE//00gOhMUKkus0Y
+        f+fs8tCA9qX6SeVuHE2PhNboOs3FaMKhDZwZlioHuiDVw3aHFsD8Rl+uJrvxmefNfraC8vM/gl0BqQF0
+        QaqHtGujVaE1SvLfy55XFy9um6HtofF5nFI9TBIalxpzlbSmapW2edBOKDSnbaF0Ou0fGx739x48LH4u
+        2GhorJVYStjmnHZrZ/TJZ48nA3PIl5Ua+CeBjUxMVW4cg/ffiGUE4xaM4dA6ITD6tsMo42ZQ3bWN/LIs
+        SY4UXlX+PxidXq6EJ5Wr077m+Quh0S9hsbDczMCQAWSHh/YTU+/X2O4eGb/Mg3tNIyxFTk/OV55PT03M
+        +Dt27a753CKBMS/FwfxFYLEjfQMMTl48LD0IjmDOFefWGFVDV29VwmIUXnzw1jt6cpC5ydVgIneFLyq1
+        s5Gyr+cWWAAjbnr5Z44F79Ajr8wWOHMd/yFUiyiKoiiKoiiKovy3pFJ/ACqiTWAt9IUlAAAAAElFTkSu
+        QmCC
+</value>
+  </data>
+  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
 </root>

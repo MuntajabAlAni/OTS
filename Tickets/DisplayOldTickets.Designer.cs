@@ -50,6 +50,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblTo = new System.Windows.Forms.Label();
             this.PnlLoad = new System.Windows.Forms.Panel();
             this.PbLoading = new System.Windows.Forms.PictureBox();
+            this.CbClosed = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.DtgOldTickets)).BeginInit();
             this.PnlLoad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).BeginInit();
@@ -69,6 +70,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEdit.TabIndex = 8;
             this.BtnEdit.Text = "تعديل";
             this.BtnEdit.UseVisualStyleBackColor = false;
+            this.BtnEdit.Visible = false;
             this.BtnEdit.Click += new System.EventHandler(this.BtnEdit_Click);
             // 
             // DtgOldTickets
@@ -170,7 +172,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpToDate.CustomFormat = "";
             this.DtpToDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpToDate.Location = new System.Drawing.Point(249, 22);
+            this.DtpToDate.Location = new System.Drawing.Point(294, 22);
             this.DtpToDate.Name = "DtpToDate";
             this.DtpToDate.Size = new System.Drawing.Size(106, 25);
             this.DtpToDate.TabIndex = 5;
@@ -181,7 +183,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpFromDate.CustomFormat = "";
             this.DtpFromDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFromDate.Location = new System.Drawing.Point(416, 22);
+            this.DtpFromDate.Location = new System.Drawing.Point(438, 22);
             this.DtpFromDate.Name = "DtpFromDate";
             this.DtpFromDate.Size = new System.Drawing.Size(104, 25);
             this.DtpFromDate.TabIndex = 3;
@@ -196,6 +198,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombUser.Name = "CombUser";
             this.CombUser.Size = new System.Drawing.Size(126, 25);
             this.CombUser.TabIndex = 1;
+            this.CombUser.Visible = false;
             this.CombUser.SelectedValueChanged += new System.EventHandler(this.CombUser_SelectedValueChanged);
             // 
             // CombCompanies
@@ -220,6 +223,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUser.Size = new System.Drawing.Size(55, 15);
             this.LblUser.TabIndex = 27;
             this.LblUser.Text = "الموظف :";
+            this.LblUser.Visible = false;
             // 
             // LblCompany
             // 
@@ -235,8 +239,10 @@ namespace OTS.Ticketing.Win.Tickets
             // CbUnclosed
             // 
             this.CbUnclosed.AutoSize = true;
+            this.CbUnclosed.Checked = true;
+            this.CbUnclosed.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CbUnclosed.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbUnclosed.Location = new System.Drawing.Point(161, 26);
+            this.CbUnclosed.Location = new System.Drawing.Point(206, 26);
             this.CbUnclosed.Name = "CbUnclosed";
             this.CbUnclosed.Size = new System.Drawing.Size(82, 19);
             this.CbUnclosed.TabIndex = 6;
@@ -257,13 +263,14 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnExcel.TabIndex = 9;
             this.BtnExcel.Text = "تصدير";
             this.BtnExcel.UseVisualStyleBackColor = false;
+            this.BtnExcel.Visible = false;
             this.BtnExcel.Click += new System.EventHandler(this.BtnExcel_Click);
             // 
             // LblFrom
             // 
             this.LblFrom.AutoSize = true;
             this.LblFrom.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblFrom.Location = new System.Drawing.Point(526, 27);
+            this.LblFrom.Location = new System.Drawing.Point(548, 27);
             this.LblFrom.Name = "LblFrom";
             this.LblFrom.Size = new System.Drawing.Size(28, 15);
             this.LblFrom.TabIndex = 27;
@@ -273,7 +280,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblTo.AutoSize = true;
             this.LblTo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblTo.Location = new System.Drawing.Point(361, 27);
+            this.LblTo.Location = new System.Drawing.Point(406, 27);
             this.LblTo.Name = "LblTo";
             this.LblTo.Size = new System.Drawing.Size(30, 15);
             this.LblTo.TabIndex = 27;
@@ -298,11 +305,25 @@ namespace OTS.Ticketing.Win.Tickets
             this.PbLoading.TabIndex = 0;
             this.PbLoading.TabStop = false;
             // 
+            // CbClosed
+            // 
+            this.CbClosed.AutoSize = true;
+            this.CbClosed.Checked = true;
+            this.CbClosed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbClosed.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CbClosed.Location = new System.Drawing.Point(138, 26);
+            this.CbClosed.Name = "CbClosed";
+            this.CbClosed.Size = new System.Drawing.Size(63, 19);
+            this.CbClosed.TabIndex = 6;
+            this.CbClosed.Text = "المغلقة";
+            this.CbClosed.UseVisualStyleBackColor = true;
+            // 
             // DisplayOldTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 509);
+            this.Controls.Add(this.CbClosed);
             this.Controls.Add(this.CbUnclosed);
             this.Controls.Add(this.LblTo);
             this.Controls.Add(this.LblFrom);
@@ -353,5 +374,6 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Label LblTo;
         private System.Windows.Forms.Panel PnlLoad;
         private System.Windows.Forms.PictureBox PbLoading;
+        private System.Windows.Forms.CheckBox CbClosed;
     }
 }

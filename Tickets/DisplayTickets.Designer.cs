@@ -165,7 +165,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblNumberTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblNumberTitle.AutoSize = true;
             this.LblNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblNumberTitle.Location = new System.Drawing.Point(950, 22);
+            this.LblNumberTitle.Location = new System.Drawing.Point(950, 25);
             this.LblNumberTitle.Name = "LblNumberTitle";
             this.LblNumberTitle.Size = new System.Drawing.Size(69, 15);
             this.LblNumberTitle.TabIndex = 10;
@@ -187,7 +187,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompanyTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCompanyTitle.AutoSize = true;
             this.LblCompanyTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblCompanyTitle.Location = new System.Drawing.Point(950, 94);
+            this.LblCompanyTitle.Location = new System.Drawing.Point(950, 99);
             this.LblCompanyTitle.Name = "LblCompanyTitle";
             this.LblCompanyTitle.Size = new System.Drawing.Size(45, 15);
             this.LblCompanyTitle.TabIndex = 12;
@@ -198,7 +198,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUserTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblUserTitle.AutoSize = true;
             this.LblUserTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblUserTitle.Location = new System.Drawing.Point(950, 202);
+            this.LblUserTitle.Location = new System.Drawing.Point(950, 227);
             this.LblUserTitle.Name = "LblUserTitle";
             this.LblUserTitle.Size = new System.Drawing.Size(55, 15);
             this.LblUserTitle.TabIndex = 15;
@@ -209,7 +209,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblSoftwareTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblSoftwareTitle.AutoSize = true;
             this.LblSoftwareTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblSoftwareTitle.Location = new System.Drawing.Point(950, 166);
+            this.LblSoftwareTitle.Location = new System.Drawing.Point(950, 184);
             this.LblSoftwareTitle.Name = "LblSoftwareTitle";
             this.LblSoftwareTitle.Size = new System.Drawing.Size(49, 15);
             this.LblSoftwareTitle.TabIndex = 14;
@@ -220,7 +220,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblRevisionTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblRevisionTitle.AutoSize = true;
             this.LblRevisionTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblRevisionTitle.Location = new System.Drawing.Point(950, 58);
+            this.LblRevisionTitle.Location = new System.Drawing.Point(950, 63);
             this.LblRevisionTitle.Name = "LblRevisionTitle";
             this.LblRevisionTitle.Size = new System.Drawing.Size(74, 15);
             this.LblRevisionTitle.TabIndex = 11;
@@ -358,7 +358,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblPhoneNumberTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblPhoneNumberTitle.AutoSize = true;
             this.LblPhoneNumberTitle.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblPhoneNumberTitle.Location = new System.Drawing.Point(950, 130);
+            this.LblPhoneNumberTitle.Location = new System.Drawing.Point(950, 141);
             this.LblPhoneNumberTitle.Name = "LblPhoneNumberTitle";
             this.LblPhoneNumberTitle.Size = new System.Drawing.Size(65, 15);
             this.LblPhoneNumberTitle.TabIndex = 13;
@@ -378,26 +378,25 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnAddState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BtnAddState.TabIndex = 23;
             this.BtnAddState.TabStop = false;
+            this.BtnAddState.Visible = false;
             this.BtnAddState.Click += new System.EventHandler(this.BtnAddState_Click);
             // 
             // LblNumber
             // 
             this.LblNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblNumber.AutoSize = true;
             this.LblNumber.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.LblNumber.Location = new System.Drawing.Point(916, 17);
+            this.LblNumber.Location = new System.Drawing.Point(753, 18);
             this.LblNumber.Name = "LblNumber";
-            this.LblNumber.Size = new System.Drawing.Size(0, 25);
+            this.LblNumber.Size = new System.Drawing.Size(191, 25);
             this.LblNumber.TabIndex = 17;
             // 
             // LblRevision
             // 
             this.LblRevision.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblRevision.AutoSize = true;
             this.LblRevision.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.LblRevision.Location = new System.Drawing.Point(916, 53);
+            this.LblRevision.Location = new System.Drawing.Point(753, 56);
             this.LblRevision.Name = "LblRevision";
-            this.LblRevision.Size = new System.Drawing.Size(0, 25);
+            this.LblRevision.Size = new System.Drawing.Size(191, 25);
             this.LblRevision.TabIndex = 16;
             // 
             // BtnEditState
@@ -414,6 +413,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEditState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.BtnEditState.TabIndex = 25;
             this.BtnEditState.TabStop = false;
+            this.BtnEditState.Visible = false;
             this.BtnEditState.Click += new System.EventHandler(this.BtnEditState_Click);
             // 
             // LblIsIndexed
@@ -476,51 +476,46 @@ namespace OTS.Ticketing.Win.Tickets
             // LblCompany
             // 
             this.LblCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblCompany.AutoSize = true;
             this.LblCompany.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.LblCompany.Location = new System.Drawing.Point(787, 86);
+            this.LblCompany.Location = new System.Drawing.Point(753, 94);
             this.LblCompany.Name = "LblCompany";
-            this.LblCompany.Size = new System.Drawing.Size(0, 20);
+            this.LblCompany.Size = new System.Drawing.Size(191, 25);
             this.LblCompany.TabIndex = 18;
             // 
             // LblPhoneNumber
             // 
             this.LblPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblPhoneNumber.AutoSize = true;
             this.LblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.LblPhoneNumber.Location = new System.Drawing.Point(787, 122);
+            this.LblPhoneNumber.Location = new System.Drawing.Point(753, 133);
             this.LblPhoneNumber.Name = "LblPhoneNumber";
-            this.LblPhoneNumber.Size = new System.Drawing.Size(0, 20);
+            this.LblPhoneNumber.Size = new System.Drawing.Size(191, 25);
             this.LblPhoneNumber.TabIndex = 19;
             // 
             // LblSoftware
             // 
             this.LblSoftware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblSoftware.AutoSize = true;
             this.LblSoftware.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.LblSoftware.Location = new System.Drawing.Point(787, 158);
+            this.LblSoftware.Location = new System.Drawing.Point(753, 180);
             this.LblSoftware.Name = "LblSoftware";
-            this.LblSoftware.Size = new System.Drawing.Size(0, 20);
+            this.LblSoftware.Size = new System.Drawing.Size(191, 25);
             this.LblSoftware.TabIndex = 20;
             // 
             // LblUser
             // 
             this.LblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblUser.AutoSize = true;
             this.LblUser.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.LblUser.Location = new System.Drawing.Point(787, 194);
+            this.LblUser.Location = new System.Drawing.Point(753, 223);
             this.LblUser.Name = "LblUser";
-            this.LblUser.Size = new System.Drawing.Size(0, 20);
+            this.LblUser.Size = new System.Drawing.Size(191, 25);
             this.LblUser.TabIndex = 21;
             // 
             // LblOpenDate
             // 
             this.LblOpenDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.LblOpenDate.AutoSize = true;
             this.LblOpenDate.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold);
-            this.LblOpenDate.Location = new System.Drawing.Point(436, 18);
+            this.LblOpenDate.Location = new System.Drawing.Point(445, 17);
             this.LblOpenDate.Name = "LblOpenDate";
-            this.LblOpenDate.Size = new System.Drawing.Size(0, 20);
+            this.LblOpenDate.Size = new System.Drawing.Size(191, 25);
             this.LblOpenDate.TabIndex = 26;
             // 
             // TxtProblem

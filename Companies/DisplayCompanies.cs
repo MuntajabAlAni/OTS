@@ -58,7 +58,7 @@ namespace OTS.Ticketing.Win.Companies
 
         private async Task GetDtgCompaniesData()
         {
-            DtgCompanies.DataSource = await companyRepository.GetCompanyByName(_companyName);
+            DtgCompanies.DataSource = SystemConstants.ToDataTable(await companyRepository.GetCompanyByName(_companyName));
             DtgCompanies.Columns["Id"].Visible = false;
             DtgCompanies.Columns["Name"].HeaderText = "اسم الشركة";
             DtgCompanies.Columns["Address"].HeaderText = "العنوان";

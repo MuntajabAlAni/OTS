@@ -3,6 +3,7 @@ using NLog.Config;
 using OTS.Ticketing.Win.MainForms;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,11 +19,15 @@ namespace OTS.Ticketing.Win
         [STAThread]
         static void Main()
         {
+            CultureInfo ci = new CultureInfo("en");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+
             _ = new Mutex(true, "OTS.Ticketing.Win", out bool createdNew);
 
             if (!createdNew)
             {
-                MessageBox.Show("لا يمكن تشغيل البرنامج أكثر من مرة !!");
+                MessageBox.Show(LocalizationMessages.GetMessage("OneTimeProgramRunning"));
                 return;
             }
             var config = new XmlLoggingConfiguration("NLog.config");

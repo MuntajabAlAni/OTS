@@ -117,4 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BranchName" xml:space="preserve">
+    <value>الفرع</value>
+  </data>
+  <data name="CloseDate" xml:space="preserve">
+    <value>تاريخ إغلاق البطاقة</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>اسم الشركة</value>
+  </data>
+  <data name="ExitConfirmation" xml:space="preserve">
+    <value>هل انت متأكد من إغلاق البرنامج ؟</value>
+  </data>
+  <data name="IsClosed" xml:space="preserve">
+    <value>الإغلاق</value>
+  </data>
+  <data name="IsIndexed" xml:space="preserve">
+    <value>ترتيب الملفات</value>
+  </data>
+  <data name="Number" xml:space="preserve">
+    <value>رقم البطاقة</value>
+  </data>
+  <data name="OneTimeProgramRunning" xml:space="preserve">
+    <value>لا يمكن تشغيل البرنامج أكثر من مرة !!</value>
+  </data>
+  <data name="OpenDate" xml:space="preserve">
+    <value>تاريخ فتح البطاقة</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>رقم الهاتف</value>
+  </data>
+  <data name="Problem" xml:space="preserve">
+    <value>المشكلة</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>الملاحظات</value>
+  </data>
+  <data name="Revision" xml:space="preserve">
+    <value>مراجعة البطاقة</value>
+  </data>
+  <data name="SoftwareName" xml:space="preserve">
+    <value>البرنامج</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>هلو</value>
+  </data>
+  <data name="TransferedTo" xml:space="preserve">
+    <value>تم التحويل الى</value>
+  </data>
+  <data name="UserName" xml:space="preserve">
+    <value>الموظف</value>
+  </data>
+  <data name="WrongInformations" xml:space="preserve">
+    <value>يرجى التأكد من معلومات الدخول !</value>
+  </data>
 </root>

@@ -22,7 +22,6 @@ namespace OTS.Ticketing.Win.Branches
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
-
         public async Task<BranchInfo> GetBranchById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -34,7 +33,15 @@ namespace OTS.Ticketing.Win.Branches
             return result.FirstOrDefault();
 
         }
+        public async Task<long> GetLastAddedBranchId()
+        {
+            string query = "SELECT TOP 1 id FROM Branches Order by id DESC";
 
+            var result = await dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
+            BranchInfo branchInfo = result.FirstOrDefault();
+            return branchInfo.Id;
+
+        }
         public async Task<int> UpdateBranch(long id, string name)
         {
             DynamicParameters parameters = new DynamicParameters();

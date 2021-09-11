@@ -15,6 +15,7 @@ using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Softwares;
 using NLog;
+using OTS.Ticketing.Win.Utils;
 
 namespace OTS.Ticketing.Win.Tickets
 {
@@ -35,10 +36,10 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
-                if (UserInfo.UserName != "admin")
+                if (UserInfo.UserName == "admin")
                 {
-                    BtnAddState.Visible = false;
-                    BtnEditState.Visible = false;
+                    BtnAddState.Visible = true;
+                    BtnEditState.Visible = true;
                 }
                 GetDtgTicketsData();
                 FillUsersComboBox();
@@ -96,6 +97,7 @@ namespace OTS.Ticketing.Win.Tickets
                 DtgTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
                 DtgTickets.Columns["UserName"].HeaderText = "الموظف";
                 DtgTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
+                DtgTickets.Columns["BranchName"].HeaderText = "الفرع";
                 DtgTickets.Columns["Problem"].HeaderText = "المشكلة";
                 DtgTickets.Columns["State"].HeaderText = "الحالة";
                 DtgTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
@@ -175,25 +177,34 @@ namespace OTS.Ticketing.Win.Tickets
                 }
                 if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0)
                 {
-                    DialogResult dr;
-                    dr = MessageBox.Show("إغلاق البطاقة ؟؟", "إغلاق", MessageBoxButtons.YesNo);
-                    ToggleClosed.Checked = dr == DialogResult.Yes;
+                    if (!ToggleClosed.Checked)
+                    {
+                        DialogResult dr;
+                        dr = MessageBox.Show("إغلاق البطاقة ؟؟", "إغلاق", MessageBoxButtons.YesNo);
+                        ToggleClosed.Checked = dr == DialogResult.Yes;
+                    }
                 }
                 DialogResult dr2;
                 dr2 = MessageBox.Show("هل انت متأكد من الإضافة ؟", "تأكيد", MessageBoxButtons.YesNo);
                 if (dr2 == DialogResult.Yes)
                 {
                     if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0 & Convert.ToInt64(CombStates.SelectedValue) != 4)
+                    {
                         await ticketRepository.UpdateTicket(Convert.ToInt64(LblNumber.Text),
-                   Convert.ToInt32(LblRevision.Text),
-                   DateTime.Now,
-                   Convert.ToInt64(CombStates.SelectedValue),
-                   TxtRemarks.Text,
-                   TxtProblem.Text,
-                   Convert.ToInt32(ToggleRemotely.Checked),
-                   ToggleIsIndexed.Checked,
-                   ToggleClosed.Checked,
-                   Convert.ToInt64(CombTransferedTo.SelectedValue));
+                    Convert.ToInt32(LblRevision.Text),
+                    DateTime.Now,
+                    Convert.ToInt64(CombStates.SelectedValue),
+                    TxtRemarks.Text,
+                    TxtProblem.Text,
+                    Convert.ToInt32(ToggleRemotely.Checked),
+                    ToggleIsIndexed.Checked,
+                    ToggleClosed.Checked,
+                    Convert.ToInt64(CombTransferedTo.SelectedValue));
+
+                        TicketInfo updatedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+        Convert.ToInt64(LblRevision.Text));
+                        await ActivityLogUtility.ActivityLog(Enums.Activities.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
+                    }
                     else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
                     {
                         TicketInfo ticket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
@@ -208,7 +219,11 @@ namespace OTS.Ticketing.Win.Tickets
                         ticket.IsClosed = true;
 
                         await ticketRepository.UpdateInsertTicket(ticket);
+                        TicketInfo updatedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+        Convert.ToInt64(LblRevision.Text) + 1);
+                        await ActivityLogUtility.ActivityLog(Enums.Activities.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
                     }
+
                     GetDtgTicketsData();
                     RefreshAllData();
                 }

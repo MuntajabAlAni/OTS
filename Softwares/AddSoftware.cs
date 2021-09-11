@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -50,10 +51,13 @@ namespace OTS.Ticketing.Win.Softwares
                 if (_id == 0)
                 {
                     await softwareRepository.AddSoftware(TxtName.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddSoftware, "إضافة برنامج",
+                        await softwareRepository.GetLastAddedSoftwareId());
                 }
                 else
                 {
                     await softwareRepository.UpdateSoftware(_id, TxtName.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditSoftware, "تعديل برنامج", _id);
                 }
                 SoftwareInfo softwareInfo = await softwareRepository.GetSoftwareByName(TxtName.Text);
                 SystemConstants.SelectedSoftware = softwareInfo.Id;

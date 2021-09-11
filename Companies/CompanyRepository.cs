@@ -58,11 +58,12 @@ namespace OTS.Ticketing.Win.Companies
             list.Insert(0, (new BranchInfo { Id = 0, Name = "" }));
             return list;
         }
-        public async Task<CompanyInfo> GetLastCompanyId()
+        public async Task<long> GetLastCompanyId()
         {
             string query = "SELECT TOP 1 Id FROM Companies Order by Id DESC";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
-            return result.FirstOrDefault();
+            CompanyInfo companyInfo = result.FirstOrDefault();
+            return companyInfo.Id;
         }
         public async Task<List<CompanyView>> GetCompanyByName(string companyName)
         {

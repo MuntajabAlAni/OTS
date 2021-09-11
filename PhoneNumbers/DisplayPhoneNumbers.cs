@@ -59,7 +59,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         }
         private async Task GetDtgPhoneNumbersData()
         {
-            DtgPhoneNumbers.DataSource = await phoneNumberRepository.GetPhoneNumbersBySearch(_phoneNumber);
+            DtgPhoneNumbers.DataSource = SystemConstants.ToDataTable(await phoneNumberRepository.GetPhoneNumbersBySearch(_phoneNumber));
             DtgPhoneNumbers.Columns["Id"].Visible = false;
             DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
             DtgPhoneNumbers.Columns["CustomerName"].HeaderText = "اسم الزبون";

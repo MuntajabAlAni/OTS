@@ -79,5 +79,14 @@ namespace OTS.Ticketing.Win.Users
                                WHERE Id = @id";
             return await dataAccess.ExecuteAsync(command, parameters);
         }
+        public async Task<long> GetLastAddedUserId()
+        {
+            string query = "SELECT TOP 1 id FROM Users Order by id DESC";
+
+            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            UserInfo userInfo = result.FirstOrDefault();
+            return userInfo.Id;
+
+        }
     }
 }

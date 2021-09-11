@@ -1,5 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Branches;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,6 +116,7 @@ namespace OTS.Ticketing.Win.Companies
                         TxtAddress.Text,
                         Convert.ToInt64(CombBranches.SelectedValue),
                         TxtRemarks.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddCompany, "إضافة شركة", await companyRepository.GetLastCompanyId());
                 }
                 else
                 {
@@ -123,6 +125,8 @@ namespace OTS.Ticketing.Win.Companies
                         Convert.ToInt64(CombBranches.SelectedValue),
                         TxtRemarks.Text,
                         _id);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditCompany, "تعديل شركة", _id);
+
                 }
                 List<CompanyView> companies = await companyRepository.GetCompanyByName(TxtName.Text);
                 CompanyView selectedCompany = companies.FirstOrDefault();

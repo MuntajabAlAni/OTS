@@ -1,5 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Companies;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,10 +48,10 @@ namespace OTS.Ticketing.Win.Tickets
             SystemConstants.SelectedSoftware = ticketInfo.SoftwareId;
             SystemConstants.SelectedUser = ticketInfo.UserId;
             LblOpenDate.Text = ticketInfo.OpenDate.ToString();
-            TxtProblem.Text = ticketInfo.Problem.ToString();
+            TxtProblem.Text = ticketInfo.Problem != null ? ticketInfo.Problem.ToString() : "";
             CombStates.SelectedValue = ticketInfo.StateId;
             CombTransferedTo.SelectedValue = ticketInfo.TransferedTo;
-            TxtRemarks.Text = ticketInfo.Remarks.ToString();
+            TxtRemarks.Text = ticketInfo.Remarks != null ? ticketInfo.Remarks.ToString() : "";
             ToggleClosed.Checked = ticketInfo.IsClosed;
             ToggleIsIndexed.Checked = ticketInfo.IsIndexed;
             ToggleRemotely.Checked = ticketInfo.Remotely;
@@ -189,6 +190,9 @@ namespace OTS.Ticketing.Win.Tickets
                Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                Convert.ToInt64(CombSoftwares.SelectedValue),
                Convert.ToInt64(CombUsers.SelectedValue));
+                    TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+        Convert.ToInt64(LblRevision.Text));
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditTicket, "تعديل بطاقة", updatedTicket.Id);
                     this.Close();
                 }
             }

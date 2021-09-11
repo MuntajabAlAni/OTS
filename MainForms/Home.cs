@@ -39,20 +39,21 @@ namespace OTS.Ticketing.Win.MainForms
             try
             {
                 DtgLastTickets.DataSource = SystemConstants.ToDataTable(await mainRepository.GetTodaysTickets());
-                DtgLastTickets.Columns["Number"].HeaderText = "رقم البطاقة";
-                DtgLastTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
-                DtgLastTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
-                DtgLastTickets.Columns["PhoneNumber"].HeaderText = "رقم الهاتف";
-                DtgLastTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
-                DtgLastTickets.Columns["UserName"].HeaderText = "الموظف";
-                DtgLastTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
-                DtgLastTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
-                DtgLastTickets.Columns["State"].HeaderText = "الحالة";
-                DtgLastTickets.Columns["Problem"].HeaderText = "المشكلة";
-                DtgLastTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
-                DtgLastTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
-                DtgLastTickets.Columns["Remarks"].HeaderText = "الملاحظات";
-                DtgLastTickets.Columns["TransferedTo"].HeaderText = "تم التحويل الى";
+                DtgLastTickets.Columns["Number"].HeaderText = LocalizationMessages.GetMessage("Number");
+                DtgLastTickets.Columns["OpenDate"].HeaderText = LocalizationMessages.GetMessage("OpenDate");
+                DtgLastTickets.Columns["CloseDate"].HeaderText = LocalizationMessages.GetMessage("CloseDate");
+                DtgLastTickets.Columns["PhoneNumber"].HeaderText = LocalizationMessages.GetMessage("PhoneNumber");
+                DtgLastTickets.Columns["SoftwareName"].HeaderText = LocalizationMessages.GetMessage("SoftwareName");
+                DtgLastTickets.Columns["UserName"].HeaderText = LocalizationMessages.GetMessage("UserName");
+                DtgLastTickets.Columns["CompanyName"].HeaderText = LocalizationMessages.GetMessage("CompanyName");
+                DtgLastTickets.Columns["BranchName"].HeaderText = LocalizationMessages.GetMessage("BranchName");
+                DtgLastTickets.Columns["IsIndexed"].HeaderText = LocalizationMessages.GetMessage("IsIndexed");
+                DtgLastTickets.Columns["State"].HeaderText = LocalizationMessages.GetMessage("State");
+                DtgLastTickets.Columns["Problem"].HeaderText = LocalizationMessages.GetMessage("Problem");
+                DtgLastTickets.Columns["Revision"].HeaderText = LocalizationMessages.GetMessage("Revision");
+                DtgLastTickets.Columns["IsClosed"].HeaderText = LocalizationMessages.GetMessage("IsClosed");
+                DtgLastTickets.Columns["Remarks"].HeaderText = LocalizationMessages.GetMessage("Remarks");
+                DtgLastTickets.Columns["TransferedTo"].HeaderText = LocalizationMessages.GetMessage("TransferedTo");
             }
             catch (Exception ex)
             {

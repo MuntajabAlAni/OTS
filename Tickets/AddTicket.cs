@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.Utils;
 
 namespace OTS.Ticketing.Win.Tickets
 {
@@ -137,6 +138,7 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["SoftwareName"].HeaderText = "البرنامج";
             DtgUnclosedTickets.Columns["UserName"].HeaderText = "الموظف";
             DtgUnclosedTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
+            DtgUnclosedTickets.Columns["BranchName"].HeaderText = "الفرع";
             DtgUnclosedTickets.Columns["Problem"].HeaderText = "المشكلة";
             DtgUnclosedTickets.Columns["State"].HeaderText = "الحالة";
             DtgUnclosedTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
@@ -175,6 +177,9 @@ namespace OTS.Ticketing.Win.Tickets
                     SystemConstants.SelectedPhoneNumberId = 0;
                     SystemConstants.SelectedSoftware = 0;
                     SystemConstants.SelectedUser = 0;
+                    TicketInfo addedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+                        Convert.ToInt32(LblRevision.Text));
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddTicket, "إضافة بطاقة", addedTicket.Id);
                     this.Close();
                 }
 
@@ -273,7 +278,7 @@ namespace OTS.Ticketing.Win.Tickets
         private void BtnSearchPhoneNumber_Click(object sender, EventArgs e)
         {
             try
-            {   
+            {
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
                 DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(true, CombPhoneNumbers.Text);
                 displayPhoneNumbers.ShowDialog();
@@ -401,6 +406,14 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
+            }
+        }
+
+        private void CombPhoneNumbers_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

@@ -26,6 +26,7 @@ namespace OTS.Ticketing.Win.MainForms
         public async Task<UserInfo> CheckUserNameAndPasswordAsync(string username, string password)
         {
             UserInfo userInfo = await GetUserByUserName(username);
+            if (userInfo is null) return null;
             Byte[] passwordHash = SystemConstants.SHA512(password + userInfo.Salt.ToString().ToUpper());
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("UserName", username);

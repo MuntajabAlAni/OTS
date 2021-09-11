@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -55,10 +56,12 @@ namespace OTS.Ticketing.Win.Branches
                 if (_id == 0)
                 {
                     await branchRepository.AddBranch(TxtName.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddBranch, "إضافة فرع", await branchRepository.GetLastAddedBranchId());
                 }
                 else
                 {
                     await branchRepository.UpdateBranch(_id, TxtName.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditBranch, "تعديل فرع", _id);
                 }
                 this.Close();
             }

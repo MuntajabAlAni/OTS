@@ -43,100 +43,63 @@ namespace OTS.Ticketing.Win.MainForms
             // 
             // BtnLogin
             // 
+            resources.ApplyResources(this.BtnLogin, "BtnLogin");
             this.BtnLogin.BackColor = System.Drawing.Color.DodgerBlue;
             this.BtnLogin.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.BtnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnLogin.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BtnLogin.Location = new System.Drawing.Point(200, 159);
             this.BtnLogin.Name = "BtnLogin";
-            this.BtnLogin.Size = new System.Drawing.Size(75, 31);
-            this.BtnLogin.TabIndex = 2;
-            this.BtnLogin.Text = "دخول";
             this.BtnLogin.UseVisualStyleBackColor = false;
             this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // BtnExit
             // 
+            resources.ApplyResources(this.BtnExit, "BtnExit");
             this.BtnExit.BackColor = System.Drawing.Color.Crimson;
             this.BtnExit.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
-            this.BtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BtnExit.Location = new System.Drawing.Point(57, 159);
             this.BtnExit.Name = "BtnExit";
-            this.BtnExit.Size = new System.Drawing.Size(75, 31);
-            this.BtnExit.TabIndex = 3;
-            this.BtnExit.Text = "خروج";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
             // TxtUserName
             // 
-            this.TxtUserName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TxtUserName.Location = new System.Drawing.Point(37, 67);
+            resources.ApplyResources(this.TxtUserName, "TxtUserName");
             this.TxtUserName.Name = "TxtUserName";
-            this.TxtUserName.Size = new System.Drawing.Size(169, 23);
-            this.TxtUserName.TabIndex = 0;
+            this.TxtUserName.Enter += new System.EventHandler(this.TxtUserName_Enter);
             this.TxtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUserName_KeyDown);
             // 
             // TxtPassword
             // 
-            this.TxtPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.TxtPassword.Location = new System.Drawing.Point(37, 113);
+            resources.ApplyResources(this.TxtPassword, "TxtPassword");
             this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.Size = new System.Drawing.Size(169, 23);
-            this.TxtPassword.TabIndex = 1;
             this.TxtPassword.UseSystemPasswordChar = true;
             this.TxtPassword.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
             // 
             // LblUserName
             // 
-            this.LblUserName.AutoSize = true;
-            this.LblUserName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblUserName.Location = new System.Drawing.Point(212, 70);
+            resources.ApplyResources(this.LblUserName, "LblUserName");
             this.LblUserName.Name = "LblUserName";
-            this.LblUserName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LblUserName.Size = new System.Drawing.Size(84, 15);
-            this.LblUserName.TabIndex = 5;
-            this.LblUserName.Text = "اسم المستخدم :";
             // 
             // LblPassword
             // 
-            this.LblPassword.AutoSize = true;
-            this.LblPassword.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblPassword.Location = new System.Drawing.Point(212, 116);
+            resources.ApplyResources(this.LblPassword, "LblPassword");
             this.LblPassword.Name = "LblPassword";
-            this.LblPassword.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.LblPassword.Size = new System.Drawing.Size(60, 15);
-            this.LblPassword.TabIndex = 6;
-            this.LblPassword.Text = "كلمة السر :";
             // 
             // LblTitle
             // 
-            this.LblTitle.AutoSize = true;
-            this.LblTitle.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitle.Location = new System.Drawing.Point(95, 23);
+            resources.ApplyResources(this.LblTitle, "LblTitle");
             this.LblTitle.Name = "LblTitle";
-            this.LblTitle.Size = new System.Drawing.Size(179, 25);
-            this.LblTitle.TabIndex = 4;
-            this.LblTitle.Text = "Ticketing Software";
             // 
             // ImbLogo
             // 
-            this.ImbLogo.Image = ((System.Drawing.Image)(resources.GetObject("ImbLogo.Image")));
-            this.ImbLogo.Location = new System.Drawing.Point(19, 12);
+            resources.ApplyResources(this.ImbLogo, "ImbLogo");
             this.ImbLogo.Name = "ImbLogo";
-            this.ImbLogo.Size = new System.Drawing.Size(77, 45);
-            this.ImbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.ImbLogo.TabIndex = 6;
             this.ImbLogo.TabStop = false;
             this.ImbLogo.Click += new System.EventHandler(this.ImbLogo_Click);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(332, 215);
             this.Controls.Add(this.ImbLogo);
             this.Controls.Add(this.LblTitle);
             this.Controls.Add(this.LblPassword);
@@ -148,9 +111,6 @@ namespace OTS.Ticketing.Win.MainForms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "Login";
-            this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
             this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).EndInit();

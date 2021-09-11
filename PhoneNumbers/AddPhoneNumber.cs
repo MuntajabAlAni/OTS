@@ -1,5 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Companies;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,6 +82,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     await phoneNumberRepository.AddPhoneNumber(TxtPhoneNumber.Text,
                         TxtCustomerName.Text,
                         Convert.ToInt64(CombCompanies.SelectedValue));
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddPhoneNumber, "إضافة رقم هاتف",
+                        await phoneNumberRepository.GetLastAddedPhoneNumberId());
                 }
                 else
                 {
@@ -88,6 +91,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                         TxtPhoneNumber.Text,
                         TxtCustomerName.Text,
                         Convert.ToInt64(CombCompanies.SelectedValue));
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditPhoneNumber, "تعديل رقم هاتف", _id);
+
                 }
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
                 SystemConstants.SelectedPhoneNumberId = await phoneNumberRepository.GetPhoneNumberIdByPhoneNumber(TxtPhoneNumber.Text);
@@ -170,6 +175,14 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             if (e.KeyData == Keys.Enter)
             {
                 BtnSearchCompany_Click(sender, e);
+            }
+        }
+
+        private void TxtPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

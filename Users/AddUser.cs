@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -65,22 +66,36 @@ namespace OTS.Ticketing.Win.Users
                     return;
                 }
 
+                if (TxtUserName.Text.Trim() == "")
+                {
+                    MessageBox.Show("الرجاء ادخال اسم المستخدم");
+                    return;
+                }
+
                 if (_id == 0)
                 {
                     await UserRepository.AddUser(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
                         CbState.Checked, TxtIp.Text, TxtRemarks.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddUser, "إضافة مستخدم",
+                        await UserRepository.GetLastAddedUserId());
                 }
                 else
                 {
                     await UserRepository.UpdateUser(_id, TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
                         CbState.Checked, TxtIp.Text, TxtRemarks.Text);
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditUser, "تعديل مستخدم", _id);
                 }
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
+                if (ex.Message.Contains("66DCF95C0F369E53"))
+                {
+                    MessageBox.Show("هذا المستخدم موجود سابقاً", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

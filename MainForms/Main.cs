@@ -6,6 +6,7 @@ using OTS.Ticketing.Win.Softwares;
 using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Tickets;
 using OTS.Ticketing.Win.Users;
+using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,8 +27,41 @@ namespace OTS.Ticketing.Win
         public Main()
         {
             InitializeComponent();
-            FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
-            HelpToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
+            FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowRight;
+            HelpToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowRight;
+        }
+        private async void Main_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                BtnHome.PerformClick();
+                var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+                if (SystemConstants.loggedInUserId == 1)
+                {
+                    BtnAddTicket.Visible = true;
+                    BtnCompanies.Visible = true;
+                    BtnUsers.Visible = true;
+                    BtnPhoneNumbres.Visible = true;
+                    BtnSoftwares.Visible = true;
+                    BtnStates.Visible = true;
+                    BtnOldTickets.Visible = true;
+                    return;
+                }
+                if (UserInfo.UserName == "Noor")
+                {
+                    BtnTickets.Visible = false;
+                    BtnAddTicket.Visible = true;
+                    BtnAddTicket.Location = new Point(0, 162);
+                    return;
+                }
+                BtnTickets.Location = new Point(0, 162);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
         }
         private void ApplingFormOnContainer(object obj)
         {
@@ -79,10 +113,11 @@ namespace OTS.Ticketing.Win
             if (PnlMenuVertical.Width == 250) PnlMenuVertical.Width = 100;
             else PnlMenuVertical.Width = 250;
         }
-        private void ChangeUserToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void ChangeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
             SystemConstants.Initialize();
+            await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
             Login login = new Login();
             login.Show();
         }
@@ -90,39 +125,7 @@ namespace OTS.Ticketing.Win
         {
             Exit();
         }
-        private async void Main_Load(object sender, EventArgs e)
-        {
-            try
-            {
-                BtnHome.PerformClick();
-                var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
-                if (UserInfo.UserName == "admin")
-                {
-                    BtnAddTicket.Visible = true;
-                    BtnCompanies.Visible = true;
-                    BtnUsers.Visible = true;
-                    BtnPhoneNumbres.Visible = true;
-                    BtnSoftwares.Visible = true;
-                    BtnStates.Visible = true;
-                    BtnOldTickets.Visible = true;
-                    return;
-                }
-                if (UserInfo.UserName == "Noor")
-                {
-                    BtnTickets.Visible = false;
-                    BtnAddTicket.Visible = true;
-                    BtnAddTicket.Location = new Point(0, 162);
-                    return;
-                }
-                BtnTickets.Location = new Point(0, 162);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Error(ex);
-            }
 
-        }
         private void BtnTickets_Click(object sender, EventArgs e)
         {
             if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
@@ -163,12 +166,13 @@ namespace OTS.Ticketing.Win
             ApplingFormOnContainer(new DisplayPhoneNumbers(false));
         }
 
-        private void Exit()
+        private async void Exit()
         {
             DialogResult dr;
-            dr = MessageBox.Show("هل انت متأكد من إغلاق البرنامج ؟", "", MessageBoxButtons.YesNo);
+            dr = MessageBox.Show(LocalizationMessages.GetMessage("ExitConfirmation"), "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
+                await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
                 Application.Exit();
             }
         }

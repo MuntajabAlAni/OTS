@@ -80,16 +80,14 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
             return phoneNumberInfo.Id;
         }
-        public async Task<long> GetCompanyIdByName(string name)
+        public async Task<long> GetLastAddedPhoneNumberId()
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@Name", name);
+            string query = "SELECT TOP 1 id FROM PhoneNumbers Order by id DESC";
 
-            string query = "SELECT id from Companies WHERE Name = @Name";
+            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, new DynamicParameters());
+            PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
+            return phoneNumberInfo.Id;
 
-            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
-            CompanyInfo companyInfo = result.FirstOrDefault();
-            return companyInfo.Id;
         }
     }
 }
