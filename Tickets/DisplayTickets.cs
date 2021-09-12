@@ -105,6 +105,8 @@ namespace OTS.Ticketing.Win.Tickets
                 DtgTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
                 DtgTickets.Columns["Remarks"].Visible = false;
                 DtgTickets.Columns["TransferedTo"].Visible = false;
+                DtgTickets.Columns["IsDeleted"].Visible = false;
+
             }
             catch (Exception ex)
             {

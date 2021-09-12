@@ -52,7 +52,7 @@ namespace OTS.Ticketing.Win.Companies
         }
         public async Task<List<BranchInfo>> GetAllBranches()
         {
-            string query = "SELECT * FROM Branches";
+            string query = "SELECT * FROM Branches Where isDeleted = 0";
             var result = await dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new BranchInfo { Id = 0, Name = "" }));
@@ -73,7 +73,8 @@ namespace OTS.Ticketing.Win.Companies
             string query = @"SELECT c.id, c.name, c.address, c.remarks, b.name branchName
                             from companies c
                             left join branches b on c.branchId = b.id
-                            WHERE c.name LIKE '%' + @companyName + '%'";
+                            WHERE c.name LIKE '%' + @companyName + '%'
+                            AND c.isDeleted = 0";
 
             var result = await dataAccess.QueryAsync<CompanyView>(query, parameters);
             return result.ToList();

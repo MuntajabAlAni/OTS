@@ -64,6 +64,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
             DtgPhoneNumbers.Columns["CustomerName"].HeaderText = "اسم الزبون";
             DtgPhoneNumbers.Columns["CompanyName"].HeaderText = "اسم الشركة";
+            DtgPhoneNumbers.Columns["IsDeleted"].Visible = false;
         }
         private async void DtgPhoneNumbers_DoubleClick(object sender, EventArgs e)
         {

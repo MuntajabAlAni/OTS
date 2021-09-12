@@ -144,7 +144,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                this.Close();
             }
         }
         private void TxtPhoneNumber_Leave(object sender, EventArgs e)

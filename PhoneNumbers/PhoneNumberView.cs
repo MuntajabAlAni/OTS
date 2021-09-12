@@ -12,5 +12,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         public string PhoneNumber { get; set; }
         public string CustomerName { get; set; }
         public string CompanyName { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

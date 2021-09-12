@@ -23,5 +23,7 @@ namespace OTS.Ticketing.Win.Tickets
         public string IsIndexed { get; set; }
         public string IsClosed { get; set; }
         public string TransferedTo { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

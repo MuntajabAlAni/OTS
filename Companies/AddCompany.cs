@@ -151,7 +151,7 @@ namespace OTS.Ticketing.Win.Companies
         {
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                this.Close();
             }
         }
     }

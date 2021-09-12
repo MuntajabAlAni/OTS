@@ -34,7 +34,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
 												 inner join (select number,max(revision) revision from tickets where UserId = @UserId group by number) t2 on t.revision = t2.revision and t.number = t2.number
-												 WHERE UserId = @UserId and isClosed is null
+												 WHERE t.UserId = @UserId and t.isClosed is null and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -51,7 +51,7 @@ namespace OTS.Ticketing.Win.Tickets
         }
         public async Task<List<CompanyInfo>> GetAllCompanies()
         {
-            string query = "SELECT * FROM Companies";
+            string query = "SELECT * FROM Companies WHERE isDeleted = 0";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new CompanyInfo { Id = 0, Name = "يرجى إختيار شركة" }));
@@ -62,7 +62,7 @@ namespace OTS.Ticketing.Win.Tickets
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
 
-            string query = "SELECT * FROM Companies where Id = @companyId";
+            string query = "SELECT * FROM Companies where Id = @companyId And isDeleted = 0";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
             return result.FirstOrDefault();
         }
@@ -72,14 +72,15 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@userId", userId);
 
             string query = @"SELECT DISTINCT C.ID, C.Name from companies C
-                            inner join tickets T on c.id = t.companyId and IIF (@userId = 0,0,t.userId) = @userId";
+                            inner join tickets T on c.id = t.companyId and IIF (@userId = 0,0,t.userId) = @userId
+                            WHERE C.isDeleted = 0";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
             var list = result.ToList();
             return list;
         }
         public async Task<List<SoftwareInfo>> GetAllSoftwares()
         {
-            string query = "SELECT * FROM Softwares";
+            string query = "SELECT * FROM Softwares WHERE isDeleted = 0";
             var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new SoftwareInfo { Id = 0, Name = "" }));
@@ -87,7 +88,7 @@ namespace OTS.Ticketing.Win.Tickets
         }
         public async Task<List<UserInfo>> GetAllUsers()
         {
-            string query = "SELECT * FROM Users where username not in ('admin','Noor') and state = 1";
+            string query = "SELECT * FROM Users where username not in ('admin','Noor') and state = 1 and isDeleted = 0";
             var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new UserInfo { Id = 0, DisplayName = "" }));
@@ -95,7 +96,7 @@ namespace OTS.Ticketing.Win.Tickets
         }
         public async Task<List<StateInfo>> GetAllStates()
         {
-            string query = "SELECT * FROM States";
+            string query = "SELECT * FROM States WHERE isDeleted = 0";
             var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new StateInfo { Id = 0, Name = "" }));
@@ -105,7 +106,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            string query = "SELECT * FROM PhoneNumbers WHERE IIF(@companyId = 0,0,companyId) = @companyId";
+            string query = "SELECT * FROM PhoneNumbers WHERE IIF(@companyId = 0,0,companyId) = @companyId AND isDeleted = 0";
             var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             var list = result.ToList();
             list.Insert(0, (new PhoneNumberInfo { Id = 0, PhoneNumber = "" }));
@@ -148,7 +149,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join companies c on t.companyId = c.id 
                                                  left join states st on t.stateId = st.id
 												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
-												 WHERE isClosed = 0 and t.companyId = @companyId
+												 WHERE isClosed = 0 and t.companyId = @companyId and t.isDeleted = 0
                                                  ORDER BY t.number,t.revision";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -159,7 +160,7 @@ namespace OTS.Ticketing.Win.Tickets
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@ticketNumber", ticketNumber);
             parameters.Add("@revision", revision);
-            string query = "select * from tickets where number = @ticketNumber and revision = @revision";
+            string query = "select * from tickets where number = @ticketNumber and revision = @revision and isDeleted = 0";
 
             var result = await dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
@@ -196,7 +197,7 @@ namespace OTS.Ticketing.Win.Tickets
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
-            string query = "SELECT * FROM Users WHERE Id = @id";
+            string query = "SELECT * FROM Users WHERE Id = @id AND isDeleted = 0";
             var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
@@ -217,7 +218,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join Users e on t.UserId = e.id
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
-												 WHERE  t.number = @ticketNumber and t.revision = @revision
+												 WHERE  t.number = @ticketNumber and t.revision = @revision and isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -228,9 +229,9 @@ namespace OTS.Ticketing.Win.Tickets
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            parameters.Add("@fromDate", fromDate);
+            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
             parameters.Add("@userId", userId);
-            parameters.Add("@toDate", toDate);
+            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
 
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
@@ -246,7 +247,8 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and IIF(@userId = 0,0,t.UserId) = @userId
 												 and t.openDate between @fromDate and @toDate
-												 and (isClosed = 0 or isClosed is null)
+												 and (t.isClosed = 0 or t.isClosed is null)
+                                                 and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -257,9 +259,9 @@ namespace OTS.Ticketing.Win.Tickets
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            parameters.Add("@fromDate", fromDate);
+            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
             parameters.Add("@userId", userId);
-            parameters.Add("@toDate", toDate);
+            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
 
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
@@ -275,7 +277,8 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE  IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and IIF(@userId = 0,0,t.UserId) = @userId
 												 and t.openDate between @fromDate and @toDate
-												 and isClosed = 1
+												 and t.isClosed = 1
+                                                 and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
@@ -286,9 +289,9 @@ namespace OTS.Ticketing.Win.Tickets
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
-            parameters.Add("@fromDate", fromDate);
+            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
             parameters.Add("@userId", userId);
-            parameters.Add("@toDate", toDate);
+            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
 
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
@@ -304,6 +307,7 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE  IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and IIF(@userId = 0,0,t.UserId) = @userId
 												 and t.openDate between @fromDate and @toDate
+                                                 and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);

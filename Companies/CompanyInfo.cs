@@ -13,6 +13,8 @@ namespace OTS.Ticketing.Win.Companies
         public string Address { get; set; }
         public string Remarks { get; set; }
         public long BranchId { get; set; }
+        public bool IsDeleted { get; set; }
+
 
     }
 }

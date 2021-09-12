@@ -19,7 +19,7 @@ namespace OTS.Ticketing.Win.MainForms
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@userName", userName);
 
-            string query = @"SELECT * FROM Users WHERE userName = @userName";
+            string query = @"SELECT * FROM Users WHERE userName = @userName and isDeleted = 0";
             var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
@@ -33,7 +33,7 @@ namespace OTS.Ticketing.Win.MainForms
             dynamicParameters.Add("Password", passwordHash);
 
             string query = @"SELECT * FROM Users where username = @UserName and 
-                             password = @password and State = 1";
+                             password = @password and State = 1 and isDeleted = 0";
 
             var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
             return result.FirstOrDefault();
@@ -56,6 +56,7 @@ namespace OTS.Ticketing.Win.MainForms
 												 left join (select u.id, u.displayName from users u inner join tickets t on t.transferedTo = u.id) k on t.transferedTo = k.id
                                                  left join states st on t.stateId = st.id 
 												 WHERE CAST( openDate AS Date )  = CAST( GETDATE() AS Date )
+                                                 and t.isDeleted = 0
 												 ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());

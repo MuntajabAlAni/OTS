@@ -24,5 +24,7 @@ namespace OTS.Ticketing.Win.Tickets
         public bool IsClosed { get; set; }
         public bool IsIndexed { get; set; }
         public long TransferedTo { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

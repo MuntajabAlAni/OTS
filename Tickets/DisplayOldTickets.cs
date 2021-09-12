@@ -104,6 +104,7 @@ namespace OTS.Ticketing.Win.Tickets
             _dt.Columns["TransferedTo"].ColumnName = "تم التحويل الى";
             _dt.Columns["Remarks"].ColumnName = "الملاحظات";
             _dt.Columns.Remove("IsClosed");
+            _dt.Columns.Remove("IsDeleted");
 
             DtgOldTickets.DataSource = _dt;
 
@@ -213,5 +214,13 @@ namespace OTS.Ticketing.Win.Tickets
             TicketRemarks remarks = new TicketRemarks(selectedTicket);
             remarks.ShowDialog();
         }
+
+        //private void PbLoading_VisibleChanged(object sender, EventArgs e)
+        //{
+        //    foreach (Control control in Controls)
+        //    {
+        //        control.Enabled = !PnlLoad.Visible;
+        //    }
+        //}
     }
 }

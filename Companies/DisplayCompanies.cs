@@ -64,6 +64,7 @@ namespace OTS.Ticketing.Win.Companies
             DtgCompanies.Columns["Address"].HeaderText = "العنوان";
             DtgCompanies.Columns["BranchName"].HeaderText = "الفرع";
             DtgCompanies.Columns["Remarks"].Visible = false;
+            DtgCompanies.Columns["IsDeleted"].Visible = false;
         }
         private async void DtgCompanies_DoubleClick(object sender, EventArgs e)
         {

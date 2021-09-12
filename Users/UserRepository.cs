@@ -48,7 +48,7 @@ namespace OTS.Ticketing.Win.Users
         }
         public async Task<List<UserInfo>> GetAllUsers()
         {
-            string query = "select id, displayName from users";
+            string query = "select id, displayName from users WHERE isDeleted = 0";
             var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             return result.ToList();
         }

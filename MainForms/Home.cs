@@ -54,6 +54,8 @@ namespace OTS.Ticketing.Win.MainForms
                 DtgLastTickets.Columns["IsClosed"].HeaderText = LocalizationMessages.GetMessage("IsClosed");
                 DtgLastTickets.Columns["Remarks"].HeaderText = LocalizationMessages.GetMessage("Remarks");
                 DtgLastTickets.Columns["TransferedTo"].HeaderText = LocalizationMessages.GetMessage("TransferedTo");
+                DtgLastTickets.Columns["IsDeleted"].Visible = false;
+
             }
             catch (Exception ex)
             {

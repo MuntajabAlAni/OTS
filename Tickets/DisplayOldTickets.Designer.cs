@@ -336,9 +336,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.BtnUpdate);
             this.Controls.Add(this.BtnExcel);
             this.Controls.Add(this.BtnEdit);
-            this.Controls.Add(this.DtgOldTickets);
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.PnlLoad);
+            this.Controls.Add(this.DtgOldTickets);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "DisplayOldTickets";

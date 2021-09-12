@@ -44,7 +44,7 @@ namespace OTS.Ticketing.Win.States
         }
         public async Task<List<StateInfo>> GetAllStates()
         {
-            string query = "SELECT * FROM states";
+            string query = "SELECT * FROM states WHERE isDeleted = 0";
             var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
             return result.ToList();
         }

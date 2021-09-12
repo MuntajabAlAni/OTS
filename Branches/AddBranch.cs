@@ -82,7 +82,7 @@ namespace OTS.Ticketing.Win.Branches
         {
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                this.Close();
             }
         }
 

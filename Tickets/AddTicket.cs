@@ -146,6 +146,8 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
             DtgUnclosedTickets.Columns["Remarks"].Visible = false;
             DtgUnclosedTickets.Columns["TransferedTo"].Visible = false;
+            DtgUnclosedTickets.Columns["IsDeleted"].Visible = false;
+
         }
         private void BtnExit_Click(object sender, EventArgs e)
         {

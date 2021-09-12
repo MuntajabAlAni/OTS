@@ -52,7 +52,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         }
         public async Task<List<CompanyInfo>> GetAllCompanies()
         {
-            string query = "SELECT * FROM Companies";
+            string query = "SELECT * FROM Companies where isDeleted = 0";
             var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             return result.ToList();
         }
@@ -64,7 +64,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             string query = @"SELECT p.id, p.phoneNumber, p.customerName, c.name companyName
                             from phoneNumbers p
                             left join companies c on p.companyId = c.id
-                            WHERE phoneNumber LIKE '%'+@phoneNumber";
+                            WHERE phoneNumber LIKE '%'+@phoneNumber
+                            AND p.isDeleted = 0";
 
             var result = await dataAccess.QueryAsync<PhoneNumberView>(query, parameters);
             return result.ToList();
@@ -74,7 +75,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@phoneNumber", phoneNumber);
 
-            string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber";
+            string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber And isDeleted = 0";
 
             var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
