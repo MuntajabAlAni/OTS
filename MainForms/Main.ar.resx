@@ -117,7 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnActivityLog.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnActivityLog.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="BtnActivityLog.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAKVSURBVGhD7Ze9axRBGIfzJ6SyTqOdcCA2VsHKwuIK
+        e1PYCgcWNhbXCIpCFEQIFgfBQgRJIdiIHIFEOQweGIwg6EHAFBaeYJHCYvw9s+8cs+vufZg72GIeeNmd
+        z33ma/duKZFIJBKJRCIxJ5xzDcWWYt2y6o0JDxWBNSuqJxIsCkPTiis5dfPN6uXHe/1rT/eHZ2/vdEhb
+        0WKRXJlwx4pHSKihaFusIHj9+YFVd+7X8R9HOpRZvRZp62I+6FnTCq/cePHZ14vkOtzH7H4dkt8Kgzn8
+        eexoNzdx9TmVMCCCQMDkuhXS/Tjf8k6+bdRXmTDpdlloz+YE949+u9PtbT/rMa8+/XDn777N9Yv0Zu97
+        R7ehv/8bgBoWhcfCg5/tHVnKuY2dQ5++9/qb5WTcevnFixMB6sSrZAwUEw96DjWYSRriQxfuuTLrwDUM
+        gnxWgTwGMobS7ViKKq9lbXIwkG5ZMKtXNz/qNoN7ZpMr2wGxM+3tIdLUvfiw587d2fVbKNQV9FU2WW3T
+        mowql4nnPig6QI0rT/pDtgcwe8wiQgjaIes2Nz74a5hZypENq4D0pUfvB/SnZEtRlJ/+7aLKY8X5cFie
+        B+HiPg4DiFeCwZGOzwGsPuht0S+3Wc6I2X42qEGlOJLMZgiWuwiHjCgKUp9tErfXinT9Q4Wq8BsnMLDs
+        6VGjMnG+anwFufq4cP9dP5aYFGrjP+1RNOyR/zzTsmdD7YriLSsawUMLEpOicq+q/9wWsezZUVvEOeUs
+        3bJlLwT1v64IDC27vkhyGVGvm+EPaG2RIMK5t5KY7eu4SCSDIHuXaCrYEsV39OiNUgsQyrwqYQDz/b19
+        UjKvShhQvYRBUvwUjWFmeTPV+/9nIpFIJBI1YWnpL6iIs5YRoLDPAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BtnActivityLog.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="BtnActivityLog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="BtnActivityLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 0, 0, 0</value>
+  </data>
+  <data name="BtnActivityLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 45</value>
+  </data>
+  <data name="BtnActivityLog.Text" xml:space="preserve">
+    <value>إدخالات المستخدمين</value>
+  </data>
+  <data name="BtnActivityLog.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnActivityLog.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="BtnOldTickets.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m

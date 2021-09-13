@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.PhoneNumbers;
@@ -45,6 +46,7 @@ namespace OTS.Ticketing.Win
                     BtnSoftwares.Visible = true;
                     BtnStates.Visible = true;
                     BtnOldTickets.Visible = true;
+                    BtnActivityLog.Visible = true;
                     return;
                 }
                 if (UserInfo.UserName == "Noor")
@@ -116,8 +118,8 @@ namespace OTS.Ticketing.Win
         private async void ChangeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
-            SystemConstants.Initialize();
             await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
+            SystemConstants.Initialize();
             Login login = new Login();
             login.Show();
         }
@@ -204,6 +206,12 @@ namespace OTS.Ticketing.Win
         {
             AddUser displayUser = new AddUser(SystemConstants.loggedInUserId);
             displayUser.ShowDialog();
+        }
+
+        private void BtnActivityLog_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
+            ApplingFormOnContainer(new DisplayActivities());
         }
     }
 }

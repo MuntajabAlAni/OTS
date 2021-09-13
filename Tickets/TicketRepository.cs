@@ -218,7 +218,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join Users e on t.UserId = e.id
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
-												 WHERE  t.number = @ticketNumber and t.revision = @revision and isDeleted = 0
+												 WHERE  t.number = @ticketNumber and t.revision = @revision and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
             var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);

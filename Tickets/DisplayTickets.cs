@@ -296,6 +296,11 @@ namespace OTS.Ticketing.Win.Tickets
 
         private void BtnOldTickets_Click(object sender, EventArgs e)
         {
+            if (LblCompany.Text == "")
+            {
+                MessageBox.Show("! يرجى إختيار بطاقة اولاً");
+                return;
+            }
             DisplayOldTickets displayOldTickets = new DisplayOldTickets(LblCompany.Text);
             displayOldTickets.ShowDialog();
         }

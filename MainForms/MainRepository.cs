@@ -55,7 +55,7 @@ namespace OTS.Ticketing.Win.MainForms
                                                  left join companies c on t.companyId = c.id
 												 left join (select u.id, u.displayName from users u inner join tickets t on t.transferedTo = u.id) k on t.transferedTo = k.id
                                                  left join states st on t.stateId = st.id 
-												 WHERE CAST( openDate AS Date )  = CAST( GETDATE() AS Date )
+												 WHERE openDate between CAST( GETDATE() AS Date )  and CAST( GETDATE() AS DateTime )
                                                  and t.isDeleted = 0
 												 ORDER BY t.number DESC,t.revision DESC";
 

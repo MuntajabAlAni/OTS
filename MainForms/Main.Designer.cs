@@ -31,6 +31,7 @@ namespace OTS.Ticketing.Win
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PnlMenuVertical = new System.Windows.Forms.Panel();
+            this.BtnActivityLog = new System.Windows.Forms.Button();
             this.BtnOldTickets = new System.Windows.Forms.Button();
             this.BtnAddTicket = new System.Windows.Forms.Button();
             this.BtnTickets = new System.Windows.Forms.Button();
@@ -69,6 +70,7 @@ namespace OTS.Ticketing.Win
             // 
             resources.ApplyResources(this.PnlMenuVertical, "PnlMenuVertical");
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.PnlMenuVertical.Controls.Add(this.BtnActivityLog);
             this.PnlMenuVertical.Controls.Add(this.BtnOldTickets);
             this.PnlMenuVertical.Controls.Add(this.BtnAddTicket);
             this.PnlMenuVertical.Controls.Add(this.BtnTickets);
@@ -80,6 +82,16 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.Controls.Add(this.BtnCompanies);
             this.PnlMenuVertical.Controls.Add(this.LOGO);
             this.PnlMenuVertical.Name = "PnlMenuVertical";
+            // 
+            // BtnActivityLog
+            // 
+            resources.ApplyResources(this.BtnActivityLog, "BtnActivityLog");
+            this.BtnActivityLog.FlatAppearance.BorderSize = 0;
+            this.BtnActivityLog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnActivityLog.ForeColor = System.Drawing.Color.White;
+            this.BtnActivityLog.Name = "BtnActivityLog";
+            this.BtnActivityLog.UseVisualStyleBackColor = true;
+            this.BtnActivityLog.Click += new System.EventHandler(this.BtnActivityLog_Click);
             // 
             // BtnOldTickets
             // 
@@ -368,5 +380,6 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.Button BtnStates;
         private System.Windows.Forms.Button BtnOldTickets;
         private System.Windows.Forms.ToolStripMenuItem EditUserToolStripMenuItem;
+        private System.Windows.Forms.Button BtnActivityLog;
     }
 }

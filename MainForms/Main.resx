@@ -128,6 +128,13 @@
   <data name="ImbNormalSize.Size" type="System.Drawing.Size, System.Drawing">
     <value>20, 20</value>
   </data>
+  <data name="BtnHome.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="PnlMenuVertical.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
   <data name="BtnPhoneNumbres.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
@@ -137,9 +144,11 @@
   <data name="&gt;&gt;HelpToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="PnlTop.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="ImbClose.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1027, 3</value>
   </data>
   <data name="LOGO.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -376,6 +385,9 @@
   <data name="PnlTop.Location" type="System.Drawing.Point, System.Drawing">
     <value>250, 0</value>
   </data>
+  <data name="&gt;&gt;ImbMinimize.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="BtnHome.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -397,19 +409,16 @@
 </value>
   </data>
   <data name="&gt;&gt;BtnUsers.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="PnlContainer.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="&gt;&gt;BtnAddTicket.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="BtnStates.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
-  </data>
-  <data name="&gt;&gt;ImbMaximize.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ImbClose.Name" xml:space="preserve">
     <value>ImbClose</value>
@@ -425,9 +434,6 @@
   </data>
   <data name="ImbMinimize.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
-  </data>
-  <data name="&gt;&gt;BtnPhoneNumbres.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BtnStates.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -456,8 +462,8 @@
   <data name="BtnAddTicket.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
   </data>
-  <data name="&gt;&gt;PnlTop.Name" xml:space="preserve">
-    <value>PnlTop</value>
+  <data name="&gt;&gt;BtnActivityLog.Parent" xml:space="preserve">
+    <value>PnlMenuVertical</value>
   </data>
   <data name="BtnPhoneNumbres.Text" xml:space="preserve">
     <value>ارقام الهاتف</value>
@@ -2719,11 +2725,8 @@
   <data name="&gt;&gt;MenuStrip.Type" xml:space="preserve">
     <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;ImbMinimize.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="FileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>42, 20</value>
+  <data name="BtnTickets.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 418</value>
   </data>
   <data name="ImbNormalSize.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -2731,20 +2734,14 @@
   <data name="&gt;&gt;BtnSoftwares.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
   </data>
-  <data name="BtnPhoneNumbres.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 0, 0, 0</value>
-  </data>
   <data name="BtnOldTickets.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;BtnStates.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="BtnStates.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 316</value>
-  </data>
-  <data name="&gt;&gt;BtnUsers.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;PnlContainer.Name" xml:space="preserve">
     <value>PnlContainer</value>
@@ -2753,7 +2750,7 @@
     <value>مساعدة</value>
   </data>
   <data name="&gt;&gt;BtnSoftwares.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="BtnOldTickets.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -2773,8 +2770,8 @@
   <data name="PnlMenuVertical.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="&gt;&gt;ChangeUserToolStripMenuItem.Name" xml:space="preserve">
-    <value>ChangeUserToolStripMenuItem</value>
+  <data name="&gt;&gt;BtnStates.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;MenuStrip.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -2782,17 +2779,14 @@
   <data name="BtnSoftwares.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
-  <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1050, 24</value>
-  </data>
   <data name="BtnStates.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="BtnStates.Text" xml:space="preserve">
-    <value>حالات البطاقات</value>
+  <data name="MenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1050, 24</value>
   </data>
   <data name="&gt;&gt;LOGO.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="BtnSoftwares.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3293,11 +3287,17 @@
   <data name="BtnStates.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
+  <data name="BtnSoftwares.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="BtnOldTickets.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 0, 0, 0</value>
+  </data>
   <data name="&gt;&gt;LOGO.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;BtnStates.Name" xml:space="preserve">
-    <value>BtnStates</value>
+  <data name="BtnStates.Text" xml:space="preserve">
+    <value>حالات البطاقات</value>
   </data>
   <data name="BtnTickets.Text" xml:space="preserve">
     <value>البطاقات</value>
@@ -3326,8 +3326,8 @@
   <data name="&gt;&gt;bunifuFormDock1.Name" xml:space="preserve">
     <value>bunifuFormDock1</value>
   </data>
-  <data name="&gt;&gt;ExitToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;ImbMaximize.Name" xml:space="preserve">
+    <value>ImbMaximize</value>
   </data>
   <data name="&gt;&gt;ImbMinimize.Name" xml:space="preserve">
     <value>ImbMinimize</value>
@@ -3337,6 +3337,9 @@
   </data>
   <data name="BtnTickets.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
+  </data>
+  <data name="BtnActivityLog.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;AboutToolStripMenuItem.Name" xml:space="preserve">
     <value>AboutToolStripMenuItem</value>
@@ -3363,13 +3366,10 @@
     <value>False</value>
   </data>
   <data name="&gt;&gt;BtnTickets.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;BtnCompanies.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="BtnAddTicket.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 469</value>
+    <value>9</value>
   </data>
   <data name="ImbMaximize.Location" type="System.Drawing.Point, System.Drawing">
     <value>1001, 3</value>
@@ -3389,8 +3389,8 @@
   <data name="&gt;&gt;ImbNormalSize.Parent" xml:space="preserve">
     <value>PnlTop</value>
   </data>
-  <data name="BtnPhoneNumbres.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+  <data name="MenuStrip.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="BtnAddTicket.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -3418,9 +3418,6 @@
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
-  </data>
-  <data name="&gt;&gt;ImbMaximize.ZOrder" xml:space="preserve">
-    <value>2</value>
   </data>
   <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
     <value>خروج</value>
@@ -3479,6 +3476,9 @@
   <data name="BtnOldTickets.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 520</value>
   </data>
+  <data name="&gt;&gt;BtnCompanies.Parent" xml:space="preserve">
+    <value>PnlMenuVertical</value>
+  </data>
   <data name="BtnOldTickets.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -3512,17 +3512,20 @@
   <data name="&gt;&gt;PnlMenuVertical.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PnlContainer.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;BtnActivityLog.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;PnlContainer.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;PnlContainer.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="PnlContainer.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="BtnHome.Text" xml:space="preserve">
     <value>الصفحة الرئيسية</value>
+  </data>
+  <data name="BtnUsers.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="&gt;&gt;ImbNormalSize.Name" xml:space="preserve">
     <value>ImbNormalSize</value>
@@ -3542,11 +3545,14 @@
   <data name="&gt;&gt;BtnSoftwares.Name" xml:space="preserve">
     <value>BtnSoftwares</value>
   </data>
+  <data name="BtnPhoneNumbres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
   <data name="LOGO.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="ImbNormalSize.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="ImbMinimize.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
   <data name="BtnHome.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -3557,11 +3563,8 @@
   <data name="&gt;&gt;PnlMenuVertical.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="ChangeUserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
-  </data>
-  <data name="BtnOldTickets.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 0, 0, 0</value>
+  <data name="&gt;&gt;BtnPhoneNumbres.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ImbMaximize.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3619,17 +3622,14 @@
   <data name="BtnPhoneNumbres.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="EditUserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 20</value>
+  <data name="&gt;&gt;ImbMaximize.Parent" xml:space="preserve">
+    <value>PnlTop</value>
   </data>
   <data name="BtnHome.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleLeft</value>
   </data>
   <data name="&gt;&gt;EditUserToolStripMenuItem.Name" xml:space="preserve">
     <value>EditUserToolStripMenuItem</value>
-  </data>
-  <data name="BtnTickets.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
   </data>
   <data name="BtnOldTickets.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3647,8 +3647,8 @@
         v1OpfAPoYoRWsuuZXgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="PnlMenuVertical.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="&gt;&gt;ImbMaximize.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BtnCompanies.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -3672,11 +3672,14 @@
         nVmsdWax1pnFWmcWa1uh3h/JuEuomMqs/wAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="BtnSoftwares.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 367</value>
+  </data>
   <data name="BtnUsers.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="BtnHome.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+  <data name="ImbNormalSize.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3687,21 +3690,8 @@
   <data name="&gt;&gt;ImbClose.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="BtnPhoneNumbres.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
-        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJHSURBVGhD7ZgBkcIwEEWRgAQkIAEJSEACEnBwEpBw
-        EpBwEpBwErj3001uCaG0TNMMM30zmSabTfvbbLZpVwsLb3C73daUA+XUqGxNyjAYsKH8UlpyMTnDYMC5
-        G9eU0aIv3bjAnrKrUI6UyA8l2iPvizbT5HDqokBri0X0JHDqNqLpVpbRxcelJ7BxkfqiMUvsd3D4R2PW
-        5vISfOcTjUkvnGc5/GRuL8F3HtE0lf5y8py+Mfde8JtNtH/Cyq1BIEcfKufg/AL8vOg6eZqqwiJypaT4
-        pa4YT5i5F9y8wBKTiNYmJnIwc4C2BOhGIi9DBJ9ZRCcb7Myc34y4Wlcv+HnRCjud31+j3pO2dkQXH5Sz
-        8SvGr7XFJKJ95khPk7rPHoMvhG990YKmj9uj2e4WIaTQ6UN+nXugqmifQRQKIYNw9KHzTkzXEy0wpT4I
-        OZmjPs0eZqEPfGYV7S8mwsLjmM+C/DQDKg8hY/2RuqIF5uLiU70zFSnl9sgsovMP373Z81nwyD+9dKjP
-        K1rQVVx81L86U0A+2ldE0r6EuhetG9I1/UxVEZ0vvrQtpS5BcTO1Vacj2vtmRUwvWtDtXzh30+/B7tdA
-        uDmObUQLXPyUKhTuvl5o60n7ECmJrrM1fQYu+RtRT1xxrXjOP8lEKTySQGuLeqIFbj5HP0M34zdabUUL
-        XCXCh4FHMZ2HTXvREYYohvXkw5uQUvxCt75IW9FD4dSL6M8XDR/zqzf/AdOC0aLzXVwLxokWDNKGSFOo
-        1NWijP4Tu7DwmaxWf/xQ9VssnXsWAAAAAElFTkSuQmCC
-</value>
+  <data name="&gt;&gt;ChangeUserToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BtnHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
@@ -3718,14 +3708,17 @@
   <data name="PnlContainer.Location" type="System.Drawing.Point, System.Drawing">
     <value>250, 60</value>
   </data>
-  <data name="&gt;&gt;BtnStates.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;BtnPhoneNumbres.Name" xml:space="preserve">
+    <value>BtnPhoneNumbres</value>
+  </data>
+  <data name="&gt;&gt;ImbMaximize.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="BtnTickets.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
   </data>
-  <data name="ImbClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1027, 3</value>
+  <data name="BtnAddTicket.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 469</value>
   </data>
   <data name="PnlContainer.Size" type="System.Drawing.Size, System.Drawing">
     <value>1050, 590</value>
@@ -3734,7 +3727,7 @@
     <value>0, 162</value>
   </data>
   <data name="&gt;&gt;BtnOldTickets.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="MenuStrip.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 36</value>
@@ -3748,11 +3741,17 @@
   <data name="BtnCompanies.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
   </data>
+  <data name="&gt;&gt;ImbClose.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;BtnCompanies.Name" xml:space="preserve">
     <value>BtnCompanies</value>
   </data>
   <data name="&gt;&gt;EditUserToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ImbMinimize.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <data name="BtnAddTicket.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
@@ -3760,47 +3759,50 @@
   <data name="&gt;&gt;LOGO.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
   </data>
-  <data name="ImbMinimize.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
+  <data name="&gt;&gt;BtnActivityLog.Name" xml:space="preserve">
+    <value>BtnActivityLog</value>
   </data>
   <data name="&gt;&gt;BtnUsers.Name" xml:space="preserve">
     <value>BtnUsers</value>
   </data>
-  <data name="BtnTickets.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 418</value>
+  <data name="&gt;&gt;ChangeUserToolStripMenuItem.Name" xml:space="preserve">
+    <value>ChangeUserToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;ExitToolStripMenuItem.Name" xml:space="preserve">
     <value>ExitToolStripMenuItem</value>
   </data>
-  <data name="MenuStrip.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;PnlTop.Name" xml:space="preserve">
+    <value>PnlTop</value>
   </data>
   <data name="&gt;&gt;ImbNormalSize.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;BtnActivityLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;ImbMinimize.Parent" xml:space="preserve">
     <value>PnlTop</value>
   </data>
-  <data name="&gt;&gt;ChangeUserToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="ChangeUserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
   </data>
-  <data name="ImbMinimize.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
+  <data name="FileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 20</value>
   </data>
   <data name="LOGO.Size" type="System.Drawing.Size, System.Drawing">
     <value>232, 81</value>
   </data>
+  <data name="EditUserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 20</value>
+  </data>
   <data name="BtnSoftwares.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
   </data>
-  <data name="&gt;&gt;ImbClose.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
   </data>
-  <data name="&gt;&gt;ImbMaximize.Name" xml:space="preserve">
-    <value>ImbMaximize</value>
+  <data name="BtnPhoneNumbres.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 0, 0, 0</value>
   </data>
   <data name="BtnSoftwares.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3823,11 +3825,14 @@
   <data name="ImbMinimize.Location" type="System.Drawing.Point, System.Drawing">
     <value>975, 3</value>
   </data>
+  <data name="BtnActivityLog.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 571</value>
+  </data>
   <data name="BtnPhoneNumbres.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="BtnSoftwares.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="BtnTickets.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
   <data name="ImbNormalSize.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -3872,17 +3877,30 @@
   <data name="MenuStrip.Text" xml:space="preserve">
     <value>menuStrip1</value>
   </data>
-  <data name="BtnSoftwares.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 367</value>
+  <data name="BtnPhoneNumbres.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAJHSURBVGhD7ZgBkcIwEEWRgAQkIAEJSEACEnBwEpBw
+        EpBwEpBwErj3001uCaG0TNMMM30zmSabTfvbbLZpVwsLb3C73daUA+XUqGxNyjAYsKH8UlpyMTnDYMC5
+        G9eU0aIv3bjAnrKrUI6UyA8l2iPvizbT5HDqokBri0X0JHDqNqLpVpbRxcelJ7BxkfqiMUvsd3D4R2PW
+        5vISfOcTjUkvnGc5/GRuL8F3HtE0lf5y8py+Mfde8JtNtH/Cyq1BIEcfKufg/AL8vOg6eZqqwiJypaT4
+        pa4YT5i5F9y8wBKTiNYmJnIwc4C2BOhGIi9DBJ9ZRCcb7Myc34y4Wlcv+HnRCjud31+j3pO2dkQXH5Sz
+        8SvGr7XFJKJ95khPk7rPHoMvhG990YKmj9uj2e4WIaTQ6UN+nXugqmifQRQKIYNw9KHzTkzXEy0wpT4I
+        OZmjPs0eZqEPfGYV7S8mwsLjmM+C/DQDKg8hY/2RuqIF5uLiU70zFSnl9sgsovMP373Z81nwyD+9dKjP
+        K1rQVVx81L86U0A+2ldE0r6EuhetG9I1/UxVEZ0vvrQtpS5BcTO1Vacj2vtmRUwvWtDtXzh30+/B7tdA
+        uDmObUQLXPyUKhTuvl5o60n7ECmJrrM1fQYu+RtRT1xxrXjOP8lEKTySQGuLeqIFbj5HP0M34zdabUUL
+        XCXCh4FHMZ2HTXvREYYohvXkw5uQUvxCt75IW9FD4dSL6M8XDR/zqzf/AdOC0aLzXVwLxokWDNKGSFOo
+        1NWijP4Tu7DwmaxWf/xQ9VssnXsWAAAAAElFTkSuQmCC
+</value>
   </data>
-  <data name="BtnPhoneNumbres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;ExitToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BtnPhoneNumbres.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
-  <data name="&gt;&gt;ImbMaximize.Parent" xml:space="preserve">
-    <value>PnlTop</value>
+  <data name="&gt;&gt;BtnUsers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="ImbMaximize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5234,13 +5252,13 @@
     <value>Top, Right</value>
   </data>
   <data name="&gt;&gt;BtnHome.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
-  <data name="&gt;&gt;BtnPhoneNumbres.Name" xml:space="preserve">
-    <value>BtnPhoneNumbres</value>
+  <data name="&gt;&gt;PnlContainer.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;BtnCompanies.Parent" xml:space="preserve">
-    <value>PnlMenuVertical</value>
+  <data name="BtnPhoneNumbres.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
   <data name="&gt;&gt;BtnTickets.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -5263,17 +5281,17 @@
   <data name="&gt;&gt;MenuStrip.Name" xml:space="preserve">
     <value>MenuStrip</value>
   </data>
-  <data name="BtnUsers.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
+  <data name="&gt;&gt;BtnStates.Name" xml:space="preserve">
+    <value>BtnStates</value>
   </data>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <metadata name="bunifuFormDock1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>ar</value>
   </metadata>
   <metadata name="MenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>166, 17</value>

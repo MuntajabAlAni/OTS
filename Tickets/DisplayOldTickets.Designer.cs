@@ -176,6 +176,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpToDate.Name = "DtpToDate";
             this.DtpToDate.Size = new System.Drawing.Size(106, 25);
             this.DtpToDate.TabIndex = 5;
+            this.DtpToDate.Value = new System.DateTime(2021, 9, 13, 12, 12, 40, 0);
             // 
             // DtpFromDate
             // 
@@ -293,6 +294,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.PnlLoad.Name = "PnlLoad";
             this.PnlLoad.Size = new System.Drawing.Size(200, 100);
             this.PnlLoad.TabIndex = 28;
+            this.PnlLoad.VisibleChanged += new System.EventHandler(this.PnlLoad_VisibleChanged);
             // 
             // PbLoading
             // 

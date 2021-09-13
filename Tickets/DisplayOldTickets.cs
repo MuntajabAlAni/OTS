@@ -41,6 +41,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
+                DtpToDate.Value = DateTime.Today;
                 FillUsersComboBox();
                 FillCompaniesComboBox(SystemConstants.loggedInUserId);
                 if (SystemConstants.loggedInUserId == 1)
@@ -215,12 +216,12 @@ namespace OTS.Ticketing.Win.Tickets
             remarks.ShowDialog();
         }
 
-        //private void PbLoading_VisibleChanged(object sender, EventArgs e)
-        //{
-        //    foreach (Control control in Controls)
-        //    {
-        //        control.Enabled = !PnlLoad.Visible;
-        //    }
-        //}
+        private void PnlLoad_VisibleChanged(object sender, EventArgs e)
+        {
+            foreach (Control control in Controls)
+            {
+                control.Enabled = !PnlLoad.Visible;
+            }
+        }
     }
 }

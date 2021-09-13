@@ -19,9 +19,11 @@ namespace OTS.Ticketing.Win
         [STAThread]
         static void Main()
         {
-            CultureInfo ci = new CultureInfo("en");
+            CultureInfo ci = new CultureInfo("ar");
             Thread.CurrentThread.CurrentCulture = ci;
             Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat = new CultureInfo("en-GB").DateTimeFormat;
+
 
             _ = new Mutex(true, "OTS.Ticketing.Win", out bool createdNew);
 
