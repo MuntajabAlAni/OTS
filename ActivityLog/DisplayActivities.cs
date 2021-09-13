@@ -25,6 +25,7 @@ namespace OTS.Ticketing.Win.ActivityLog
 
         private void DisplayActivities_Load(object sender, EventArgs e)
         {
+            DtpToDate.Value = DateTime.Today;
             FillUsersComboBox();
             FillActivitiesComboBox();
         }
