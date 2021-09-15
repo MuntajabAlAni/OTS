@@ -54,6 +54,7 @@ namespace OTS.Ticketing.Win
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SchedulingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.PnlMenuVertical.SuspendLayout();
@@ -239,7 +240,8 @@ namespace OTS.Ticketing.Win
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.HelpToolStripMenuItem,
-            this.EditUserToolStripMenuItem});
+            this.EditUserToolStripMenuItem,
+            this.SchedulingToolStripMenuItem});
             this.MenuStrip.Name = "MenuStrip";
             // 
             // FileToolStripMenuItem
@@ -280,6 +282,12 @@ namespace OTS.Ticketing.Win
             resources.ApplyResources(this.EditUserToolStripMenuItem, "EditUserToolStripMenuItem");
             this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
             this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
+            // 
+            // SchedulingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.SchedulingToolStripMenuItem, "SchedulingToolStripMenuItem");
+            this.SchedulingToolStripMenuItem.Name = "SchedulingToolStripMenuItem";
+            this.SchedulingToolStripMenuItem.Click += new System.EventHandler(this.SchedulingToolStripMenuItem_Click);
             // 
             // PnlContainer
             // 
@@ -381,5 +389,6 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.Button BtnOldTickets;
         private System.Windows.Forms.ToolStripMenuItem EditUserToolStripMenuItem;
         private System.Windows.Forms.Button BtnActivityLog;
+        private System.Windows.Forms.ToolStripMenuItem SchedulingToolStripMenuItem;
     }
 }

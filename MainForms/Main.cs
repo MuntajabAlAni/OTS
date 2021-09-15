@@ -3,6 +3,7 @@ using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.PhoneNumbers;
+using OTS.Ticketing.Win.Scheduling;
 using OTS.Ticketing.Win.Softwares;
 using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Tickets;
@@ -28,8 +29,8 @@ namespace OTS.Ticketing.Win
         public Main()
         {
             InitializeComponent();
-            FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowRight;
-            HelpToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowRight;
+            FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
+            HelpToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
         }
         private async void Main_Load(object sender, EventArgs e)
         {
@@ -212,6 +213,12 @@ namespace OTS.Ticketing.Win
         {
             if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
             ApplingFormOnContainer(new DisplayActivities());
+        }
+
+        private void SchedulingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("Schedule")) return;
+            ApplingFormOnContainer(new Schedule());
         }
     }
 }

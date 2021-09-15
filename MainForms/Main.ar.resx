@@ -4605,4 +4605,7 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEzUwyWDXj1AJcwAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="SchedulingToolStripMenuItem.Text" xml:space="preserve">
+    <value>الجدولة</value>
+  </data>
 </root>
