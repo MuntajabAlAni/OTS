@@ -117,13 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BtnActivityLog.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="BtnActivityLog.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+  <data name="BtnDisplayEmployees.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAidJREFUaEPt
+        2FFO20AUheE8sQlWwJZYA299YAllI2yqz9CnroH0Dv71t6nm2jOJXY+EP2mk6Nzj0QQFHHw6HA7rOZ/P
+        97FeY/2M9a+Sldk99bGUg8X6FWtJ6Yz3JuJQ5afb6pXLxhGHep/O1uSdy8bBwUQsYhGPg3OJWMQiHgfn
+        ErGIRTwOziViEYt4HJxLxCIW8Tg4l4hFLOJtxP5zd9QmbCXia/TdwUsxVssddRbbifgWbXfwKPXcUVNs
+        J+JbLd/Bo9RzR02xnYhvtXwHpyjiRVHd5KsEfRHn6Il4UVQ3+TJHX8Q5eiJeFNVNvk5Pl/xBnKMn4iZR
+        X/0fms8r/0Kcoyfi3XAMEefoiXg3HEPEOXoirorxXazvscrHo6zy+o5xVcxnUROxiHP0RFwV45epdeGF
+        cRWdFDURizhHT8RVMa797Z/9G08nRU3EIs7RE3FVjLvfQC/2FHGOnoirYtz9EerFniLO0RNxVYy7f4l7
+        xX4XiHP0RLwatk1RE7GIc/REXBXjh1iPsb6xyusHxlUxn0VNxCLO0RPxhYifYv34LNSV2RP1C9M4R03E
+        Is7RE7Eiep4mTZ657GrsI+IcPRErordp0uSNy67GPiLO0ROxIvqYJk0+uOxq7CPiHD0R74ZjiDhHT8S7
+        4RgiztET8W44hohz9ES8G44h4lx0VnmsspGmxyqrPNjaSNODrVUeLW6g/WlGKcbKni78b+UM3U8zDoev
+        4XT6Dfktj6R9npW/AAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BtnScheduling.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
+        dHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAALMSURBVGhD7ZhhUcQwEEZPAhKQgAQkIAEJSMABEpCA
+        BCQgAQlIKN9LdjN7aXtNrj34kzezc2mSbb6mm016p8FgMBisMk3TmwxeraoJ9X/MbtOXVf0dGvQzjz19
+        WlUT6v+a3abJqm6HxriXMUvYnayIlsW2LTsTrZ/SlgY6At3sQeYCHQaOouv2SxTRArGRH1lXuM3QDZhB
+        blSDyI9cnN5l37nYhK8F7vuSizPeTEI/ckbQGgzOrLn4Vr5k+CJ4aUKce5PRhxx7ZvBoXkxGH+b8X1wX
+        2+b8X+wWnVb1H1hcH7tF70tDHdh4sFv0k1XdHBsPdosuu5XKT7L6tZaHoly1YSV9qUyqq9vvrJl2UiIc
+        Knpp9yvnD7uueba2egfkXs+yKNr3hpuL/rDmNdFJgH4RTe5Psy/jDFPOHrIH68fR4erNxVkLDx6A39ju
+        OyXGrJERzgToGoFrO6k/VJn9LtItMkXUXnQvBDkI9LNIPM8AsZ1mvovsm4gzyUJigGjlgKMyA9ft/tpd
+        cDosJQeRq/K1fgkbF0+/vjDJfomtmN5aiB6zgJDNGVQfX5BdHxlropdi8ZLob6v3h53lfNURJinDRKwe
+        2sPTHCCKrlc8FvMwKz+2pUwgg8XvQmubpTjVkQ7h3aq2MQcoN1R56dPqkmgekowDi7m3oa39I9gcIIru
+        jWmEx4wxE+D1svjwPssJq97G+sNRoonR2eGeutSaYQHyNnljZf1Y122sP0TRCEB4tNhepzwPF1iNTbUh
+        FMH+CcY1oQXtGcQcYDHeWpG/D46gizsd7bK08PXrb6j9Q9ccYJdo0D087zYJUD9musy6VW+jzp4ncWZQ
+        nvwaI3tEEWc5WdfEdFyEzLYfUfv+TpADAx6Fp0AXTuwnofkyv039kjW8T99u6MjRV/9e8zhlYfobBC/H
+        Orj+D5tbIVHMKNklgvCU8qzbYDAYDOB0+gWhwxHk9t8SZQAAAABJRU5ErkJggg==
+</value>
   </data>
   <data name="BtnActivityLog.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -141,28 +167,6 @@
         3bJlLwT1v64IDC27vkhyGVGvm+EPaG2RIMK5t5KY7eu4SCSDIHuXaCrYEsV39OiNUgsQyrwqYQDz/b19
         UjKvShhQvYRBUvwUjWFmeTPV+/9nIpFIJBI1YWnpL6iIs5YRoLDPAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="BtnActivityLog.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
-  <data name="BtnActivityLog.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="BtnActivityLog.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 0, 0, 0</value>
-  </data>
-  <data name="BtnActivityLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>250, 45</value>
-  </data>
-  <data name="BtnActivityLog.Text" xml:space="preserve">
-    <value>إدخالات المستخدمين</value>
-  </data>
-  <data name="BtnActivityLog.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BtnActivityLog.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="BtnOldTickets.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -273,6 +277,9 @@
         TC8T11zo6dcv66aMlkitEquwALquOw79ytezUvEgFlmKpswNWNetYhZz6GWjFWZ1E9APZd1J7Syta1cw
         i6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi2Er1f0BJuEHpJ9TPUsAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="BtnUsers.Text" xml:space="preserve">
+    <value>المستخدمين</value>
   </data>
   <data name="BtnHome.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -544,6 +551,9 @@
         XwYAAACAuvgyAAAAANTFlwEAAACgLr4MAAAAAHXxZQAAAACoiy8DAAAAQF18GQAAAAAq8i//+f8BiA0i
         sCK/GHYAAAAASUVORK5CYII=
 </value>
+  </data>
+  <data name="PnlMenuVertical.Size" type="System.Drawing.Size, System.Drawing">
+    <value>250, 740</value>
   </data>
   <data name="ImbMinimize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4605,7 +4615,10 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEzUwyWDXj1AJcwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="SchedulingToolStripMenuItem.Text" xml:space="preserve">
-    <value>الجدولة</value>
+  <data name="PnlContainer.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1050, 680</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>1300, 740</value>
   </data>
 </root>

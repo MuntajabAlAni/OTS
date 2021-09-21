@@ -31,6 +31,8 @@ namespace OTS.Ticketing.Win
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.PnlMenuVertical = new System.Windows.Forms.Panel();
+            this.BtnDisplayEmployees = new System.Windows.Forms.Button();
+            this.BtnScheduling = new System.Windows.Forms.Button();
             this.BtnActivityLog = new System.Windows.Forms.Button();
             this.BtnOldTickets = new System.Windows.Forms.Button();
             this.BtnAddTicket = new System.Windows.Forms.Button();
@@ -54,7 +56,6 @@ namespace OTS.Ticketing.Win
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SchedulingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
             this.PnlMenuVertical.SuspendLayout();
@@ -71,6 +72,8 @@ namespace OTS.Ticketing.Win
             // 
             resources.ApplyResources(this.PnlMenuVertical, "PnlMenuVertical");
             this.PnlMenuVertical.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.PnlMenuVertical.Controls.Add(this.BtnDisplayEmployees);
+            this.PnlMenuVertical.Controls.Add(this.BtnScheduling);
             this.PnlMenuVertical.Controls.Add(this.BtnActivityLog);
             this.PnlMenuVertical.Controls.Add(this.BtnOldTickets);
             this.PnlMenuVertical.Controls.Add(this.BtnAddTicket);
@@ -83,6 +86,26 @@ namespace OTS.Ticketing.Win
             this.PnlMenuVertical.Controls.Add(this.BtnCompanies);
             this.PnlMenuVertical.Controls.Add(this.LOGO);
             this.PnlMenuVertical.Name = "PnlMenuVertical";
+            // 
+            // BtnDisplayEmployees
+            // 
+            resources.ApplyResources(this.BtnDisplayEmployees, "BtnDisplayEmployees");
+            this.BtnDisplayEmployees.FlatAppearance.BorderSize = 0;
+            this.BtnDisplayEmployees.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnDisplayEmployees.ForeColor = System.Drawing.Color.White;
+            this.BtnDisplayEmployees.Name = "BtnDisplayEmployees";
+            this.BtnDisplayEmployees.UseVisualStyleBackColor = true;
+            this.BtnDisplayEmployees.Click += new System.EventHandler(this.BtnDisplayEmployees_Click);
+            // 
+            // BtnScheduling
+            // 
+            resources.ApplyResources(this.BtnScheduling, "BtnScheduling");
+            this.BtnScheduling.FlatAppearance.BorderSize = 0;
+            this.BtnScheduling.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnScheduling.ForeColor = System.Drawing.Color.White;
+            this.BtnScheduling.Name = "BtnScheduling";
+            this.BtnScheduling.UseVisualStyleBackColor = true;
+            this.BtnScheduling.Click += new System.EventHandler(this.BtnScheduling_Click);
             // 
             // BtnActivityLog
             // 
@@ -240,8 +263,7 @@ namespace OTS.Ticketing.Win
             this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.HelpToolStripMenuItem,
-            this.EditUserToolStripMenuItem,
-            this.SchedulingToolStripMenuItem});
+            this.EditUserToolStripMenuItem});
             this.MenuStrip.Name = "MenuStrip";
             // 
             // FileToolStripMenuItem
@@ -282,12 +304,6 @@ namespace OTS.Ticketing.Win
             resources.ApplyResources(this.EditUserToolStripMenuItem, "EditUserToolStripMenuItem");
             this.EditUserToolStripMenuItem.Name = "EditUserToolStripMenuItem";
             this.EditUserToolStripMenuItem.Click += new System.EventHandler(this.EditUserToolStripMenuItem_Click);
-            // 
-            // SchedulingToolStripMenuItem
-            // 
-            resources.ApplyResources(this.SchedulingToolStripMenuItem, "SchedulingToolStripMenuItem");
-            this.SchedulingToolStripMenuItem.Name = "SchedulingToolStripMenuItem";
-            this.SchedulingToolStripMenuItem.Click += new System.EventHandler(this.SchedulingToolStripMenuItem_Click);
             // 
             // PnlContainer
             // 
@@ -388,7 +404,8 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.Button BtnStates;
         private System.Windows.Forms.Button BtnOldTickets;
         private System.Windows.Forms.ToolStripMenuItem EditUserToolStripMenuItem;
+        private System.Windows.Forms.Button BtnDisplayEmployees;
+        private System.Windows.Forms.Button BtnScheduling;
         private System.Windows.Forms.Button BtnActivityLog;
-        private System.Windows.Forms.ToolStripMenuItem SchedulingToolStripMenuItem;
     }
 }

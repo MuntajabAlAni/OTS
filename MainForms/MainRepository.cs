@@ -62,5 +62,33 @@ namespace OTS.Ticketing.Win.MainForms
             var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
             return result.ToList();
         }
+        public async Task<List<UserInfo>> GetAllUsers()
+        {
+            string query = "SELECT * FROM Users where state = 1 and isDeleted = 0";
+            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            var list = result.ToList();
+            return list;
+        }
+        public async Task<int> UpdateUserNumberByUserName(string number, string userName)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@number", number);
+            parameters.Add("@userName", userName);
+
+            string command = "UPDATE Users SET number = @number, isOnline = 1 where userName = @userName";
+
+            return await dataAccess.ExecuteAsync(command, parameters);
+
+        }
+        public async Task<int> UpdateIsOnlineByUserId(bool isOnline, long id)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@isOnline", isOnline);
+            parameters.Add("@id", id);
+
+            string command = "UPDATE Users SET isOnline = @isOnline where id = @id";
+
+            return await dataAccess.ExecuteAsync(command, parameters);
+        }
     }
 }

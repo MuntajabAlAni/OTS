@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Threading;
 using NLog;
 using System.IO;
+using OTS.Ticketing.Win.Users;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -66,18 +67,67 @@ namespace OTS.Ticketing.Win.MainForms
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
+            GetDtgUsersData();
             LblTime.Text = DateTime.Now.ToString("hh:mm:ss");
             LblDate.Text = DateTime.Now.ToString("dddd dd-MM-yyyy");
         }
 
+        private async void GetDtgUsersData()
+        {
+            DataTable dt = SystemConstants.ToDataTable(await mainRepository.GetAllUsers());
+            dt.Columns.Remove("id");
+            dt.Columns.Remove("displayName");
+            dt.Columns.Remove("password");
+            dt.Columns.Remove("state");
+            dt.Columns.Remove("ip");
+            dt.Columns.Remove("remarks");
+            dt.Columns.Remove("salt");
+            dt.Columns.Remove("isDeleted");
+
+            DtgUsers.DataSource = dt;
+            DtgUsers.Columns["isOnline"].Visible = false;
+
+            Image online = Image.FromFile(Directory.GetCurrentDirectory() + "\\Wake.png");
+            Image offline = Image.FromFile(Directory.GetCurrentDirectory() + "\\Sleep.png");
+
+            if (DtgUsers.Columns.Contains("الحالة") == false)
+            {
+                DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+                DtgUsers.Columns.Add(imageCol);
+                imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+                imageCol.HeaderText = "الحالة";
+                imageCol.Name = "الحالة";
+            }
+
+            foreach (DataGridViewRow row in DtgUsers.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells["isOnline"].Value) == true)
+                {
+                    row.Cells["الحالة"].Value = online;
+                }
+                else
+                {
+                    row.Cells["الحالة"].Value = offline;
+                }
+            }
+        }
         private void RtbNotes_Leave(object sender, EventArgs e)
         {
             File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"), RtbNotes.Text);
         }
 
-        private void RtbNotes_TextChanged(object sender, EventArgs e)
+        private async void BtnOnlineState_Click(object sender, EventArgs e)
         {
-
+            if (BtnOnlineState.Text == "مشغول")
+            {
+                await mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUserId);
+                BtnOnlineState.Text = "متفرغ";
+            }
+            else if (BtnOnlineState.Text == "متفرغ")
+            {
+                await mainRepository.UpdateIsOnlineByUserId(true, SystemConstants.loggedInUserId);
+                BtnOnlineState.Text = "مشغول";
+            }
         }
     }
 }

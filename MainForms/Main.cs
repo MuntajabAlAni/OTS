@@ -24,6 +24,7 @@ namespace OTS.Ticketing.Win
     public partial class Main : Form
     {
         readonly TicketRepository ticketRepository = new TicketRepository();
+        readonly MainRepository mainRepository = new MainRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public Main()
@@ -48,6 +49,8 @@ namespace OTS.Ticketing.Win
                     BtnStates.Visible = true;
                     BtnOldTickets.Visible = true;
                     BtnActivityLog.Visible = true;
+                    BtnScheduling.Visible = true;
+                    BtnDisplayEmployees.Visible = true;
                     return;
                 }
                 if (UserInfo.UserName == "Noor")
@@ -176,6 +179,7 @@ namespace OTS.Ticketing.Win
             if (dr == DialogResult.Yes)
             {
                 await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
+                await mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUserId);
                 Application.Exit();
             }
         }
@@ -215,10 +219,16 @@ namespace OTS.Ticketing.Win
             ApplingFormOnContainer(new DisplayActivities());
         }
 
-        private void SchedulingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BtnScheduling_Click(object sender, EventArgs e)
         {
             if (PnlContainer.Controls.ContainsKey("Schedule")) return;
             ApplingFormOnContainer(new Schedule());
+        }
+
+        private void BtnDisplayEmployees_Click(object sender, EventArgs e)
+        {
+            if (PnlContainer.Controls.ContainsKey("DisplayEmployees")) return;
+            ApplingFormOnContainer(new DisplayEmployees());
         }
     }
 }

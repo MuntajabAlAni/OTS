@@ -30,8 +30,8 @@ namespace OTS.Ticketing.Win.MainForms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Home));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -44,14 +44,19 @@ namespace OTS.Ticketing.Win.MainForms
             this.RtbNotes = new System.Windows.Forms.RichTextBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.LblNotes = new System.Windows.Forms.Label();
+            this.DtgUsers = new System.Windows.Forms.DataGridView();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.LblUsers = new System.Windows.Forms.Label();
+            this.BtnOnlineState = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DtgLastTickets)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // DtgLastTickets
             // 
-            resources.ApplyResources(this.DtgLastTickets, "DtgLastTickets");
             this.DtgLastTickets.AllowUserToAddRows = false;
             this.DtgLastTickets.AllowUserToDeleteRows = false;
             this.DtgLastTickets.AllowUserToOrderColumns = true;
@@ -63,6 +68,7 @@ namespace OTS.Ticketing.Win.MainForms
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.DtgLastTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            resources.ApplyResources(this.DtgLastTickets, "DtgLastTickets");
             this.DtgLastTickets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgLastTickets.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DtgLastTickets.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -134,20 +140,19 @@ namespace OTS.Ticketing.Win.MainForms
             // 
             // RtbNotes
             // 
-            resources.ApplyResources(this.RtbNotes, "RtbNotes");
             this.RtbNotes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.RtbNotes.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.RtbNotes, "RtbNotes");
             this.RtbNotes.ForeColor = System.Drawing.Color.White;
             this.RtbNotes.Name = "RtbNotes";
-            this.RtbNotes.TextChanged += new System.EventHandler(this.RtbNotes_TextChanged);
             this.RtbNotes.Leave += new System.EventHandler(this.RtbNotes_Leave);
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
             this.panel2.Controls.Add(this.LblNotes);
             this.panel2.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // LblNotes
@@ -155,12 +160,42 @@ namespace OTS.Ticketing.Win.MainForms
             resources.ApplyResources(this.LblNotes, "LblNotes");
             this.LblNotes.Name = "LblNotes";
             // 
+            // DtgUsers
+            // 
+            this.DtgUsers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(this.DtgUsers, "DtgUsers");
+            this.DtgUsers.Name = "DtgUsers";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(35)))), ((int)(((byte)(38)))));
+            this.panel3.Controls.Add(this.LblUsers);
+            this.panel3.ForeColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.panel3, "panel3");
+            this.panel3.Name = "panel3";
+            // 
+            // LblUsers
+            // 
+            resources.ApplyResources(this.LblUsers, "LblUsers");
+            this.LblUsers.Name = "LblUsers";
+            // 
+            // BtnOnlineState
+            // 
+            resources.ApplyResources(this.BtnOnlineState, "BtnOnlineState");
+            this.BtnOnlineState.Name = "BtnOnlineState";
+            this.BtnOnlineState.UseVisualStyleBackColor = true;
+            this.BtnOnlineState.Click += new System.EventHandler(this.BtnOnlineState_Click);
+            // 
             // Home
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel2);
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.BtnOnlineState);
+            this.Controls.Add(this.DtgUsers);
             this.Controls.Add(this.RtbNotes);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.LblDataGridTitle);
             this.Controls.Add(this.DtgLastTickets);
@@ -172,6 +207,9 @@ namespace OTS.Ticketing.Win.MainForms
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +226,9 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.RichTextBox RtbNotes;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label LblNotes;
+        private System.Windows.Forms.DataGridView DtgUsers;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label LblUsers;
+        private System.Windows.Forms.Button BtnOnlineState;
     }
 }

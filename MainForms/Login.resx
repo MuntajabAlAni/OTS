@@ -117,173 +117,212 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="TxtPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 113</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnLogin.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="&gt;&gt;BtnLogin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="BtnLogin.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="BtnLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 159</value>
+  </data>
+  <data name="BtnLogin.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 31</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="BtnLogin.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="BtnLogin.Text" xml:space="preserve">
     <value>دخول</value>
   </data>
-  <data name="BtnExit.Text" xml:space="preserve">
-    <value>خروج</value>
+  <data name="&gt;&gt;BtnLogin.Name" xml:space="preserve">
+    <value>BtnLogin</value>
   </data>
-  <data name="BtnLogin.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="BtnExit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 159</value>
+  <data name="&gt;&gt;BtnLogin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BtnLogin.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;BtnExit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="&gt;&gt;LblUserName.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;TxtUserName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LblPassword.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="LblTitle.Text" xml:space="preserve">
-    <value>Ticketing Software</value>
-  </data>
-  <data name="LblPassword.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="&gt;&gt;LblPassword.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TxtUserName.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+  <data name="&gt;&gt;BtnLogin.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="BtnExit.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
+  <data name="BtnExit.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="BtnExit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>57, 159</value>
+  </data>
   <data name="BtnExit.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 31</value>
   </data>
-  <data name="TxtUserName.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="BtnExit.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;LblPassword.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="BtnExit.Text" xml:space="preserve">
+    <value>خروج</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
+  <data name="&gt;&gt;BtnExit.Name" xml:space="preserve">
+    <value>BtnExit</value>
   </data>
-  <data name="&gt;&gt;LblTitle.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;BtnExit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ImbLogo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 45</value>
-  </data>
-  <data name="LblUserName.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;LblPassword.Parent" xml:space="preserve">
+  <data name="&gt;&gt;BtnExit.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;BtnLogin.Name" xml:space="preserve">
-    <value>BtnLogin</value>
+  <data name="&gt;&gt;BtnExit.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
-  <data name="ImbLogo.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="LblUserName.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TxtUserName.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
-  <data name="LblUserName.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="TxtPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 23</value>
-  </data>
-  <data name="LblTitle.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="BtnLogin.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="TxtUserName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 67</value>
   </data>
   <data name="TxtUserName.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 23</value>
   </data>
-  <data name="&gt;&gt;LblUserName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="TxtUserName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="LblTitle.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="&gt;&gt;TxtUserName.Name" xml:space="preserve">
+    <value>TxtUserName</value>
   </data>
-  <data name="&gt;&gt;BtnLogin.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="LblPassword.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="LblPassword.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Yes</value>
-  </data>
-  <data name="ImbLogo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 12</value>
-  </data>
-  <data name="LblUserName.Text" xml:space="preserve">
-    <value>اسم المستخدم :</value>
-  </data>
-  <data name="&gt;&gt;BtnExit.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;TxtPassword.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="LblTitle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 23</value>
-  </data>
-  <data name="LblTitle.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 14.25pt, style=Bold</value>
-  </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
-  </data>
-  <data name="LblPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 116</value>
-  </data>
-  <data name="LblPassword.Text" xml:space="preserve">
-    <value>كلمة السر :</value>
+  <data name="&gt;&gt;TxtUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;TxtUserName.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;TxtUserName.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="LblUserName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 70</value>
+  <data name="TxtPassword.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
   </data>
-  <data name="BtnLogin.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
+  <data name="TxtPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>37, 96</value>
   </data>
-  <data name="&gt;&gt;LblPassword.Name" xml:space="preserve">
-    <value>LblPassword</value>
+  <data name="TxtPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 23</value>
+  </data>
+  <data name="TxtPassword.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;TxtPassword.Name" xml:space="preserve">
     <value>TxtPassword</value>
   </data>
+  <data name="&gt;&gt;TxtPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TxtPassword.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TxtPassword.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="LblUserName.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblUserName.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="LblUserName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 70</value>
+  </data>
+  <data name="LblUserName.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="LblUserName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 15</value>
+  </data>
+  <data name="LblUserName.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="LblUserName.Text" xml:space="preserve">
+    <value>اسم المستخدم :</value>
+  </data>
+  <data name="&gt;&gt;LblUserName.Name" xml:space="preserve">
+    <value>LblUserName</value>
+  </data>
+  <data name="&gt;&gt;LblUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblUserName.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblUserName.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="LblPassword.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblPassword.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="LblPassword.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 99</value>
+  </data>
+  <data name="LblPassword.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="LblPassword.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
+  </data>
+  <data name="LblPassword.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="LblPassword.Text" xml:space="preserve">
+    <value>كلمة السر :</value>
+  </data>
+  <data name="&gt;&gt;LblPassword.Name" xml:space="preserve">
+    <value>LblPassword</value>
+  </data>
+  <data name="&gt;&gt;LblPassword.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblPassword.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblPassword.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="LblTitle.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblTitle.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 14.25pt, style=Bold</value>
+  </data>
+  <data name="LblTitle.Location" type="System.Drawing.Point, System.Drawing">
+    <value>95, 23</value>
+  </data>
+  <data name="LblTitle.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 25</value>
+  </data>
+  <data name="LblTitle.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="LblTitle.Text" xml:space="preserve">
+    <value>Ticketing Software</value>
+  </data>
   <data name="&gt;&gt;LblTitle.Name" xml:space="preserve">
     <value>LblTitle</value>
+  </data>
+  <data name="&gt;&gt;LblTitle.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblTitle.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblTitle.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="ImbLogo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -305,94 +344,112 @@
         QmCC
 </value>
   </data>
-  <data name="&gt;&gt;BtnExit.Name" xml:space="preserve">
-    <value>BtnExit</value>
+  <data name="ImbLogo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 12</value>
   </data>
-  <data name="&gt;&gt;ImbLogo.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="ImbLogo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 45</value>
   </data>
-  <data name="&gt;&gt;TxtUserName.Name" xml:space="preserve">
-    <value>TxtUserName</value>
-  </data>
-  <data name="TxtUserName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 67</value>
-  </data>
-  <data name="LblPassword.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 15</value>
-  </data>
-  <data name="&gt;&gt;LblUserName.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="LblUserName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 15</value>
-  </data>
-  <data name="BtnLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 31</value>
-  </data>
-  <data name="TxtPassword.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="&gt;&gt;BtnExit.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;ImbLogo.Name" xml:space="preserve">
-    <value>ImbLogo</value>
-  </data>
-  <data name="&gt;&gt;TxtPassword.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ImbLogo.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="ImbLogo.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
   </data>
   <data name="ImbLogo.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
   </data>
-  <data name="&gt;&gt;LblTitle.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="LblUserName.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="BtnLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 159</value>
-  </data>
-  <data name="&gt;&gt;LblTitle.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="TxtPassword.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;LblUserName.Name" xml:space="preserve">
-    <value>LblUserName</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Login</value>
-  </data>
-  <data name="LblTitle.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 25</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>332, 215</value>
-  </data>
-  <data name="BtnExit.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;TxtUserName.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;TxtPassword.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;ImbLogo.Name" xml:space="preserve">
+    <value>ImbLogo</value>
   </data>
   <data name="&gt;&gt;ImbLogo.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="BtnExit.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="&gt;&gt;ImbLogo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ImbLogo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TxtNumber.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="TxtNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>145, 125</value>
+  </data>
+  <data name="TxtNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 23</value>
+  </data>
+  <data name="TxtNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;TxtNumber.Name" xml:space="preserve">
+    <value>TxtNumber</value>
+  </data>
+  <data name="&gt;&gt;TxtNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TxtNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;TxtNumber.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="LblNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LblNumber.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="LblNumber.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="LblNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>212, 128</value>
+  </data>
+  <data name="LblNumber.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="LblNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 15</value>
+  </data>
+  <data name="LblNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="LblNumber.Text" xml:space="preserve">
+    <value>الرقم :</value>
+  </data>
+  <data name="&gt;&gt;LblNumber.Name" xml:space="preserve">
+    <value>LblNumber</value>
+  </data>
+  <data name="&gt;&gt;LblNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LblNumber.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;LblNumber.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>332, 215</value>
+  </data>
+  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

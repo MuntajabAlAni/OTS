@@ -38,23 +38,25 @@ namespace OTS.Ticketing.Win.MainForms
             this.LblPassword = new System.Windows.Forms.Label();
             this.LblTitle = new System.Windows.Forms.Label();
             this.ImbLogo = new System.Windows.Forms.PictureBox();
+            this.TxtNumber = new System.Windows.Forms.TextBox();
+            this.LblNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnLogin
             // 
-            resources.ApplyResources(this.BtnLogin, "BtnLogin");
             this.BtnLogin.BackColor = System.Drawing.Color.DodgerBlue;
             this.BtnLogin.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.BtnLogin, "BtnLogin");
             this.BtnLogin.Name = "BtnLogin";
             this.BtnLogin.UseVisualStyleBackColor = false;
             this.BtnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // BtnExit
             // 
-            resources.ApplyResources(this.BtnExit, "BtnExit");
             this.BtnExit.BackColor = System.Drawing.Color.Crimson;
             this.BtnExit.FlatAppearance.BorderColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.BtnExit, "BtnExit");
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -95,6 +97,18 @@ namespace OTS.Ticketing.Win.MainForms
             this.ImbLogo.TabStop = false;
             this.ImbLogo.Click += new System.EventHandler(this.ImbLogo_Click);
             // 
+            // TxtNumber
+            // 
+            resources.ApplyResources(this.TxtNumber, "TxtNumber");
+            this.TxtNumber.Name = "TxtNumber";
+            this.TxtNumber.UseSystemPasswordChar = true;
+            this.TxtNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
+            // 
+            // LblNumber
+            // 
+            resources.ApplyResources(this.LblNumber, "LblNumber");
+            this.LblNumber.Name = "LblNumber";
+            // 
             // Login
             // 
             resources.ApplyResources(this, "$this");
@@ -102,7 +116,9 @@ namespace OTS.Ticketing.Win.MainForms
             this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.ImbLogo);
             this.Controls.Add(this.LblTitle);
+            this.Controls.Add(this.LblNumber);
             this.Controls.Add(this.LblPassword);
+            this.Controls.Add(this.TxtNumber);
             this.Controls.Add(this.LblUserName);
             this.Controls.Add(this.TxtPassword);
             this.Controls.Add(this.TxtUserName);
@@ -129,5 +145,7 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.Label LblPassword;
         private System.Windows.Forms.Label LblTitle;
         private System.Windows.Forms.PictureBox ImbLogo;
+        private System.Windows.Forms.TextBox TxtNumber;
+        private System.Windows.Forms.Label LblNumber;
     }
 }

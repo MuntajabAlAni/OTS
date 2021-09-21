@@ -46,6 +46,7 @@ namespace OTS.Ticketing.Win.Users
                 DtgUsers.Columns["remarks"].Visible = false;
                 DtgUsers.Columns["salt"].Visible = false;
                 DtgUsers.Columns["IsDeleted"].Visible = false;
+                DtgUsers.Columns["IsOnline"].Visible = false;
 
             }
             catch (Exception ex)

@@ -18,6 +18,7 @@ namespace OTS.Ticketing.Win.Users
         public string Remarks { get; set; }
         public Guid Salt { get; set; }
         public bool IsDeleted { get; set; }
-
+        public bool IsOnline { get; set; }
+        public string Number { get; set; }
     }
 }

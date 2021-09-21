@@ -184,15 +184,6 @@
         v1OpfAPoYoRWsuuZXgAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="BtnOldTickets.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnOldTickets.Text" xml:space="preserve">
-    <value>TICKETS REPORT</value>
-  </data>
-  <data name="BtnOldTickets.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
   <data name="BtnAddTicket.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -203,15 +194,6 @@
         7cFFvKlaPvomEf0zngKlxM2lpVOglLi5tHQKlBI3l5ZOgVLi5tLSKVBK3FxaOgVKiZtLyZuAaB6veedC
         IHat260dCB7n8fr3iI3LMDwBfPuL380tbesAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="BtnAddTicket.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnAddTicket.Text" xml:space="preserve">
-    <value>ADD NEW TICKET</value>
-  </data>
-  <data name="BtnAddTicket.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="BtnTickets.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -231,15 +213,6 @@
         rkJggg==
 </value>
   </data>
-  <data name="BtnTickets.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnTickets.Text" xml:space="preserve">
-    <value>TICKETS</value>
-  </data>
-  <data name="BtnTickets.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
   <data name="BtnStates.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -250,15 +223,6 @@
         lxZYjon/fhyQ2CuuY6sJkdb7bKKriUDo5r2ylF98W0AqdfII3DlNFxDLvVH0zXIAcqnHpHwj2Qsk16cR
         /Z8CSNK7OmYe1g9ke++s9DSSArK09ziPsGEYhlGAqnoCtq9Jd2zTXoUAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="BtnStates.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnStates.Text" xml:space="preserve">
-    <value>STATES</value>
-  </data>
-  <data name="BtnStates.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="BtnSoftwares.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -278,15 +242,6 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="BtnSoftwares.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnSoftwares.Text" xml:space="preserve">
-    <value>SOFTWARES</value>
-  </data>
-  <data name="BtnSoftwares.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
   <data name="BtnPhoneNumbres.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -302,15 +257,6 @@
         XCXCh4FHMZ2HTXvREYYohvXkw5uQUvxCt75IW9FD4dSL6M8XDR/zqzf/AdOC0aLzXVwLxokWDNKGSFOo
         1NWijP4Tu7DwmaxWf/xQ9VssnXsWAAAAAElFTkSuQmCC
 </value>
-  </data>
-  <data name="BtnPhoneNumbres.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnPhoneNumbres.Text" xml:space="preserve">
-    <value>PHONENUMBERS</value>
-  </data>
-  <data name="BtnPhoneNumbres.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="BtnUsers.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -332,15 +278,6 @@
         i6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi6Ezi2Er1f0BJuEHpJ9TPUsAAAAASUVORK5CYII=
 </value>
   </data>
-  <data name="BtnUsers.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnUsers.Text" xml:space="preserve">
-    <value>USERS</value>
-  </data>
-  <data name="BtnUsers.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
-  </data>
   <data name="BtnHome.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -360,15 +297,6 @@
         NAbhKPQkcdq4BJ15u8KN15PPEVyEG38B+m9hPei68RVssehssehssehssehssehssdgaG/4DH3a/b3VC
         GiEAAAAASUVORK5CYII=
 </value>
-  </data>
-  <data name="BtnHome.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnHome.Text" xml:space="preserve">
-    <value>DASHBOARD</value>
-  </data>
-  <data name="BtnHome.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="BtnCompanies.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -391,15 +319,6 @@
         sPrhmMUE7R9eI49oKdfXOKsfjlk0aHenX5T+Zb5Cz2M9fwmzmEK7N32H1DcOfUf8W7TV1RbW/FnXYhZr
         nVmsdWax1pnFWmcWa1uh3h/JuEuomMqs/wAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <data name="BtnCompanies.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="BtnCompanies.Text" xml:space="preserve">
-    <value>COMPANIES</value>
-  </data>
-  <data name="BtnCompanies.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
   </data>
   <data name="LOGO.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -4689,45 +4608,5 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEzUwyWDXj1AJcwAAAABJRU5ErkJggg==
 </value>
-  </data>
-  <data name="ChangeUserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
-  </data>
-  <data name="ChangeUserToolStripMenuItem.Text" xml:space="preserve">
-    <value>Change User</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 22</value>
-  </data>
-  <data name="ExitToolStripMenuItem.Text" xml:space="preserve">
-    <value>Exit</value>
-  </data>
-  <data name="FileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 20</value>
-  </data>
-  <data name="FileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 22</value>
-  </data>
-  <data name="AboutToolStripMenuItem.Text" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 20</value>
-  </data>
-  <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
-  <data name="EditUserToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 20</value>
-  </data>
-  <data name="EditUserToolStripMenuItem.Text" xml:space="preserve">
-    <value>Edit Current User </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
-    <value>Inherit</value>
   </data>
 </root>

@@ -153,6 +153,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scheduling\AddEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scheduling\AddEmployee.Designer.cs">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduling\AddTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scheduling\AddTask.Designer.cs">
+      <DependentUpon>AddTask.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduling\DisplayEmployees.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scheduling\DisplayEmployees.Designer.cs">
+      <DependentUpon>DisplayEmployees.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scheduling\EmployeeInfo.cs" />
     <Compile Include="Scheduling\Schedule.cs">
       <SubType>Form</SubType>
@@ -162,6 +180,7 @@
     </Compile>
     <Compile Include="Scheduling\ScheduleRepository.cs" />
     <Compile Include="Scheduling\TaskInfo.cs" />
+    <Compile Include="Scheduling\TaskView.cs" />
     <Compile Include="Softwares\DisplaySoftwares.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -310,6 +329,9 @@
     <EmbeddedResource Include="MainForms\Login.en.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForms\Main.ar-IQ.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Main.ar.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
@@ -327,6 +349,15 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scheduling\AddEmployee.resx">
+      <DependentUpon>AddEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scheduling\AddTask.resx">
+      <DependentUpon>AddTask.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scheduling\DisplayEmployees.resx">
+      <DependentUpon>DisplayEmployees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Scheduling\Schedule.resx">
       <DependentUpon>Schedule.cs</DependentUpon>
