@@ -17,6 +17,7 @@ namespace OTS.Ticketing.Win.MainForms
     {
         readonly public MainRepository mainRepository = new MainRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public Home()
         {
             InitializeComponent();

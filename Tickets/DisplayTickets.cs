@@ -127,6 +127,7 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 if (DtgTickets.Rows.Count == 0) return;
+                Main.eventType = (int)Enums.Events.TicketInProgress;
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
                 TicketsView selectedTicket = await ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
@@ -225,7 +226,7 @@ namespace OTS.Ticketing.Win.Tickets
         Convert.ToInt64(LblRevision.Text) + 1);
                         await ActivityLogUtility.ActivityLog(Enums.Activities.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
                     }
-
+                    Main.eventType = (int)Enums.Events.DisplayTickets;
                     GetDtgTicketsData();
                     RefreshAllData();
                 }
