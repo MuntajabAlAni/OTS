@@ -29,6 +29,7 @@ namespace OTS.Ticketing.Win.Tickets
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddTicket));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -60,6 +61,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEditSoftware = new System.Windows.Forms.PictureBox();
             this.BtnAddUser = new System.Windows.Forms.PictureBox();
             this.BtnEditUser = new System.Windows.Forms.PictureBox();
+            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddPhoneNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUnclosedTickets)).BeginInit();
@@ -178,7 +180,6 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             // DtgUnclosedTickets
             // 
-            resources.ApplyResources(this.DtgUnclosedTickets, "DtgUnclosedTickets");
             this.DtgUnclosedTickets.AllowUserToAddRows = false;
             this.DtgUnclosedTickets.AllowUserToDeleteRows = false;
             this.DtgUnclosedTickets.AllowUserToOrderColumns = true;
@@ -190,6 +191,7 @@ namespace OTS.Ticketing.Win.Tickets
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.DtgUnclosedTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            resources.ApplyResources(this.DtgUnclosedTickets, "DtgUnclosedTickets");
             this.DtgUnclosedTickets.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgUnclosedTickets.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DtgUnclosedTickets.BackgroundColor = System.Drawing.Color.WhiteSmoke;
@@ -402,5 +404,6 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.PictureBox BtnEditSoftware;
         private System.Windows.Forms.PictureBox BtnAddUser;
         private System.Windows.Forms.PictureBox BtnEditUser;
+        private System.Windows.Forms.ToolTip ToolTip;
     }
 }

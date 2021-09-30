@@ -33,8 +33,7 @@ namespace OTS.Ticketing.Win.Users
                                         @state,
                                         @ip,
                                         @remarks,
-                                        @Salt);
-                              INSERT INTO sessions (userId) select SCOPE_IDENTITY();";
+                                        @Salt)";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }

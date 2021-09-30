@@ -71,13 +71,13 @@ namespace OTS.Ticketing.Win.MainForms
             var list = result.ToList();
             return list;
         }
-        public async Task<int> UpdateUserNumberByUserName(string number, string userName)
+        public async Task<int> UpdateUserNumberByUserId(string number, long userId)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@number", number);
-            parameters.Add("@userName", userName);
+            parameters.Add("@userId", userId);
 
-            string command = "UPDATE Users SET number = @number, isOnline = 1 where userName = @userName";
+            string command = "UPDATE Sessions SET number = @number, isOnline = 1 where userId = @userId";
 
             return await dataAccess.ExecuteAsync(command, parameters);
 
@@ -88,7 +88,7 @@ namespace OTS.Ticketing.Win.MainForms
             parameters.Add("@isOnline", isOnline);
             parameters.Add("@id", id);
 
-            string command = "UPDATE Users SET isOnline = @isOnline where id = @id";
+            string command = "UPDATE Sessions SET isOnline = @isOnline where userId = @id";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
@@ -134,6 +134,14 @@ namespace OTS.Ticketing.Win.MainForms
                                END";
 
             return await dataAccess.ExecuteAsync(command, parameters);
+        }
+        public async Task<List<SessionView>> GetSessions()
+        {
+            string query = @"SELECT s.id, s.userId ,u.displayName ,s.lastEvent ,s.computerName ,s.lastUpdateDate ,s.isOnline ,s.number
+                             FROM Sessions s 
+                             join users u on u.id = s.userId";
+            var result = await dataAccess.QueryAsync<SessionView>(query,new DynamicParameters());
+            return result.ToList();
         }
     }
 }

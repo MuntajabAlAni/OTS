@@ -74,16 +74,13 @@ namespace OTS.Ticketing.Win.MainForms
         while (true)
         {
 
-            DataTable dt = SystemConstants.ToDataTable(await mainRepository.GetAllUsers());
+            DataTable dt = SystemConstants.ToDataTable(await mainRepository.GetSessions());
             dt.Columns.Remove("id");
-            dt.Columns.Remove("UserName");
-            dt.Columns.Remove("password");
-            dt.Columns.Remove("state");
-            dt.Columns.Remove("ip");
-            dt.Columns.Remove("remarks");
-            dt.Columns.Remove("salt");
-            dt.Columns.Remove("isDeleted");
+            dt.Columns.Remove("userId");
+            dt.Columns.Remove("computerName");
+            dt.Columns.Remove("lastUpdateDate");
             dt.Columns["displayName"].ColumnName = "اسم المستخدم";
+            dt.Columns["lastEvent"].ColumnName = "اخر حركة";
             dt.Columns["Number"].ColumnName = "الرقم";
 
             this.Invoke((MethodInvoker)delegate

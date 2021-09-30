@@ -55,7 +55,7 @@ namespace OTS.Ticketing.Win.MainForms
                 }
                 SystemConstants.loggedInUserId = result.Id;
                 await ActivityLogUtility.ActivityLog(Enums.Activities.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
-                await mainRepository.UpdateUserNumberByUserName(TxtNumber.Text, TxtUserName.Text);
+                await mainRepository.UpdateUserNumberByUserId(TxtNumber.Text, SystemConstants.loggedInUserId);
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();

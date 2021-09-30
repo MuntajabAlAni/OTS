@@ -30,6 +30,16 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
+                ToolTip.SetToolTip(BtnAddCompany, "إضافة شركة");
+                ToolTip.SetToolTip(BtnEditCompany, "تعديل شركة");
+                ToolTip.SetToolTip(BtnSearchCompany, "البحث عن شركة");
+                ToolTip.SetToolTip(BtnAddPhoneNumber, "إضافة رقم هاتف");
+                ToolTip.SetToolTip(BtnEditPhoneNumber, "تعديل رقم هاتف");
+                ToolTip.SetToolTip(BtnSearchPhoneNumber, "البحث عن رقم هاتف");
+                ToolTip.SetToolTip(BtnAddUser, "إضافة مستخدم");
+                ToolTip.SetToolTip(BtnEditUser, "تعديل مستخدم");
+                ToolTip.SetToolTip(BtnAddSoftware, "إضافة برنامج");
+                ToolTip.SetToolTip(BtnEditSoftware, "تعديل برنامج");
                 var UserInfo = await ticketRepository.GetUserById(SystemConstants.loggedInUserId);
                 if (UserInfo.UserName != "admin")
                 {
