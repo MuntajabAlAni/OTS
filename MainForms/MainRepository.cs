@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using OTS.Ticketing.Win.Utils;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -87,6 +89,49 @@ namespace OTS.Ticketing.Win.MainForms
             parameters.Add("@id", id);
 
             string command = "UPDATE Users SET isOnline = @isOnline where id = @id";
+
+            return await dataAccess.ExecuteAsync(command, parameters);
+        }
+        public async Task<int> BackupDatabase(string path)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@path", path);
+
+            string command = " BACKUP DATABASE OTS_Ticketing_Software TO DISK= @path ";
+
+            return await dataAccess.ExecuteAsync(command, parameters);
+        }
+        public async Task<int> RestoreDatabase(string path)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@path", path);
+
+            string command = @" USE master;
+                                ALTER DATABASE OTS_Ticketing_Software SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                                RESTORE DATABASE OTS_Ticketing_Software FROM DISK= @path with REPLACE, RECOVERY, STATS = 10;
+                                ALTER DATABASE OTS_Ticketing_Software SET MULTI_USER;";
+
+            return await dataAccess.ExecuteAsync(command, parameters);
+        }
+        public async Task<int> UpdateSessionByUserId(long id, int eventType, string computerName)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@userId", id);
+            parameters.Add("@eventType", eventType);
+            parameters.Add("@computerName", computerName);
+
+            string command = @"IF EXISTS (SELECT * FROM sessions WHERE userId = @userId)
+                               BEGIN
+                                UPDATE sessions SET 
+                                lastEvent = @eventType,
+                                computerName = @computerName,
+			   	                lastUpdateDate = SYSDATETIME()
+					            WHERE userId = @userId;
+                               END
+                               ELSE
+                               BEGIN
+                                INSERT INTO sessions (userId) values (@userId);
+                               END";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }

@@ -63,11 +63,11 @@ namespace OTS.Ticketing.Win.Scheduling
             list.Insert(0, (new CompanyInfo { Id = 0, Name = "يرجى إختيار شركة" }));
             return list;
         }
-        public async Task<List<EmployeeInfo>> GetAllEmployees(bool all)
+        public async Task<List<EmployeeInfo>> GetAllEmployees(bool onlyStateOn)
         {
             var parameters = new DynamicParameters();
-            parameters.Add("@all", all);
-            string query = "SELECT * FROM Employees where IIF(@all = 1,1,state) = @all";
+            parameters.Add("@onlyStateOn", onlyStateOn);
+            string query = "SELECT * FROM Employees where IIF(@onlyStateOn = 0,0,state) = @onlyStateOn";
             var result = await dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             var list = result.ToList();
             list.Insert(0, (new EmployeeInfo { Id = 0, EmployeeName = "يرجى إختيار موظف" }));

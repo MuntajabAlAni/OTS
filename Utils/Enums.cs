@@ -13,5 +13,11 @@ namespace OTS.Ticketing.Win.Utils
             SignIn = 1, SignOut, AddTicket, UpdateTicket, EditTicket, AddCompany, EditCompany, AddUser, EditUser,
             AddPhoneNumber, EditPhoneNumber, AddSoftware, EditSoftware, AddState, EditState, AddBranch, EditBranch
         }
+
+        public enum Events
+        {
+            Home = 1, Companies, Users, PhoneNumbers, States, Softwares, DisplayTickets, AddTicket, DisplayOldTickets,  DisplayActivities,
+            Schedule, DisplayEmployees
+        }
     }
 }

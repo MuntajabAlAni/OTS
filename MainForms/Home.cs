@@ -33,6 +33,7 @@ namespace OTS.Ticketing.Win.MainForms
                 File.CreateText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"));
             }
             RtbNotes.Text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"));
+            GetDtgUsersData();
         }
 
         private async void GetDtgLastTicketsData()
@@ -67,49 +68,67 @@ namespace OTS.Ticketing.Win.MainForms
         }
         private void Timer_Tick(object sender, EventArgs e)
         {
-            GetDtgUsersData();
             LblTime.Text = DateTime.Now.ToString("hh:mm:ss");
             LblDate.Text = DateTime.Now.ToString("dddd dd-MM-yyyy");
         }
 
-        private async void GetDtgUsersData()
+        private void GetDtgUsersData()
         {
+            Task.Run(async () =>
+    {
+        while (true)
+        {
+
             DataTable dt = SystemConstants.ToDataTable(await mainRepository.GetAllUsers());
             dt.Columns.Remove("id");
-            dt.Columns.Remove("displayName");
+            dt.Columns.Remove("UserName");
             dt.Columns.Remove("password");
             dt.Columns.Remove("state");
             dt.Columns.Remove("ip");
             dt.Columns.Remove("remarks");
             dt.Columns.Remove("salt");
             dt.Columns.Remove("isDeleted");
+            dt.Columns["displayName"].ColumnName = "اسم المستخدم";
+            dt.Columns["Number"].ColumnName = "الرقم";
 
-            DtgUsers.DataSource = dt;
-            DtgUsers.Columns["isOnline"].Visible = false;
-
-            Image online = Image.FromFile(Directory.GetCurrentDirectory() + "\\Wake.png");
-            Image offline = Image.FromFile(Directory.GetCurrentDirectory() + "\\Sleep.png");
-
-            if (DtgUsers.Columns.Contains("الحالة") == false)
+            this.Invoke((MethodInvoker)delegate
             {
-                DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
-                DtgUsers.Columns.Add(imageCol);
-                imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
-                imageCol.HeaderText = "الحالة";
-                imageCol.Name = "الحالة";
-            }
+                DtgUsers.DataSource = dt;
+                DtgUsers.Columns["isOnline"].Visible = false;
 
-            foreach (DataGridViewRow row in DtgUsers.Rows)
-            {
-                if (Convert.ToBoolean(row.Cells["isOnline"].Value) == true)
+                Image online = Image.FromFile(Directory.GetCurrentDirectory() + "\\Wake.png");
+                Image offline = Image.FromFile(Directory.GetCurrentDirectory() + "\\Sleep.png");
+
+                if (DtgUsers.Columns.Contains("الحالة") == false)
                 {
-                    row.Cells["الحالة"].Value = online;
+                    DataGridViewImageColumn imageCol = new DataGridViewImageColumn();
+                    DtgUsers.Columns.Add(imageCol);
+                    imageCol.ImageLayout = DataGridViewImageCellLayout.Zoom;
+                    imageCol.HeaderText = "الحالة";
+                    imageCol.Name = "الحالة";
                 }
-                else
+
+                foreach (DataGridViewRow row in DtgUsers.Rows)
                 {
-                    row.Cells["الحالة"].Value = offline;
+                    if (Convert.ToBoolean(row.Cells["isOnline"].Value) == true)
+                    {
+                        row.Cells["الحالة"].Value = online;
+                    }
+                    else
+                    {
+                        row.Cells["الحالة"].Value = offline;
+                    }
                 }
-            }
+                foreach (DataGridViewColumn col in DtgUsers.Columns)
+                {
+                    DtgUsers.Columns[col.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
+                }
+            });
+            await Task.Delay(5000);
+        }
+
+    });
+
         }
         private void RtbNotes_Leave(object sender, EventArgs e)
         {
@@ -128,6 +147,11 @@ namespace OTS.Ticketing.Win.MainForms
                 await mainRepository.UpdateIsOnlineByUserId(true, SystemConstants.loggedInUserId);
                 BtnOnlineState.Text = "مشغول";
             }
+        }
+
+        private void DtgUsers_SelectionChanged(object sender, EventArgs e)
+        {
+            DtgUsers.ClearSelection();
         }
     }
 }

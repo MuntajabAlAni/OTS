@@ -30,13 +30,13 @@ namespace OTS.Ticketing.Win.Scheduling
         private void InitializeComponent()
         {
             this.PnlContainer = new System.Windows.Forms.Panel();
+            this.CbState = new System.Windows.Forms.CheckBox();
             this.LblName = new System.Windows.Forms.Label();
             this.LblRemarks = new System.Windows.Forms.Label();
             this.BtnExit = new System.Windows.Forms.Button();
+            this.TxtName = new System.Windows.Forms.TextBox();
             this.TxtRemarks = new System.Windows.Forms.TextBox();
             this.BtnAdd = new System.Windows.Forms.Button();
-            this.TxtName = new System.Windows.Forms.TextBox();
-            this.CbState = new System.Windows.Forms.CheckBox();
             this.PnlContainer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +54,20 @@ namespace OTS.Ticketing.Win.Scheduling
             this.PnlContainer.Location = new System.Drawing.Point(10, 11);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(418, 344);
-            this.PnlContainer.TabIndex = 2;
+            this.PnlContainer.TabIndex = 0;
+            // 
+            // CbState
+            // 
+            this.CbState.AutoSize = true;
+            this.CbState.Checked = true;
+            this.CbState.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CbState.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.CbState.Location = new System.Drawing.Point(238, 212);
+            this.CbState.Name = "CbState";
+            this.CbState.Size = new System.Drawing.Size(50, 19);
+            this.CbState.TabIndex = 2;
+            this.CbState.Text = "فعال";
+            this.CbState.UseVisualStyleBackColor = true;
             // 
             // LblName
             // 
@@ -63,7 +76,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblName.Location = new System.Drawing.Point(294, 61);
             this.LblName.Name = "LblName";
             this.LblName.Size = new System.Drawing.Size(78, 15);
-            this.LblName.TabIndex = 6;
+            this.LblName.TabIndex = 5;
             this.LblName.Text = "اسم الموظف :";
             // 
             // LblRemarks
@@ -86,10 +99,18 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnExit.Location = new System.Drawing.Point(37, 274);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 5;
+            this.BtnExit.TabIndex = 4;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
+            // 
+            // TxtName
+            // 
+            this.TxtName.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.TxtName.Location = new System.Drawing.Point(145, 56);
+            this.TxtName.Name = "TxtName";
+            this.TxtName.Size = new System.Drawing.Size(143, 25);
+            this.TxtName.TabIndex = 0;
             // 
             // TxtRemarks
             // 
@@ -98,7 +119,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.TxtRemarks.Multiline = true;
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(244, 107);
-            this.TxtRemarks.TabIndex = 0;
+            this.TxtRemarks.TabIndex = 1;
             // 
             // BtnAdd
             // 
@@ -110,31 +131,10 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnAdd.Location = new System.Drawing.Point(251, 274);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 4;
+            this.BtnAdd.TabIndex = 3;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
-            // 
-            // TxtName
-            // 
-            this.TxtName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.TxtName.Location = new System.Drawing.Point(145, 56);
-            this.TxtName.Name = "TxtName";
-            this.TxtName.Size = new System.Drawing.Size(143, 25);
-            this.TxtName.TabIndex = 0;
-            // 
-            // CbState
-            // 
-            this.CbState.AutoSize = true;
-            this.CbState.Checked = true;
-            this.CbState.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CbState.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbState.Location = new System.Drawing.Point(238, 212);
-            this.CbState.Name = "CbState";
-            this.CbState.Size = new System.Drawing.Size(50, 19);
-            this.CbState.TabIndex = 7;
-            this.CbState.Text = "فعال";
-            this.CbState.UseVisualStyleBackColor = true;
             // 
             // AddEmployee
             // 

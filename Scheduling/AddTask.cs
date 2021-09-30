@@ -67,7 +67,7 @@ namespace OTS.Ticketing.Win.Scheduling
             {
                 CombEmployees.DisplayMember = "EmployeeName";
                 CombEmployees.ValueMember = "Id";
-                CombEmployees.DataSource = await _scheduleRepository.GetAllEmployees(false);
+                CombEmployees.DataSource = await _scheduleRepository.GetAllEmployees(true);
                 CombEmployees.SelectedValue = _employeeId;
             }
             catch (Exception ex)

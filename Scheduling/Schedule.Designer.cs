@@ -38,6 +38,7 @@ namespace OTS.Ticketing.Win.Scheduling
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PnlLoad = new System.Windows.Forms.Panel();
             this.PbLoading = new System.Windows.Forms.PictureBox();
             this.LblEmployeeName = new System.Windows.Forms.Label();
@@ -61,7 +62,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.PnlLoad.Location = new System.Drawing.Point(412, 204);
             this.PnlLoad.Name = "PnlLoad";
             this.PnlLoad.Size = new System.Drawing.Size(200, 100);
-            this.PnlLoad.TabIndex = 29;
+            this.PnlLoad.TabIndex = 9;
             // 
             // PbLoading
             // 
@@ -80,10 +81,10 @@ namespace OTS.Ticketing.Win.Scheduling
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblEmployeeName.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.LblEmployeeName.Location = new System.Drawing.Point(83, 410);
+            this.LblEmployeeName.Location = new System.Drawing.Point(67, 478);
             this.LblEmployeeName.Name = "LblEmployeeName";
-            this.LblEmployeeName.Size = new System.Drawing.Size(246, 44);
-            this.LblEmployeeName.TabIndex = 31;
+            this.LblEmployeeName.Size = new System.Drawing.Size(271, 47);
+            this.LblEmployeeName.TabIndex = 7;
             this.LblEmployeeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // DtgSchedule
@@ -94,7 +95,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtgSchedule.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
@@ -109,13 +110,13 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtgSchedule.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 12F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DtgSchedule.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.DtgSchedule.ColumnHeadersHeight = 40;
+            this.DtgSchedule.ColumnHeadersHeight = 45;
             this.DtgSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -133,19 +134,27 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtgSchedule.Name = "DtgSchedule";
             this.DtgSchedule.ReadOnly = true;
             this.DtgSchedule.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DtgSchedule.RowHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.DtgSchedule.RowHeadersVisible = false;
-            this.DtgSchedule.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgSchedule.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.DtgSchedule.RowHeadersWidth = 65;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgSchedule.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DtgSchedule.RowTemplate.Height = 26;
             this.DtgSchedule.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.DtgSchedule.Size = new System.Drawing.Size(1001, 303);
-            this.DtgSchedule.TabIndex = 33;
+            this.DtgSchedule.Size = new System.Drawing.Size(1026, 348);
+            this.DtgSchedule.TabIndex = 3;
             this.DtgSchedule.Click += new System.EventHandler(this.DtgSchedule_Click);
             // 
             // DtgTasks
@@ -154,13 +163,13 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtgTasks.AllowUserToDeleteRows = false;
             this.DtgTasks.AllowUserToOrderColumns = true;
             this.DtgTasks.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgTasks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgTasks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DtgTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -169,27 +178,27 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtgTasks.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.DtgTasks.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.DtgTasks.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DtgTasks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DtgTasks.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.DtgTasks.ColumnHeadersHeight = 28;
             this.DtgTasks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DtgTasks.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DtgTasks.DefaultCellStyle = dataGridViewCellStyle8;
             this.DtgTasks.EnableHeadersVisualStyles = false;
             this.DtgTasks.GridColor = System.Drawing.Color.WhiteSmoke;
-            this.DtgTasks.Location = new System.Drawing.Point(412, 367);
+            this.DtgTasks.Location = new System.Drawing.Point(412, 412);
             this.DtgTasks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DtgTasks.MultiSelect = false;
             this.DtgTasks.Name = "DtgTasks";
@@ -197,17 +206,17 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtgTasks.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DtgTasks.RowHeadersVisible = false;
             this.DtgTasks.RowHeadersWidth = 51;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgTasks.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgTasks.RowsDefaultCellStyle = dataGridViewCellStyle9;
             this.DtgTasks.RowTemplate.Height = 26;
             this.DtgTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DtgTasks.Size = new System.Drawing.Size(601, 211);
-            this.DtgTasks.TabIndex = 34;
+            this.DtgTasks.Size = new System.Drawing.Size(626, 256);
+            this.DtgTasks.TabIndex = 4;
             this.DtgTasks.DoubleClick += new System.EventHandler(this.DtgTasks_DoubleClick);
             // 
             // BtnPrevious
@@ -223,7 +232,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnPrevious.Location = new System.Drawing.Point(199, 10);
             this.BtnPrevious.Name = "BtnPrevious";
             this.BtnPrevious.Size = new System.Drawing.Size(115, 45);
-            this.BtnPrevious.TabIndex = 35;
+            this.BtnPrevious.TabIndex = 0;
             this.BtnPrevious.Text = "السابق";
             this.BtnPrevious.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnPrevious.UseVisualStyleBackColor = false;
@@ -242,7 +251,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnNext.Location = new System.Drawing.Point(12, 10);
             this.BtnNext.Name = "BtnNext";
             this.BtnNext.Size = new System.Drawing.Size(115, 45);
-            this.BtnNext.TabIndex = 35;
+            this.BtnNext.TabIndex = 2;
             this.BtnNext.Text = "التالي";
             this.BtnNext.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.BtnNext.UseVisualStyleBackColor = false;
@@ -255,10 +264,10 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnAddTask.FlatAppearance.BorderSize = 2;
             this.BtnAddTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnAddTask.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BtnAddTask.Location = new System.Drawing.Point(209, 533);
+            this.BtnAddTask.Location = new System.Drawing.Point(214, 610);
             this.BtnAddTask.Name = "BtnAddTask";
             this.BtnAddTask.Size = new System.Drawing.Size(120, 45);
-            this.BtnAddTask.TabIndex = 35;
+            this.BtnAddTask.TabIndex = 5;
             this.BtnAddTask.Text = "إضافة مهمة";
             this.BtnAddTask.UseVisualStyleBackColor = false;
             this.BtnAddTask.Click += new System.EventHandler(this.BtnAddTask_Click);
@@ -270,10 +279,10 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnEditTask.FlatAppearance.BorderSize = 2;
             this.BtnEditTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnEditTask.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.BtnEditTask.Location = new System.Drawing.Point(83, 533);
+            this.BtnEditTask.Location = new System.Drawing.Point(67, 610);
             this.BtnEditTask.Name = "BtnEditTask";
             this.BtnEditTask.Size = new System.Drawing.Size(120, 45);
-            this.BtnEditTask.TabIndex = 35;
+            this.BtnEditTask.TabIndex = 6;
             this.BtnEditTask.Text = "تعديل مهمة";
             this.BtnEditTask.UseVisualStyleBackColor = false;
             this.BtnEditTask.Click += new System.EventHandler(this.BtnEditTask_Click);
@@ -284,10 +293,10 @@ namespace OTS.Ticketing.Win.Scheduling
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LblDate.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.LblDate.Location = new System.Drawing.Point(83, 457);
+            this.LblDate.Location = new System.Drawing.Point(67, 534);
             this.LblDate.Name = "LblDate";
-            this.LblDate.Size = new System.Drawing.Size(246, 44);
-            this.LblDate.TabIndex = 31;
+            this.LblDate.Size = new System.Drawing.Size(271, 73);
+            this.LblDate.TabIndex = 8;
             this.LblDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnToday
@@ -302,7 +311,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnToday.Location = new System.Drawing.Point(133, 10);
             this.BtnToday.Name = "BtnToday";
             this.BtnToday.Size = new System.Drawing.Size(60, 45);
-            this.BtnToday.TabIndex = 35;
+            this.BtnToday.TabIndex = 1;
             this.BtnToday.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.BtnToday.UseVisualStyleBackColor = false;
             this.BtnToday.Click += new System.EventHandler(this.BtnToday_Click);
@@ -311,7 +320,7 @@ namespace OTS.Ticketing.Win.Scheduling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1025, 590);
+            this.ClientSize = new System.Drawing.Size(1050, 680);
             this.Controls.Add(this.BtnEditTask);
             this.Controls.Add(this.BtnAddTask);
             this.Controls.Add(this.BtnNext);

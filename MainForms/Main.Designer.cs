@@ -55,9 +55,13 @@ namespace OTS.Ticketing.Win
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RestoreDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BackUpDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.EditUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.bunifuFormDock1 = new Bunifu.UI.WinForms.BunifuFormDock();
+            this.PnlLoad = new System.Windows.Forms.Panel();
+            this.PbLoading = new System.Windows.Forms.PictureBox();
             this.PnlMenuVertical.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LOGO)).BeginInit();
             this.PnlTop.SuspendLayout();
@@ -66,6 +70,8 @@ namespace OTS.Ticketing.Win
             ((System.ComponentModel.ISupportInitialize)(this.ImbMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ImbClose)).BeginInit();
             this.MenuStrip.SuspendLayout();
+            this.PnlLoad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // PnlMenuVertical
@@ -290,7 +296,9 @@ namespace OTS.Ticketing.Win
             // 
             resources.ApplyResources(this.HelpToolStripMenuItem, "HelpToolStripMenuItem");
             this.HelpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.AboutToolStripMenuItem});
+            this.AboutToolStripMenuItem,
+            this.RestoreDatabaseToolStripMenuItem,
+            this.BackUpDatabaseToolStripMenuItem});
             this.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem";
             // 
             // AboutToolStripMenuItem
@@ -298,6 +306,18 @@ namespace OTS.Ticketing.Win
             resources.ApplyResources(this.AboutToolStripMenuItem, "AboutToolStripMenuItem");
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
+            // 
+            // RestoreDatabaseToolStripMenuItem
+            // 
+            resources.ApplyResources(this.RestoreDatabaseToolStripMenuItem, "RestoreDatabaseToolStripMenuItem");
+            this.RestoreDatabaseToolStripMenuItem.Name = "RestoreDatabaseToolStripMenuItem";
+            this.RestoreDatabaseToolStripMenuItem.Click += new System.EventHandler(this.RestoreDatabaseToolStripMenuItem_Click);
+            // 
+            // BackUpDatabaseToolStripMenuItem
+            // 
+            resources.ApplyResources(this.BackUpDatabaseToolStripMenuItem, "BackUpDatabaseToolStripMenuItem");
+            this.BackUpDatabaseToolStripMenuItem.Name = "BackUpDatabaseToolStripMenuItem";
+            this.BackUpDatabaseToolStripMenuItem.Click += new System.EventHandler(this.BackupDatabaseToolStripMenuItem_Click);
             // 
             // EditUserToolStripMenuItem
             // 
@@ -350,10 +370,24 @@ namespace OTS.Ticketing.Win
             this.bunifuFormDock1.TitleBarOptions.TitleBarControl = this.PnlTop;
             this.bunifuFormDock1.TitleBarOptions.UseBackColorOnDockingIndicators = false;
             // 
+            // PnlLoad
+            // 
+            resources.ApplyResources(this.PnlLoad, "PnlLoad");
+            this.PnlLoad.Controls.Add(this.PbLoading);
+            this.PnlLoad.Name = "PnlLoad";
+            this.PnlLoad.VisibleChanged += new System.EventHandler(this.PnlLoad_VisibleChanged);
+            // 
+            // PbLoading
+            // 
+            resources.ApplyResources(this.PbLoading, "PbLoading");
+            this.PbLoading.Name = "PbLoading";
+            this.PbLoading.TabStop = false;
+            // 
             // Main
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.PnlLoad);
             this.Controls.Add(this.PnlContainer);
             this.Controls.Add(this.PnlTop);
             this.Controls.Add(this.PnlMenuVertical);
@@ -373,6 +407,9 @@ namespace OTS.Ticketing.Win
             ((System.ComponentModel.ISupportInitialize)(this.ImbClose)).EndInit();
             this.MenuStrip.ResumeLayout(false);
             this.MenuStrip.PerformLayout();
+            this.PnlLoad.ResumeLayout(false);
+            this.PnlLoad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -407,5 +444,9 @@ namespace OTS.Ticketing.Win
         private System.Windows.Forms.Button BtnDisplayEmployees;
         private System.Windows.Forms.Button BtnScheduling;
         private System.Windows.Forms.Button BtnActivityLog;
+        private System.Windows.Forms.ToolStripMenuItem RestoreDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem BackUpDatabaseToolStripMenuItem;
+        private System.Windows.Forms.Panel PnlLoad;
+        private System.Windows.Forms.PictureBox PbLoading;
     }
 }

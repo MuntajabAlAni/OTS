@@ -357,8 +357,14 @@
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <data name="DtgUsers.ColumnHeadersHeight" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
   <data name="DtgUsers.Location" type="System.Drawing.Point, System.Drawing">
     <value>358, 45</value>
+  </data>
+  <data name="DtgUsers.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>51</value>
   </data>
   <data name="DtgUsers.Size" type="System.Drawing.Size, System.Drawing">
     <value>362, 299</value>
@@ -435,11 +441,17 @@
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="BtnOnlineState.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="BtnOnlineState.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
   <data name="BtnOnlineState.Location" type="System.Drawing.Point, System.Drawing">
-    <value>727, 321</value>
+    <value>726, 314</value>
   </data>
   <data name="BtnOnlineState.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+    <value>84, 30</value>
   </data>
   <data name="BtnOnlineState.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>

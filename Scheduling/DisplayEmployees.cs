@@ -39,7 +39,7 @@ namespace OTS.Ticketing.Win.Scheduling
         {
             try
             {
-                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _scheduleRepository.GetAllEmployees(true));
+                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _scheduleRepository.GetAllEmployees(false));
                 DtgEmployees.Columns["State"].HeaderText = "الحالة";
                 DtgEmployees.Columns["employeeName"].HeaderText = "اسم الموظف";
                 DtgEmployees.Columns["Remarks"].Visible = false;

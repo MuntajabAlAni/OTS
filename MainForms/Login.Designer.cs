@@ -101,7 +101,6 @@ namespace OTS.Ticketing.Win.MainForms
             // 
             resources.ApplyResources(this.TxtNumber, "TxtNumber");
             this.TxtNumber.Name = "TxtNumber";
-            this.TxtNumber.UseSystemPasswordChar = true;
             this.TxtNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
             // 
             // LblNumber

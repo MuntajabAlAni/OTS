@@ -175,12 +175,15 @@ namespace OTS.Ticketing.Win.Tickets
                 Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                 Convert.ToInt64(CombSoftware.SelectedValue),
                 Convert.ToInt64(CombUser.SelectedValue));
+
                     SystemConstants.SelectedCompanyId = 0;
                     SystemConstants.SelectedPhoneNumberId = 0;
                     SystemConstants.SelectedSoftware = 0;
                     SystemConstants.SelectedUser = 0;
+                    
                     TicketInfo addedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
                         Convert.ToInt32(LblRevision.Text));
+                    
                     await ActivityLogUtility.ActivityLog(Enums.Activities.AddTicket, "إضافة بطاقة", addedTicket.Id);
                     this.Close();
                 }

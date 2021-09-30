@@ -81,7 +81,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.PnlContainer.Location = new System.Drawing.Point(10, 11);
             this.PnlContainer.Name = "PnlContainer";
             this.PnlContainer.Size = new System.Drawing.Size(418, 344);
-            this.PnlContainer.TabIndex = 1;
+            this.PnlContainer.TabIndex = 0;
             // 
             // LblDate
             // 
@@ -90,7 +90,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblDate.Location = new System.Drawing.Point(289, 108);
             this.LblDate.Name = "LblDate";
             this.LblDate.Size = new System.Drawing.Size(73, 15);
-            this.LblDate.TabIndex = 43;
+            this.LblDate.TabIndex = 10;
             this.LblDate.Text = "تاريخ المهمة :";
             // 
             // DtpDate
@@ -103,7 +103,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtpDate.Name = "DtpDate";
             this.DtpDate.RightToLeftLayout = true;
             this.DtpDate.Size = new System.Drawing.Size(104, 25);
-            this.DtpDate.TabIndex = 42;
+            this.DtpDate.TabIndex = 2;
             this.DtpDate.Value = new System.DateTime(2021, 8, 4, 0, 0, 0, 0);
             // 
             // LblTo
@@ -113,7 +113,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblTo.Location = new System.Drawing.Point(289, 190);
             this.LblTo.Name = "LblTo";
             this.LblTo.Size = new System.Drawing.Size(30, 15);
-            this.LblTo.TabIndex = 40;
+            this.LblTo.TabIndex = 12;
             this.LblTo.Text = "الى :";
             // 
             // LblFrom
@@ -123,7 +123,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblFrom.Location = new System.Drawing.Point(289, 149);
             this.LblFrom.Name = "LblFrom";
             this.LblFrom.Size = new System.Drawing.Size(28, 15);
-            this.LblFrom.TabIndex = 41;
+            this.LblFrom.TabIndex = 11;
             this.LblFrom.Text = "من :";
             // 
             // DtpFromTime
@@ -137,7 +137,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtpFromTime.RightToLeftLayout = true;
             this.DtpFromTime.ShowUpDown = true;
             this.DtpFromTime.Size = new System.Drawing.Size(104, 25);
-            this.DtpFromTime.TabIndex = 38;
+            this.DtpFromTime.TabIndex = 3;
             this.DtpFromTime.Value = new System.DateTime(2021, 9, 21, 10, 0, 0, 0);
             // 
             // DtpToTime
@@ -151,7 +151,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.DtpToTime.RightToLeftLayout = true;
             this.DtpToTime.ShowUpDown = true;
             this.DtpToTime.Size = new System.Drawing.Size(106, 25);
-            this.DtpToTime.TabIndex = 39;
+            this.DtpToTime.TabIndex = 4;
             this.DtpToTime.Value = new System.DateTime(2021, 9, 21, 18, 0, 0, 0);
             // 
             // BtnEditEmployee
@@ -223,7 +223,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.CombEmployees.Location = new System.Drawing.Point(138, 59);
             this.CombEmployees.Name = "CombEmployees";
             this.CombEmployees.Size = new System.Drawing.Size(143, 25);
-            this.CombEmployees.TabIndex = 2;
+            this.CombEmployees.TabIndex = 1;
             // 
             // CombCompanies
             // 
@@ -234,7 +234,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.CombCompanies.Location = new System.Drawing.Point(138, 18);
             this.CombCompanies.Name = "CombCompanies";
             this.CombCompanies.Size = new System.Drawing.Size(143, 25);
-            this.CombCompanies.TabIndex = 2;
+            this.CombCompanies.TabIndex = 0;
             // 
             // LblEmployeeName
             // 
@@ -243,7 +243,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblEmployeeName.Location = new System.Drawing.Point(287, 64);
             this.LblEmployeeName.Name = "LblEmployeeName";
             this.LblEmployeeName.Size = new System.Drawing.Size(55, 15);
-            this.LblEmployeeName.TabIndex = 6;
+            this.LblEmployeeName.TabIndex = 9;
             this.LblEmployeeName.Text = "الموظف :";
             // 
             // LblCompany
@@ -253,7 +253,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblCompany.Location = new System.Drawing.Point(287, 23);
             this.LblCompany.Name = "LblCompany";
             this.LblCompany.Size = new System.Drawing.Size(45, 15);
-            this.LblCompany.TabIndex = 6;
+            this.LblCompany.TabIndex = 8;
             this.LblCompany.Text = "الشركة :";
             // 
             // LblTaskDetails
@@ -263,7 +263,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.LblTaskDetails.Location = new System.Drawing.Point(287, 228);
             this.LblTaskDetails.Name = "LblTaskDetails";
             this.LblTaskDetails.Size = new System.Drawing.Size(86, 15);
-            this.LblTaskDetails.TabIndex = 6;
+            this.LblTaskDetails.TabIndex = 13;
             this.LblTaskDetails.Text = "تفاصيل المهمة :";
             // 
             // BtnExit
@@ -276,7 +276,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnExit.Location = new System.Drawing.Point(37, 274);
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
-            this.BtnExit.TabIndex = 5;
+            this.BtnExit.TabIndex = 7;
             this.BtnExit.Text = "تراجع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
@@ -287,7 +287,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.TxtTaskDetails.Location = new System.Drawing.Point(138, 223);
             this.TxtTaskDetails.Name = "TxtTaskDetails";
             this.TxtTaskDetails.Size = new System.Drawing.Size(143, 25);
-            this.TxtTaskDetails.TabIndex = 0;
+            this.TxtTaskDetails.TabIndex = 5;
             // 
             // BtnAdd
             // 
@@ -299,7 +299,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.BtnAdd.Location = new System.Drawing.Point(251, 274);
             this.BtnAdd.Name = "BtnAdd";
             this.BtnAdd.Size = new System.Drawing.Size(120, 45);
-            this.BtnAdd.TabIndex = 4;
+            this.BtnAdd.TabIndex = 6;
             this.BtnAdd.Text = "إضافة";
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
