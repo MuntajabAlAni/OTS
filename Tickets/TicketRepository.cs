@@ -266,14 +266,14 @@ namespace OTS.Ticketing.Win.Tickets
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed,  k.displayName TransferedTo FROM tickets t
+												 end IsIndexed, u.displayName as TransferedTo FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
                                                  inner join companies c on t.companyId = c.id
                                                  inner join branches b on c.branchId = b.id
 												 left join states st on t.stateId = st.id
-                                                 left join (select u.id, u.displayName from users u inner join tickets t on t.transferedTo = u.id) k on t.transferedTo = k.id
+                                                 left join Users u on t.transferedTo = u.id
 												 WHERE  IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and IIF(@userId = 0,0,t.UserId) = @userId
 												 and t.openDate between @fromDate and @toDate
@@ -296,14 +296,14 @@ namespace OTS.Ticketing.Win.Tickets
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed,  k.displayName TransferedTo FROM tickets t
+												 end IsIndexed,  u.displayName as TransferedTo FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
                                                  inner join companies c on t.companyId = c.id
                                                  inner join branches b on c.branchId = b.id
 												 left join states st on t.stateId = st.id
-                                                 left join (select u.id, u.displayName from users u inner join tickets t on t.transferedTo = u.id) k on t.transferedTo = k.id
+                                                 left join Users u on t.transferedTo = u.id
 												 WHERE  IIF(@companyId = 0,0,t.CompanyId) = @companyId
 												 and IIF(@userId = 0,0,t.UserId) = @userId
 												 and t.openDate between @fromDate and @toDate

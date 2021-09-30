@@ -17,13 +17,10 @@ namespace OTS.Ticketing.Win.MainForms
     {
         readonly public MainRepository mainRepository = new MainRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
-
         public Home()
         {
             InitializeComponent();
         }
-
         private void Home_Load(object sender, EventArgs e)
         {
             RtbNotes.SelectionAlignment = HorizontalAlignment.Center;
@@ -35,7 +32,6 @@ namespace OTS.Ticketing.Win.MainForms
             RtbNotes.Text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"));
             GetDtgUsersData();
         }
-
         private async void GetDtgLastTicketsData()
         {
             try
@@ -71,7 +67,6 @@ namespace OTS.Ticketing.Win.MainForms
             LblTime.Text = DateTime.Now.ToString("hh:mm:ss");
             LblDate.Text = DateTime.Now.ToString("dddd dd-MM-yyyy");
         }
-
         private void GetDtgUsersData()
         {
             Task.Run(async () =>
@@ -134,7 +129,6 @@ namespace OTS.Ticketing.Win.MainForms
         {
             File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"), RtbNotes.Text);
         }
-
         private async void BtnOnlineState_Click(object sender, EventArgs e)
         {
             if (BtnOnlineState.Text == "مشغول")
@@ -148,7 +142,6 @@ namespace OTS.Ticketing.Win.MainForms
                 BtnOnlineState.Text = "مشغول";
             }
         }
-
         private void DtgUsers_SelectionChanged(object sender, EventArgs e)
         {
             DtgUsers.ClearSelection();

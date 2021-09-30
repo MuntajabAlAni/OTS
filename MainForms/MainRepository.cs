@@ -49,13 +49,13 @@ namespace OTS.Ticketing.Win.MainForms
 												 else 'غير مرتبة'
 												 end IsIndexed,
 												 case t.isClosed when 1 then 'مغلقة' 
-                                                 else 'غير مغلقة' end isClosed, k.displayName TransferedTo
+                                                 else 'غير مغلقة' end isClosed, u.displayName as TransferedTo
 												 FROM tickets t
                                                  left join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  left join softwares s on t.softwareId = s.id
                                                  left join Users e on t.UserId = e.id
                                                  left join companies c on t.companyId = c.id
-												 left join (select u.id, u.displayName from users u inner join tickets t on t.transferedTo = u.id) k on t.transferedTo = k.id
+												 left join Users u on t.transferedTo = u.id
                                                  left join states st on t.stateId = st.id 
 												 WHERE openDate between CAST( GETDATE() AS Date )  and CAST( GETDATE() AS DateTime )
                                                  and t.isDeleted = 0
