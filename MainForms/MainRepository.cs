@@ -71,13 +71,14 @@ namespace OTS.Ticketing.Win.MainForms
             var list = result.ToList();
             return list;
         }
-        public async Task<int> UpdateUserNumberByUserId(string number, long userId)
+        public async Task<int> UpdateSessionInfoByUserId(string number, Guid sessionId, long userId)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@number", number);
+            parameters.Add("@sessionId", sessionId);
             parameters.Add("@userId", userId);
 
-            string command = "UPDATE Sessions SET number = @number, isOnline = 1 where userId = @userId";
+            string command = "UPDATE Sessions SET number = @number, sessionId = @sessionId, isOnline = 1 where userId = @userId";
 
             return await dataAccess.ExecuteAsync(command, parameters);
 
@@ -113,12 +114,13 @@ namespace OTS.Ticketing.Win.MainForms
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<int> UpdateSessionByUserId(long id, int eventType, string computerName)
+        public async Task<int> UpdateSessionByUserId(long id, int eventType, string computerName, Guid sessionId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@userId", id);
             parameters.Add("@eventType", eventType);
             parameters.Add("@computerName", computerName);
+            parameters.Add("@sessionId", sessionId);
 
             string command = @"IF EXISTS (SELECT * FROM sessions WHERE userId = @userId)
                                BEGIN
@@ -126,20 +128,22 @@ namespace OTS.Ticketing.Win.MainForms
                                 lastEvent = @eventType,
                                 computerName = @computerName,
 			   	                lastUpdateDate = SYSDATETIME()
-					            WHERE userId = @userId;
+					            WHERE userId = @userId and sessionId = @sessionId;
                                END
                                ELSE
                                BEGIN
-                                INSERT INTO sessions (userId) values (@userId);
+                                INSERT INTO sessions (userId, sessionId) values (@userId, @sessionId);
                                END";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<List<SessionView>> GetSessions()
         {
-            string query = @"SELECT s.id, s.userId ,u.displayName ,s.lastEvent ,s.computerName ,s.lastUpdateDate ,s.isOnline ,s.number
+            string query = @"SELECT s.id, s.userId ,u.displayName ,e.eventName ,s.computerName ,s.lastUpdateDate ,s.isOnline ,s.number
                              FROM Sessions s 
-                             join users u on u.id = s.userId";
+                             join users u on u.id = s.userId
+                             left join events e on e.id = s.lastEvent
+                             Where u.displayName not in ('admin','Noor')";
             var result = await dataAccess.QueryAsync<SessionView>(query,new DynamicParameters());
             return result.ToList();
         }

@@ -459,6 +459,9 @@
   <data name="BtnOnlineState.Text" xml:space="preserve">
     <value>مشغول</value>
   </data>
+  <data name="BtnOnlineState.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="&gt;&gt;BtnOnlineState.Name" xml:space="preserve">
     <value>BtnOnlineState</value>
   </data>

@@ -77,9 +77,7 @@ namespace OTS.Ticketing.Win.Scheduling
             // 
             // LblEmployeeName
             // 
-            this.LblEmployeeName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblEmployeeName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LblEmployeeName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.LblEmployeeName.Location = new System.Drawing.Point(67, 478);
             this.LblEmployeeName.Name = "LblEmployeeName";
@@ -170,8 +168,7 @@ namespace OTS.Ticketing.Win.Scheduling
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
             this.DtgTasks.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
-            this.DtgTasks.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.DtgTasks.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DtgTasks.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgTasks.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -259,6 +256,7 @@ namespace OTS.Ticketing.Win.Scheduling
             // 
             // BtnAddTask
             // 
+            this.BtnAddTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnAddTask.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             this.BtnAddTask.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnAddTask.FlatAppearance.BorderSize = 2;
@@ -274,6 +272,7 @@ namespace OTS.Ticketing.Win.Scheduling
             // 
             // BtnEditTask
             // 
+            this.BtnEditTask.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.BtnEditTask.BackColor = System.Drawing.Color.WhiteSmoke;
             this.BtnEditTask.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.BtnEditTask.FlatAppearance.BorderSize = 2;
@@ -289,9 +288,7 @@ namespace OTS.Ticketing.Win.Scheduling
             // 
             // LblDate
             // 
-            this.LblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LblDate.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.LblDate.Location = new System.Drawing.Point(67, 534);
             this.LblDate.Name = "LblDate";

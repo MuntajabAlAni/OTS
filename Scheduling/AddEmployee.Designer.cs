@@ -146,6 +146,7 @@ namespace OTS.Ticketing.Win.Scheduling
             this.KeyPreview = true;
             this.Name = "AddEmployee";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddEmployee";
             this.Load += new System.EventHandler(this.AddEmployee_Load);
             this.PnlContainer.ResumeLayout(false);

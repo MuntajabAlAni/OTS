@@ -67,6 +67,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.TxtUserName.Name = "TxtUserName";
             this.TxtUserName.Enter += new System.EventHandler(this.TxtUserName_Enter);
             this.TxtUserName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtUserName_KeyDown);
+            this.TxtUserName.Leave += new System.EventHandler(this.TxtUserName_Leave);
             // 
             // TxtPassword
             // 
@@ -102,6 +103,7 @@ namespace OTS.Ticketing.Win.MainForms
             resources.ApplyResources(this.TxtNumber, "TxtNumber");
             this.TxtNumber.Name = "TxtNumber";
             this.TxtNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxtPassword_KeyDown);
+            this.TxtNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtNumber_KeyPress);
             // 
             // LblNumber
             // 

@@ -29,8 +29,10 @@ namespace OTS.Ticketing.Win
         private readonly MainRepository _mainRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public static int eventType;
+        private bool thread;
         public Main()
         {
+            thread = true;
             eventType = ((int)Enums.Events.Home);
             _mainRepository = new MainRepository();
             _ticketRepository = new TicketRepository();
@@ -62,12 +64,19 @@ namespace OTS.Ticketing.Win
                     BtnDisplayEmployees.Visible = true;
                     return;
                 }
-                if (UserInfo.UserName == "Noor")
+                if (UserInfo.UserName.ToLower() == "noor")
                 {
                     BtnTickets.Visible = false;
                     BtnAddTicket.Visible = true;
                     BtnAddTicket.Location = new Point(0, 162);
                     return;
+                }
+                if (UserInfo.UserName.ToLower() == "ali")
+                {
+                    BtnOldTickets.Visible = true;
+                    BtnActivityLog.Visible = true;
+                    BtnScheduling.Visible = true;
+                    BtnDisplayEmployees.Visible = true;
                 }
                 BtnTickets.Location = new Point(0, 162);
             }
@@ -120,10 +129,19 @@ namespace OTS.Ticketing.Win
         }
         private async void BtnHome_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.Home);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("Home")) return;
-            ApplingFormOnContainer(new Home());
+            try
+            {
+                eventType = ((int)Enums.Events.Home);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("Home")) return;
+                ApplingFormOnContainer(new Home());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private void LOGO_Click(object sender, EventArgs e)
         {
@@ -132,11 +150,20 @@ namespace OTS.Ticketing.Win
         }
         private async void ChangeUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Close();
-            await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
-            SystemConstants.Initialize();
-            Login login = new Login();
-            login.Show();
+            try
+            {
+                thread = false;
+                this.Close();
+                await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
+                SystemConstants.Initialize();
+                Login login = new Login();
+                login.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -144,21 +171,39 @@ namespace OTS.Ticketing.Win
         }
         private async void BtnTickets_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.DisplayTickets);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
-            ApplingFormOnContainer(new DisplayTickets());
+            try
+            {
+                eventType = ((int)Enums.Events.DisplayTickets);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
+                ApplingFormOnContainer(new DisplayTickets());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnAddTicket_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.AddTicket);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUserId);
-            if (UserInfo.UserName != "admin" & UserInfo.UserName != "Noor")
+            try
             {
-                return;
+                eventType = ((int)Enums.Events.AddTicket);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+                if (UserInfo.UserName != "admin" & UserInfo.UserName != "Noor")
+                {
+                    return;
+                }
+                ApplingFormOnContainer(new AddTicket());
             }
-            ApplingFormOnContainer(new AddTicket());
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
@@ -169,60 +214,122 @@ namespace OTS.Ticketing.Win
         }
         private async void BtnCompanies_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.Companies);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayCompanies")) return;
-            ApplingFormOnContainer(new DisplayCompanies(false));
+            try
+            {
+                eventType = ((int)Enums.Events.Companies);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayCompanies")) return;
+                ApplingFormOnContainer(new DisplayCompanies(false));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnUsers_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.Users);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayUsers")) return;
-            ApplingFormOnContainer(new DisplayUsers());
+            try
+            {
+                eventType = ((int)Enums.Events.Users);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayUsers")) return;
+                ApplingFormOnContainer(new DisplayUsers());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnPhoneNumbres_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.PhoneNumbers);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayPhoneNumbers")) return;
-            ApplingFormOnContainer(new DisplayPhoneNumbers(false));
+            try
+            {
+                eventType = ((int)Enums.Events.PhoneNumbers);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayPhoneNumbers")) return;
+                ApplingFormOnContainer(new DisplayPhoneNumbers(false));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void Exit()
         {
-            DialogResult dr;
-            dr = MessageBox.Show(LocalizationMessages.GetMessage("ExitConfirmation"), "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            try
             {
-                await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
-                await _mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUserId);
-                Application.Exit();
+                DialogResult dr;
+                dr = MessageBox.Show(LocalizationMessages.GetMessage("ExitConfirmation"), "", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
+                    await _mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUserId);
+                    Application.Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
             }
         }
         private async void BtnStates_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.States);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayStates")) return;
-            ApplingFormOnContainer(new DisplayStates());
+            try
+            {
+                eventType = ((int)Enums.Events.States);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayStates")) return;
+                ApplingFormOnContainer(new DisplayStates());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnSoftwares_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.Softwares);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplaySoftwares")) return;
-            ApplingFormOnContainer(new DisplaySoftwares());
+            try
+            {
+                eventType = ((int)Enums.Events.Softwares);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplaySoftwares")) return;
+                ApplingFormOnContainer(new DisplaySoftwares());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnOldTickets_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.DisplayOldTickets);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
-            ApplingFormOnContainer(new DisplayOldTickets());
+            try
+            {
+                eventType = ((int)Enums.Events.DisplayOldTickets);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
+                ApplingFormOnContainer(new DisplayOldTickets());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Online Technical Support 6059\n1.0.0.2\nFuture of Technology Co.\n2021 ", "عن", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Online Technical Support 6059\n1.0.0.4\nFuture of Technology Co.\n2021 ", "عن", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -231,24 +338,51 @@ namespace OTS.Ticketing.Win
         }
         private async void BtnActivityLog_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.DisplayActivities);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
-            ApplingFormOnContainer(new DisplayActivities());
+            try
+            {
+                eventType = ((int)Enums.Events.DisplayActivities);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
+                ApplingFormOnContainer(new DisplayActivities());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnScheduling_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.Schedule);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("Schedule")) return;
-            ApplingFormOnContainer(new Schedule());
+            try
+            {
+                eventType = ((int)Enums.Events.Schedule);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("Schedule")) return;
+                ApplingFormOnContainer(new Schedule());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BtnDisplayEmployees_Click(object sender, EventArgs e)
         {
-            eventType = ((int)Enums.Events.DisplayEmployees);
-            await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-            if (PnlContainer.Controls.ContainsKey("DisplayEmployees")) return;
-            ApplingFormOnContainer(new DisplayEmployees());
+            try
+            {
+                eventType = ((int)Enums.Events.DisplayEmployees);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                if (PnlContainer.Controls.ContainsKey("DisplayEmployees")) return;
+                ApplingFormOnContainer(new DisplayEmployees());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
         private async void BackupDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -272,6 +406,7 @@ namespace OTS.Ticketing.Win
                         zip.Save(saveFileDialog.FileName.Replace(".bak", ".zip"));
                     }
                     File.Delete(saveFileDialog.FileName);
+                    MessageBox.Show("! تم حفظ النسخة الإحتياطية");
                 }
 
             }
@@ -289,7 +424,8 @@ namespace OTS.Ticketing.Win
                 PnlLoad.Visible = true;
                 OpenFileDialog openFileDialog = new OpenFileDialog
                 {
-                    Title = "اختيار ملف النسخة الاحتياطية"
+                    Title = "اختيار ملف النسخة الاحتياطية",
+                    Filter = "ZIP Files | *.zip"
                 };
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
@@ -303,6 +439,7 @@ namespace OTS.Ticketing.Win
                     }
                     await _mainRepository.RestoreDatabase(path + "OTSBackup.bak");
                     File.Delete(path + "OTSBackup.bak");
+                    MessageBox.Show("! تم إسترجاع النسخة الإحتياطية");
                 }
             }
             catch (Exception ex)
@@ -323,10 +460,32 @@ namespace OTS.Ticketing.Win
         {
             Task.Run(async () =>
             {
-                while (true)
+                while (thread)
                 {
-                    await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType, Environment.MachineName);
-                    await Task.Delay(8000);
+                    try
+                    {
+                        var result = await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                            Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                        await Task.Delay(3000);
+                        if (result == 0)
+                        {
+                            MessageBox.Show("تم تسجيل الدخول أكثر من مرة");
+                            Application.Exit();
+                        }
+                        //if (SystemConstants.TechnicalSupportTask)
+                        //{
+                        //    this.Invoke((MethodInvoker)delegate
+                        //    {
+                        //        BtnScheduling.PerformClick();
+                        //        SystemConstants.TechnicalSupportTask = false;
+                        //    });
+                        //}
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Logger.Error(ex);
+                    }
                 }
             });
         }

@@ -331,9 +331,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombStates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CombStates.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombStates.FormattingEnabled = true;
-            this.CombStates.Location = new System.Drawing.Point(515, 94);
+            this.CombStates.Location = new System.Drawing.Point(465, 94);
             this.CombStates.Name = "CombStates";
-            this.CombStates.Size = new System.Drawing.Size(121, 25);
+            this.CombStates.Size = new System.Drawing.Size(171, 25);
             this.CombStates.TabIndex = 1;
             this.CombStates.SelectedValueChanged += new System.EventHandler(this.CombStates_SelectedValueChanged);
             // 
@@ -372,7 +372,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnAddState.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnAddState.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnAddState.ErrorImage")));
             this.BtnAddState.Image = ((System.Drawing.Image)(resources.GetObject("BtnAddState.Image")));
-            this.BtnAddState.Location = new System.Drawing.Point(490, 94);
+            this.BtnAddState.Location = new System.Drawing.Point(440, 94);
             this.BtnAddState.Name = "BtnAddState";
             this.BtnAddState.Size = new System.Drawing.Size(25, 25);
             this.BtnAddState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -407,7 +407,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnEditState.Cursor = System.Windows.Forms.Cursors.Hand;
             this.BtnEditState.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnEditState.ErrorImage")));
             this.BtnEditState.Image = ((System.Drawing.Image)(resources.GetObject("BtnEditState.Image")));
-            this.BtnEditState.Location = new System.Drawing.Point(465, 94);
+            this.BtnEditState.Location = new System.Drawing.Point(415, 94);
             this.BtnEditState.Name = "BtnEditState";
             this.BtnEditState.Size = new System.Drawing.Size(25, 25);
             this.BtnEditState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -616,9 +616,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombTransferedTo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CombTransferedTo.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombTransferedTo.FormattingEnabled = true;
-            this.CombTransferedTo.Location = new System.Drawing.Point(338, 94);
+            this.CombTransferedTo.Location = new System.Drawing.Point(282, 94);
             this.CombTransferedTo.Name = "CombTransferedTo";
-            this.CombTransferedTo.Size = new System.Drawing.Size(121, 25);
+            this.CombTransferedTo.Size = new System.Drawing.Size(127, 25);
             this.CombTransferedTo.TabIndex = 2;
             this.CombTransferedTo.Visible = false;
             // 

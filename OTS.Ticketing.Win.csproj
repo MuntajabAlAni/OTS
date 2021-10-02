@@ -447,6 +447,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Debug\Wake.png" />
+    <None Include="bin\Debug\Sleep.png" />
     <Content Include="OTS_Ticketing_Software_ICON.ico" />
   </ItemGroup>
   <ItemGroup />

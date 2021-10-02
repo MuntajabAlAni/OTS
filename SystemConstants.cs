@@ -13,12 +13,14 @@ namespace OTS.Ticketing.Win
     public class SystemConstants
     {
         public static long loggedInUserId = 0;
+        public static Guid loggedInUserSessionId = Guid.Empty;
         public static long SelectedPhoneNumberId = 0;
         public static long SelectedCompanyId = 0;
         public static long SelectedSoftware = 0;
         public static long SelectedUser = 0;
         public static string Database;
         public static string ServerIp;
+        //public static bool TechnicalSupportTask = false;
 
         public static DataTable ToDataTable<T>(IList<T> data)
         {

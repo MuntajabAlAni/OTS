@@ -225,7 +225,13 @@ namespace OTS.Ticketing.Win.Tickets
                         TicketInfo updatedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text) + 1);
                         await ActivityLogUtility.ActivityLog(Enums.Activities.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
+
                     }
+                    //if (CombStates.Text == "تحويل الى الدعم الفني")
+                    //{
+                    //    this.Close();
+                    //    SystemConstants.TechnicalSupportTask = true;
+                    //}
                     Main.eventType = (int)Enums.Events.DisplayTickets;
                     GetDtgTicketsData();
                     RefreshAllData();

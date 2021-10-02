@@ -46,39 +46,48 @@ namespace OTS.Ticketing.Win.Scheduling
 
         private async void BtnAdd_Click(object sender, EventArgs e)
         {
-            EmployeeInfo employeeInfo;
+            try
+            {
+                EmployeeInfo employeeInfo;
 
-            if (string.IsNullOrWhiteSpace(TxtName.Text))
-            {
-                MessageBox.Show("! يرجى إضافة اسم الموظف");
-                return;
-            }
-            if (_id != 0)
-            {
+                if (string.IsNullOrWhiteSpace(TxtName.Text))
+                {
+                    MessageBox.Show("! يرجى إضافة اسم الموظف");
+                    return;
+                }
+                if (_id != 0)
+                {
+                    employeeInfo = new EmployeeInfo
+                    {
+                        Id = _id,
+                        EmployeeName = TxtName.Text,
+                        Remarks = TxtRemarks.Text,
+                        State = CbState.Checked
+                    };
+
+                    await _scheduleRepository.UpdateEmployee(employeeInfo);
+                    this.DialogResult = DialogResult.Yes;
+                    return;
+                }
+
+
+
                 employeeInfo = new EmployeeInfo
                 {
-                    Id = _id,
                     EmployeeName = TxtName.Text,
                     Remarks = TxtRemarks.Text,
                     State = CbState.Checked
                 };
 
-                await _scheduleRepository.UpdateEmployee(employeeInfo);
+                await _scheduleRepository.AddEmployee(employeeInfo);
                 this.DialogResult = DialogResult.Yes;
-                return;
+
             }
-
-
-
-            employeeInfo = new EmployeeInfo
+            catch (Exception ex)
             {
-                EmployeeName = TxtName.Text,
-                Remarks = TxtRemarks.Text,
-                State = CbState.Checked
-            };
-
-            await _scheduleRepository.AddEmployee(employeeInfo);
-            this.DialogResult = DialogResult.Yes;
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
     }
 }

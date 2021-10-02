@@ -172,7 +172,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.DtgUsers.AllowUserToResizeColumns = false;
             this.DtgUsers.AllowUserToResizeRows = false;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
             dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));

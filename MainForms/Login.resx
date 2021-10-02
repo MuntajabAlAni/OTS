@@ -126,7 +126,7 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="BtnLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 159</value>
+    <value>198, 172</value>
   </data>
   <data name="BtnLogin.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 31</value>
@@ -157,7 +157,7 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="BtnExit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>57, 159</value>
+    <value>55, 172</value>
   </data>
   <data name="BtnExit.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 31</value>
@@ -208,7 +208,7 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="TxtPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 96</value>
+    <value>37, 100</value>
   </data>
   <data name="TxtPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>169, 23</value>
@@ -268,7 +268,7 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="LblPassword.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 99</value>
+    <value>212, 108</value>
   </data>
   <data name="LblPassword.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -372,13 +372,16 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="TxtNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>145, 125</value>
+    <value>145, 133</value>
   </data>
   <data name="TxtNumber.Size" type="System.Drawing.Size, System.Drawing">
     <value>61, 23</value>
   </data>
   <data name="TxtNumber.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="TxtNumber.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;TxtNumber.Name" xml:space="preserve">
     <value>TxtNumber</value>
@@ -402,7 +405,7 @@
     <value>NoControl</value>
   </data>
   <data name="LblNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>212, 128</value>
+    <value>212, 137</value>
   </data>
   <data name="LblNumber.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
@@ -415,6 +418,9 @@
   </data>
   <data name="LblNumber.Text" xml:space="preserve">
     <value>الرقم :</value>
+  </data>
+  <data name="LblNumber.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="&gt;&gt;LblNumber.Name" xml:space="preserve">
     <value>LblNumber</value>

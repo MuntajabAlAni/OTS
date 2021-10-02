@@ -27,6 +27,11 @@ namespace OTS.Ticketing.Win.States
         {
             try
             {
+                if (TxtName.Text == "")
+                {
+                    MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 if (_id == 0)
                 {
                     await stateRepository.AddState(TxtName.Text);
@@ -57,11 +62,6 @@ namespace OTS.Ticketing.Win.States
         {
             try
             {
-                if (TxtName.Text == "")
-                {
-                    MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
                 if (_id != 0)
                 {
                     StateInfo stateInfo = await stateRepository.GetStateById(_id);

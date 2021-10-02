@@ -53,9 +53,30 @@ namespace OTS.Ticketing.Win.MainForms
                     MessageBox.Show(LocalizationMessages.GetMessage("WrongInformations"));
                     return;
                 }
+                if (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor")
+                {
+                    if (string.IsNullOrWhiteSpace(TxtNumber.Text))
+                    {
+                        MessageBox.Show("يرجى إدخال الرقم المخصص");
+                        return;
+                    }
+                    if (Convert.ToInt32(TxtNumber.Text) < 112 | Convert.ToInt32(TxtNumber.Text) > 117)
+                    {
+                        TxtNumber.Text = "";
+                    }
+                    if (string.IsNullOrWhiteSpace(TxtNumber.Text))
+                    {
+                        MessageBox.Show("! `يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
+                        return;
+                    }
+                }
                 SystemConstants.loggedInUserId = result.Id;
+                SystemConstants.loggedInUserSessionId = Guid.NewGuid();
+
                 await ActivityLogUtility.ActivityLog(Enums.Activities.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
-                await mainRepository.UpdateUserNumberByUserId(TxtNumber.Text, SystemConstants.loggedInUserId);
+                await mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
+                    SystemConstants.loggedInUserSessionId,
+                    SystemConstants.loggedInUserId);
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();
@@ -126,5 +147,18 @@ namespace OTS.Ticketing.Win.MainForms
             }
         }
 
+        private void TxtUserName_Leave(object sender, EventArgs e)
+        {
+            TxtNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor");
+            LblNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor");
+        }
+
+        private void TxtNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
