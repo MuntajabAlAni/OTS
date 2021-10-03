@@ -48,6 +48,12 @@ namespace OTS.Ticketing.Win.MainForms
                 UserInfo result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text,
                     TxtPassword.Text);
 
+                var settings = await mainRepository.GetSettings();
+                if (settings.Version != Application.ProductVersion)
+                {
+                    MessageBox.Show("!! يرجى تحديث البرنامج");
+                    return;
+                }
                 if (result == null)
                 {
                     MessageBox.Show(LocalizationMessages.GetMessage("WrongInformations"));
@@ -63,20 +69,18 @@ namespace OTS.Ticketing.Win.MainForms
                     if (Convert.ToInt32(TxtNumber.Text) < 112 | Convert.ToInt32(TxtNumber.Text) > 117)
                     {
                         TxtNumber.Text = "";
-                    }
-                    if (string.IsNullOrWhiteSpace(TxtNumber.Text))
-                    {
                         MessageBox.Show("! `يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
                         return;
                     }
                 }
+                SystemConstants.Initialize();
                 SystemConstants.loggedInUserId = result.Id;
                 SystemConstants.loggedInUserSessionId = Guid.NewGuid();
 
                 await ActivityLogUtility.ActivityLog(Enums.Activities.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
                 await mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
                     SystemConstants.loggedInUserSessionId,
-                    SystemConstants.loggedInUserId);
+                    SystemConstants.loggedInUserId, true);
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();

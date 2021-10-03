@@ -32,10 +32,10 @@ namespace OTS.Ticketing.Win.MainForms
             Byte[] passwordHash = SystemConstants.SHA512(password + userInfo.Salt.ToString().ToUpper());
             DynamicParameters dynamicParameters = new DynamicParameters();
             dynamicParameters.Add("UserName", username);
-            dynamicParameters.Add("Password", passwordHash);
+            dynamicParameters.Add("passwordHash", passwordHash);
 
             string query = @"SELECT * FROM Users where username = @UserName and 
-                             password = @password and State = 1 and isDeleted = 0";
+                             passwordHash = @passwordHash and State = 1 and isDeleted = 0";
 
             var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
             return result.FirstOrDefault();
@@ -71,14 +71,22 @@ namespace OTS.Ticketing.Win.MainForms
             var list = result.ToList();
             return list;
         }
-        public async Task<int> UpdateSessionInfoByUserId(string number, Guid sessionId, long userId)
+        public async Task<int> UpdateSessionInfoByUserId(string number, Guid sessionId, long userId, bool isOnline)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@number", number);
             parameters.Add("@sessionId", sessionId);
             parameters.Add("@userId", userId);
+            parameters.Add("@isOnline", isOnline);
 
-            string command = "UPDATE Sessions SET number = @number, sessionId = @sessionId, isOnline = 1 where userId = @userId";
+            string command = @"IF EXISTS (SELECT * FROM sessions WHERE userId = @userId)
+                               BEGIN
+                                UPDATE Sessions SET number = @number, sessionId = @sessionId, isOnline = @isOnline where userId = @userId;
+                               END
+                               ELSE
+                               BEGIN
+                                INSERT INTO sessions (userId, sessionId, number) values (@userId, @sessionId, @number);
+                               END";
 
             return await dataAccess.ExecuteAsync(command, parameters);
 
@@ -122,18 +130,11 @@ namespace OTS.Ticketing.Win.MainForms
             parameters.Add("@computerName", computerName);
             parameters.Add("@sessionId", sessionId);
 
-            string command = @"IF EXISTS (SELECT * FROM sessions WHERE userId = @userId)
-                               BEGIN
-                                UPDATE sessions SET 
+            string command = @" UPDATE sessions SET 
                                 lastEvent = @eventType,
                                 computerName = @computerName,
 			   	                lastUpdateDate = SYSDATETIME()
-					            WHERE userId = @userId and sessionId = @sessionId;
-                               END
-                               ELSE
-                               BEGIN
-                                INSERT INTO sessions (userId, sessionId) values (@userId, @sessionId);
-                               END";
+					            WHERE userId = @userId and sessionId = @sessionId;";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
@@ -143,9 +144,15 @@ namespace OTS.Ticketing.Win.MainForms
                              FROM Sessions s 
                              join users u on u.id = s.userId
                              left join events e on e.id = s.lastEvent
-                             Where u.displayName not in ('admin','Noor')";
-            var result = await dataAccess.QueryAsync<SessionView>(query,new DynamicParameters());
+                             Where u.userName not in ('admin','Noor')";
+            var result = await dataAccess.QueryAsync<SessionView>(query, new DynamicParameters());
             return result.ToList();
+        }
+        public async Task<SettingsInfo> GetSettings()
+        {
+            string query = @"SELECT * FROM Settings";
+            var result = await dataAccess.QueryAsync<SettingsInfo>(query, new DynamicParameters());
+            return result.FirstOrDefault();
         }
     }
 }

@@ -17,7 +17,7 @@ namespace OTS.Ticketing.Win.Utils
         public enum Events
         {
             Home = 1, Companies, Users, PhoneNumbers, States, Softwares, DisplayTickets, AddTicket, DisplayOldTickets,  DisplayActivities,
-            Schedule, DisplayEmployees, TicketInProgress
+            Schedule, DisplayEmployees, TicketInProgress, LoggedOut
         }
     }
 }

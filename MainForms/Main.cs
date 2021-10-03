@@ -18,6 +18,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -29,10 +30,9 @@ namespace OTS.Ticketing.Win
         private readonly MainRepository _mainRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public static int eventType;
-        private bool thread;
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         public Main()
         {
-            thread = true;
             eventType = ((int)Enums.Events.Home);
             _mainRepository = new MainRepository();
             _ticketRepository = new TicketRepository();
@@ -152,10 +152,14 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                thread = false;
-                this.Close();
+                eventType = ((int)Enums.Events.LoggedOut);
                 await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
-                SystemConstants.Initialize();
+                await _mainRepository.UpdateSessionInfoByUserId("",
+                SystemConstants.loggedInUserSessionId,
+                SystemConstants.loggedInUserId, false);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                Environment.MachineName, SystemConstants.loggedInUserSessionId);
+                this.Close();
                 Login login = new Login();
                 login.Show();
             }
@@ -268,8 +272,13 @@ namespace OTS.Ticketing.Win
                 dr = MessageBox.Show(LocalizationMessages.GetMessage("ExitConfirmation"), "", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
+                    eventType = ((int)Enums.Events.LoggedOut);
                     await ActivityLogUtility.ActivityLog(Enums.Activities.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
-                    await _mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUserId);
+                    await _mainRepository.UpdateSessionInfoByUserId("",
+                    SystemConstants.loggedInUserSessionId,
+                    SystemConstants.loggedInUserId, false);
+                    await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    Environment.MachineName, SystemConstants.loggedInUserSessionId);
                     Application.Exit();
                 }
             }
@@ -458,9 +467,10 @@ namespace OTS.Ticketing.Win
         }
         private void UpdateSession()
         {
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
             Task.Run(async () =>
             {
-                while (thread)
+                while (!cancellationToken.IsCancellationRequested)
                 {
                     try
                     {
@@ -472,14 +482,6 @@ namespace OTS.Ticketing.Win
                             MessageBox.Show("تم تسجيل الدخول أكثر من مرة");
                             Application.Exit();
                         }
-                        //if (SystemConstants.TechnicalSupportTask)
-                        //{
-                        //    this.Invoke((MethodInvoker)delegate
-                        //    {
-                        //        BtnScheduling.PerformClick();
-                        //        SystemConstants.TechnicalSupportTask = false;
-                        //    });
-                        //}
                     }
                     catch (Exception ex)
                     {

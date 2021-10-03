@@ -11,12 +11,12 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 {
     public static class ConnectionTools
     {
-        public static string ConnectionValue(bool init = false,string ServerIp = "")
+        public static string ConnectionValue(bool init = false, string ServerIp = "")
         {
             SqlConnectionStringBuilder str = new SqlConnectionStringBuilder
             {
-                DataSource = ServerIp==""? SystemConstants.ServerIp:ServerIp,
-                InitialCatalog = init==false? SystemConstants.Database:"master",
+                DataSource = ServerIp == "" ? SystemConstants.ServerIp : ServerIp,
+                InitialCatalog = init == false ? SystemConstants.Database : "master",
                 UserID = "sa",
                 Password = "vULiwCss0SrBrLJ"
                 //,

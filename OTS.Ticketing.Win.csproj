@@ -145,6 +145,7 @@
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
     <Compile Include="MainForms\SessionView.cs" />
+    <Compile Include="MainForms\SettingsInfo.cs" />
     <Compile Include="messages-ar.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -12,7 +12,7 @@ namespace OTS.Ticketing.Win.Users
         public long Id { get; set; }
         public string DisplayName { get; set; }
         public string UserName { get; set; }
-        public Byte[] Password { get; set; }
+        public Byte[] PasswordHash { get; set; }
         public bool State { get; set; }
         public string Ip { get; set; }
         public string Remarks { get; set; }

@@ -20,16 +20,16 @@ namespace OTS.Ticketing.Win.Users
             Byte[] passwordHash = SystemConstants.SHA512(password + salt.ToString().ToUpper());
             parameters.Add("@displayName", displayName);
             parameters.Add("@userName", userName);
-            parameters.Add("@password", passwordHash);
+            parameters.Add("@passwordHash", passwordHash);
             parameters.Add("@state", state);
             parameters.Add("@ip", ip);
             parameters.Add("@remarks", remarks);
             parameters.Add("@Salt", salt);
 
-            string command = @"INSERT INTO Users (DisplayName, UserName, Password, State, Ip, Remarks, Salt)
+            string command = @"INSERT INTO Users (DisplayName, UserName, passwordHash, State, Ip, Remarks, Salt)
                                 VALUES (@displayName,
                                         @userName,
-                                        @password,
+                                        @passwordHash,
                                         @state,
                                         @ip,
                                         @remarks,
@@ -71,7 +71,7 @@ namespace OTS.Ticketing.Win.Users
             string command = @"UPDATE Users SET 
                                 displayName = @displayName,
                                 userName = @userName,
-                                password = @PasswordHash,
+                                passwordHash = @PasswordHash,
                                 state = @state,
                                 ip = @ip,
                                 remarks = @remarks,

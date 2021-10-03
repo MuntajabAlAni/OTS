@@ -40,7 +40,7 @@ namespace OTS.Ticketing.Win.Users
                 DtgUsers.Columns["Id"].HeaderText = "ت";
                 DtgUsers.Columns["displayName"].HeaderText = "اسم الموظف";
                 DtgUsers.Columns["userName"].Visible = false;
-                DtgUsers.Columns["password"].Visible = false;
+                DtgUsers.Columns["passwordHash"].Visible = false;
                 DtgUsers.Columns["state"].Visible = false;
                 DtgUsers.Columns["ip"].Visible = false;
                 DtgUsers.Columns["remarks"].Visible = false;

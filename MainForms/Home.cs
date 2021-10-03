@@ -17,6 +17,7 @@ namespace OTS.Ticketing.Win.MainForms
     {
         readonly public MainRepository mainRepository = new MainRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public Home()
         {
@@ -82,9 +83,10 @@ namespace OTS.Ticketing.Win.MainForms
         }
         private void GetDtgUsersData()
         {
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
             Task.Run(async () =>
     {
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
             try
             {
@@ -98,8 +100,9 @@ namespace OTS.Ticketing.Win.MainForms
                 dt.Columns["EventName"].ColumnName = "اخر حركة";
                 dt.Columns["Number"].ColumnName = "الرقم";
 
-                this.Invoke((MethodInvoker)delegate
+                DtgUsers.Invoke(() =>
                 {
+
                     DtgUsers.DataSource = dt;
                     DtgUsers.Columns["isOnline"].Visible = false;
                     Image online = Properties.Resources.Wake;
@@ -130,6 +133,7 @@ namespace OTS.Ticketing.Win.MainForms
                     {
                         DtgUsers.Columns[col.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
                     }
+
                 });
                 await Task.Delay(5000);
             }

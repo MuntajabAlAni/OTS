@@ -128,7 +128,6 @@ namespace OTS.Ticketing.Win.MainForms
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "Login";
-            this.TopMost = true;
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).EndInit();
             this.ResumeLayout(false);
