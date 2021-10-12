@@ -11,58 +11,55 @@ namespace OTS.Ticketing.Win.ActivityLog
 {
     public class ActivityLogRepository
     {
-        public DataAccess dataAccess = new DataAccess();
-        public async Task<List<UserInfo>> GetAllUsers()
+        private readonly DataAccess _dataAccess;
+
+        public ActivityLogRepository()
         {
-            string query = "SELECT * FROM Users where isDeleted = 0";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
-            var list = result.ToList();
-            list.Insert(0, (new UserInfo { Id = 0, DisplayName = "" }));
-            return list;
+            _dataAccess = new DataAccess();
         }
+
         public async Task<List<ActivityInfo>> GetAllActivities()
         {
             string query = "SELECT * FROM activities";
-            var result = await dataAccess.QueryAsync<ActivityInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<ActivityInfo>(query);
             var list = result.ToList();
-            list.Insert(0, (new ActivityInfo { Id = 0, ActivityName = "" }));
+
             return list;
         }
-        public async Task<List<ActivityView>> GetActivityLog(long userId, long activityId, DateTime fromDate, DateTime toDate)
+        public async Task<List<ActivityView>> GetActivityLog(ActivityLogReportInfo logReportInfo)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@userId", userId);
-            parameters.Add("@activityId", activityId);
-            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
-            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
+            logReportInfo.FromDate.ToString("yyyy-MM-dd 00:00:00.000");
+            logReportInfo.ToDate.ToString("yyyy-MM-dd 23:59:59.000");
+
+            var parameters = new DynamicParameters(logReportInfo);
 
             string query = @"select al.id, u.displayName username, al.activityDate, a.activityName activityType, al.computerName,
                              al.details, al.affectedId 
                              from activityLog al
-                             inner join users u on u.id = al.userId
-                             inner join activities a on a.Id = al.activityType
+                             join users u on u.id = al.userId
+                             join activities a on a.Id = al.activityType
                              WHERE IIF(@userId = 0,0,u.Id) = @userId
                              AND IIF(@activityId = 0,0,a.Id) = @activityId
                              AND al.activityDate between @fromDate and @toDate";
 
-            var result = await dataAccess.QueryAsync<ActivityView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<ActivityView>(query, parameters);
 
             return result.ToList();
 
         }
-        //public async Task<ActivityView> GetActivityInfoById(long id)
-        //{
-        //    DynamicParameters parameters = new DynamicParameters();
-        //    parameters.Add("@Id", id);
+        public async Task AddActivityLog(ActivityLogInfo activityLog)
+        {
+            var parameters = new DynamicParameters(activityLog);
 
-        //    string query = @"select al.id, u.displayName username, al.activityDate, a.activityName activityType, al.computerName, al.details, al.affectedId 
-        //                     from activityLog al
-        //                     inner join users u on u.id = al.userId
-        //                     inner join activities a on a.Id = al.activityType
-        //                     WHERE al.id = @Id";
+            string command = @"INSERT INTO ActivityLog (userId, activityDate, activityType, computerName, details, affectedId)
+                                VALUES (@userId,
+                                        @date,
+                                        @type,
+                                        @computerName,
+                                        @details,
+                                        @affectedId)";
 
-        //    var result = await dataAccess.QueryAsync<ActivityView>(query, parameters);
-        //    return result.FirstOrDefault();
-        //}
+            await _dataAccess.ExecuteAsync(command, parameters);
+        }
     }
 }

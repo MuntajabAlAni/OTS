@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.Enums;
+
 
 namespace OTS.Ticketing.Win.Users
 {
@@ -76,14 +78,14 @@ namespace OTS.Ticketing.Win.Users
                 {
                     await UserRepository.AddUser(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
                         CbState.Checked, TxtIp.Text, TxtRemarks.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddUser, "إضافة مستخدم",
+                    await ActivityLogUtility.AddActivityLog(ActivityType.AddUser, "إضافة مستخدم",
                         await UserRepository.GetLastAddedUserId());
                 }
                 else
                 {
                     await UserRepository.UpdateUser(_id, TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
                         CbState.Checked, TxtIp.Text, TxtRemarks.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditUser, "تعديل مستخدم", _id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.EditUser, "تعديل مستخدم", _id);
                 }
                 this.Close();
             }

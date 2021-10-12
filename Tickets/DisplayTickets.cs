@@ -12,6 +12,7 @@ using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Users;
+using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Softwares;
 using NLog;
@@ -127,7 +128,7 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 if (DtgTickets.Rows.Count == 0) return;
-                Main.eventType = (int)Enums.Events.TicketInProgress;
+                Main.eventType = (int)EventType.TicketInProgress;
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
                 TicketsView selectedTicket = await ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
@@ -206,7 +207,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                         TicketInfo updatedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                        await ActivityLogUtility.ActivityLog(Enums.Activities.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
+                        await ActivityLogUtility.AddActivityLog(ActivityType.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
                     }
                     else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
                     {
@@ -224,7 +225,7 @@ namespace OTS.Ticketing.Win.Tickets
                         await ticketRepository.UpdateInsertTicket(ticket);
                         TicketInfo updatedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text) + 1);
-                        await ActivityLogUtility.ActivityLog(Enums.Activities.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
+                        await ActivityLogUtility.AddActivityLog(ActivityType.UpdateTicket, "الرد على بطاقة", updatedTicket.Id);
 
                     }
                     //if (CombStates.Text == "تحويل الى الدعم الفني")
@@ -232,7 +233,7 @@ namespace OTS.Ticketing.Win.Tickets
                     //    this.Close();
                     //    SystemConstants.TechnicalSupportTask = true;
                     //}
-                    Main.eventType = (int)Enums.Events.DisplayTickets;
+                    Main.eventType = (int)EventType.DisplayTickets;
                     GetDtgTicketsData();
                     RefreshAllData();
                 }

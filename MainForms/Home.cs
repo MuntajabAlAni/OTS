@@ -15,9 +15,9 @@ namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Home : Form
     {
-        readonly public MainRepository mainRepository = new MainRepository();
+        public readonly MainRepository mainRepository = new MainRepository();
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public Home()
         {
@@ -27,7 +27,7 @@ namespace OTS.Ticketing.Win.MainForms
         {
             try
             {
-                if (SystemConstants.loggedInUserId != 1 & SystemConstants.loggedInUserId != 2)
+                if (SystemConstants.loggedInUser.Id != 1 & SystemConstants.loggedInUser.Id != 2)
                 {
                     BtnOnlineState.Visible = true;
                 }
@@ -104,9 +104,10 @@ namespace OTS.Ticketing.Win.MainForms
                 {
 
                     DtgUsers.DataSource = dt;
+                    DtgUsers.Sort(DtgUsers.Columns["isOnline"], System.ComponentModel.ListSortDirection.Descending);
                     DtgUsers.Columns["isOnline"].Visible = false;
-                    Image online = Properties.Resources.Wake;
-                    Image offline = Properties.Resources.Sleep;
+                    Image online = Properties.Resources.GreenCircle;
+                    Image offline = Properties.Resources.RedCircle;
 
                     if (DtgUsers.Columns.Contains("الحالة") == false)
                     {
@@ -133,7 +134,6 @@ namespace OTS.Ticketing.Win.MainForms
                     {
                         DtgUsers.Columns[col.Index].SortMode = DataGridViewColumnSortMode.NotSortable;
                     }
-
                 });
                 await Task.Delay(5000);
             }

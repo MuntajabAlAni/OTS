@@ -44,14 +44,14 @@ namespace OTS.Ticketing.Win.Tickets
                 DtpToDate.Value = DateTime.Today;
                 FillUsersComboBox();
                 FillCompaniesComboBox(SystemConstants.loggedInUserId);
-                if (SystemConstants.loggedInUserId == 1)
-                {
-                    BtnEdit.Visible = true;
-                    BtnExcel.Visible = true;
-                    CombUser.Visible = true;
-                    LblUser.Visible = true;
-                    return;
-                }
+                //if (SystemConstants.loggedInUserId == 1)
+                //{
+                BtnEdit.Visible = true;
+                BtnExcel.Visible = true;
+                CombUser.Visible = true;
+                LblUser.Visible = true;
+                //    return;
+                //}
                 var result = await _companyRepository.GetCompanyByName(_companyName);
                 CompanyView company = result.FirstOrDefault();
                 CombCompanies.SelectedValue = company.Id;

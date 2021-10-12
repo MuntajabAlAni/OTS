@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.PhoneNumbers
@@ -82,7 +83,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     await phoneNumberRepository.AddPhoneNumber(TxtPhoneNumber.Text,
                         TxtCustomerName.Text,
                         Convert.ToInt64(CombCompanies.SelectedValue));
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddPhoneNumber, "إضافة رقم هاتف",
+                    await ActivityLogUtility.AddActivityLog(ActivityType.AddPhoneNumber, "إضافة رقم هاتف",
                         await phoneNumberRepository.GetLastAddedPhoneNumberId());
                 }
                 else
@@ -91,7 +92,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                         TxtPhoneNumber.Text,
                         TxtCustomerName.Text,
                         Convert.ToInt64(CombCompanies.SelectedValue));
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditPhoneNumber, "تعديل رقم هاتف", _id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.EditPhoneNumber, "تعديل رقم هاتف", _id);
 
                 }
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Softwares
@@ -51,13 +52,13 @@ namespace OTS.Ticketing.Win.Softwares
                 if (_id == 0)
                 {
                     await softwareRepository.AddSoftware(TxtName.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddSoftware, "إضافة برنامج",
+                    await ActivityLogUtility.AddActivityLog(ActivityType.AddSoftware, "إضافة برنامج",
                         await softwareRepository.GetLastAddedSoftwareId());
                 }
                 else
                 {
                     await softwareRepository.UpdateSoftware(_id, TxtName.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditSoftware, "تعديل برنامج", _id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.EditSoftware, "تعديل برنامج", _id);
                 }
                 SoftwareInfo softwareInfo = await softwareRepository.GetSoftwareByName(TxtName.Text);
                 SystemConstants.SelectedSoftware = softwareInfo.Id;

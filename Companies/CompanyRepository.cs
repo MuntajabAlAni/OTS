@@ -57,7 +57,7 @@ namespace OTS.Ticketing.Win.Companies
             var list = result.ToList();
             list.Insert(0, (new BranchInfo { Id = 0, Name = "" }));
             return list;
-        }
+        } // تم
         public async Task<long> GetLastCompanyId()
         {
             string query = "SELECT TOP 1 Id FROM Companies Order by Id DESC";

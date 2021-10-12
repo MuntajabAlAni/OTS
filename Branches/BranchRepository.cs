@@ -11,16 +11,13 @@ namespace OTS.Ticketing.Win.Branches
 {
     public class BranchRepository
     {
-        public DataAccess dataAccess = new DataAccess();
+        public DataAccess _dataAccess = new DataAccess();
 
-        public async Task<int> AddBranch(string name)
+        public async Task<long> AddBranch(BranchInfo branch)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@name", name);
-
+            var parameters = new DynamicParameters(branch);
             string command = "INSERT INTO Branches (Name) VALUES (@name)";
-
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
         public async Task<BranchInfo> GetBranchById(long id)
         {
@@ -29,29 +26,17 @@ namespace OTS.Ticketing.Win.Branches
 
             string query = "SELECT * FROM Branches WHERE Id = @Id";
 
-            var result = await dataAccess.QueryAsync<BranchInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<BranchInfo>(query, parameters);
             return result.FirstOrDefault();
 
         }
-        public async Task<long> GetLastAddedBranchId()
+        public async Task UpdateBranch(BranchInfo branch)
         {
-            string query = "SELECT TOP 1 id FROM Branches Order by id DESC";
-
-            var result = await dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
-            BranchInfo branchInfo = result.FirstOrDefault();
-            return branchInfo.Id;
-
-        }
-        public async Task<int> UpdateBranch(long id, string name)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            parameters.Add("@name", name);
+            var parameters = new DynamicParameters(branch);
             string command = @"UPDATE Branches SET 
                                 Name = @name
                                WHERE Id = @id";
-
-            return await dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

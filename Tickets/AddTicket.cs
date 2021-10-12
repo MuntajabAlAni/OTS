@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.Utils;
 
 namespace OTS.Ticketing.Win.Tickets
@@ -194,7 +195,7 @@ namespace OTS.Ticketing.Win.Tickets
                     TicketInfo addedTicket = await ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
                         Convert.ToInt32(LblRevision.Text));
                     
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddTicket, "إضافة بطاقة", addedTicket.Id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.AddTicket, "إضافة بطاقة", addedTicket.Id);
                     this.Close();
                 }
 

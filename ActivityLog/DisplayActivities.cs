@@ -56,7 +56,11 @@ namespace OTS.Ticketing.Win.ActivityLog
             {
                 CombActivities.DisplayMember = "activityName";
                 CombActivities.ValueMember = "Id";
-                CombActivities.DataSource = await _activityLogRepository.GetAllActivities();
+
+                var activities = await _activityLogRepository.GetAllActivities();
+                activities.Insert(0, (new ActivityInfo { Id = 0, ActivityName = "" }));
+
+                CombActivities.DataSource = activities;
                 CombActivities.SelectedValue = 0;
             }
             catch (Exception ex)
@@ -82,10 +86,9 @@ namespace OTS.Ticketing.Win.ActivityLog
 
         private async void GetActivityLog()
         {
-            DtgActivityLog.DataSource = await _activityLogRepository.GetActivityLog(Convert.ToInt64(CombUser.SelectedValue),
-                Convert.ToInt64(CombActivities.SelectedValue),
-                DtpFromDate.Value,
-                DtpToDate.Value);
+            ActivityLogReportInfo logReportInfo = GetFormData();
+
+            DtgActivityLog.DataSource = await _activityLogRepository.GetActivityLog(logReportInfo);
 
             DtgActivityLog.Columns["Id"].Visible = false;
             DtgActivityLog.Columns["UserName"].HeaderText = "اسم المستخدم";
@@ -94,6 +97,17 @@ namespace OTS.Ticketing.Win.ActivityLog
             DtgActivityLog.Columns["computerName"].HeaderText = "اسم الحاسوب";
             DtgActivityLog.Columns["details"].HeaderText = "التفاصيل";
             DtgActivityLog.Columns["affectedId"].Visible = false;
+        }
+
+        private ActivityLogReportInfo GetFormData()
+        {
+            return new ActivityLogReportInfo()
+            {
+                UserId = Convert.ToInt64(CombUser.SelectedValue),
+                ActivityId = Convert.ToInt64(CombActivities.SelectedValue),
+                FromDate = DtpFromDate.Value,
+                ToDate = DtpToDate.Value
+            };
         }
 
         private void DtgActivityLog_DoubleClick(object sender, EventArgs e)

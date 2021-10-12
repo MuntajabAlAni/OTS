@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Companies
@@ -116,7 +117,7 @@ namespace OTS.Ticketing.Win.Companies
                         TxtAddress.Text,
                         Convert.ToInt64(CombBranches.SelectedValue),
                         TxtRemarks.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddCompany, "إضافة شركة", await companyRepository.GetLastCompanyId());
+                    await ActivityLogUtility.AddActivityLog(ActivityType.AddCompany, "إضافة شركة", await companyRepository.GetLastCompanyId());
                 }
                 else
                 {
@@ -125,7 +126,7 @@ namespace OTS.Ticketing.Win.Companies
                         Convert.ToInt64(CombBranches.SelectedValue),
                         TxtRemarks.Text,
                         _id);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditCompany, "تعديل شركة", _id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.EditCompany, "تعديل شركة", _id);
 
                 }
                 List<CompanyView> companies = await companyRepository.GetCompanyByName(TxtName.Text);

@@ -13,6 +13,7 @@ using OTS.Ticketing.Win.DatabaseConnection;
 using NLog;
 using OTS.Ticketing.Win.Users;
 using System.Globalization;
+using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.Utils;
 using System.Resources;
 using System.Reflection;
@@ -66,7 +67,8 @@ namespace OTS.Ticketing.Win.MainForms
                         MessageBox.Show("يرجى إدخال الرقم المخصص");
                         return;
                     }
-                    if (Convert.ToInt32(TxtNumber.Text) < 112 | Convert.ToInt32(TxtNumber.Text) > 117)
+                    if ((Convert.ToInt32(TxtNumber.Text) < 100 & Convert.ToInt32(TxtNumber.Text) > 122)
+                        | (Convert.ToInt32(TxtNumber.Text) < 3600 & Convert.ToInt32(TxtNumber.Text) > 3622))
                     {
                         TxtNumber.Text = "";
                         MessageBox.Show("! `يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
@@ -77,7 +79,7 @@ namespace OTS.Ticketing.Win.MainForms
                 SystemConstants.loggedInUserId = result.Id;
                 SystemConstants.loggedInUserSessionId = Guid.NewGuid();
 
-                await ActivityLogUtility.ActivityLog(Enums.Activities.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
+                await ActivityLogUtility.ActivityLog(ActivityType.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
                 await mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
                     SystemConstants.loggedInUserSessionId,
                     SystemConstants.loggedInUserId, true);

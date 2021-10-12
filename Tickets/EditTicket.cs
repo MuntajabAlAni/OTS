@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Tickets
@@ -192,7 +193,7 @@ namespace OTS.Ticketing.Win.Tickets
                Convert.ToInt64(CombUsers.SelectedValue));
                     TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditTicket, "تعديل بطاقة", updatedTicket.Id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.EditTicket, "تعديل بطاقة", updatedTicket.Id);
                     this.Close();
                 }
             }

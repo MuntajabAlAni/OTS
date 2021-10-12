@@ -29,7 +29,7 @@ namespace OTS.Ticketing.Win.Scheduling
 
             var result = await dataAccess.QueryAsync<dynamic>(query, parameters);
             return result;
-        }
+        }     // DONE
         public async Task<List<TaskView>> GetDayTasksByEmployeeNameAndDate(string employeeName, string date)
         {
             DynamicParameters parameters = new DynamicParameters();
@@ -44,7 +44,7 @@ namespace OTS.Ticketing.Win.Scheduling
 
             var result = await dataAccess.QueryAsync<TaskView>(query, parameters);
             return result.ToList();
-        }
+        }     // DONE
         public async Task<TaskInfo> GetTaskById(long id)
         {
             var parameters = new DynamicParameters();
@@ -54,7 +54,7 @@ namespace OTS.Ticketing.Win.Scheduling
 
             var result = await dataAccess.QueryAsync<TaskInfo>(query, parameters);
             return result.FirstOrDefault();
-        }
+        }         // DONE
         public async Task<List<CompanyInfo>> GetAllCompanies()
         {
             string query = "SELECT * FROM Companies WHERE isDeleted = 0";
@@ -62,7 +62,7 @@ namespace OTS.Ticketing.Win.Scheduling
             var list = result.ToList();
             list.Insert(0, (new CompanyInfo { Id = 0, Name = "يرجى إختيار شركة" }));
             return list;
-        }
+        }       // DONE
         public async Task<List<EmployeeInfo>> GetAllEmployees(bool onlyStateOn)
         {
             var parameters = new DynamicParameters();
@@ -72,7 +72,7 @@ namespace OTS.Ticketing.Win.Scheduling
             var list = result.ToList();
             list.Insert(0, (new EmployeeInfo { Id = 0, EmployeeName = "يرجى إختيار موظف" }));
             return list;
-        }
+        }   // DONE
         public async Task<long> GetEmployeeIdByName(string name)
         {
             var parameters = new DynamicParameters();
@@ -94,7 +94,7 @@ namespace OTS.Ticketing.Win.Scheduling
                                 (@EmployeeId, @CompanyId, @TaskDate, @TaskStart, @TaskEnd, @TaskState, @TaskDetails)";
 
             return await dataAccess.ExecuteAsync(command, parameters);
-        }
+        }         // DONE
         public async Task<int> UpdateTask(TaskInfo taskInfo)
         {
             var parameters = new DynamicParameters(taskInfo);
@@ -110,7 +110,7 @@ namespace OTS.Ticketing.Win.Scheduling
                                WHERE id = @id";
 
             return await dataAccess.ExecuteAsync(command, parameters);
-        }
+        }         // DONE
         public async Task<EmployeeInfo> GetEmployeeById(long id)
         {
             var parameters = new DynamicParameters();
@@ -120,7 +120,7 @@ namespace OTS.Ticketing.Win.Scheduling
 
             var result = await dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             return result.FirstOrDefault();
-        }
+        }       // DONE
         public async Task<int> UpdateEmployee(EmployeeInfo employeeInfo)
         {
             var parameters = new DynamicParameters(employeeInfo);
@@ -132,7 +132,7 @@ namespace OTS.Ticketing.Win.Scheduling
                                WHERE id = @id";
 
             return await dataAccess.ExecuteAsync(command, parameters);
-        }
+        }       // DONE
         public async Task<int> AddEmployee(EmployeeInfo employeeInfo)
         {
             var parameters = new DynamicParameters(employeeInfo);
@@ -143,6 +143,6 @@ namespace OTS.Ticketing.Win.Scheduling
                                 (@EmployeeName, @Remarks, @State)";
 
             return await dataAccess.ExecuteAsync(command, parameters);
-        }
+        }       // DONE
     }
 }

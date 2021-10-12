@@ -108,6 +108,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActivityLog\ActivityInfo.cs" />
+    <Compile Include="ActivityLog\ActivityLogInfo.cs" />
+    <Compile Include="ActivityLog\ActivityLogReportInfo.cs" />
     <Compile Include="ActivityLog\ActivityLogRepository.cs" />
     <Compile Include="ActivityLog\ActivityView.cs" />
     <Compile Include="ActivityLog\DisplayActivities.cs">
@@ -144,6 +146,8 @@
     <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Enums\ActivityType.cs" />
+    <Compile Include="Enums\EventType.cs" />
     <Compile Include="MainForms\SessionView.cs" />
     <Compile Include="MainForms\SettingsInfo.cs" />
     <Compile Include="messages-ar.Designer.cs">
@@ -306,9 +310,6 @@
       <DependentUpon>DisplayTickets.cs</DependentUpon>
     </Compile>
     <Compile Include="Tickets\TicketRepository.cs" />
-    <Compile Include="Utils\ActivityInfo.cs" />
-    <Compile Include="Utils\ActivityLogUtility.cs" />
-    <Compile Include="Utils\Enums.cs" />
     <Compile Include="Utils\ExcelUtility.cs" />
     <Compile Include="Utils\LocalizationMessages.cs" />
     <EmbeddedResource Include="ActivityLog\DisplayActivities.resx">
@@ -316,6 +317,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Branches\AddBranch.resx">
       <DependentUpon>AddBranch.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Companies\AddCompany.resx">
       <DependentUpon>AddCompany.cs</DependentUpon>
@@ -361,6 +363,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Scheduling\AddEmployee.resx">
       <DependentUpon>AddEmployee.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Scheduling\AddTask.resx">
       <DependentUpon>AddTask.cs</DependentUpon>
@@ -406,6 +409,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneNumbers\AddPhoneNumber.resx">
       <DependentUpon>AddPhoneNumber.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneNumbers\DisplayPhoneNumbers.resx">
       <DependentUpon>DisplayPhoneNumbers.cs</DependentUpon>
@@ -450,6 +454,8 @@
   <ItemGroup>
     <None Include="bin\Debug\Wake.png" />
     <None Include="bin\Debug\Sleep.png" />
+    <None Include="bin\Debug\GreenCircle.png" />
+    <None Include="bin\Debug\RedCircle.png" />
     <Content Include="OTS_Ticketing_Software_ICON.ico" />
   </ItemGroup>
   <ItemGroup />

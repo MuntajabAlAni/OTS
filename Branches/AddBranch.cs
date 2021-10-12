@@ -8,19 +8,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.ActivityLog;
 
 namespace OTS.Ticketing.Win.Branches
 {
     public partial class AddBranch : Form
     {
-        readonly BranchRepository branchRepository = new BranchRepository();
+        private readonly BranchRepository branchRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private BranchInfo _branchInfo;
 
         private readonly long _id;
 
         public AddBranch(long id)
         {
+            branchRepository = new BranchRepository();
+            _activityLogRepository = new ActivityLogRepository();
             _id = id;
             InitializeComponent();
         }
@@ -31,8 +37,8 @@ namespace OTS.Ticketing.Win.Branches
             {
                 if (_id != 0)
                 {
-                    BranchInfo branchInfo = await branchRepository.GetBranchById(_id);
-                    TxtName.Text = branchInfo.Name;
+                    _branchInfo = await branchRepository.GetBranchById(_id);
+                    TxtName.Text = _branchInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -50,18 +56,23 @@ namespace OTS.Ticketing.Win.Branches
             {
                 if (TxtName.Text == "")
                 {
-                    MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح",
+                        "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (_id == 0)
                 {
-                    await branchRepository.AddBranch(TxtName.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddBranch, "إضافة فرع", await branchRepository.GetLastAddedBranchId());
+
+                    BranchInfo branchInfo = GetFormData();
+                    long addedId = await branchRepository.AddBranch(branchInfo);
+                    await _activityLogRepository.AddActivityLog(
+                        new ActivityLogInfo(ActivityType.AddBranch, addedId, "إضافة فرع"));
                 }
                 else
                 {
-                    await branchRepository.UpdateBranch(_id, TxtName.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditBranch, "تعديل فرع", _id);
+                    await branchRepository.UpdateBranch(_branchInfo);
+                    await _activityLogRepository.AddActivityLog(
+                        new ActivityLogInfo(ActivityType.EditBranch, _id, "تعديل فرع"));
                 }
                 this.Close();
             }
@@ -71,6 +82,14 @@ namespace OTS.Ticketing.Win.Branches
                 Logger.Error(ex);
             }
 
+        }
+
+        private BranchInfo GetFormData()
+        {
+            return new BranchInfo
+            {
+                Name = TxtName.Text
+            };
         }
 
         private void BtnExit_Click(object sender, EventArgs e)

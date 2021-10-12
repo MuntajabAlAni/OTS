@@ -15,6 +15,5 @@ namespace OTS.Ticketing.Win.Companies
         public string BranchName { get; set; }
         public bool IsDeleted { get; set; }
 
-
     }
 }

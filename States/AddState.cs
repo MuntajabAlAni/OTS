@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using OTS.Ticketing.Win.Enums;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -35,13 +36,13 @@ namespace OTS.Ticketing.Win.States
                 if (_id == 0)
                 {
                     await stateRepository.AddState(TxtName.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.AddState, "إضافة حالة",
+                    await ActivityLogUtility.AddActivityLog(ActivityType.AddState, "إضافة حالة",
                         await stateRepository.GetLastAddedStateId());
                 }
                 else
                 {
                     await stateRepository.UpdateState(_id, TxtName.Text);
-                    await ActivityLogUtility.ActivityLog(Enums.Activities.EditState, "تعديل حالة", _id);
+                    await ActivityLogUtility.AddActivityLog(ActivityType.EditState, "تعديل حالة", _id);
                 }
                 this.Close();
             }

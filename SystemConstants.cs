@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OTS.Ticketing.Win.Users;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,7 +14,7 @@ namespace OTS.Ticketing.Win
 {
     public class SystemConstants
     {
-        public static long loggedInUserId = 0;
+        public static UserInfo loggedInUser = null;
         public static Guid loggedInUserSessionId = Guid.Empty;
         public static long SelectedPhoneNumberId = 0;
         public static long SelectedCompanyId = 0;
@@ -47,7 +48,7 @@ namespace OTS.Ticketing.Win
 
         public static void Initialize()
         {
-            loggedInUserId = 0;
+            loggedInUser = null;
             SelectedPhoneNumberId = 0;
             SelectedCompanyId = 0;
             SelectedSoftware = 0;
