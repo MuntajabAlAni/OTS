@@ -18,7 +18,7 @@ namespace OTS.Ticketing.Win.ActivityLog
         public long Id { get; set; }
         public long UserId { get; set; }
         public DateTime ActivityDate { get; set; }
-        public int ActivityType { get; set; }
+        public long ActivityType { get; set; }
         public string ComputerName { get; set; }
         public string Details { get; set; }
         public long AffectedId { get; set; }

@@ -26,10 +26,11 @@ namespace OTS.Ticketing.Win
         private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public static int eventType;
-        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource _cancellationTokenSource;
         public Main()
         {
             eventType = ((int)EventType.Home);
+            _cancellationTokenSource = new CancellationTokenSource();
             _mainRepository = new MainRepository();
             _ticketRepository = new TicketRepository();
             _activityLogRepository = new ActivityLogRepository();
@@ -467,7 +468,7 @@ namespace OTS.Ticketing.Win
         }
         private void UpdateSession()
         {
-            CancellationToken cancellationToken = cancellationTokenSource.Token;
+            CancellationToken cancellationToken = _cancellationTokenSource.Token;
             Task.Run(async () =>
             {
                 while (!cancellationToken.IsCancellationRequested)

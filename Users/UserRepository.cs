@@ -15,7 +15,7 @@ namespace OTS.Ticketing.Win.Users
         {
 
             user.Salt = Guid.NewGuid();
-            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
+            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
             var parameters = new DynamicParameters(user);
 
             string command = @"INSERT INTO Users (DisplayName, UserName, passwordHash, State, Ip, Remarks, Salt)
@@ -47,7 +47,7 @@ namespace OTS.Ticketing.Win.Users
         public async Task<int> UpdateUser(UserInfo user)
         {
             user.Salt = Guid.NewGuid();
-            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
+            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
             var parameters = new DynamicParameters(user);
 
             string command = @"UPDATE Users SET 
