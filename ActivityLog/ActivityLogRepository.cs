@@ -1,7 +1,10 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.DatabaseConnection;
+using OTS.Ticketing.Win.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace OTS.Ticketing.Win.ActivityLog
@@ -52,7 +55,7 @@ namespace OTS.Ticketing.Win.ActivityLog
                                                         details, affectedId)
                                 VALUES (@userId,
                                         GETDATE(),
-                                        @activityType,
+                                        @type,
                                         @computerName,
                                         @details,
                                         @affectedId)";

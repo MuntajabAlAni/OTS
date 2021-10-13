@@ -1,5 +1,9 @@
 ﻿using OTS.Ticketing.Win.Enums;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OTS.Ticketing.Win.ActivityLog
 {
@@ -18,7 +22,7 @@ namespace OTS.Ticketing.Win.ActivityLog
         public long Id { get; set; }
         public long UserId { get; set; }
         public DateTime ActivityDate { get; set; }
-        public long ActivityType { get; set; }
+        public int ActivityType { get; set; }
         public string ComputerName { get; set; }
         public string Details { get; set; }
         public long AffectedId { get; set; }

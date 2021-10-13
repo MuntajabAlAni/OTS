@@ -1,25 +1,35 @@
-﻿using NLog;
-using OTS.Ticketing.Win.ActivityLog;
-using OTS.Ticketing.Win.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Threading;
 using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.States;
+using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Users;
-using System;
-using System.Windows.Forms;
+using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.PhoneNumbers;
+using OTS.Ticketing.Win.Softwares;
+using NLog;
+using OTS.Ticketing.Win.Utils;
+using OTS.Ticketing.Win.ActivityLog;
 
 namespace OTS.Ticketing.Win.Tickets
 {
     public partial class DisplayTickets : Form
     {
         readonly TicketRepository _ticketRepository;
-        readonly MainRepository _mainRepository;
         readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public DisplayTickets()
         {
             _ticketRepository = new TicketRepository();
-            _mainRepository = new MainRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             CombStates.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -122,9 +132,7 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 if (DtgTickets.Rows.Count == 0) return;
-
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.TicketInProgress));
-
+                Main.eventType = (int)EventType.TicketInProgress;
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
                 TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
@@ -203,7 +211,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                         TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.UpdateTicket,
+                        await _activityLogRepository.AddActivityLog( new ActivityLogInfo( ActivityType.UpdateTicket,
                              updatedTicket.Id, "الرد على بطاقة"));
                     }
                     else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
@@ -222,8 +230,8 @@ namespace OTS.Ticketing.Win.Tickets
                         await _ticketRepository.UpdateInsertTicket(ticket);
                         TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text) + 1);
-                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.UpdateTicket,
-                             updatedTicket.Id, "الرد على بطاقة"));
+                        await _activityLogRepository.AddActivityLog( new ActivityLogInfo( ActivityType.UpdateTicket,
+                             updatedTicket.Id,  "الرد على بطاقة"));
 
                     }
                     //if (CombStates.Text == "تحويل الى الدعم الفني")
@@ -231,7 +239,7 @@ namespace OTS.Ticketing.Win.Tickets
                     //    this.Close();
                     //    SystemConstants.TechnicalSupportTask = true;
                     //}
-                    await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayTickets));
+                    Main.eventType = (int)EventType.DisplayTickets;
                     GetDtgTicketsData();
                     RefreshAllData();
                 }

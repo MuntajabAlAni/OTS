@@ -1,12 +1,23 @@
-﻿using NLog;
-using OTS.Ticketing.Win.ActivityLog;
-using OTS.Ticketing.Win.DatabaseConnection;
-using OTS.Ticketing.Win.Enums;
-using OTS.Ticketing.Win.Users;
-using System;
-using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using System.IO;
+using OTS.Ticketing.Win.DatabaseConnection;
+using NLog;
+using OTS.Ticketing.Win.Users;
+using System.Globalization;
+using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.Utils;
+using System.Resources;
+using System.Reflection;
+using OTS.Ticketing.Win.ActivityLog;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -77,16 +88,9 @@ namespace OTS.Ticketing.Win.MainForms
                 await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignIn,
                     SystemConstants.loggedInUser.Id, "تسجيل دخول مستخدم"));
 
-                SessionInfo session = new SessionInfo
-                {
-                    IsOnline = true,
-                    Number = TxtNumber.Text,
-                    SessionId = SystemConstants.loggedInUserSessionId,
-                    UserId = SystemConstants.loggedInUser.Id
-                };
-
-                await _mainRepository.InitializeUserSession(session);
-
+                await _mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
+                    SystemConstants.loggedInUserSessionId,
+                    SystemConstants.loggedInUser.Id, true);
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();

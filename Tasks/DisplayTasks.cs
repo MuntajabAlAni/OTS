@@ -1,18 +1,26 @@
-﻿using System;
+﻿using OTS.Ticketing.Win.Employees;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Scheduling
+namespace OTS.Ticketing.Win.Tasks
 {
-    public partial class Schedule : Form
+    public partial class DisplayTasks : Form
     {
-        private readonly ScheduleRepository _scheduleRepository;
+        private readonly TaskRepository _taskRepository;
+        private readonly EmployeeRepository _employeeRepository;
         private DateTime _selectedDate;
-        public Schedule()
+        public DisplayTasks()
         {
-            _scheduleRepository = new ScheduleRepository();
+            _taskRepository = new TaskRepository();
+            _employeeRepository = new EmployeeRepository();
             _selectedDate = DateTime.Now;
             InitializeComponent();
             PnlLoad.Dock = DockStyle.Fill;
@@ -29,7 +37,7 @@ namespace OTS.Ticketing.Win.Scheduling
         private async void GetDtgScheduleData()
         {
             PnlLoad.Visible = true;
-            DtgSchedule.DataSource = SystemConstants.ToDataTable(await _scheduleRepository.GetEmployeesTasks(_selectedDate, 8));
+            DtgSchedule.DataSource = SystemConstants.ToDataTable(await _taskRepository.GetEmployeesTasks(_selectedDate, 8));
             if (DtgSchedule.DataSource is null)
             {
                 MessageBox.Show("!! لا يوجد موظفين .. او كلهم معطلين");
@@ -77,7 +85,7 @@ namespace OTS.Ticketing.Win.Scheduling
             LblEmployeeName.Text = employeeName;
 
 
-            DtgTasks.DataSource = await _scheduleRepository.
+            DtgTasks.DataSource = await _taskRepository.
                 GetDayTasksByEmployeeNameAndDate(employeeName, selectedDate.ToString("yyyy-MM-dd"));
             DtgTasks.Columns["Id"].Visible = false;
             DtgTasks.Columns["CompanyName"].HeaderText = "اسم الشركة";
@@ -116,7 +124,7 @@ namespace OTS.Ticketing.Win.Scheduling
             if (DateTime.TryParse(Regex.Replace(DtgSchedule.Columns[col].HeaderText, "[^0-9-]", ""), out DateTime selectedDate))
             {
                 string employeeName = DtgSchedule.Rows[row].Cells["EmployeeName"].Value.ToString();
-                long employeeId = await _scheduleRepository.GetEmployeeIdByName(employeeName);
+                long employeeId = await _employeeRepository.GetEmployeeIdByName(employeeName);
                 var addTask = new AddTask(0, selectedDate, employeeId);
                 addTask.ShowDialog();
                 if (addTask.DialogResult == DialogResult.Yes)
@@ -137,7 +145,7 @@ namespace OTS.Ticketing.Win.Scheduling
                 string employeeName = DtgSchedule.Rows[row].Cells["EmployeeName"].Value.ToString();
                 if (DtgTasks.SelectedRows.Count < 1) return;
                 long selectedTaskId = Convert.ToInt64(DtgTasks.SelectedRows[0].Cells["Id"].Value);
-                long employeeId = await _scheduleRepository.GetEmployeeIdByName(employeeName);
+                long employeeId = await _employeeRepository.GetEmployeeIdByName(employeeName);
                 var addTask = new AddTask(selectedTaskId, selectedDate, employeeId);
                 addTask.ShowDialog();
                 if (addTask.DialogResult == DialogResult.Yes)
@@ -152,9 +160,9 @@ namespace OTS.Ticketing.Win.Scheduling
         {
             if (DtgTasks.SelectedRows.Count < 1) return;
             long selectedTaskId = Convert.ToInt64(DtgTasks.SelectedRows[0].Cells["Id"].Value);
-            var selectedTask = await _scheduleRepository.GetTaskById(selectedTaskId);
+            var selectedTask = await _taskRepository.GetTaskById(selectedTaskId);
             selectedTask.TaskState = !selectedTask.TaskState;
-            await _scheduleRepository.UpdateTask(selectedTask);
+            await _taskRepository.UpdateTask(selectedTask);
             GetDtgTasksData();
         }
 

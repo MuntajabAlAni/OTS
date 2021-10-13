@@ -1,8 +1,12 @@
 ﻿using Dapper;
+using OTS.Ticketing.Win.Branches;
 using OTS.Ticketing.Win.DatabaseConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Companies
 {
@@ -58,6 +62,5 @@ namespace OTS.Ticketing.Win.Companies
             var result = await _dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             return result.ToList();
         }
-
     }
 }

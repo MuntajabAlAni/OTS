@@ -1,12 +1,16 @@
-﻿using NLog;
-using OTS.Ticketing.Win.Tickets;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Threading;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+using NLog;
+using System.IO;
+using OTS.Ticketing.Win.Users;
+using OTS.Ticketing.Win.Tickets;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -156,25 +160,13 @@ namespace OTS.Ticketing.Win.MainForms
 
             if (BtnOnlineState.Text == "مشغول")
             {
-                SessionInfo session = new SessionInfo
-                {
-                    IsOnline = false,
-                    UserId = SystemConstants.loggedInUser.Id
-                };
-
-                await _mainRepository.UpdateIsOnlineByUserId(session);
+                await _mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUser.Id);
                 BtnOnlineState.Text = "متفرغ";
                 BtnOnlineState.BackColor = Color.Crimson;
             }
             else if (BtnOnlineState.Text == "متفرغ")
             {
-                SessionInfo session = new SessionInfo
-                {
-                    IsOnline = true,
-                    UserId = SystemConstants.loggedInUser.Id
-                };
-
-                await _mainRepository.UpdateIsOnlineByUserId(session);
+                await _mainRepository.UpdateIsOnlineByUserId(true, SystemConstants.loggedInUser.Id);
                 BtnOnlineState.Text = "مشغول";
                 BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
             }

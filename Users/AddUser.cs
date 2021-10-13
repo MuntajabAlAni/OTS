@@ -1,8 +1,16 @@
 ﻿using NLog;
-using OTS.Ticketing.Win.ActivityLog;
-using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.Utils;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.ActivityLog;
 
 namespace OTS.Ticketing.Win.Users
 {
@@ -103,7 +111,7 @@ namespace OTS.Ticketing.Win.Users
                 Id = _id,
                 DisplayName = TxtDisplayName.Text,
                 UserName = TxtUserName.Text,
-                PasswordHash = TxtPassword.Text,
+                Password = TxtPassword.Text,
                 State = CbState.Checked,
                 Ip = TxtIp.Text,
                 Remarks = TxtRemarks.Text

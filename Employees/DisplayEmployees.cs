@@ -1,17 +1,25 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Employees;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Scheduling
+namespace OTS.Ticketing.Win.Tasks
 {
     public partial class DisplayEmployees : Form
     {
-        readonly ScheduleRepository _scheduleRepository;
+        readonly EmployeeRepository _employeeRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public DisplayEmployees()
         {
-            _scheduleRepository = new ScheduleRepository();
+            _employeeRepository = new EmployeeRepository();
             InitializeComponent();
         }
 
@@ -32,7 +40,7 @@ namespace OTS.Ticketing.Win.Scheduling
         {
             try
             {
-                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _scheduleRepository.GetAllEmployees(false));
+                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _employeeRepository.GetAllEmployees(false));
                 DtgEmployees.Columns["State"].HeaderText = "الحالة";
                 DtgEmployees.Columns["employeeName"].HeaderText = "اسم الموظف";
                 DtgEmployees.Columns["Remarks"].Visible = false;

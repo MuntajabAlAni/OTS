@@ -1,9 +1,17 @@
 ﻿using NLog;
-using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Companies;
-using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.Utils;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.ActivityLog;
 
 namespace OTS.Ticketing.Win.Tickets
 {
@@ -188,7 +196,7 @@ namespace OTS.Ticketing.Win.Tickets
                Convert.ToInt64(CombUsers.SelectedValue));
                     TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditTicket,
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo( ActivityType.EditTicket,
                          updatedTicket.Id, "تعديل بطاقة"));
                     //todo: update model !! activityLog Affected ID
                     this.Close();

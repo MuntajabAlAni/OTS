@@ -3,7 +3,9 @@ using OTS.Ticketing.Win.DatabaseConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Users
 {
@@ -15,7 +17,7 @@ namespace OTS.Ticketing.Win.Users
         {
 
             user.Salt = Guid.NewGuid();
-            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
+            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
             var parameters = new DynamicParameters(user);
 
             string command = @"INSERT INTO Users (DisplayName, UserName, passwordHash, State, Ip, Remarks, Salt)
@@ -47,7 +49,7 @@ namespace OTS.Ticketing.Win.Users
         public async Task<int> UpdateUser(UserInfo user)
         {
             user.Salt = Guid.NewGuid();
-            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
+            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
             var parameters = new DynamicParameters(user);
 
             string command = @"UPDATE Users SET 

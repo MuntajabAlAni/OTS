@@ -1,5 +1,5 @@
 ﻿
-namespace OTS.Ticketing.Win.Scheduling
+namespace OTS.Ticketing.Win.Tasks
 {
     partial class DisplayEmployees
     {

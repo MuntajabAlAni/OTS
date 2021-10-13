@@ -1,22 +1,34 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Companies;
+using OTS.Ticketing.Win.Employees;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Scheduling
+namespace OTS.Ticketing.Win.Tasks
 {
     public partial class AddTask : Form
     {
         private readonly long _employeeId;
         private readonly long _id;
-        private readonly ScheduleRepository _scheduleRepository;
+        private readonly TaskRepository _taskRepository;
+        private readonly EmployeeRepository _employeeRepository;
+        private readonly CompanyRepository _companyRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AddTask(long id, DateTime selectedDate, long employeeId)
         {
             _employeeId = employeeId;
             _id = id;
-            _scheduleRepository = new ScheduleRepository();
+            _taskRepository = new TaskRepository();
+            _employeeRepository = new EmployeeRepository();
+            _companyRepository = new CompanyRepository();
             InitializeComponent();
             DtpDate.Value = selectedDate;
         }
@@ -27,7 +39,7 @@ namespace OTS.Ticketing.Win.Scheduling
             FillEmployeesComboBox();
             if (_id != 0)
             {
-                var task = await _scheduleRepository.GetTaskById(_id);
+                var task = await _taskRepository.GetTaskById(_id);
                 if (!(task is null))
                 {
                     CombCompanies.SelectedValue = task.CompanyId;
@@ -46,7 +58,7 @@ namespace OTS.Ticketing.Win.Scheduling
             {
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.DataSource = await _scheduleRepository.GetAllCompanies();
+                CombCompanies.DataSource = await _companyRepository.GetAllCompanies();
             }
             catch (Exception ex)
             {
@@ -60,7 +72,7 @@ namespace OTS.Ticketing.Win.Scheduling
             {
                 CombEmployees.DisplayMember = "EmployeeName";
                 CombEmployees.ValueMember = "Id";
-                CombEmployees.DataSource = await _scheduleRepository.GetAllEmployees(true);
+                CombEmployees.DataSource = await _employeeRepository.GetAllEmployees(true);
                 CombEmployees.SelectedValue = _employeeId;
             }
             catch (Exception ex)
@@ -99,7 +111,7 @@ namespace OTS.Ticketing.Win.Scheduling
                     TaskState = false
                 };
 
-                await _scheduleRepository.UpdateTask(taskInfo);
+                await _taskRepository.UpdateTask(taskInfo);
                 this.DialogResult = DialogResult.Yes;
                 return;
             }
@@ -117,7 +129,7 @@ namespace OTS.Ticketing.Win.Scheduling
                 TaskState = false
             };
 
-            await _scheduleRepository.AddTask(taskInfo);
+            await _taskRepository.AddTask(taskInfo);
             this.DialogResult = DialogResult.Yes;
         }
 

@@ -146,6 +146,7 @@
     <Compile Include="DatabaseConnection\DatabaseServer.Designer.cs">
       <DependentUpon>DatabaseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Employees\EmployeeRepository.cs" />
     <Compile Include="Enums\ActivityType.cs" />
     <Compile Include="Enums\EventType.cs" />
     <Compile Include="MainForms\SessionInfo.cs" />
@@ -167,34 +168,34 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scheduling\AddEmployee.cs">
+    <Compile Include="Employees\AddEmployee.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scheduling\AddEmployee.Designer.cs">
+    <Compile Include="Employees\AddEmployee.Designer.cs">
       <DependentUpon>AddEmployee.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scheduling\AddTask.cs">
+    <Compile Include="Tasks\AddTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scheduling\AddTask.Designer.cs">
+    <Compile Include="Tasks\AddTask.Designer.cs">
       <DependentUpon>AddTask.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scheduling\DisplayEmployees.cs">
+    <Compile Include="Employees\DisplayEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scheduling\DisplayEmployees.Designer.cs">
+    <Compile Include="Employees\DisplayEmployees.Designer.cs">
       <DependentUpon>DisplayEmployees.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scheduling\EmployeeInfo.cs" />
-    <Compile Include="Scheduling\Schedule.cs">
+    <Compile Include="Employees\EmployeeInfo.cs" />
+    <Compile Include="Tasks\DisplayTasks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Scheduling\Schedule.Designer.cs">
-      <DependentUpon>Schedule.cs</DependentUpon>
+    <Compile Include="Tasks\DisplayTasks.Designer.cs">
+      <DependentUpon>DisplayTasks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scheduling\ScheduleRepository.cs" />
-    <Compile Include="Scheduling\TaskInfo.cs" />
-    <Compile Include="Scheduling\TaskView.cs" />
+    <Compile Include="Tasks\TaskRepository.cs" />
+    <Compile Include="Tasks\TaskInfo.cs" />
+    <Compile Include="Tasks\TaskView.cs" />
     <Compile Include="Softwares\DisplaySoftwares.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,18 +363,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scheduling\AddEmployee.resx">
+    <EmbeddedResource Include="Employees\AddEmployee.resx">
       <DependentUpon>AddEmployee.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scheduling\AddTask.resx">
+    <EmbeddedResource Include="Tasks\AddTask.resx">
       <DependentUpon>AddTask.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scheduling\DisplayEmployees.resx">
+    <EmbeddedResource Include="Employees\DisplayEmployees.resx">
       <DependentUpon>DisplayEmployees.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Scheduling\Schedule.resx">
-      <DependentUpon>Schedule.cs</DependentUpon>
+    <EmbeddedResource Include="Tasks\DisplayTasks.resx">
+      <DependentUpon>DisplayTasks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Softwares\DisplaySoftwares.resx">
       <DependentUpon>DisplaySoftwares.cs</DependentUpon>

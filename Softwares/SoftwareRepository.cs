@@ -1,8 +1,11 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.DatabaseConnection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Softwares
 {
@@ -35,7 +38,7 @@ namespace OTS.Ticketing.Win.Softwares
                                 Name = @name
                                WHERE Id = @id";
 
-            await _dataAccess.ExecuteAsync(command, parameters);
+             await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<SoftwareInfo> GetSoftwareByName(string name)
         {

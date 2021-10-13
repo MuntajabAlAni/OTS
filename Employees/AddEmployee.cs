@@ -1,19 +1,27 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Employees;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OTS.Ticketing.Win.Scheduling
+namespace OTS.Ticketing.Win.Tasks
 {
     public partial class AddEmployee : Form
     {
         private readonly long _id;
-        private readonly ScheduleRepository _scheduleRepository;
+        private readonly EmployeeRepository _employeeRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AddEmployee(long id)
         {
             _id = id;
-            _scheduleRepository = new ScheduleRepository();
+            _employeeRepository = new EmployeeRepository();
             InitializeComponent();
         }
 
@@ -26,7 +34,7 @@ namespace OTS.Ticketing.Win.Scheduling
         {
             if (_id != 0)
             {
-                var employee = await _scheduleRepository.GetEmployeeById(_id);
+                var employee = await _employeeRepository.GetEmployeeById(_id);
                 if (!(employee is null))
                 {
                     TxtName.Text = employee.EmployeeName;
@@ -58,7 +66,7 @@ namespace OTS.Ticketing.Win.Scheduling
                         State = CbState.Checked
                     };
 
-                    await _scheduleRepository.UpdateEmployee(employeeInfo);
+                    await _employeeRepository.UpdateEmployee(employeeInfo);
                     this.DialogResult = DialogResult.Yes;
                     return;
                 }
@@ -72,7 +80,7 @@ namespace OTS.Ticketing.Win.Scheduling
                     State = CbState.Checked
                 };
 
-                await _scheduleRepository.AddEmployee(employeeInfo);
+                await _employeeRepository.AddEmployee(employeeInfo);
                 this.DialogResult = DialogResult.Yes;
 
             }
