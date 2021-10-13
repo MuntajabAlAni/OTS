@@ -1,16 +1,8 @@
 ﻿using NLog;
-using OTS.Ticketing.Win.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OTS.Ticketing.Win.Enums;
-using System.Windows.Forms;
 using OTS.Ticketing.Win.ActivityLog;
+using OTS.Ticketing.Win.Enums;
+using System;
+using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Branches
 {
@@ -60,17 +52,17 @@ namespace OTS.Ticketing.Win.Branches
                         "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                BranchInfo branchInfo = GetFormData();
                 if (_id == 0)
                 {
 
-                    BranchInfo branchInfo = GetFormData();
                     long addedId = await branchRepository.AddBranch(branchInfo);
                     await _activityLogRepository.AddActivityLog(
                         new ActivityLogInfo(ActivityType.AddBranch, addedId, "إضافة فرع"));
                 }
                 else
                 {
-                    await branchRepository.UpdateBranch(_branchInfo);
+                    await branchRepository.UpdateBranch(branchInfo);
                     await _activityLogRepository.AddActivityLog(
                         new ActivityLogInfo(ActivityType.EditBranch, _id, "تعديل فرع"));
                 }
@@ -88,6 +80,7 @@ namespace OTS.Ticketing.Win.Branches
         {
             return new BranchInfo
             {
+                Id = _id,
                 Name = TxtName.Text
             };
         }

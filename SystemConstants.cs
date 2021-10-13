@@ -3,11 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win
@@ -55,7 +53,7 @@ namespace OTS.Ticketing.Win
             SelectedUser = 0;
         }
 
-        public static byte[] SHA512(string plaintext)
+        public static string SHA512(string plaintext)
         {
             ASCIIEncoding AE = new ASCIIEncoding();
             byte[] passBuff = AE.GetBytes(plaintext);
@@ -63,7 +61,7 @@ namespace OTS.Ticketing.Win
             SHA512Managed hashVal = new SHA512Managed();
             byte[] passHash = hashVal.ComputeHash(passBuff);
 
-            return passHash;
+            return Convert.ToBase64String(passHash);
         }
 
         public static DataTable ToDataTable(IEnumerable<dynamic> items)

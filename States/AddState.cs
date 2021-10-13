@@ -1,25 +1,21 @@
 ﻿using NLog;
-using OTS.Ticketing.Win.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Enums;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.States
 {
     public partial class AddState : Form
     {
-        readonly StateRepository stateRepository = new StateRepository();
+        readonly StateRepository _stateRepository;
+        readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
         public AddState(long id)
         {
+            _stateRepository = new StateRepository();
+            _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             _id = id;
         }
@@ -33,16 +29,18 @@ namespace OTS.Ticketing.Win.States
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                StateInfo state = GetFormData();
                 if (_id == 0)
                 {
-                    await stateRepository.AddState(TxtName.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.AddState, "إضافة حالة",
-                        await stateRepository.GetLastAddedStateId());
+                    long addedId = await _stateRepository.AddState(state);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddState,
+                        addedId, "إضافة حالة"));
                 }
                 else
                 {
-                    await stateRepository.UpdateState(_id, TxtName.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.EditState, "تعديل حالة", _id);
+                    await _stateRepository.UpdateState(state);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditState,
+                         _id, "تعديل حالة"));
                 }
                 this.Close();
             }
@@ -54,6 +52,14 @@ namespace OTS.Ticketing.Win.States
 
         }
 
+        private StateInfo GetFormData()
+        {
+            return new StateInfo
+            {
+                Id = _id,
+                Name = TxtName.Text
+            };
+        }
         private void BtnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -65,7 +71,7 @@ namespace OTS.Ticketing.Win.States
             {
                 if (_id != 0)
                 {
-                    StateInfo stateInfo = await stateRepository.GetStateById(_id);
+                    StateInfo stateInfo = await _stateRepository.GetStateById(_id);
                     TxtName.Text = stateInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }

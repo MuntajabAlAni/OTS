@@ -3,9 +3,7 @@ using OTS.Ticketing.Win.DatabaseConnection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Users
 {
@@ -13,18 +11,12 @@ namespace OTS.Ticketing.Win.Users
     {
         private readonly DataAccess dataAccess = new DataAccess();
 
-        public async Task<int> AddUser(string displayName, string userName, string password, bool state, string ip, string remarks)
+        public async Task<int> AddUser(UserInfo user)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            Guid salt = Guid.NewGuid();
-            Byte[] passwordHash = SystemConstants.SHA512(password + salt.ToString().ToUpper());
-            parameters.Add("@displayName", displayName);
-            parameters.Add("@userName", userName);
-            parameters.Add("@passwordHash", passwordHash);
-            parameters.Add("@state", state);
-            parameters.Add("@ip", ip);
-            parameters.Add("@remarks", remarks);
-            parameters.Add("@Salt", salt);
+
+            user.Salt = Guid.NewGuid();
+            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
+            var parameters = new DynamicParameters(user);
 
             string command = @"INSERT INTO Users (DisplayName, UserName, passwordHash, State, Ip, Remarks, Salt)
                                 VALUES (@displayName,
@@ -52,21 +44,11 @@ namespace OTS.Ticketing.Win.Users
             var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             return result.ToList();
         }
-        public async Task<int> UpdateUser(long id, string displayName, string userName, string password, bool state, string ip, string remarks)
+        public async Task<int> UpdateUser(UserInfo user)
         {
-
-            DynamicParameters parameters = new DynamicParameters();
-            Guid salt = Guid.NewGuid();
-            Byte[] passwordHash = SystemConstants.SHA512(password + salt.ToString().ToUpper());
-            parameters.Add("@id", id);
-            parameters.Add("@displayName", displayName);
-            parameters.Add("@userName", userName);
-            parameters.Add("@passwordHash", passwordHash);
-            parameters.Add("@state", state);
-            parameters.Add("@ip", ip);
-            parameters.Add("@remarks", remarks);
-            parameters.Add("@Salt", salt);
-
+            user.Salt = Guid.NewGuid();
+            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
+            var parameters = new DynamicParameters(user);
 
             string command = @"UPDATE Users SET 
                                 displayName = @displayName,
@@ -88,5 +70,43 @@ namespace OTS.Ticketing.Win.Users
             return userInfo.Id;
 
         }
+
+
+
+
+        public async Task<List<UserInfo>> GetAllUsersFROMHOME()
+        {
+            string query = "SELECT * FROM Users where state = 1 and isDeleted = 0";
+            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            var list = result.ToList();
+            return list;
+        }
+        public async Task<UserInfo> GetUserByUserName(string userName)
+        {
+            DynamicParameters parameters = new DynamicParameters();
+            parameters.Add("@userName", userName);
+
+            string query = @"SELECT * FROM Users WHERE userName = @userName and isDeleted = 0";
+            var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
+            return result.FirstOrDefault();
+        }
+        public async Task<UserInfo> CheckUserNameAndPasswordAsync(string username, string password)
+        {
+            UserInfo userInfo = await GetUserByUserName(username);
+            if (userInfo is null) return null;
+            string passwordHash = SystemConstants.SHA512(password + userInfo.Salt.ToString().ToUpper());
+            DynamicParameters dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("UserName", username);
+            dynamicParameters.Add("passwordHash", passwordHash);
+
+            //todo: STORED PROCEDURE .. RECODE DATE DATEDIFF DateTime.Now
+
+            string query = @"SELECT * FROM Users where username = @UserName and 
+                             passwordHash = @passwordHash and State = 1 and isDeleted = 0";
+
+            var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
+            return result.FirstOrDefault();
+        }
+
     }
 }

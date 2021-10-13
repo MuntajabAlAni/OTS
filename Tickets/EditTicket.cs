@@ -1,15 +1,8 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Companies;
-using OTS.Ticketing.Win.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OTS.Ticketing.Win.Enums;
+using System;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Tickets
@@ -18,12 +11,14 @@ namespace OTS.Ticketing.Win.Tickets
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly TicketRepository _ticketRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
         private readonly long _number;
         private readonly long _revision;
         public EditTicket(long number, long revision)
         {
             InitializeComponent();
             _ticketRepository = new TicketRepository();
+            _activityLogRepository = new ActivityLogRepository();
             _number = number;
             _revision = revision;
         }
@@ -158,7 +153,7 @@ namespace OTS.Ticketing.Win.Tickets
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == SystemConstants.loggedInUserId)
+                if (Convert.ToInt64(CombTransferedTo.SelectedValue) == SystemConstants.loggedInUser.Id)
                 {
                     MessageBox.Show(" !!! لا يمكن تحويل بطاقة لنفس المستخدم الحالي", "محاولة ادخال خاطئة", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -193,7 +188,9 @@ namespace OTS.Ticketing.Win.Tickets
                Convert.ToInt64(CombUsers.SelectedValue));
                     TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                    await ActivityLogUtility.AddActivityLog(ActivityType.EditTicket, "تعديل بطاقة", updatedTicket.Id);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditTicket,
+                         updatedTicket.Id, "تعديل بطاقة"));
+                    //todo: update model !! activityLog Affected ID
                     this.Close();
                 }
             }

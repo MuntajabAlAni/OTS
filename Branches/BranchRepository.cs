@@ -1,11 +1,8 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.DatabaseConnection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Branches
 {
@@ -38,5 +35,13 @@ namespace OTS.Ticketing.Win.Branches
                                WHERE Id = @id";
             await _dataAccess.ExecuteAsync(command, parameters);
         }
+        public async Task<List<BranchInfo>> GetAllBranches()
+        {
+            string query = "SELECT * FROM Branches Where isDeleted = 0";
+            var result = await _dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
+            var list = result.ToList();
+            return list;
+        }
+
     }
 }

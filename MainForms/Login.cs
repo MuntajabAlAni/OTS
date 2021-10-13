@@ -1,34 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using NLog;
+using OTS.Ticketing.Win.ActivityLog;
+using OTS.Ticketing.Win.DatabaseConnection;
+using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.Users;
+using System;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
-using System.IO;
-using OTS.Ticketing.Win.DatabaseConnection;
-using NLog;
-using OTS.Ticketing.Win.Users;
-using System.Globalization;
-using OTS.Ticketing.Win.Enums;
-using OTS.Ticketing.Win.Utils;
-using System.Resources;
-using System.Reflection;
 
 namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Login : Form
     {
-        private readonly MainRepository mainRepository = new MainRepository();
+        private readonly MainRepository _mainRepository;
+        private readonly UserRepository _userRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public Login()
         {
             try
             {
+                _mainRepository = new MainRepository();
+                _userRepository = new UserRepository();
+                _activityLogRepository = new ActivityLogRepository();
                 InitializeComponent();
                 IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
                 SystemConstants.Database = iniFile.IniReadValue("Connection", "Database");
@@ -46,10 +41,10 @@ namespace OTS.Ticketing.Win.MainForms
             try
             {
                 BtnLogin.Enabled = false;
-                UserInfo result = await mainRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text,
+                UserInfo result = await _userRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text,
                     TxtPassword.Text);
 
-                var settings = await mainRepository.GetSettings();
+                var settings = await _mainRepository.GetSettings();
                 if (settings.Version != Application.ProductVersion)
                 {
                     MessageBox.Show("!! يرجى تحديث البرنامج");
@@ -76,13 +71,15 @@ namespace OTS.Ticketing.Win.MainForms
                     }
                 }
                 SystemConstants.Initialize();
-                SystemConstants.loggedInUserId = result.Id;
+                SystemConstants.loggedInUser = result;
                 SystemConstants.loggedInUserSessionId = Guid.NewGuid();
 
-                await ActivityLogUtility.ActivityLog(ActivityType.SignIn, "تسجيل دخول مستخدم", SystemConstants.loggedInUserId);
-                await mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
+                await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignIn,
+                    SystemConstants.loggedInUser.Id, "تسجيل دخول مستخدم"));
+
+                await _mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
                     SystemConstants.loggedInUserSessionId,
-                    SystemConstants.loggedInUserId, true);
+                    SystemConstants.loggedInUser.Id, true);
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();

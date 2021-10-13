@@ -1,26 +1,21 @@
 ﻿using NLog;
-using OTS.Ticketing.Win.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Enums;
-
+using System;
+using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Users
 {
     public partial class AddUser : Form
     {
-        private readonly UserRepository UserRepository = new UserRepository();
+        private readonly UserRepository _userRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
         public AddUser(long id)
         {
+            _activityLogRepository = new ActivityLogRepository();
+            _userRepository = new UserRepository();
             InitializeComponent();
             _id = id;
         }
@@ -31,7 +26,7 @@ namespace OTS.Ticketing.Win.Users
             {
                 if (_id != 0)
                 {
-                    UserInfo UserInfo = await UserRepository.GetUserById(_id);
+                    UserInfo UserInfo = await _userRepository.GetUserById(_id);
                     if (UserInfo.UserName == "admin")
                     {
                         TxtUserName.Enabled = false;
@@ -73,19 +68,19 @@ namespace OTS.Ticketing.Win.Users
                     MessageBox.Show("الرجاء ادخال اسم المستخدم");
                     return;
                 }
-
+                UserInfo user = GetFormData();
                 if (_id == 0)
                 {
-                    await UserRepository.AddUser(TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
-                        CbState.Checked, TxtIp.Text, TxtRemarks.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.AddUser, "إضافة مستخدم",
-                        await UserRepository.GetLastAddedUserId());
+
+                    long addedId = await _userRepository.AddUser(user);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddUser,
+                        addedId, "إضافة مستخدم"));
                 }
                 else
                 {
-                    await UserRepository.UpdateUser(_id, TxtDisplayName.Text, TxtUserName.Text, TxtPassword.Text,
-                        CbState.Checked, TxtIp.Text, TxtRemarks.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.EditUser, "تعديل مستخدم", _id);
+                    await _userRepository.UpdateUser(user);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditUser,
+                                            _id, "تعديل مستخدم"));
                 }
                 this.Close();
             }
@@ -99,6 +94,20 @@ namespace OTS.Ticketing.Win.Users
                 }
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private UserInfo GetFormData()
+        {
+            return new UserInfo
+            {
+                Id = _id,
+                DisplayName = TxtDisplayName.Text,
+                UserName = TxtUserName.Text,
+                Password = TxtPassword.Text,
+                State = CbState.Checked,
+                Ip = TxtIp.Text,
+                Remarks = TxtRemarks.Text
+            };
         }
     }
 }

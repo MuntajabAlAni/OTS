@@ -1,10 +1,7 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.DatabaseConnection;
-using OTS.Ticketing.Win.Users;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace OTS.Ticketing.Win.ActivityLog
@@ -20,7 +17,7 @@ namespace OTS.Ticketing.Win.ActivityLog
 
         public async Task<List<ActivityInfo>> GetAllActivities()
         {
-            string query = "SELECT * FROM activities";
+            string query = "SELECT Id, ActivityName FROM activities";
             var result = await _dataAccess.QueryAsync<ActivityInfo>(query);
             var list = result.ToList();
 
@@ -51,9 +48,10 @@ namespace OTS.Ticketing.Win.ActivityLog
         {
             var parameters = new DynamicParameters(activityLog);
 
-            string command = @"INSERT INTO ActivityLog (userId, activityDate, activityType, computerName, details, affectedId)
+            string command = @"INSERT INTO ActivityLog (userId, activityDate, activityType, computerName,
+                                                        details, affectedId)
                                 VALUES (@userId,
-                                        @date,
+                                        GETDATE(),
                                         @type,
                                         @computerName,
                                         @details,

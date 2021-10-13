@@ -1,28 +1,29 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Branches;
-using OTS.Ticketing.Win.Utils;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OTS.Ticketing.Win.Enums;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Companies
 {
     public partial class AddCompany : Form
     {
-        readonly CompanyRepository companyRepository = new CompanyRepository();
+        private readonly CompanyRepository _companyRepository;
+        private readonly BranchRepository _branchRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private CompanyInfo _companyInfo;
         private readonly long _id;
         private readonly string _name;
 
         public AddCompany(long id, string name = "")
         {
+            _companyRepository = new CompanyRepository();
+            _activityLogRepository = new ActivityLogRepository();
+            _branchRepository = new BranchRepository();
             InitializeComponent();
             _id = id;
             _name = name;
@@ -54,11 +55,11 @@ namespace OTS.Ticketing.Win.Companies
                 FillCombBranches();
                 if (_id != 0)
                 {
-                    CompanyInfo companyInfo = await companyRepository.GetCompanyInfoById(_id);
-                    TxtName.Text = companyInfo.Name;
-                    TxtAddress.Text = companyInfo.Address;
-                    CombBranches.SelectedValue = companyInfo.BranchId;
-                    TxtRemarks.Text = companyInfo.Remarks;
+                    _companyInfo = await _companyRepository.GetCompanyInfoById(_id);
+                    TxtName.Text = _companyInfo.Name;
+                    TxtAddress.Text = _companyInfo.Address;
+                    CombBranches.SelectedValue = _companyInfo.BranchId;
+                    TxtRemarks.Text = _companyInfo.Remarks;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -93,7 +94,7 @@ namespace OTS.Ticketing.Win.Companies
             {
                 CombBranches.DisplayMember = "Name";
                 CombBranches.ValueMember = "Id";
-                CombBranches.DataSource = await companyRepository.GetAllBranches();
+                CombBranches.DataSource = await _branchRepository.GetAllBranches();
             }
             catch (Exception ex)
             {
@@ -111,25 +112,21 @@ namespace OTS.Ticketing.Win.Companies
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                CompanyInfo company = GetFormData();
                 if (_id == 0)
                 {
-                    await companyRepository.AddCompany(TxtName.Text,
-                        TxtAddress.Text,
-                        Convert.ToInt64(CombBranches.SelectedValue),
-                        TxtRemarks.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.AddCompany, "إضافة شركة", await companyRepository.GetLastCompanyId());
+                    long addedId = await _companyRepository.AddCompany(company);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddCompany,
+                        addedId, "إضافة شركة"));
                 }
                 else
                 {
-                    await companyRepository.UpdateCompany(TxtName.Text,
-                        TxtAddress.Text,
-                        Convert.ToInt64(CombBranches.SelectedValue),
-                        TxtRemarks.Text,
-                        _id);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.EditCompany, "تعديل شركة", _id);
+                    await _companyRepository.UpdateCompany(company);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditCompany,
+                         _id, "تعديل شركة"));
 
                 }
-                List<CompanyView> companies = await companyRepository.GetCompanyByName(TxtName.Text);
+                List<CompanyView> companies = await _companyRepository.GetCompanyByName(TxtName.Text);
                 CompanyView selectedCompany = companies.FirstOrDefault();
                 SystemConstants.SelectedCompanyId = selectedCompany.Id;
                 this.Close();
@@ -141,6 +138,18 @@ namespace OTS.Ticketing.Win.Companies
                 Logger.Error(ex);
             }
 
+        }
+
+        private CompanyInfo GetFormData()
+        {
+            return new CompanyInfo
+            {
+                Id = _id,
+                Name = TxtName.Text,
+                Address = TxtAddress.Text,
+                BranchId = Convert.ToInt64(CombBranches.SelectedValue),
+                Remarks = TxtRemarks.Text
+            };
         }
 
         private void BtnExit_Click(object sender, EventArgs e)

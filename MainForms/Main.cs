@@ -2,6 +2,7 @@
 using NLog;
 using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Companies;
+using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Scheduling;
@@ -9,16 +10,9 @@ using OTS.Ticketing.Win.Softwares;
 using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Tickets;
 using OTS.Ticketing.Win.Users;
-using OTS.Ticketing.Win.Utils;
 using System;
-using OTS.Ticketing.Win.Enums;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -29,14 +23,16 @@ namespace OTS.Ticketing.Win
     {
         private readonly TicketRepository _ticketRepository;
         private readonly MainRepository _mainRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         public static int eventType;
-        CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         public Main()
         {
             eventType = ((int)EventType.Home);
             _mainRepository = new MainRepository();
             _ticketRepository = new TicketRepository();
+            _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             UpdateSession();
             FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
@@ -50,8 +46,8 @@ namespace OTS.Ticketing.Win
             try
             {
                 BtnHome.PerformClick();
-                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUserId);
-                if (SystemConstants.loggedInUserId == 1 |
+                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
+                if (SystemConstants.loggedInUser.Id == 1 |
                     UserInfo.UserName == "Mohammed" |
                     UserInfo.UserName == "Muntajab")
                 {
@@ -135,7 +131,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.Home);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("Home")) return;
                 ApplingFormOnContainer(new Home());
@@ -156,11 +152,12 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.LoggedOut);
-                await ActivityLogUtility.ActivityLog(ActivityType.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
+                await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignOut,
+                     SystemConstants.loggedInUser.Id, "تسجيل خروج مستخدم"));
                 await _mainRepository.UpdateSessionInfoByUserId("",
                 SystemConstants.loggedInUserSessionId,
-                SystemConstants.loggedInUserId, false);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                SystemConstants.loggedInUser.Id, false);
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                 Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 this.Close();
                 Login login = new Login();
@@ -181,7 +178,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.DisplayTickets);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
                 ApplingFormOnContainer(new DisplayTickets());
@@ -197,9 +194,9 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.AddTicket);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
-                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUserId);
+                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
                 if (UserInfo.UserName != "admin" & UserInfo.UserName != "Noor")
                 {
                     return;
@@ -224,7 +221,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.Companies);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayCompanies")) return;
                 ApplingFormOnContainer(new DisplayCompanies(false));
@@ -240,7 +237,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.Users);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayUsers")) return;
                 ApplingFormOnContainer(new DisplayUsers());
@@ -256,7 +253,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.PhoneNumbers);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayPhoneNumbers")) return;
                 ApplingFormOnContainer(new DisplayPhoneNumbers(false));
@@ -276,11 +273,11 @@ namespace OTS.Ticketing.Win
                 if (dr == DialogResult.Yes)
                 {
                     eventType = ((int)EventType.LoggedOut);
-                    await ActivityLogUtility.ActivityLog(ActivityType.SignOut, "تسجيل خروج مستخدم", SystemConstants.loggedInUserId);
-                    await _mainRepository.UpdateSessionInfoByUserId("",
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignOut,
+                                         SystemConstants.loggedInUser.Id, "تسجيل خروج مستخدم")); await _mainRepository.UpdateSessionInfoByUserId("",
                     SystemConstants.loggedInUserSessionId,
-                    SystemConstants.loggedInUserId, false);
-                    await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                    SystemConstants.loggedInUser.Id, false);
+                    await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                     Application.Exit();
                 }
@@ -296,7 +293,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.States);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayStates")) return;
                 ApplingFormOnContainer(new DisplayStates());
@@ -312,7 +309,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.Softwares);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplaySoftwares")) return;
                 ApplingFormOnContainer(new DisplaySoftwares());
@@ -328,7 +325,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.DisplayOldTickets);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
                 ApplingFormOnContainer(new DisplayOldTickets());
@@ -345,7 +342,7 @@ namespace OTS.Ticketing.Win
         }
         private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AddUser displayUser = new AddUser(SystemConstants.loggedInUserId);
+            AddUser displayUser = new AddUser(SystemConstants.loggedInUser.Id);
             displayUser.ShowDialog();
         }
         private async void BtnActivityLog_Click(object sender, EventArgs e)
@@ -353,7 +350,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.DisplayActivities);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
                 ApplingFormOnContainer(new DisplayActivities());
@@ -369,7 +366,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.Schedule);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("Schedule")) return;
                 ApplingFormOnContainer(new Schedule());
@@ -385,7 +382,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 eventType = ((int)EventType.DisplayEmployees);
-                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                     Environment.MachineName, SystemConstants.loggedInUserSessionId);
                 if (PnlContainer.Controls.ContainsKey("DisplayEmployees")) return;
                 ApplingFormOnContainer(new DisplayEmployees());
@@ -477,7 +474,7 @@ namespace OTS.Ticketing.Win
                 {
                     try
                     {
-                        var result = await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUserId, eventType,
+                        var result = await _mainRepository.UpdateSessionByUserId(SystemConstants.loggedInUser.Id, eventType,
                             Environment.MachineName, SystemConstants.loggedInUserSessionId);
                         await Task.Delay(3000);
                         if (result == 0)

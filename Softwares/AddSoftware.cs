@@ -1,27 +1,23 @@
 ﻿using NLog;
-using OTS.Ticketing.Win.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Enums;
+using System;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Softwares
 {
     public partial class AddSoftware : Form
     {
-        readonly SoftwareRepository softwareRepository = new SoftwareRepository();
+        readonly SoftwareRepository _softwareRepository;
+        readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
 
 
         public AddSoftware(long id)
         {
+            _activityLogRepository = new ActivityLogRepository();
+            _softwareRepository = new SoftwareRepository();
             _id = id;
             InitializeComponent();
         }
@@ -32,7 +28,7 @@ namespace OTS.Ticketing.Win.Softwares
             {
                 if (_id != 0)
                 {
-                    SoftwareInfo softwareInfo = await softwareRepository.GetSoftwareById(_id);
+                    SoftwareInfo softwareInfo = await _softwareRepository.GetSoftwareById(_id);
                     TxtName.Text = softwareInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
@@ -49,18 +45,20 @@ namespace OTS.Ticketing.Win.Softwares
         {
             try
             {
+                SoftwareInfo software = GetFormData();
                 if (_id == 0)
                 {
-                    await softwareRepository.AddSoftware(TxtName.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.AddSoftware, "إضافة برنامج",
-                        await softwareRepository.GetLastAddedSoftwareId());
+                    long addedId = await _softwareRepository.AddSoftware(software);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddSoftware,
+                        addedId, "إضافة برنامج"));
                 }
                 else
                 {
-                    await softwareRepository.UpdateSoftware(_id, TxtName.Text);
-                    await ActivityLogUtility.AddActivityLog(ActivityType.EditSoftware, "تعديل برنامج", _id);
+                    await _softwareRepository.UpdateSoftware(software);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditSoftware,
+                         _id, "تعديل برنامج"));
                 }
-                SoftwareInfo softwareInfo = await softwareRepository.GetSoftwareByName(TxtName.Text);
+                SoftwareInfo softwareInfo = await _softwareRepository.GetSoftwareByName(TxtName.Text);
                 SystemConstants.SelectedSoftware = softwareInfo.Id;
                 this.Close();
             }
@@ -71,6 +69,15 @@ namespace OTS.Ticketing.Win.Softwares
             }
 
         }
+        private SoftwareInfo GetFormData()
+        {
+            return new SoftwareInfo
+            {
+                Id = _id,
+                Name = TxtName.Text
+            };
+        }
+
 
         private void BtnExit_Click(object sender, EventArgs e)
         {

@@ -1,22 +1,17 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Companies;
-using OTS.Ticketing.Win.Utils;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OTS.Ticketing.Win.Enums;
+using System;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.PhoneNumbers
 {
     public partial class AddPhoneNumber : Form
     {
-        readonly PhoneNumberRepository phoneNumberRepository = new PhoneNumberRepository();
+        private readonly PhoneNumberRepository _phoneNumberRepository;
+        private readonly ActivityLogRepository _activityLogRepository;
+        private readonly CompanyRepository _companyRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly long _id;
@@ -24,6 +19,9 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
         public AddPhoneNumber(long id, string phoneNumber = "")
         {
+            _phoneNumberRepository = new PhoneNumberRepository();
+            _activityLogRepository = new ActivityLogRepository();
+            _companyRepository = new CompanyRepository();
             InitializeComponent();
             _id = id;
             _phoneNumber = phoneNumber;
@@ -39,7 +37,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 FillCompaniesComboBox();
                 if (_id != 0)
                 {
-                    PhoneNumberInfo phoneNumberInfo = await phoneNumberRepository.GetPhoneNumberById(_id);
+                    PhoneNumberInfo phoneNumberInfo = await _phoneNumberRepository.GetPhoneNumberById(_id);
                     TxtPhoneNumber.Text = phoneNumberInfo.PhoneNumber;
                     TxtCustomerName.Text = phoneNumberInfo.CustomerName;
                     CombCompanies.SelectedValue = phoneNumberInfo.CompanyId;
@@ -59,7 +57,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             {
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.DataSource = await phoneNumberRepository.GetAllCompanies();
+                CombCompanies.DataSource = await _companyRepository.GetAllCompanies();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
@@ -78,25 +76,22 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
+                PhoneNumberInfo phoneNumber = GetFormData();
                 if (_id == 0)
                 {
-                    await phoneNumberRepository.AddPhoneNumber(TxtPhoneNumber.Text,
-                        TxtCustomerName.Text,
-                        Convert.ToInt64(CombCompanies.SelectedValue));
-                    await ActivityLogUtility.AddActivityLog(ActivityType.AddPhoneNumber, "إضافة رقم هاتف",
-                        await phoneNumberRepository.GetLastAddedPhoneNumberId());
+                    long addedId = await _phoneNumberRepository.AddPhoneNumber(phoneNumber);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddPhoneNumber,
+                        addedId, "إضافة رقم هاتف"));
                 }
                 else
                 {
-                    await phoneNumberRepository.UpdatePhoneNumber(_id,
-                        TxtPhoneNumber.Text,
-                        TxtCustomerName.Text,
-                        Convert.ToInt64(CombCompanies.SelectedValue));
-                    await ActivityLogUtility.AddActivityLog(ActivityType.EditPhoneNumber, "تعديل رقم هاتف", _id);
+                    await _phoneNumberRepository.UpdatePhoneNumber(phoneNumber);
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditPhoneNumber,
+                         _id, "تعديل رقم هاتف"));
 
                 }
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
-                SystemConstants.SelectedPhoneNumberId = await phoneNumberRepository.GetPhoneNumberIdByPhoneNumber(TxtPhoneNumber.Text);
+                SystemConstants.SelectedPhoneNumberId = await _phoneNumberRepository.GetPhoneNumberIdByPhoneNumber(TxtPhoneNumber.Text);
                 this.Close();
             }
             catch (Exception ex)
@@ -106,6 +101,18 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
+
+        private PhoneNumberInfo GetFormData()
+        {
+            return new PhoneNumberInfo
+            {
+                Id = _id,
+                PhoneNumber = TxtPhoneNumber.Text,
+                CustomerName = TxtCustomerName.Text,
+                CompanyId = Convert.ToInt64(CombCompanies.SelectedValue)
+            };
+        }
+
         private void BtnExit_Click(object sender, EventArgs e)
         {
             this.Close();

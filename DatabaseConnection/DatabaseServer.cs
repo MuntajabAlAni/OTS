@@ -2,26 +2,22 @@
 using NLog;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.DatabaseConnection
 {
     public partial class DatabaseServer : Form
     {
-        readonly DataAccess dataAccess = new DataAccess();
+        private readonly DataAccess _dataAccess;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        readonly IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
+        private readonly IniFile _iniFile;
 
         public DatabaseServer()
         {
+            _dataAccess = new DataAccess();
+            _iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
             InitializeComponent();
         }
 
@@ -37,9 +33,9 @@ namespace OTS.Ticketing.Win.DatabaseConnection
         {
             try
             {
-                iniFile.IniWriteValue("Connection", "Database", CombDatabases.SelectedValue.ToString());
+                _iniFile.IniWriteValue("Connection", "Database", CombDatabases.SelectedValue.ToString());
                 SystemConstants.Database = CombDatabases.SelectedValue.ToString();
-                iniFile.IniWriteValue("Connection", "ServerIp", TxtServerIp.Text);
+                _iniFile.IniWriteValue("Connection", "ServerIp", TxtServerIp.Text);
                 SystemConstants.ServerIp = TxtServerIp.Text;
                 this.Close();
             }
@@ -57,6 +53,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
         private void ImbTryConnect_Click(object sender, EventArgs e)
         {
+            //todo: TRY CONNECT
             //using (var connection = new SqlConnection(ConnectionTools.ConnectionValue(false, TxtServerIp.Text)))
             //{
             //    try
@@ -77,12 +74,12 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             try
             {
                 string query = "select name, name as value from sys.databases where name not in ('master','tempdb','model','msdb');";
-                var result = await dataAccess.QueryAsync<DatabaseInfo>(query, new DynamicParameters(), true, TxtServerIp.Text);
+                var result = await _dataAccess.QueryAsync<DatabaseInfo>(query, new DynamicParameters(), true, TxtServerIp.Text);
                 List<DatabaseInfo> databaseInfo = result.ToList();
                 CombDatabases.DataSource = databaseInfo;
                 CombDatabases.DisplayMember = "Name";
                 CombDatabases.ValueMember = "Value";
-                CombDatabases.SelectedValue = iniFile.IniReadValue("Connection", "Database");
+                CombDatabases.SelectedValue = _iniFile.IniReadValue("Connection", "Database");
             }
             catch (Exception ex)
             {
@@ -93,7 +90,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
         private void DatabaseServer_Load(object sender, EventArgs e)
         {
-            TxtServerIp.Text = iniFile.IniReadValue("Connection", "ServerIp");
+            TxtServerIp.Text = _iniFile.IniReadValue("Connection", "ServerIp");
             ImbRefresh_Click(sender, e);
         }
     }

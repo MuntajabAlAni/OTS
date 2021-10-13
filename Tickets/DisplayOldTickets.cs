@@ -1,18 +1,9 @@
-﻿using ClosedXML.Excel;
-using NLog;
+﻿using NLog;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.Tickets
@@ -43,7 +34,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 DtpToDate.Value = DateTime.Today;
                 FillUsersComboBox();
-                FillCompaniesComboBox(SystemConstants.loggedInUserId);
+                FillCompaniesComboBox(SystemConstants.loggedInUser.Id);
                 //if (SystemConstants.loggedInUserId == 1)
                 //{
                 BtnEdit.Visible = true;
@@ -119,7 +110,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
                 var list = await _ticketRepository.GetCompaniesByUserId(userId);
-                if (SystemConstants.loggedInUserId == 1)
+                if (SystemConstants.loggedInUser.Id == 1)
                 {
                     list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
                 }

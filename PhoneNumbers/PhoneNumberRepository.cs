@@ -1,28 +1,21 @@
 ﻿using Dapper;
-using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.DatabaseConnection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.PhoneNumbers
 {
     public class PhoneNumberRepository
     {
-        public DataAccess dataAccess = new DataAccess();
-        public async Task<int> AddPhoneNumber(string phoneNumber, string customerName, long companyId)
+        public DataAccess _dataAccess = new DataAccess();
+        public async Task<long> AddPhoneNumber(PhoneNumberInfo phoneNumber)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@phoneNumber", phoneNumber);
-            parameters.Add("@customerName", customerName);
-            parameters.Add("@companyId", companyId);
+            var parameters = new DynamicParameters(phoneNumber);
+            string command = @"INSERT INTO PhoneNumbers (phoneNumber, customerName, companyId)
+                               VALUES (@phoneNumber, @customerName, @companyId)";
 
-            string command = "INSERT INTO PhoneNumbers (phoneNumber, customerName, companyId) VALUES (@phoneNumber, @customerName, @companyId)";
-
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
         public async Task<PhoneNumberInfo> GetPhoneNumberById(long id)
         {
@@ -31,16 +24,12 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
             string query = "SELECT * FROM PhoneNumbers WHERE Id = @Id";
 
-            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<int> UpdatePhoneNumber(long id, string phoneNumber, string customerName, long companyId)
+        public async Task UpdatePhoneNumber(PhoneNumberInfo phoneNumber)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-            parameters.Add("@phoneNumber", phoneNumber);
-            parameters.Add("@customerName", customerName);
-            parameters.Add("@companyId", companyId);
+            var parameters = new DynamicParameters(phoneNumber);
 
             string command = @"UPDATE PhoneNumbers SET 
                                 phoneNumber = @phoneNumber,
@@ -48,13 +37,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                                 companyId = @companyId
                                WHERE Id = @id";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
-        }
-        public async Task<List<CompanyInfo>> GetAllCompanies()
-        {
-            string query = "SELECT * FROM Companies where isDeleted = 0";
-            var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
-            return result.ToList();
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<List<PhoneNumberView>> GetPhoneNumbersBySearch(string phoneNumber)
         {
@@ -67,7 +50,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                             WHERE phoneNumber LIKE '%'+@phoneNumber
                             AND p.isDeleted = 0";
 
-            var result = await dataAccess.QueryAsync<PhoneNumberView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<PhoneNumberView>(query, parameters);
             return result.ToList();
         }
         public async Task<long> GetPhoneNumberIdByPhoneNumber(string phoneNumber)
@@ -77,18 +60,9 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
             string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber And isDeleted = 0";
 
-            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
             return phoneNumberInfo.Id;
-        }
-        public async Task<long> GetLastAddedPhoneNumberId()
-        {
-            string query = "SELECT TOP 1 id FROM PhoneNumbers Order by id DESC";
-
-            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, new DynamicParameters());
-            PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
-            return phoneNumberInfo.Id;
-
         }
     }
 }

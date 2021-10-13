@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NLog;
+using OTS.Ticketing.Win.Tickets;
+using System;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.IO;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Threading;
-using NLog;
-using System.IO;
-using OTS.Ticketing.Win.Users;
 
 namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Home : Form
     {
-        public readonly MainRepository mainRepository = new MainRepository();
+        public readonly MainRepository _mainRepository;
+        public readonly TicketRepository _ticketRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
 
         public Home()
         {
+            _mainRepository = new MainRepository();
+            _ticketRepository = new TicketRepository();
             InitializeComponent();
         }
         private void Home_Load(object sender, EventArgs e)
@@ -50,7 +50,7 @@ namespace OTS.Ticketing.Win.MainForms
         {
             try
             {
-                DtgLastTickets.DataSource = SystemConstants.ToDataTable(await mainRepository.GetTodaysTickets());
+                DtgLastTickets.DataSource = SystemConstants.ToDataTable(await _ticketRepository.GetTodaysTickets());
                 DtgLastTickets.Columns["Number"].HeaderText = LocalizationMessages.GetMessage("Number");
                 DtgLastTickets.Columns["OpenDate"].HeaderText = LocalizationMessages.GetMessage("OpenDate");
                 DtgLastTickets.Columns["CloseDate"].HeaderText = LocalizationMessages.GetMessage("CloseDate");
@@ -90,7 +90,7 @@ namespace OTS.Ticketing.Win.MainForms
         {
             try
             {
-                DataTable dt = SystemConstants.ToDataTable(await mainRepository.GetSessions());
+                DataTable dt = SystemConstants.ToDataTable(await _mainRepository.GetSessions());
                 dt.Columns.Remove("id");
                 dt.Columns.Remove("userId");
                 dt.Columns.Remove("computerName");
@@ -156,13 +156,13 @@ namespace OTS.Ticketing.Win.MainForms
 
             if (BtnOnlineState.Text == "مشغول")
             {
-                await mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUserId);
+                await _mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUser.Id);
                 BtnOnlineState.Text = "متفرغ";
                 BtnOnlineState.BackColor = Color.Crimson;
             }
             else if (BtnOnlineState.Text == "متفرغ")
             {
-                await mainRepository.UpdateIsOnlineByUserId(true, SystemConstants.loggedInUserId);
+                await _mainRepository.UpdateIsOnlineByUserId(true, SystemConstants.loggedInUser.Id);
                 BtnOnlineState.Text = "مشغول";
                 BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
             }

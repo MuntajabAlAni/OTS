@@ -1,17 +1,14 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.DatabaseConnection;
-using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Softwares;
 using OTS.Ticketing.Win.States;
+using OTS.Ticketing.Win.Users;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -411,5 +408,36 @@ namespace OTS.Ticketing.Win.Tickets
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
+
+
+
+
+
+
+        public async Task<List<TicketsView>> GetTodaysTickets()
+        {
+
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+                                                c.name as CompanyName, t.problem, st.name state, t.revision, 
+												Case t.IsIndexed when 1 then 'مرتبة'
+												 else 'غير مرتبة'
+												 end IsIndexed,
+												 case t.isClosed when 1 then 'مغلقة' 
+                                                 else 'غير مغلقة' end isClosed, u.displayName as TransferedTo
+												 FROM tickets t
+                                                 left join phoneNumbers pn on t.phoneNumberId = pn.id
+                                                 left join softwares s on t.softwareId = s.id
+                                                 left join Users e on t.UserId = e.id
+                                                 left join companies c on t.companyId = c.id
+												 left join Users u on t.transferedTo = u.id
+                                                 left join states st on t.stateId = st.id 
+												 WHERE openDate between CAST( GETDATE() AS Date )  and CAST( GETDATE() AS DateTime )
+                                                 and t.isDeleted = 0
+												 ORDER BY t.number DESC,t.revision DESC";
+
+            var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
+            return result.ToList();
+        }
+
     }
 }

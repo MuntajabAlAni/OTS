@@ -1,12 +1,6 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Users;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OTS.Ticketing.Win.ActivityLog
@@ -14,12 +8,14 @@ namespace OTS.Ticketing.Win.ActivityLog
     public partial class DisplayActivities : Form
     {
         private readonly ActivityLogRepository _activityLogRepository;
+        private readonly UserRepository _userRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
 
         public DisplayActivities()
         {
             _activityLogRepository = new ActivityLogRepository();
+            _userRepository = new UserRepository();
             InitializeComponent();
         }
 
@@ -40,7 +36,7 @@ namespace OTS.Ticketing.Win.ActivityLog
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _activityLogRepository.GetAllUsers();
+                CombUser.DataSource = await _userRepository.GetAllUsers();
                 CombUser.SelectedValue = 0;
             }
             catch (Exception ex)
