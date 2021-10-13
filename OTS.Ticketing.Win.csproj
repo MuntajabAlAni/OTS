@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Enums\ActivityType.cs" />
     <Compile Include="Enums\EventType.cs" />
+    <Compile Include="MainForms\SessionInfo.cs" />
     <Compile Include="MainForms\SessionView.cs" />
     <Compile Include="MainForms\SettingsInfo.cs" />
     <Compile Include="messages-ar.Designer.cs">

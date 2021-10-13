@@ -1,6 +1,7 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.MainForms;
 using OTS.Ticketing.Win.States;
 using OTS.Ticketing.Win.Users;
 using System;
@@ -11,12 +12,14 @@ namespace OTS.Ticketing.Win.Tickets
     public partial class DisplayTickets : Form
     {
         readonly TicketRepository _ticketRepository;
+        readonly MainRepository _mainRepository;
         readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public DisplayTickets()
         {
             _ticketRepository = new TicketRepository();
+            _mainRepository = new MainRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             CombStates.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -119,7 +122,9 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 if (DtgTickets.Rows.Count == 0) return;
-                Main.eventType = (int)EventType.TicketInProgress;
+
+                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.TicketInProgress));
+
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
                 TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
@@ -226,7 +231,7 @@ namespace OTS.Ticketing.Win.Tickets
                     //    this.Close();
                     //    SystemConstants.TechnicalSupportTask = true;
                     //}
-                    Main.eventType = (int)EventType.DisplayTickets;
+                    await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayTickets));
                     GetDtgTicketsData();
                     RefreshAllData();
                 }

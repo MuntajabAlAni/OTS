@@ -156,13 +156,25 @@ namespace OTS.Ticketing.Win.MainForms
 
             if (BtnOnlineState.Text == "مشغول")
             {
-                await _mainRepository.UpdateIsOnlineByUserId(false, SystemConstants.loggedInUser.Id);
+                SessionInfo session = new SessionInfo
+                {
+                    IsOnline = false,
+                    UserId = SystemConstants.loggedInUser.Id
+                };
+
+                await _mainRepository.UpdateIsOnlineByUserId(session);
                 BtnOnlineState.Text = "متفرغ";
                 BtnOnlineState.BackColor = Color.Crimson;
             }
             else if (BtnOnlineState.Text == "متفرغ")
             {
-                await _mainRepository.UpdateIsOnlineByUserId(true, SystemConstants.loggedInUser.Id);
+                SessionInfo session = new SessionInfo
+                {
+                    IsOnline = true,
+                    UserId = SystemConstants.loggedInUser.Id
+                };
+
+                await _mainRepository.UpdateIsOnlineByUserId(session);
                 BtnOnlineState.Text = "مشغول";
                 BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
             }

@@ -77,9 +77,16 @@ namespace OTS.Ticketing.Win.MainForms
                 await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignIn,
                     SystemConstants.loggedInUser.Id, "تسجيل دخول مستخدم"));
 
-                await _mainRepository.UpdateSessionInfoByUserId(TxtNumber.Text,
-                    SystemConstants.loggedInUserSessionId,
-                    SystemConstants.loggedInUser.Id, true);
+                SessionInfo session = new SessionInfo
+                {
+                    IsOnline = true,
+                    Number = TxtNumber.Text,
+                    SessionId = SystemConstants.loggedInUserSessionId,
+                    UserId = SystemConstants.loggedInUser.Id
+                };
+
+                await _mainRepository.InitializeUserSession(session);
+
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();

@@ -52,7 +52,7 @@ namespace OTS.Ticketing.Win.ActivityLog
                                                         details, affectedId)
                                 VALUES (@userId,
                                         GETDATE(),
-                                        @type,
+                                        @activityType,
                                         @computerName,
                                         @details,
                                         @affectedId)";
