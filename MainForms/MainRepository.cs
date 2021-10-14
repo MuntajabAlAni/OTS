@@ -1,28 +1,18 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.DatabaseConnection;
-using OTS.Ticketing.Win.Users;
-using OTS.Ticketing.Win.Tickets;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.IO;
-using OTS.Ticketing.Win.Utils;
 
 namespace OTS.Ticketing.Win.MainForms
 {
     public class MainRepository
     {
         public DataAccess dataAccess = new DataAccess();
-        public async Task<int> UpdateSessionInfoByUserId(string number, Guid sessionId, long userId, bool isOnline)
+        public async Task InitializeUserSession(SessionInfo session)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@number", number);
-            parameters.Add("@sessionId", sessionId);
-            parameters.Add("@userId", userId);
-            parameters.Add("@isOnline", isOnline);
+            var parameters = new DynamicParameters(session);
 
             string command = @"IF EXISTS (SELECT * FROM sessions WHERE userId = @userId)
                                BEGIN
@@ -30,21 +20,20 @@ namespace OTS.Ticketing.Win.MainForms
                                END
                                ELSE
                                BEGIN
-                                INSERT INTO sessions (userId, sessionId, number) values (@userId, @sessionId, @number);
+                                INSERT INTO sessions (userId, sessionId, number, IsOnline)
+                                values (@userId, @sessionId, @number, @isOnline);
                                END";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            await dataAccess.ExecuteAsync(command, parameters);
 
         }
-        public async Task<int> UpdateIsOnlineByUserId(bool isOnline, long id)
+        public async Task UpdateIsOnlineByUserId(SessionInfo session)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@isOnline", isOnline);
-            parameters.Add("@id", id);
+            var parameters = new DynamicParameters(session);
 
-            string command = "UPDATE Sessions SET isOnline = @isOnline where userId = @id";
+            string command = "UPDATE Sessions SET isOnline = @isOnline where userId = @userId";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            await dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<int> BackupDatabase(string path)
         {
@@ -67,29 +56,15 @@ namespace OTS.Ticketing.Win.MainForms
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<int> UpdateSessionByUserId(long id, int eventType, string computerName, Guid sessionId)
+        public async Task<int> UpdateSessionByUserId(SessionInfo session)
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("@userId", id);
-            parameters.Add("@eventType", eventType);
-            parameters.Add("@computerName", computerName);
-            parameters.Add("@sessionId", sessionId);
+            var parameters = new DynamicParameters(session);
 
-            string command = @"IF EXISTS (SELECT * FROM sessions WHERE userId = @userId)
-                                BEGIN
-                                 UPDATE sessions SET 
-                                 lastEvent = @eventType,
+            string command = @"UPDATE sessions SET 
+                                 lastEvent = IIF(@lastEvent = 0,lastEvent,@lastEvent),
                                  computerName = @computerName,
-			   	                 lastUpdateDate = SYSDATETIME(),
-                                 isOnline = @isOnline,
-                                 number = @number,
-                                 sessionId = @sessionId
-					             WHERE userId = @userId and sessionId = @sessionId;
-                                END
-                               ELSE
-                                BEGIN
-                                 INSERT INTO sessions (userId, sessionId, number) values (@userId, @sessionId, @number);
-                                END";
+			   	                 lastUpdateDate = SYSDATETIME()
+					             WHERE userId = @userId and sessionId = @sessionId;";
 
             return await dataAccess.ExecuteAsync(command, parameters);
         }
@@ -100,13 +75,13 @@ namespace OTS.Ticketing.Win.MainForms
                              join users u on u.id = s.userId
                              left join events e on e.id = s.lastEvent
                              Where u.userName not in ('admin','Noor')";
-            var result = await dataAccess.QueryAsync<SessionView>(query, new DynamicParameters());
+            var result = await dataAccess.QueryAsync<SessionView>(query);
             return result.ToList();
         }
         public async Task<SettingsInfo> GetSettings()
         {
             string query = @"SELECT * FROM Settings";
-            var result = await dataAccess.QueryAsync<SettingsInfo>(query, new DynamicParameters());
+            var result = await dataAccess.QueryAsync<SettingsInfo>(query);
             return result.FirstOrDefault();
         }
     }

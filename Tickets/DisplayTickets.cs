@@ -24,11 +24,13 @@ namespace OTS.Ticketing.Win.Tickets
     public partial class DisplayTickets : Form
     {
         readonly TicketRepository _ticketRepository;
+        readonly MainRepository _mainRepository;
         readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public DisplayTickets()
         {
+            _mainRepository = new MainRepository();
             _ticketRepository = new TicketRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
@@ -132,7 +134,9 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 if (DtgTickets.Rows.Count == 0) return;
-                Main.eventType = (int)EventType.TicketInProgress;
+
+                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.TicketInProgress));
+
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
                 TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
@@ -211,7 +215,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                         TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                        await _activityLogRepository.AddActivityLog( new ActivityLogInfo( ActivityType.UpdateTicket,
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.UpdateTicket,
                              updatedTicket.Id, "الرد على بطاقة"));
                     }
                     else if (Convert.ToInt64(CombTransferedTo.SelectedValue) != 0 & Convert.ToInt64(CombStates.SelectedValue) == 4)
@@ -230,8 +234,8 @@ namespace OTS.Ticketing.Win.Tickets
                         await _ticketRepository.UpdateInsertTicket(ticket);
                         TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text) + 1);
-                        await _activityLogRepository.AddActivityLog( new ActivityLogInfo( ActivityType.UpdateTicket,
-                             updatedTicket.Id,  "الرد على بطاقة"));
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.UpdateTicket,
+                             updatedTicket.Id, "الرد على بطاقة"));
 
                     }
                     //if (CombStates.Text == "تحويل الى الدعم الفني")
@@ -239,7 +243,7 @@ namespace OTS.Ticketing.Win.Tickets
                     //    this.Close();
                     //    SystemConstants.TechnicalSupportTask = true;
                     //}
-                    Main.eventType = (int)EventType.DisplayTickets;
+                    await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayTickets));
                     GetDtgTicketsData();
                     RefreshAllData();
                 }
