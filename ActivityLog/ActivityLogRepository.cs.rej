@@ -1,0 +1,10 @@
+diff a/ActivityLog/ActivityLogRepository.cs b/ActivityLog/ActivityLogRepository.cs	(rejected hunks)
+@@ -55,7 +55,7 @@
+                                                         details, affectedId)
+                                 VALUES (@userId,
+                                         GETDATE(),
+-                                        @activityType,
++                                        @type,
+                                         @computerName,
+                                         @details,
+                                         @affectedId)";

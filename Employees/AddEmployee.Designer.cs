@@ -149,6 +149,7 @@ namespace OTS.Ticketing.Win.Tasks
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AddEmployee";
             this.Load += new System.EventHandler(this.AddEmployee_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddEmployee_KeyDown);
             this.PnlContainer.ResumeLayout(false);
             this.PnlContainer.PerformLayout();
             this.ResumeLayout(false);

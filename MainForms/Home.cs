@@ -16,10 +16,11 @@ namespace OTS.Ticketing.Win.MainForms
 {
     public partial class Home : Form
     {
-        public readonly MainRepository _mainRepository;
-        public readonly TicketRepository _ticketRepository;
+        private readonly MainRepository _mainRepository;
+        private readonly TicketRepository _ticketRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private static bool isBtnChecked;
 
         public Home()
         {
@@ -27,16 +28,26 @@ namespace OTS.Ticketing.Win.MainForms
             _ticketRepository = new TicketRepository();
             InitializeComponent();
         }
-        private void Home_Load(object sender, EventArgs e)
+        private async void Home_Load(object sender, EventArgs e)
         {
             try
             {
+                if (isBtnChecked)
+                {
+                    BtnOnlineState.Text = "متفرغ";
+                    BtnOnlineState.BackColor = Color.Crimson;
+                }
+                else
+                {
+                    BtnOnlineState.Text = "مشغول";
+                    BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
+                }
                 if (SystemConstants.loggedInUser.Id != 1 & SystemConstants.loggedInUser.Id != 2)
                 {
                     BtnOnlineState.Visible = true;
                 }
                 RtbNotes.SelectionAlignment = HorizontalAlignment.Center;
-                GetDtgLastTicketsData();
+                await GetDtgLastTicketsData();
                 if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt")))
                 {
                     File.CreateText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"));
@@ -50,11 +61,21 @@ namespace OTS.Ticketing.Win.MainForms
                 Logger.Error(ex);
             }
         }
-        private async void GetDtgLastTicketsData()
+        private async Task GetDtgLastTicketsData()
         {
             try
             {
-                DtgLastTickets.DataSource = SystemConstants.ToDataTable(await _ticketRepository.GetTodaysTickets());
+                DataTable dt = SystemConstants.ToDataTable(await _ticketRepository.GetTodaysTickets());
+                DataColumn dc = new DataColumn("ت", typeof(int));
+                dt.Columns.Add(dc);
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dr["ت"] = i + 1;
+                    i++;
+                }
+                DtgLastTickets.DataSource = dt;
+                DtgLastTickets.Columns["ت"].DisplayIndex = 0;
                 DtgLastTickets.Columns["Number"].HeaderText = LocalizationMessages.GetMessage("Number");
                 DtgLastTickets.Columns["OpenDate"].HeaderText = LocalizationMessages.GetMessage("OpenDate");
                 DtgLastTickets.Columns["CloseDate"].HeaderText = LocalizationMessages.GetMessage("CloseDate");
@@ -85,6 +106,7 @@ namespace OTS.Ticketing.Win.MainForms
             LblTime.Text = DateTime.Now.ToString("hh:mm:ss");
             LblDate.Text = DateTime.Now.ToString("dddd dd-MM-yyyy");
         }
+
         private void GetDtgUsersData()
         {
             CancellationToken cancellationToken = cancellationTokenSource.Token;
@@ -169,6 +191,7 @@ namespace OTS.Ticketing.Win.MainForms
                 await _mainRepository.UpdateIsOnlineByUserId(session);
                 BtnOnlineState.Text = "متفرغ";
                 BtnOnlineState.BackColor = Color.Crimson;
+                isBtnChecked = true;
             }
             else if (BtnOnlineState.Text == "متفرغ")
             {
@@ -181,12 +204,18 @@ namespace OTS.Ticketing.Win.MainForms
                 await _mainRepository.UpdateIsOnlineByUserId(session);
                 BtnOnlineState.Text = "مشغول";
                 BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
+                isBtnChecked = false;
             }
 
         }
         private void DtgUsers_SelectionChanged(object sender, EventArgs e)
         {
             DtgUsers.ClearSelection();
+        }
+
+        private async void BtnRefresh_Click(object sender, EventArgs e)
+        {
+            await GetDtgLastTicketsData();
         }
     }
 }

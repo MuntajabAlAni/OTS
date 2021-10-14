@@ -117,5 +117,13 @@ namespace OTS.Ticketing.Win.Users
                 Remarks = TxtRemarks.Text
             };
         }
+
+        private void AddUser_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

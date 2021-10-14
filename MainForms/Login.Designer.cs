@@ -40,6 +40,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.ImbLogo = new System.Windows.Forms.PictureBox();
             this.TxtNumber = new System.Windows.Forms.TextBox();
             this.LblNumber = new System.Windows.Forms.Label();
+            this.PnlContainer = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -110,6 +111,13 @@ namespace OTS.Ticketing.Win.MainForms
             resources.ApplyResources(this.LblNumber, "LblNumber");
             this.LblNumber.Name = "LblNumber";
             // 
+            // PnlContainer
+            // 
+            this.PnlContainer.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.PnlContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            resources.ApplyResources(this.PnlContainer, "PnlContainer");
+            this.PnlContainer.Name = "PnlContainer";
+            // 
             // Login
             // 
             resources.ApplyResources(this, "$this");
@@ -125,6 +133,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.Controls.Add(this.TxtUserName);
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.BtnLogin);
+            this.Controls.Add(this.PnlContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "Login";
@@ -147,5 +156,6 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.PictureBox ImbLogo;
         private System.Windows.Forms.TextBox TxtNumber;
         private System.Windows.Forms.Label LblNumber;
+        private System.Windows.Forms.Panel PnlContainer;
     }
 }

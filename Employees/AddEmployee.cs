@@ -90,5 +90,13 @@ namespace OTS.Ticketing.Win.Tasks
                 Logger.Error(ex);
             }
         }
+
+        private void AddEmployee_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
     }
 }

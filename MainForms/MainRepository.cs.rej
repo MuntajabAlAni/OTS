@@ -1,0 +1,9 @@
+diff a/MainForms/MainRepository.cs b/MainForms/MainRepository.cs	(rejected hunks)
+@@ -37,7 +37,6 @@
+             return await dataAccess.ExecuteAsync(command, parameters);
+ 
+         }
+-        public async Task UpdateIsOnlineByUserId(SessionInfo session)
+         public async Task<int> UpdateIsOnlineByUserId(bool isOnline, long id)
+         {
+             DynamicParameters parameters = new DynamicParameters();

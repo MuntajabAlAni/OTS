@@ -215,6 +215,7 @@ namespace OTS.Ticketing.Win.Users
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddUser";
             this.Load += new System.EventHandler(this.AddUser_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddUser_KeyDown);
             this.PnlContainer.ResumeLayout(false);
             this.PnlContainer.PerformLayout();
             this.ResumeLayout(false);
