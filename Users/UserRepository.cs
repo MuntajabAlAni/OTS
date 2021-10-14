@@ -17,7 +17,7 @@ namespace OTS.Ticketing.Win.Users
         {
 
             user.Salt = Guid.NewGuid();
-            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
+            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
             var parameters = new DynamicParameters(user);
 
             string command = @"INSERT INTO Users (DisplayName, UserName, passwordHash, State, Ip, Remarks, Salt)
@@ -49,7 +49,7 @@ namespace OTS.Ticketing.Win.Users
         public async Task<int> UpdateUser(UserInfo user)
         {
             user.Salt = Guid.NewGuid();
-            user.Password = SystemConstants.SHA512(user.Password + user.Salt.ToString().ToUpper());
+            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
             var parameters = new DynamicParameters(user);
 
             string command = @"UPDATE Users SET 
@@ -72,39 +72,33 @@ namespace OTS.Ticketing.Win.Users
             return userInfo.Id;
 
         }
-
-
-
-
-        public async Task<List<UserInfo>> GetAllUsersFROMHOME()
-        {
-            string query = "SELECT * FROM Users where state = 1 and isDeleted = 0";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
-            var list = result.ToList();
-            return list;
-        }
         public async Task<UserInfo> GetUserByUserName(string userName)
         {
-            DynamicParameters parameters = new DynamicParameters();
+            var parameters = new DynamicParameters();
             parameters.Add("@userName", userName);
 
             string query = @"SELECT * FROM Users WHERE userName = @userName and isDeleted = 0";
             var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<UserInfo> CheckUserNameAndPasswordAsync(string username, string password)
+        public async Task<UserInfo> CheckUserNameAndPasswordAsync(UserInfo user)
         {
-            UserInfo userInfo = await GetUserByUserName(username);
+            UserInfo userInfo = await GetUserByUserName(user.UserName);
             if (userInfo is null) return null;
-            string passwordHash = SystemConstants.SHA512(password + userInfo.Salt.ToString().ToUpper());
-            DynamicParameters dynamicParameters = new DynamicParameters();
-            dynamicParameters.Add("UserName", username);
-            dynamicParameters.Add("passwordHash", passwordHash);
 
-            //todo: STORED PROCEDURE .. RECODE DATE DATEDIFF DateTime.Now
+            user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + userInfo.Salt.ToString().ToUpper());
 
-            string query = @"SELECT * FROM Users where username = @UserName and 
-                             passwordHash = @passwordHash and State = 1 and isDeleted = 0";
+            var dynamicParameters = new DynamicParameters(user);
+            dynamicParameters.Add("@date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+
+            string query = @"IF ABS(DATEDIFF(MINUTE, @date, GETDATE())) > 5
+                             THROW 15101998,
+                            '15101998 Check the Date difference between this pc and The server.',1;
+
+                             ELSE
+                             SELECT * FROM Users where username = @UserName and 
+                             passwordHash = @passwordHash and State = 1 and isDeleted = 0
+                             and ABS(DATEDIFF(MINUTE, @date, GETDATE())) < 5";
 
             var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
             return result.FirstOrDefault();

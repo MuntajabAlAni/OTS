@@ -59,27 +59,33 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
         private void ImbTryConnect_Click(object sender, EventArgs e)
         {
-            //todo: TRY CONNECT
-            //using (var connection = new SqlConnection(ConnectionTools.ConnectionValue(false, TxtServerIp.Text)))
-            //{
-            //    try
-            //    {
-            //        connection.Open();
-            //        this.Invoke(new Action(() => MessageBox.Show("تم الاتصال بنجاح")));
-            //    }
-            //    catch (Exception)
-            //    {
-            //        this.Invoke(new Action(() => MessageBox.Show("فشل الإتصال .. يرجى التأكد من كل الإعدادات")));
+            if (IsConnected()) MessageBox.Show("! تم الإتصال بنجاح");
+            else MessageBox.Show("! لم يتم الإتصال");
+        }
 
-            //    }
-            //}
+
+        private bool IsConnected()
+        {
+        using (var connection = new SqlConnection(ConnectionTools.ConnectionValue(false, TxtServerIp.Text)))
+        {
+            try
+                {
+                    connection.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
         }
 
         private async void ImbRefresh_Click(object sender, EventArgs e)
         {
             try
             {
-                string query = "select name, name as value from sys.databases where name not in ('master','tempdb','model','msdb');";
+                string query = @"select name, name as value from sys.databases 
+                                 where name not in ('master','tempdb','model','msdb');";
                 var result = await _dataAccess.QueryAsync<DatabaseInfo>(query, new DynamicParameters(), true, TxtServerIp.Text);
                 List<DatabaseInfo> databaseInfo = result.ToList();
                 CombDatabases.DataSource = databaseInfo;

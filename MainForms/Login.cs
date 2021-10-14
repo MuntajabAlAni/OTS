@@ -52,8 +52,8 @@ namespace OTS.Ticketing.Win.MainForms
             try
             {
                 BtnLogin.Enabled = false;
-                UserInfo result = await _userRepository.CheckUserNameAndPasswordAsync(TxtUserName.Text,
-                    TxtPassword.Text);
+                UserInfo request = GetFormData();
+                UserInfo result = await _userRepository.CheckUserNameAndPasswordAsync(request);
 
                 var settings = await _mainRepository.GetSettings();
                 if (settings.Version != Application.ProductVersion)
@@ -77,7 +77,7 @@ namespace OTS.Ticketing.Win.MainForms
                         | (Convert.ToInt32(TxtNumber.Text) < 3600 & Convert.ToInt32(TxtNumber.Text) > 3622))
                     {
                         TxtNumber.Text = "";
-                        MessageBox.Show("! `يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
+                        MessageBox.Show("! يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
                         return;
                     }
                 }
@@ -97,7 +97,10 @@ namespace OTS.Ticketing.Win.MainForms
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.Message.Contains("15101998"))
+                    MessageBox.Show("! يرجى تعديل تاريخ الجهاز", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
             finally
@@ -105,6 +108,16 @@ namespace OTS.Ticketing.Win.MainForms
                 BtnLogin.Enabled = true;
             }
         }
+
+        private UserInfo GetFormData()
+        {
+            return new UserInfo
+            {
+                UserName = TxtUserName.Text,
+                PasswordHash = TxtPassword.Text
+            };
+        }
+
         private async void BtnLogin_Click(object sender, EventArgs e)
         {
             await LoginToMain();

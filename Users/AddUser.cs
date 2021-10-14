@@ -111,7 +111,7 @@ namespace OTS.Ticketing.Win.Users
                 Id = _id,
                 DisplayName = TxtDisplayName.Text,
                 UserName = TxtUserName.Text,
-                Password = TxtPassword.Text,
+                PasswordHash = TxtPassword.Text,
                 State = CbState.Checked,
                 Ip = TxtIp.Text,
                 Remarks = TxtRemarks.Text
