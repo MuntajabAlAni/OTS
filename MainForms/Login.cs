@@ -29,6 +29,16 @@ namespace OTS.Ticketing.Win.MainForms
         private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
+
+        // MAKE FORM MOVEABLE
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         public Login()
         {
             try
@@ -227,10 +237,19 @@ namespace OTS.Ticketing.Win.MainForms
             TxtUserName.Text = Properties.Settings.Default.Username;
             TxtNumber.Text = Properties.Settings.Default.Number;
 
-            if (!string.IsNullOrWhiteSpace(TxtUserName.Text) &
-            !string.IsNullOrWhiteSpace(TxtPassword.Text))
+            if (!string.IsNullOrWhiteSpace(TxtUserName.Text))
             {
                 CbRememberMe.Checked = true;
+                TxtPassword.Select();
+            }
+        }
+
+        private void Login_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }

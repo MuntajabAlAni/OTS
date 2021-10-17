@@ -40,10 +40,8 @@ namespace OTS.Ticketing.Win.MainForms
             this.ImbLogo = new System.Windows.Forms.PictureBox();
             this.TxtNumber = new System.Windows.Forms.TextBox();
             this.LblNumber = new System.Windows.Forms.Label();
-            this.PnlContainer = new System.Windows.Forms.Panel();
             this.CbRememberMe = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).BeginInit();
-            this.PnlContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // BtnLogin
@@ -113,14 +111,6 @@ namespace OTS.Ticketing.Win.MainForms
             resources.ApplyResources(this.LblNumber, "LblNumber");
             this.LblNumber.Name = "LblNumber";
             // 
-            // PnlContainer
-            // 
-            this.PnlContainer.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.PnlContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnlContainer.Controls.Add(this.CbRememberMe);
-            resources.ApplyResources(this.PnlContainer, "PnlContainer");
-            this.PnlContainer.Name = "PnlContainer";
-            // 
             // CbRememberMe
             // 
             resources.ApplyResources(this.CbRememberMe, "CbRememberMe");
@@ -134,6 +124,7 @@ namespace OTS.Ticketing.Win.MainForms
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.CbRememberMe);
             this.Controls.Add(this.ImbLogo);
             this.Controls.Add(this.LblTitle);
             this.Controls.Add(this.LblNumber);
@@ -144,15 +135,13 @@ namespace OTS.Ticketing.Win.MainForms
             this.Controls.Add(this.TxtUserName);
             this.Controls.Add(this.BtnExit);
             this.Controls.Add(this.BtnLogin);
-            this.Controls.Add(this.PnlContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Name = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Login_KeyDown);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.ImbLogo)).EndInit();
-            this.PnlContainer.ResumeLayout(false);
-            this.PnlContainer.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,7 +159,6 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.PictureBox ImbLogo;
         private System.Windows.Forms.TextBox TxtNumber;
         private System.Windows.Forms.Label LblNumber;
-        private System.Windows.Forms.Panel PnlContainer;
         private System.Windows.Forms.CheckBox CbRememberMe;
     }
 }
