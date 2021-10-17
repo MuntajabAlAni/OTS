@@ -43,7 +43,7 @@ namespace OTS.Ticketing.Win.ActivityLog
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _userRepository.GetAllUsers();
+                CombUser.DataSource = await _userRepository.GetAll();
                 CombUser.SelectedValue = 0;
             }
             catch (Exception ex)

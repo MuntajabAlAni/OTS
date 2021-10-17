@@ -34,7 +34,7 @@ namespace OTS.Ticketing.Win.Tasks
         {
             if (_id != 0)
             {
-                var employee = await _employeeRepository.GetEmployeeById(_id);
+                var employee = await _employeeRepository.GetById(_id);
                 if (!(employee is null))
                 {
                     TxtName.Text = employee.EmployeeName;
@@ -66,7 +66,7 @@ namespace OTS.Ticketing.Win.Tasks
                         State = CbState.Checked
                     };
 
-                    await _employeeRepository.UpdateEmployee(employeeInfo);
+                    await _employeeRepository.Update(employeeInfo);
                     this.DialogResult = DialogResult.Yes;
                     return;
                 }
@@ -80,7 +80,7 @@ namespace OTS.Ticketing.Win.Tasks
                     State = CbState.Checked
                 };
 
-                await _employeeRepository.AddEmployee(employeeInfo);
+                await _employeeRepository.Add(employeeInfo);
                 this.DialogResult = DialogResult.Yes;
 
             }

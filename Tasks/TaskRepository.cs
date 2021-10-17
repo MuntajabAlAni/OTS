@@ -15,7 +15,7 @@ namespace OTS.Ticketing.Win.Tasks
     {
         public DataAccess _dataAccess = new DataAccess();
 
-        public async Task<IEnumerable<dynamic>> GetEmployeesTasks(DateTime selectedDate, int period = 8)
+        public async Task<IEnumerable<dynamic>> Get(DateTime selectedDate, int period = 8)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@selectedDate", selectedDate);
@@ -30,7 +30,7 @@ namespace OTS.Ticketing.Win.Tasks
             var result = await _dataAccess.QueryAsync<dynamic>(query, parameters);
             return result;
         }   
-        public async Task<List<TaskView>> GetDayTasksByEmployeeNameAndDate(string employeeName, string date)
+        public async Task<List<TaskView>> GetByEmployeeNameAndDate(string employeeName, string date)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@employeeName", employeeName);
@@ -45,7 +45,7 @@ namespace OTS.Ticketing.Win.Tasks
             var result = await _dataAccess.QueryAsync<TaskView>(query, parameters);
             return result.ToList();
         }   
-        public async Task<TaskInfo> GetTaskById(long id)
+        public async Task<TaskInfo> GetById(long id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -55,7 +55,7 @@ namespace OTS.Ticketing.Win.Tasks
             var result = await _dataAccess.QueryAsync<TaskInfo>(query, parameters);
             return result.FirstOrDefault();
         }        
-        public async Task<int> AddTask(TaskInfo taskInfo)
+        public async Task<int> Add(TaskInfo taskInfo)
         {
             var parameters = new DynamicParameters(taskInfo);
 
@@ -66,7 +66,7 @@ namespace OTS.Ticketing.Win.Tasks
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }       
-        public async Task<int> UpdateTask(TaskInfo taskInfo)
+        public async Task<int> Update(TaskInfo taskInfo)
         {
             var parameters = new DynamicParameters(taskInfo);
 
@@ -81,6 +81,14 @@ namespace OTS.Ticketing.Win.Tasks
                                WHERE id = @id";
 
             return await _dataAccess.ExecuteAsync(command, parameters);
-        }        
+        }
+        public async Task Delete(TaskInfo task)
+        {
+            var parameters = new DynamicParameters(task);
+            string command = @"UPDATE Tasks SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
+        }
     }
 }

@@ -11,9 +11,9 @@ namespace OTS.Ticketing.Win.Users
 {
     public class UserRepository
     {
-        private readonly DataAccess dataAccess = new DataAccess();
+        private readonly DataAccess _dataAccess = new DataAccess();
 
-        public async Task<int> AddUser(UserInfo user)
+        public async Task<int> Add(UserInfo user)
         {
 
             user.Salt = Guid.NewGuid();
@@ -29,24 +29,24 @@ namespace OTS.Ticketing.Win.Users
                                         @remarks,
                                         @Salt)";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<UserInfo> GetUserById(long id)
+        public async Task<UserInfo> GetById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
             string query = @"SELECT * FROM Users WHERE ID = @ID";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<List<UserInfo>> GetAllUsers()
+        public async Task<List<UserInfo>> GetAll()
         {
             string query = "select id, displayName from users WHERE isDeleted = 0";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             return result.ToList();
         }
-        public async Task<int> UpdateUser(UserInfo user)
+        public async Task<int> Update(UserInfo user)
         {
             user.Salt = Guid.NewGuid();
             user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + user.Salt.ToString().ToUpper());
@@ -61,29 +61,20 @@ namespace OTS.Ticketing.Win.Users
                                 remarks = @remarks,
                                 salt = @Salt
                                WHERE Id = @id";
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<long> GetLastAddedUserId()
-        {
-            string query = "SELECT TOP 1 id FROM Users Order by id DESC";
-
-            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
-            UserInfo userInfo = result.FirstOrDefault();
-            return userInfo.Id;
-
-        }
-        public async Task<UserInfo> GetUserByUserName(string userName)
+        public async Task<UserInfo> GetByUserName(string userName)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@userName", userName);
 
             string query = @"SELECT * FROM Users WHERE userName = @userName and isDeleted = 0";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
         public async Task<UserInfo> CheckUserNameAndPasswordAsync(UserInfo user)
         {
-            UserInfo userInfo = await GetUserByUserName(user.UserName);
+            UserInfo userInfo = await GetByUserName(user.UserName);
             if (userInfo is null) return null;
 
             user.PasswordHash = SystemConstants.SHA512(user.PasswordHash + userInfo.Salt.ToString().ToUpper());
@@ -100,8 +91,16 @@ namespace OTS.Ticketing.Win.Users
                              passwordHash = @passwordHash and State = 1 and isDeleted = 0
                              and ABS(DATEDIFF(MINUTE, @date, GETDATE())) < 5";
 
-            var result = await dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, dynamicParameters);
             return result.FirstOrDefault();
+        }
+        public async Task Delete(UserInfo user)
+        {
+            var parameters = new DynamicParameters(user);
+            string command = @"UPDATE Users SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
 
     }

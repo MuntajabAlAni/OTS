@@ -35,7 +35,7 @@ namespace OTS.Ticketing.Win.Users
             {
                 if (_id != 0)
                 {
-                    UserInfo UserInfo = await _userRepository.GetUserById(_id);
+                    UserInfo UserInfo = await _userRepository.GetById(_id);
                     if (UserInfo.UserName == "admin")
                     {
                         TxtUserName.Enabled = false;
@@ -82,13 +82,13 @@ namespace OTS.Ticketing.Win.Users
                 if (_id == 0)
                 {
 
-                    long addedId = await _userRepository.AddUser(user);
+                    long addedId = await _userRepository.Add(user);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddUser,
                         addedId, "إضافة مستخدم"));
                 }
                 else
                 {
-                    await _userRepository.UpdateUser(user);
+                    await _userRepository.Update(user);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditUser,
                                             _id, "تعديل مستخدم"));
                 }

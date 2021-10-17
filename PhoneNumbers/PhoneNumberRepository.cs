@@ -13,7 +13,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
     public class PhoneNumberRepository
     {
         public DataAccess _dataAccess = new DataAccess();
-        public async Task<long> AddPhoneNumber(PhoneNumberInfo phoneNumber)
+        public async Task<long> Add(PhoneNumberInfo phoneNumber)
         {
             var parameters = new DynamicParameters(phoneNumber);
             string command = @"INSERT INTO PhoneNumbers (phoneNumber, customerName, companyId)
@@ -21,7 +21,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<PhoneNumberInfo> GetPhoneNumberById(long id)
+        public async Task<PhoneNumberInfo> GetById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -31,7 +31,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task UpdatePhoneNumber(PhoneNumberInfo phoneNumber)
+        public async Task Update(PhoneNumberInfo phoneNumber)
         {
             var parameters = new DynamicParameters(phoneNumber);
 
@@ -43,7 +43,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
             await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<List<PhoneNumberView>> GetPhoneNumbersBySearch(string phoneNumber)
+        public async Task<List<PhoneNumberView>> GetBySearch(string phoneNumber)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@phoneNumber", phoneNumber);
@@ -57,7 +57,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             var result = await _dataAccess.QueryAsync<PhoneNumberView>(query, parameters);
             return result.ToList();
         }
-        public async Task<long> GetPhoneNumberIdByPhoneNumber(string phoneNumber)
+        public async Task<long> GetIdBy(string phoneNumber)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@phoneNumber", phoneNumber);
@@ -67,6 +67,14 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
             return phoneNumberInfo.Id;
+        }
+        public async Task Delete(PhoneNumberInfo phoneNumber)
+        {
+            var parameters = new DynamicParameters(phoneNumber);
+            string command = @"UPDATE PhoneNumbers SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

@@ -37,7 +37,7 @@ namespace OTS.Ticketing.Win.Branches
             {
                 if (_id != 0)
                 {
-                    _branchInfo = await branchRepository.GetBranchById(_id);
+                    _branchInfo = await branchRepository.GetById(_id);
                     TxtName.Text = _branchInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
@@ -64,13 +64,13 @@ namespace OTS.Ticketing.Win.Branches
                 if (_id == 0)
                 {
 
-                    long addedId = await branchRepository.AddBranch(branchInfo);
+                    long addedId = await branchRepository.Add(branchInfo);
                     await _activityLogRepository.AddActivityLog(
                         new ActivityLogInfo(ActivityType.AddBranch, addedId, "إضافة فرع"));
                 }
                 else
                 {
-                    await branchRepository.UpdateBranch(branchInfo);
+                    await branchRepository.Update(branchInfo);
                     await _activityLogRepository.AddActivityLog(
                         new ActivityLogInfo(ActivityType.EditBranch, _id, "تعديل فرع"));
                 }

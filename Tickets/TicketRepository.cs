@@ -19,7 +19,7 @@ namespace OTS.Ticketing.Win.Tickets
 {
     public class TicketRepository
     {
-        public DataAccess dataAccess = new DataAccess();
+        public DataAccess _dataAccess = new DataAccess();
         public async Task<List<TicketsView>> GetAllTicketsByUserId(long UserId)
         {
             var parameters = new DynamicParameters();
@@ -37,14 +37,14 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE t.UserId = @UserId and t.isClosed is null and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
         public async Task<string> GetLastTicketNumber()
         {
             string query = "SELECT TOP 1 t.number from tickets t order by t.number DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
             TicketsView ticketDetails = result.FirstOrDefault();
             if (ticketDetails == null) return "1";
             return (ticketDetails.Number + 1).ToString();
@@ -52,7 +52,7 @@ namespace OTS.Ticketing.Win.Tickets
         public async Task<List<CompanyInfo>> GetAllCompanies()
         {
             string query = "SELECT * FROM Companies WHERE isDeleted = 0";
-            var result = await dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new CompanyInfo { Id = 0, Name = "يرجى إختيار شركة" }));
             return list;
@@ -63,7 +63,7 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@companyId", companyId);
 
             string query = "SELECT * FROM Companies where Id = @companyId And isDeleted = 0";
-            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<CompanyInfo>(query, parameters);
             return result.FirstOrDefault();
         }
         public async Task<List<CompanyInfo>> GetCompaniesByUserId(long userId = 0)
@@ -74,14 +74,14 @@ namespace OTS.Ticketing.Win.Tickets
             string query = @"SELECT DISTINCT C.ID, C.Name from companies C
                             inner join tickets T on c.id = t.companyId and IIF (@userId = 0,0,t.userId) = @userId
                             WHERE C.isDeleted = 0";
-            var result = await dataAccess.QueryAsync<CompanyInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<CompanyInfo>(query, parameters);
             var list = result.ToList();
             return list;
         }
         public async Task<List<SoftwareInfo>> GetAllSoftwares()
         {
             string query = "SELECT * FROM Softwares WHERE isDeleted = 0";
-            var result = await dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new SoftwareInfo { Id = 0, Name = "" }));
             return list;
@@ -89,7 +89,7 @@ namespace OTS.Ticketing.Win.Tickets
         public async Task<List<UserInfo>> GetAllUsers()
         {
             string query = "SELECT * FROM Users where username not in ('admin','Noor') and state = 1 and isDeleted = 0";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new UserInfo { Id = 0, DisplayName = "" }));
             return list;
@@ -97,7 +97,7 @@ namespace OTS.Ticketing.Win.Tickets
         public async Task<List<StateInfo>> GetAllStates()
         {
             string query = "SELECT * FROM States WHERE isDeleted = 0";
-            var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
             var list = result.ToList();
             list.Insert(0, (new StateInfo { Id = 0, Name = "" }));
             return list;
@@ -107,7 +107,7 @@ namespace OTS.Ticketing.Win.Tickets
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
             string query = "SELECT * FROM PhoneNumbers WHERE IIF(@companyId = 0,0,companyId) = @companyId AND isDeleted = 0";
-            var result = await dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
             var list = result.ToList();
             list.Insert(0, (new PhoneNumberInfo { Id = 0, PhoneNumber = "" }));
             return list;
@@ -132,7 +132,7 @@ namespace OTS.Ticketing.Win.Tickets
             @companyId,
             @revision)";
 
-            return await dataAccess.ExecuteAsync(command1, parameters1);
+            return await _dataAccess.ExecuteAsync(command1, parameters1);
         }
         public async Task<List<TicketsView>> GetUnclosedTicketsOnSelectedCompanyId(long companyId)
         {
@@ -152,7 +152,7 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE isClosed = 0 and t.companyId = @companyId and t.isDeleted = 0
                                                  ORDER BY t.number,t.revision";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
         public async Task<TicketInfo> GetTicketByNumberAndRevision(long ticketNumber, long revision)
@@ -162,7 +162,7 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@revision", revision);
             string query = "select * from tickets where number = @ticketNumber and revision = @revision and isDeleted = 0";
 
-            var result = await dataAccess.QueryAsync<TicketInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
         }
         public async Task<int> UpdateTicket(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool IsIndexed, bool closed, long transferedTo)
@@ -190,7 +190,7 @@ namespace OTS.Ticketing.Win.Tickets
                            ,transferedTo = @transferedTo
                             WHERE number = @number and revision = @revision";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<UserInfo> GetUserById(long id)
         {
@@ -198,7 +198,7 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@id", id);
 
             string query = "SELECT * FROM Users WHERE Id = @id AND isDeleted = 0";
-            var result = await dataAccess.QueryAsync<UserInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }
         public async Task<TicketsView> GetTicketDetailsByByNumberAndRevision(long ticketNumber, long revision)
@@ -221,7 +221,7 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE  t.number = @ticketNumber and t.revision = @revision and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.FirstOrDefault();
         }
         public async Task<List<TicketsView>> GetOldUnClosedTicketsByUserIdOrCompanyId(
@@ -251,7 +251,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
         public async Task<List<TicketsView>> GetOldTicketsByUserIdOrCompanyId(
@@ -281,7 +281,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
         public async Task<List<TicketsView>> GetAllOldTicketsByUserIdOrCompanyId(
@@ -310,7 +310,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
             return result.ToList();
         }
         public async Task UpdateInsertTicket(TicketInfo ticket)
@@ -409,10 +409,16 @@ namespace OTS.Ticketing.Win.Tickets
                            ,transferedTo = @transferedTo
                             WHERE number = @number and revision = @revision";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
-
-
+        public async Task Delete(TicketInfo ticket)
+        {
+            var parameters = new DynamicParameters(ticket);
+            string command = @"UPDATE Tickets SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
+        }
 
 
 
@@ -438,7 +444,7 @@ namespace OTS.Ticketing.Win.Tickets
                                                  and t.isDeleted = 0
 												 ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
             return result.ToList();
         }
 

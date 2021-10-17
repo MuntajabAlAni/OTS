@@ -13,7 +13,7 @@ namespace OTS.Ticketing.Win.Employees
     {
         public DataAccess _dataAccess = new DataAccess();
 
-        public async Task<EmployeeInfo> GetEmployeeById(long id)
+        public async Task<EmployeeInfo> GetById(long id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -23,7 +23,7 @@ namespace OTS.Ticketing.Win.Employees
             var result = await _dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<int> UpdateEmployee(EmployeeInfo employeeInfo)
+        public async Task<int> Update(EmployeeInfo employeeInfo)
         {
             var parameters = new DynamicParameters(employeeInfo);
 
@@ -35,7 +35,7 @@ namespace OTS.Ticketing.Win.Employees
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<int> AddEmployee(EmployeeInfo employeeInfo)
+        public async Task<int> Add(EmployeeInfo employeeInfo)
         {
             var parameters = new DynamicParameters(employeeInfo);
 
@@ -46,7 +46,7 @@ namespace OTS.Ticketing.Win.Employees
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<List<EmployeeInfo>> GetAllEmployees(bool onlyStateOn)
+        public async Task<List<EmployeeInfo>> GetAll(bool onlyStateOn)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@onlyStateOn", onlyStateOn);
@@ -56,7 +56,7 @@ namespace OTS.Ticketing.Win.Employees
             list.Insert(0, (new EmployeeInfo { Id = 0, EmployeeName = "يرجى إختيار موظف" }));
             return list;
         }
-        public async Task<long> GetEmployeeIdByName(string name)
+        public async Task<long> GetIdByName(string name)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@name", name);
@@ -68,5 +68,13 @@ namespace OTS.Ticketing.Win.Employees
             return employeeInfo.Id;
         }
 
+        public async Task Delete(EmployeeInfo employee)
+        {
+            var parameters = new DynamicParameters(employee);
+            string command = @"UPDATE Employees SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
+        }
     }
 }

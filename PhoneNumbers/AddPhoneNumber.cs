@@ -45,7 +45,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 FillCompaniesComboBox();
                 if (_id != 0)
                 {
-                    PhoneNumberInfo phoneNumberInfo = await _phoneNumberRepository.GetPhoneNumberById(_id);
+                    PhoneNumberInfo phoneNumberInfo = await _phoneNumberRepository.GetById(_id);
                     TxtPhoneNumber.Text = phoneNumberInfo.PhoneNumber;
                     TxtCustomerName.Text = phoneNumberInfo.CustomerName;
                     CombCompanies.SelectedValue = phoneNumberInfo.CompanyId;
@@ -65,7 +65,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             {
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.DataSource = await _companyRepository.GetAllCompanies();
+                CombCompanies.DataSource = await _companyRepository.GetAll();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
@@ -87,19 +87,19 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 PhoneNumberInfo phoneNumber = GetFormData();
                 if (_id == 0)
                 {
-                    long addedId = await _phoneNumberRepository.AddPhoneNumber(phoneNumber);
+                    long addedId = await _phoneNumberRepository.Add(phoneNumber);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddPhoneNumber,
                         addedId, "إضافة رقم هاتف"));
                 }
                 else
                 {
-                    await _phoneNumberRepository.UpdatePhoneNumber(phoneNumber);
+                    await _phoneNumberRepository.Update(phoneNumber);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditPhoneNumber,
                          _id, "تعديل رقم هاتف"));
 
                 }
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
-                SystemConstants.SelectedPhoneNumberId = await _phoneNumberRepository.GetPhoneNumberIdByPhoneNumber(TxtPhoneNumber.Text);
+                SystemConstants.SelectedPhoneNumberId = await _phoneNumberRepository.GetIdBy(TxtPhoneNumber.Text);
                 this.Close();
             }
             catch (Exception ex)

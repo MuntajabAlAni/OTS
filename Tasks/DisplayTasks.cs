@@ -45,7 +45,7 @@ namespace OTS.Ticketing.Win.Tasks
         private async void GetDtgScheduleData()
         {
             PnlLoad.Visible = true;
-            DtgSchedule.DataSource = SystemConstants.ToDataTable(await _taskRepository.GetEmployeesTasks(_selectedDate, 8));
+            DtgSchedule.DataSource = SystemConstants.ToDataTable(await _taskRepository.Get(_selectedDate, 8));
             if (DtgSchedule.DataSource is null)
             {
                 MessageBox.Show("!! لا يوجد موظفين .. او كلهم معطلين");
@@ -94,7 +94,7 @@ namespace OTS.Ticketing.Win.Tasks
 
 
             DtgTasks.DataSource = await _taskRepository.
-                GetDayTasksByEmployeeNameAndDate(employeeName, selectedDate.ToString("yyyy-MM-dd"));
+                GetByEmployeeNameAndDate(employeeName, selectedDate.ToString("yyyy-MM-dd"));
             DtgTasks.Columns["Id"].Visible = false;
             DtgTasks.Columns["CompanyName"].HeaderText = "اسم الشركة";
             DtgTasks.Columns["TaskDetails"].HeaderText = "التفاصيل";
@@ -132,7 +132,7 @@ namespace OTS.Ticketing.Win.Tasks
             if (DateTime.TryParse(Regex.Replace(DtgSchedule.Columns[col].HeaderText, "[^0-9-]", ""), out DateTime selectedDate))
             {
                 string employeeName = DtgSchedule.Rows[row].Cells["EmployeeName"].Value.ToString();
-                long employeeId = await _employeeRepository.GetEmployeeIdByName(employeeName);
+                long employeeId = await _employeeRepository.GetIdByName(employeeName);
                 var addTask = new AddTask(0, selectedDate, employeeId);
                 addTask.ShowDialog();
                 if (addTask.DialogResult == DialogResult.Yes)
@@ -153,7 +153,7 @@ namespace OTS.Ticketing.Win.Tasks
                 string employeeName = DtgSchedule.Rows[row].Cells["EmployeeName"].Value.ToString();
                 if (DtgTasks.SelectedRows.Count < 1) return;
                 long selectedTaskId = Convert.ToInt64(DtgTasks.SelectedRows[0].Cells["Id"].Value);
-                long employeeId = await _employeeRepository.GetEmployeeIdByName(employeeName);
+                long employeeId = await _employeeRepository.GetIdByName(employeeName);
                 var addTask = new AddTask(selectedTaskId, selectedDate, employeeId);
                 addTask.ShowDialog();
                 if (addTask.DialogResult == DialogResult.Yes)
@@ -168,9 +168,9 @@ namespace OTS.Ticketing.Win.Tasks
         {
             if (DtgTasks.SelectedRows.Count < 1) return;
             long selectedTaskId = Convert.ToInt64(DtgTasks.SelectedRows[0].Cells["Id"].Value);
-            var selectedTask = await _taskRepository.GetTaskById(selectedTaskId);
+            var selectedTask = await _taskRepository.GetById(selectedTaskId);
             selectedTask.TaskState = !selectedTask.TaskState;
-            await _taskRepository.UpdateTask(selectedTask);
+            await _taskRepository.Update(selectedTask);
             GetDtgTasksData();
         }
 

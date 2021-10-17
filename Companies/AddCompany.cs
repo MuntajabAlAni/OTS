@@ -68,7 +68,7 @@ namespace OTS.Ticketing.Win.Companies
                 FillCombBranches();
                 if (_id != 0)
                 {
-                    _companyInfo = await _companyRepository.GetCompanyInfoById(_id);
+                    _companyInfo = await _companyRepository.GetInfoById(_id);
                     TxtName.Text = _companyInfo.Name;
                     TxtAddress.Text = _companyInfo.Address;
                     CombBranches.SelectedValue = _companyInfo.BranchId;
@@ -107,7 +107,7 @@ namespace OTS.Ticketing.Win.Companies
             {
                 CombBranches.DisplayMember = "Name";
                 CombBranches.ValueMember = "Id";
-                CombBranches.DataSource = await _branchRepository.GetAllBranches();
+                CombBranches.DataSource = await _branchRepository.GetAll();
             }
             catch (Exception ex)
             {
@@ -128,18 +128,18 @@ namespace OTS.Ticketing.Win.Companies
                 CompanyInfo company = GetFormData();
                 if (_id == 0)
                 {
-                    long addedId = await _companyRepository.AddCompany(company);
+                    long addedId = await _companyRepository.Add(company);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddCompany,
                         addedId, "إضافة شركة"));
                 }
                 else
                 {
-                    await _companyRepository.UpdateCompany(company);
+                    await _companyRepository.Update(company);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditCompany,
                          _id, "تعديل شركة"));
 
                 }
-                List<CompanyView> companies = await _companyRepository.GetCompanyByName(TxtName.Text);
+                List<CompanyView> companies = await _companyRepository.GetByName(TxtName.Text);
                 CompanyView selectedCompany = companies.FirstOrDefault();
                 SystemConstants.SelectedCompanyId = selectedCompany.Id;
                 this.Close();

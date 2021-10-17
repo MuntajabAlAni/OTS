@@ -13,7 +13,7 @@ namespace OTS.Ticketing.Win.Softwares
     {
         public DataAccess _dataAccess = new DataAccess();
 
-        public async Task<long> AddSoftware(SoftwareInfo software)
+        public async Task<long> Add(SoftwareInfo software)
         {
             var parameters = new DynamicParameters(software);
 
@@ -21,7 +21,7 @@ namespace OTS.Ticketing.Win.Softwares
 
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<SoftwareInfo> GetSoftwareById(long id)
+        public async Task<SoftwareInfo> GetById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -31,7 +31,7 @@ namespace OTS.Ticketing.Win.Softwares
             var result = await _dataAccess.QueryAsync<SoftwareInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task UpdateSoftware(SoftwareInfo software)
+        public async Task Update(SoftwareInfo software)
         {
             var parameters = new DynamicParameters(software);
             string command = @"UPDATE Softwares SET 
@@ -40,7 +40,7 @@ namespace OTS.Ticketing.Win.Softwares
 
              await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<SoftwareInfo> GetSoftwareByName(string name)
+        public async Task<SoftwareInfo> GetByName(string name)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@name", name);
@@ -49,11 +49,19 @@ namespace OTS.Ticketing.Win.Softwares
             var result = await _dataAccess.QueryAsync<SoftwareInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<List<SoftwareInfo>> GetAllSoftwares()
+        public async Task<List<SoftwareInfo>> GetAll()
         {
             string query = "SELECT * FROM softwares WHERE isDeleted = 0";
             var result = await _dataAccess.QueryAsync<SoftwareInfo>(query, new DynamicParameters());
             return result.ToList();
+        }
+        public async Task Delete(SoftwareInfo software)
+        {
+            var parameters = new DynamicParameters(software);
+            string command = @"UPDATE Softwares SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

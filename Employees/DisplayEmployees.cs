@@ -44,7 +44,7 @@ namespace OTS.Ticketing.Win.Tasks
         {
             try
             {
-                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _employeeRepository.GetAllEmployees(false));
+                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _employeeRepository.GetAll(false));
                 DtgEmployees.Columns["State"].HeaderText = "الحالة";
                 DtgEmployees.Columns["employeeName"].HeaderText = "اسم الموظف";
                 DtgEmployees.Columns["Remarks"].Visible = false;

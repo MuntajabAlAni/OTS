@@ -41,7 +41,7 @@ namespace OTS.Ticketing.Win.Companies
                     if (DtgCompanies.Rows.Count == 1)
                     {
                         long id = Convert.ToInt64(DtgCompanies.Rows[0].Cells["Id"].Value.ToString());
-                        CompanyInfo selectedCompany = await companyRepository.GetCompanyInfoById(id);
+                        CompanyInfo selectedCompany = await companyRepository.GetInfoById(id);
                         SystemConstants.SelectedCompanyId = selectedCompany.Id;
                         this.Close();
                     }
@@ -63,7 +63,7 @@ namespace OTS.Ticketing.Win.Companies
 
         private async Task GetDtgCompaniesData()
         {
-            DtgCompanies.DataSource = SystemConstants.ToDataTable(await companyRepository.GetCompanyByName(_companyName));
+            DtgCompanies.DataSource = SystemConstants.ToDataTable(await companyRepository.GetByName(_companyName));
             DtgCompanies.Columns["Id"].Visible = false;
             DtgCompanies.Columns["Name"].HeaderText = "اسم الشركة";
             DtgCompanies.Columns["Address"].HeaderText = "العنوان";
@@ -78,7 +78,7 @@ namespace OTS.Ticketing.Win.Companies
                 if (_search)
                 {
                     long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
-                    CompanyInfo selectedCompany = await companyRepository.GetCompanyInfoById(id);
+                    CompanyInfo selectedCompany = await companyRepository.GetInfoById(id);
                     SystemConstants.SelectedCompanyId = selectedCompany.Id;
                     this.Close();
                 }

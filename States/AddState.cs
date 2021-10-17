@@ -40,13 +40,13 @@ namespace OTS.Ticketing.Win.States
                 StateInfo state = GetFormData();
                 if (_id == 0)
                 {
-                    long addedId = await _stateRepository.AddState(state);
+                    long addedId = await _stateRepository.Add(state);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddState,
                         addedId, "إضافة حالة"));
                 }
                 else
                 {
-                    await _stateRepository.UpdateState(state);
+                    await _stateRepository.Update(state);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditState,
                          _id, "تعديل حالة"));
                 }
@@ -79,7 +79,7 @@ namespace OTS.Ticketing.Win.States
             {
                 if (_id != 0)
                 {
-                    StateInfo stateInfo = await _stateRepository.GetStateById(_id);
+                    StateInfo stateInfo = await _stateRepository.GetById(_id);
                     TxtName.Text = stateInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }

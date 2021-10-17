@@ -12,7 +12,7 @@ namespace OTS.Ticketing.Win.UsersRoles
     public class RoleRepository
     {
         public DataAccess _dataAccess = new DataAccess();
-        public async Task<List<RoleInfo>> GetRoles(long id)
+        public async Task<List<RoleInfo>> Get(long id)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -23,7 +23,7 @@ namespace OTS.Ticketing.Win.UsersRoles
             var result = await _dataAccess.QueryAsync<RoleInfo>(query, parameters);
             return result.ToList();
         }
-        public async Task UpdateRoles(long id, List<RoleInfo> roles)
+        public async Task Update(long id, List<RoleInfo> roles)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);

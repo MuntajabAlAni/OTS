@@ -39,7 +39,7 @@ namespace OTS.Ticketing.Win.Softwares
         }
         private async void GetDtgSoftwaresData()
         {
-            DtgSoftwares.DataSource = SystemConstants.ToDataTable(await softwareRepository.GetAllSoftwares());
+            DtgSoftwares.DataSource = SystemConstants.ToDataTable(await softwareRepository.GetAll());
             DtgSoftwares.Columns["Id"].HeaderText = "ت";
             DtgSoftwares.Columns["Name"].HeaderText = "البرنامج";
             DtgSoftwares.Columns["IsDeleted"].Visible = false;

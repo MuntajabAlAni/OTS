@@ -36,7 +36,7 @@ namespace OTS.Ticketing.Win.Softwares
             {
                 if (_id != 0)
                 {
-                    SoftwareInfo softwareInfo = await _softwareRepository.GetSoftwareById(_id);
+                    SoftwareInfo softwareInfo = await _softwareRepository.GetById(_id);
                     TxtName.Text = softwareInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
@@ -56,17 +56,17 @@ namespace OTS.Ticketing.Win.Softwares
                 SoftwareInfo software = GetFormData();
                 if (_id == 0)
                 {
-                    long addedId = await _softwareRepository.AddSoftware(software);
+                    long addedId = await _softwareRepository.Add(software);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddSoftware,
                         addedId, "إضافة برنامج"));
                 }
                 else
                 {
-                    await _softwareRepository.UpdateSoftware(software);
+                    await _softwareRepository.Update(software);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditSoftware,
                          _id, "تعديل برنامج"));
                 }
-                SoftwareInfo softwareInfo = await _softwareRepository.GetSoftwareByName(TxtName.Text);
+                SoftwareInfo softwareInfo = await _softwareRepository.GetByName(TxtName.Text);
                 SystemConstants.SelectedSoftware = softwareInfo.Id;
                 this.Close();
             }

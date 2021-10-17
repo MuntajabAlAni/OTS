@@ -58,7 +58,7 @@ namespace OTS.Ticketing.Win.Tickets
                 LblUser.Visible = true;
                     return;
                 }
-                var result = await _companyRepository.GetCompanyByName(_companyName);
+                var result = await _companyRepository.GetByName(_companyName);
                 CompanyView company = result.FirstOrDefault();
                 CombCompanies.SelectedValue = company.Id;
                 CombUser.SelectedValue = 0;

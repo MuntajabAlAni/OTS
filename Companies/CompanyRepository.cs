@@ -13,13 +13,13 @@ namespace OTS.Ticketing.Win.Companies
     public class CompanyRepository
     {
         public DataAccess _dataAccess = new DataAccess();
-        public async Task<long> AddCompany(CompanyInfo company)
+        public async Task<long> Add(CompanyInfo company)
         {
             var parameters = new DynamicParameters(company);
             string command = "INSERT INTO Companies (Name, Address, BranchId, Remarks) VALUES (@Name, @Address, @BranchId, @Remarks)";
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<CompanyInfo> GetCompanyInfoById(long id)
+        public async Task<CompanyInfo> GetInfoById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -28,7 +28,7 @@ namespace OTS.Ticketing.Win.Companies
             var result = await _dataAccess.QueryAsync<CompanyInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task UpdateCompany(CompanyInfo company)
+        public async Task Update(CompanyInfo company)
         {
             var parameters = new DynamicParameters(company);
 
@@ -42,7 +42,7 @@ namespace OTS.Ticketing.Win.Companies
 
             await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<List<CompanyView>> GetCompanyByName(string companyName)
+        public async Task<List<CompanyView>> GetByName(string companyName)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@companyName", companyName);
@@ -56,11 +56,19 @@ namespace OTS.Ticketing.Win.Companies
             var result = await _dataAccess.QueryAsync<CompanyView>(query, parameters);
             return result.ToList();
         }
-        public async Task<List<CompanyInfo>> GetAllCompanies()
+        public async Task<List<CompanyInfo>> GetAll()
         {
             string query = "SELECT * FROM Companies where isDeleted = 0";
             var result = await _dataAccess.QueryAsync<CompanyInfo>(query, new DynamicParameters());
             return result.ToList();
+        }
+        public async Task Delete(CompanyInfo company)
+        {
+            var parameters = new DynamicParameters(company);
+            string command = @"UPDATE Companies SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

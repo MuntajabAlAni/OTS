@@ -39,7 +39,7 @@ namespace OTS.Ticketing.Win.Tasks
             FillEmployeesComboBox();
             if (_id != 0)
             {
-                var task = await _taskRepository.GetTaskById(_id);
+                var task = await _taskRepository.GetById(_id);
                 if (!(task is null))
                 {
                     CombCompanies.SelectedValue = task.CompanyId;
@@ -58,7 +58,7 @@ namespace OTS.Ticketing.Win.Tasks
             {
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.DataSource = await _companyRepository.GetAllCompanies();
+                CombCompanies.DataSource = await _companyRepository.GetAll();
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace OTS.Ticketing.Win.Tasks
             {
                 CombEmployees.DisplayMember = "EmployeeName";
                 CombEmployees.ValueMember = "Id";
-                CombEmployees.DataSource = await _employeeRepository.GetAllEmployees(true);
+                CombEmployees.DataSource = await _employeeRepository.GetAll(true);
                 CombEmployees.SelectedValue = _employeeId;
             }
             catch (Exception ex)
@@ -111,7 +111,7 @@ namespace OTS.Ticketing.Win.Tasks
                     TaskState = false
                 };
 
-                await _taskRepository.UpdateTask(taskInfo);
+                await _taskRepository.Update(taskInfo);
                 this.DialogResult = DialogResult.Yes;
                 return;
             }
@@ -129,7 +129,7 @@ namespace OTS.Ticketing.Win.Tasks
                 TaskState = false
             };
 
-            await _taskRepository.AddTask(taskInfo);
+            await _taskRepository.Add(taskInfo);
             this.DialogResult = DialogResult.Yes;
         }
 

@@ -23,7 +23,7 @@ namespace OTS.Ticketing.Win.UsersRoles
 
         private async void DisplayRoles_Load(object sender, EventArgs e)
         {
-            List<RoleInfo> roles = await _roleRepository.GetRoles(_userId);
+            List<RoleInfo> roles = await _roleRepository.Get(_userId);
 
             foreach (RoleInfo role in roles)
             {
@@ -50,7 +50,7 @@ namespace OTS.Ticketing.Win.UsersRoles
                            (control as CheckBox).Checked)
                     roles.Add(new RoleInfo { RoleId = Convert.ToInt64(control.Tag) });
             }
-            await _roleRepository.UpdateRoles(_userId, roles);
+            await _roleRepository.Update(_userId, roles);
             this.Close();
         }
 

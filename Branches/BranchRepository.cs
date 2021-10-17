@@ -13,13 +13,13 @@ namespace OTS.Ticketing.Win.Branches
     {
         public DataAccess _dataAccess = new DataAccess();
 
-        public async Task<long> AddBranch(BranchInfo branch)
+        public async Task<long> Add(BranchInfo branch)
         {
             var parameters = new DynamicParameters(branch);
             string command = "INSERT INTO Branches (Name) VALUES (@name)";
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<BranchInfo> GetBranchById(long id)
+        public async Task<BranchInfo> GetById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
@@ -30,7 +30,7 @@ namespace OTS.Ticketing.Win.Branches
             return result.FirstOrDefault();
 
         }
-        public async Task UpdateBranch(BranchInfo branch)
+        public async Task Update(BranchInfo branch)
         {
             var parameters = new DynamicParameters(branch);
             string command = @"UPDATE Branches SET 
@@ -38,13 +38,20 @@ namespace OTS.Ticketing.Win.Branches
                                WHERE Id = @id";
             await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<List<BranchInfo>> GetAllBranches()
+        public async Task<List<BranchInfo>> GetAll()
         {
             string query = "SELECT * FROM Branches Where isDeleted = 0";
             var result = await _dataAccess.QueryAsync<BranchInfo>(query, new DynamicParameters());
             var list = result.ToList();
             return list;
         }
-
+        public async Task Delete(BranchInfo branch)
+        {
+            var parameters = new DynamicParameters(branch);
+            string command = @"UPDATE Branches SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
+        }
     }
 }

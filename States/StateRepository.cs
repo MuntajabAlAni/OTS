@@ -11,26 +11,26 @@ namespace OTS.Ticketing.Win.States
 {
     public class StateRepository
     {
-        public DataAccess dataAccess = new DataAccess();
+        public DataAccess _dataAccess = new DataAccess();
 
-        public async Task<long> AddState(StateInfo state)
+        public async Task<long> Add(StateInfo state)
         {
             var parameters = new DynamicParameters(state);
 
             string command = "INSERT INTO States (name) VALUES (@name)";
 
-            return await dataAccess.ExecuteScalarAsync<long>(command, parameters);
+            return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<StateInfo> GetStateById(long id)
+        public async Task<StateInfo> GetById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
             string query = "SELECT * FROM States WHERE Id = @id";
-            var result = await dataAccess.QueryAsync<StateInfo>(query, parameters);
+            var result = await _dataAccess.QueryAsync<StateInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task UpdateState(StateInfo state)
+        public async Task Update(StateInfo state)
         {
             var parameters = new DynamicParameters(state);
 
@@ -38,13 +38,21 @@ namespace OTS.Ticketing.Win.States
                                 Name = @name
                                WHERE Id = @id";
 
-            await dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<List<StateInfo>> GetAllStates()
+        public async Task<List<StateInfo>> GetAll()
         {
             string query = "SELECT * FROM states WHERE isDeleted = 0";
-            var result = await dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<StateInfo>(query, new DynamicParameters());
             return result.ToList();
+        }
+        public async Task Delete(StateInfo state)
+        {
+            var parameters = new DynamicParameters(state);
+            string command = @"UPDATE States SET 
+                                isDeleted = 1
+                               WHERE Id = @id";
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
     }
 }

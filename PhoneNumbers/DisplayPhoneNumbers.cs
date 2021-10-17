@@ -40,7 +40,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     if (DtgPhoneNumbers.Rows.Count == 1)
                     {
                         long id = Convert.ToInt64(DtgPhoneNumbers.Rows[0].Cells["Id"].Value.ToString());
-                        PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
+                        PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetById(id);
                         SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
                         SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
                         this.Close();
@@ -63,7 +63,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         }
         private async Task GetDtgPhoneNumbersData()
         {
-            DtgPhoneNumbers.DataSource = SystemConstants.ToDataTable(await phoneNumberRepository.GetPhoneNumbersBySearch(_phoneNumber));
+            DtgPhoneNumbers.DataSource = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
             DtgPhoneNumbers.Columns["Id"].Visible = false;
             DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
             DtgPhoneNumbers.Columns["CustomerName"].HeaderText = "اسم الزبون";
@@ -78,7 +78,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 {
 
                     long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
-                    PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
+                    PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetById(id);
                     SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
                     SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
                     this.Close();
