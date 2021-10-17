@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OTS.Ticketing.Win.UsersRoles;
 
 namespace OTS.Ticketing.Win
 {
@@ -51,10 +52,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 BtnHome.PerformClick();
-                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
-                if (SystemConstants.loggedInUser.Id == 1 |
-                    UserInfo.UserName == "Mohammed" |
-                    UserInfo.UserName == "Muntajab")
+                if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                 {
                     BtnAddTicket.Visible = true;
                     BtnCompanies.Visible = true;
@@ -68,14 +66,14 @@ namespace OTS.Ticketing.Win
                     BtnDisplayEmployees.Visible = true;
                     return;
                 }
-                if (UserInfo.UserName.ToLower() == "noor")
+                if (SystemConstants.userRoles.Contains(((long)RoleType.CallReceiver)))
                 {
                     BtnTickets.Visible = false;
                     BtnAddTicket.Visible = true;
                     BtnAddTicket.Location = new Point(0, 162);
                     return;
                 }
-                if (UserInfo.UserName.ToLower() == "ali")
+                if (SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
                     BtnOldTickets.Visible = true;
                     BtnActivityLog.Visible = true;
@@ -192,10 +190,6 @@ namespace OTS.Ticketing.Win
             {
                 await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.AddTicket));
                 var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
-                if (UserInfo.UserName != "admin" & UserInfo.UserName != "Noor")
-                {
-                    return;
-                }
                 ApplingFormOnContainer(new AddTicket());
             }
             catch (Exception ex)

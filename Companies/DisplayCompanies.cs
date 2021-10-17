@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,10 @@ namespace OTS.Ticketing.Win.Companies
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddCompany)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAdd.Visible = false;
+
                 await GetDtgCompaniesData();
                 if (_search)
                 {
@@ -79,6 +84,9 @@ namespace OTS.Ticketing.Win.Companies
                 }
                 else
                 {
+                    if (!SystemConstants.userRoles.Contains(((long)RoleType.EditCompany)) &
+                        !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                        return;
                     long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
                     AddCompany addCompany = new AddCompany(id);
                     addCompany.ShowDialog();

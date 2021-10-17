@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,9 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddPhoneNumber)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAdd.Visible = false;
                 await GetDtgPhoneNumbersData();
                 if (_search)
                 {
@@ -72,6 +76,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             {
                 if (_search)
                 {
+
                     long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
                     PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetPhoneNumberById(id);
                     SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
@@ -80,6 +85,9 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 }
                 else
                 {
+                    if (!SystemConstants.userRoles.Contains(((long)RoleType.EditPhoneNumber)) &
+                        !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                        return;
                     long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
                     AddPhoneNumber addPhoneNumber = new AddPhoneNumber(id);
                     addPhoneNumber.ShowDialog();

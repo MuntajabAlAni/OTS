@@ -18,6 +18,7 @@ using OTS.Ticketing.Win.Utils;
 using System.Resources;
 using System.Reflection;
 using OTS.Ticketing.Win.ActivityLog;
+using OTS.Ticketing.Win.UsersRoles;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -82,8 +83,19 @@ namespace OTS.Ticketing.Win.MainForms
                     }
                 }
                 SystemConstants.Initialize();
+
                 SystemConstants.loggedInUser = result;
                 SystemConstants.loggedInUserSessionId = Guid.NewGuid();
+
+                List<long> roles = new List<long>();
+                var userRolesInfo = await _mainRepository.GetUserRoles(result.Id);
+
+                foreach (RoleInfo role in userRolesInfo)
+                {
+                    roles.Add(role.RoleId);
+                }
+
+                SystemConstants.userRoles = roles;
 
                 await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignIn,
                     SystemConstants.loggedInUser.Id, "تسجيل دخول مستخدم"));

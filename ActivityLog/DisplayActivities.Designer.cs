@@ -139,7 +139,7 @@ namespace OTS.Ticketing.Win.ActivityLog
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
             this.BtnExit.TabIndex = 32;
-            this.BtnExit.Text = "تراجع";
+            this.BtnExit.Text = "رجوع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
@@ -156,8 +156,8 @@ namespace OTS.Ticketing.Win.ActivityLog
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.DtgActivityLog.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.DtgActivityLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.DtgActivityLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.DtgActivityLog.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgActivityLog.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;

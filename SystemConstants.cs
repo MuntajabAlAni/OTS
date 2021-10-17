@@ -1,4 +1,5 @@
 ﻿using OTS.Ticketing.Win.Users;
+using OTS.Ticketing.Win.UsersRoles;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,8 @@ namespace OTS.Ticketing.Win
         public static long SelectedUser = 0;
         public static string Database;
         public static string ServerIp;
-        //public static bool TechnicalSupportTask = false;
+        public static List<long> userRoles = null;
+
 
         public static DataTable ToDataTable<T>(IList<T> data)
         {
@@ -53,6 +55,7 @@ namespace OTS.Ticketing.Win
             SelectedCompanyId = 0;
             SelectedSoftware = 0;
             SelectedUser = 0;
+            userRoles = null;
         }
 
         public static string SHA512(string plaintext)
@@ -97,9 +100,6 @@ namespace OTS.Ticketing.Win
             else if (!Control.IsDisposed)
             {
                 Action();
-            }
-            else
-            {
             }
         }
     }

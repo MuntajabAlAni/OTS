@@ -38,16 +38,18 @@ namespace OTS.Ticketing.Win.Tickets
             CombTransferedTo.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
-        private async void DisplayTickets_Load(object sender, EventArgs e)
+        private void DisplayTickets_Load(object sender, EventArgs e)
         {
             try
             {
-                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
-                if (UserInfo.UserName == "admin")
-                {
+                if (SystemConstants.userRoles.Contains(((long)RoleType.AddState)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                     BtnAddState.Visible = true;
+
+                if (SystemConstants.userRoles.Contains(((long)RoleType.EditState)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                     BtnEditState.Visible = true;
-                }
+
                 GetDtgTicketsData();
                 FillUsersComboBox();
                 FillStatesComboBox();

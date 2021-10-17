@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.ActivityLog;
+using OTS.Ticketing.Win.UsersRoles;
 
 namespace OTS.Ticketing.Win.Users
 {
@@ -39,6 +40,7 @@ namespace OTS.Ticketing.Win.Users
                     {
                         TxtUserName.Enabled = false;
                         CbState.Enabled = false;
+                        BtnRoles.Visible = false;
                     }
                     TxtDisplayName.Text = UserInfo.DisplayName;
                     TxtUserName.Text = UserInfo.UserName;
@@ -124,6 +126,12 @@ namespace OTS.Ticketing.Win.Users
             {
                 this.Close();
             }
+        }
+
+        private void BtnRoles_Click(object sender, EventArgs e)
+        {
+            DisplayRoles displayRoles = new DisplayRoles(_id);
+            displayRoles.ShowDialog();
         }
     }
 }

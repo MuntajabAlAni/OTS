@@ -29,8 +29,8 @@ namespace OTS.Ticketing.Win.Companies
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayCompanies));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayCompanies));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -42,7 +42,6 @@ namespace OTS.Ticketing.Win.Companies
             // 
             // DtgCompanies
             // 
-            resources.ApplyResources(this.DtgCompanies, "DtgCompanies");
             this.DtgCompanies.AllowUserToAddRows = false;
             this.DtgCompanies.AllowUserToDeleteRows = false;
             this.DtgCompanies.AllowUserToOrderColumns = true;
@@ -54,6 +53,7 @@ namespace OTS.Ticketing.Win.Companies
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             this.DtgCompanies.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            resources.ApplyResources(this.DtgCompanies, "DtgCompanies");
             this.DtgCompanies.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DtgCompanies.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.DtgCompanies.BackgroundColor = System.Drawing.Color.WhiteSmoke;

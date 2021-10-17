@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using OTS.Ticketing.Win.DatabaseConnection;
+using OTS.Ticketing.Win.UsersRoles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace OTS.Ticketing.Win.MainForms
 {
     public class MainRepository
     {
-        public DataAccess dataAccess = new DataAccess();
+        public DataAccess _dataAccess = new DataAccess();
         public async Task InitializeUserSession(SessionInfo session)
         {
             var parameters = new DynamicParameters(session);
@@ -24,7 +25,7 @@ namespace OTS.Ticketing.Win.MainForms
                                 values (@userId, @sessionId, @number, @isOnline);
                                END";
 
-            await dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
 
         }
         public async Task UpdateIsOnlineByUserId(SessionInfo session)
@@ -33,7 +34,7 @@ namespace OTS.Ticketing.Win.MainForms
 
             string command = "UPDATE Sessions SET isOnline = @isOnline where userId = @userId";
 
-            await dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<int> BackupDatabase(string path)
         {
@@ -42,7 +43,7 @@ namespace OTS.Ticketing.Win.MainForms
 
             string command = " BACKUP DATABASE OTS_Ticketing_Software TO DISK= @path ";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<int> RestoreDatabase(string path)
         {
@@ -54,7 +55,7 @@ namespace OTS.Ticketing.Win.MainForms
                                 RESTORE DATABASE OTS_Ticketing_Software FROM DISK= @path with REPLACE, RECOVERY, STATS = 10;
                                 ALTER DATABASE OTS_Ticketing_Software SET MULTI_USER;";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<int> UpdateSessionByUserId(SessionInfo session)
         {
@@ -66,7 +67,7 @@ namespace OTS.Ticketing.Win.MainForms
 			   	                 lastUpdateDate = SYSDATETIME()
 					             WHERE userId = @userId and sessionId = @sessionId;";
 
-            return await dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task<List<SessionView>> GetSessions()
         {
@@ -75,14 +76,24 @@ namespace OTS.Ticketing.Win.MainForms
                              join users u on u.id = s.userId
                              left join events e on e.id = s.lastEvent
                              Where u.userName not in ('admin','Noor')";
-            var result = await dataAccess.QueryAsync<SessionView>(query);
+            var result = await _dataAccess.QueryAsync<SessionView>(query);
             return result.ToList();
         }
         public async Task<SettingsInfo> GetSettings()
         {
             string query = @"SELECT * FROM Settings";
-            var result = await dataAccess.QueryAsync<SettingsInfo>(query);
+            var result = await _dataAccess.QueryAsync<SettingsInfo>(query);
             return result.FirstOrDefault();
+        }
+        public async Task<List<RoleInfo>> GetUserRoles(long id)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@id", id);
+
+            string query = "SELECT UserId, RoleId FROM UsersRoles WHERE UserId = @id";
+            var result = await _dataAccess.QueryAsync<RoleInfo>(query, parameters);
+
+            return result.ToList();
         }
     }
 }

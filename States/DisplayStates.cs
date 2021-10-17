@@ -1,4 +1,5 @@
 ﻿using NLog;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,9 @@ namespace OTS.Ticketing.Win.States
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddState)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAdd.Visible = false;
                 GetDtgStatesData();
             }
             catch (Exception ex)
@@ -46,6 +50,9 @@ namespace OTS.Ticketing.Win.States
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditState)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    return;
                 long id = Convert.ToInt64(DtgStates.SelectedRows[0].Cells["Id"].Value.ToString());
                 AddState addState = new AddState(id);
                 addState.ShowDialog();

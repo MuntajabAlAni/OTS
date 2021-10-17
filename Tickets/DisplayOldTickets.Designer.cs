@@ -147,7 +147,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
             this.BtnExit.TabIndex = 10;
-            this.BtnExit.Text = "تراجع";
+            this.BtnExit.Text = "رجوع";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 

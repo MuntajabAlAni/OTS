@@ -1,4 +1,5 @@
 ﻿using OTS.Ticketing.Win.Employees;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,13 @@ namespace OTS.Ticketing.Win.Tasks
 
         private void Schedule_Load(object sender, EventArgs e)
         {
+            if (!SystemConstants.userRoles.Contains(((long)RoleType.AddTask)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                BtnAddTask.Visible = false;
+            if (!SystemConstants.userRoles.Contains(((long)RoleType.EditTask)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                BtnEditTask.Visible = false;
+
             GetDtgScheduleData();
         }
 

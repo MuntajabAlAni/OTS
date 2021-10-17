@@ -129,7 +129,7 @@ namespace OTS.Ticketing.Win.States
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
             this.BtnExit.TabIndex = 2;
-            this.BtnExit.Text = "تراجع";
+            this.BtnExit.Text = "إلغاء الأمر";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 

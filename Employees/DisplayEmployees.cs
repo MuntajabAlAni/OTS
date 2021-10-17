@@ -1,5 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Employees;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,6 +28,9 @@ namespace OTS.Ticketing.Win.Tasks
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddEmployee)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAdd.Visible = false;
                 GetDtgEmployeesData();
             }
             catch (Exception ex)
@@ -77,6 +81,9 @@ namespace OTS.Ticketing.Win.Tasks
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditEmployee)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    return;
                 long id = Convert.ToInt64(DtgEmployees.SelectedRows[0].Cells["Id"].Value.ToString());
                 AddEmployee editEmployee = new AddEmployee(id);
                 editEmployee.ShowDialog();

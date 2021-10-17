@@ -57,6 +57,13 @@ namespace OTS.Ticketing.Win.Companies
 
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddBranch)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAddBranch.Visible = false;
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditBranch)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnEditBranch.Visible = false;
+
                 TxtName.Text = _name;
                 FillCombBranches();
                 if (_id != 0)

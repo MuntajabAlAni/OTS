@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using NLog;
 using OTS.Ticketing.Win.Companies;
+using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
@@ -41,17 +42,22 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditTicket)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnEdit.Visible = false;
+
                 DtpToDate.Value = DateTime.Today;
                 FillUsersComboBox();
                 FillCompaniesComboBox(SystemConstants.loggedInUser.Id);
-                //if (SystemConstants.loggedInUserId == 1)
-                //{
-                BtnEdit.Visible = true;
+                if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
+                {
+                    BtnEdit.Visible = true;
                 BtnExcel.Visible = true;
                 CombUser.Visible = true;
                 LblUser.Visible = true;
-                //    return;
-                //}
+                    return;
+                }
                 var result = await _companyRepository.GetCompanyByName(_companyName);
                 CompanyView company = result.FirstOrDefault();
                 CombCompanies.SelectedValue = company.Id;
@@ -119,7 +125,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
                 var list = await _ticketRepository.GetCompaniesByUserId(userId);
-                if (SystemConstants.loggedInUser.Id == 1)
+                if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                 {
                     list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
                 }

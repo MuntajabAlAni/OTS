@@ -35,6 +35,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtDisplayName = new System.Windows.Forms.TextBox();
             this.PnlContainer = new System.Windows.Forms.Panel();
             this.CbState = new System.Windows.Forms.CheckBox();
+            this.BtnRoles = new System.Windows.Forms.Button();
             this.BtnExit = new System.Windows.Forms.Button();
             this.LblIp = new System.Windows.Forms.Label();
             this.LblPassword = new System.Windows.Forms.Label();
@@ -90,6 +91,7 @@ namespace OTS.Ticketing.Win.Users
             this.PnlContainer.Controls.Add(this.CbState);
             this.PnlContainer.Controls.Add(this.TxtRemarks);
             this.PnlContainer.Controls.Add(this.LblRemarks);
+            this.PnlContainer.Controls.Add(this.BtnRoles);
             this.PnlContainer.Controls.Add(this.BtnExit);
             this.PnlContainer.Controls.Add(this.LblIp);
             this.PnlContainer.Controls.Add(this.LblPassword);
@@ -118,6 +120,21 @@ namespace OTS.Ticketing.Win.Users
             this.CbState.Text = "فعال";
             this.CbState.UseVisualStyleBackColor = true;
             // 
+            // BtnRoles
+            // 
+            this.BtnRoles.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.BtnRoles.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnRoles.FlatAppearance.BorderSize = 2;
+            this.BtnRoles.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRoles.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnRoles.Location = new System.Drawing.Point(140, 306);
+            this.BtnRoles.Name = "BtnRoles";
+            this.BtnRoles.Size = new System.Drawing.Size(120, 45);
+            this.BtnRoles.TabIndex = 7;
+            this.BtnRoles.Text = "الصلاحيات";
+            this.BtnRoles.UseVisualStyleBackColor = false;
+            this.BtnRoles.Click += new System.EventHandler(this.BtnRoles_Click);
+            // 
             // BtnExit
             // 
             this.BtnExit.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -129,7 +146,7 @@ namespace OTS.Ticketing.Win.Users
             this.BtnExit.Name = "BtnExit";
             this.BtnExit.Size = new System.Drawing.Size(120, 45);
             this.BtnExit.TabIndex = 7;
-            this.BtnExit.Text = "تراجع";
+            this.BtnExit.Text = "إلغاء الأمر";
             this.BtnExit.UseVisualStyleBackColor = false;
             this.BtnExit.Click += new System.EventHandler(this.BtnExit_Click);
             // 
@@ -238,5 +255,6 @@ namespace OTS.Ticketing.Win.Users
         private System.Windows.Forms.TextBox TxtIp;
         private System.Windows.Forms.TextBox TxtPassword;
         private System.Windows.Forms.TextBox TxtUserName;
+        private System.Windows.Forms.Button BtnRoles;
     }
 }

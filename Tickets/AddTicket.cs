@@ -35,6 +35,36 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddCompany)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAddCompany.Visible = false;
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditCompany)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnEditCompany.Visible = false;
+
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddPhoneNumber)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAddPhoneNumber.Visible = false;
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditPhoneNumber)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnEditPhoneNumber.Visible = false;
+
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddUser)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAddUser.Visible = false;
+
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditUser)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnEditUser.Visible = false;
+
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.AddSoftware)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnAddSoftware.Visible = false;
+
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditSoftware)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnEditSoftware.Visible = false;
+
                 ToolTip.SetToolTip(BtnAddCompany, "إضافة شركة");
                 ToolTip.SetToolTip(BtnEditCompany, "تعديل شركة");
                 ToolTip.SetToolTip(BtnSearchCompany, "البحث عن شركة");
@@ -45,14 +75,7 @@ namespace OTS.Ticketing.Win.Tickets
                 ToolTip.SetToolTip(BtnEditUser, "تعديل مستخدم");
                 ToolTip.SetToolTip(BtnAddSoftware, "إضافة برنامج");
                 ToolTip.SetToolTip(BtnEditSoftware, "تعديل برنامج");
-                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
-                if (UserInfo.UserName != "admin")
-                {
-                    BtnAddUser.Visible = false;
-                    BtnEditUser.Visible = false;
-                    BtnAddSoftware.Visible = false;
-                    BtnEditSoftware.Visible = false;
-                }
+
                 LblNumber.Text = await _ticketRepository.GetLastTicketNumber();
                 LblRevision.Text = "0";
                 FillCompaniesComboBox();
@@ -123,7 +146,6 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                //companyId = CombCompanies.SelectedValue != null ? Convert.ToInt64(CombCompanies.SelectedValue) : 0;
                 var result = await _ticketRepository.GetPhoneNumbersOnSelectedCompanyId(Convert.ToInt64(CombCompanies.SelectedValue));
                 if (result.Count != 0)
                 {

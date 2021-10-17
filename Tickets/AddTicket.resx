@@ -454,7 +454,7 @@
     <value>5</value>
   </data>
   <data name="BtnExit.Text" xml:space="preserve">
-    <value>تراجع</value>
+    <value>رجوع</value>
   </data>
   <data name="&gt;&gt;BtnExit.Name" xml:space="preserve">
     <value>BtnExit</value>
