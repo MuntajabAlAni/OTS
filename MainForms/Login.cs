@@ -110,6 +110,13 @@ namespace OTS.Ticketing.Win.MainForms
 
                 await _mainRepository.InitializeUserSession(session);
 
+                if (CbRememberMe.Checked)
+                {
+                    Properties.Settings.Default.Username = TxtUserName.Text;
+                    Properties.Settings.Default.Number = TxtNumber.Text;
+                    Properties.Settings.Default.Save();
+                }
+
                 Main main = new Main();
                 this.Hide();
                 main.ShowDialog();
@@ -204,6 +211,26 @@ namespace OTS.Ticketing.Win.MainForms
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void CbRememberMe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!CbRememberMe.Checked)
+            {
+                Properties.Settings.Default.Reset();
+            }
+        }
+
+        private void Login_Load(object sender, EventArgs e)
+        {
+            TxtUserName.Text = Properties.Settings.Default.Username;
+            TxtNumber.Text = Properties.Settings.Default.Number;
+
+            if (!string.IsNullOrWhiteSpace(TxtUserName.Text) &
+            !string.IsNullOrWhiteSpace(TxtPassword.Text))
+            {
+                CbRememberMe.Checked = true;
             }
         }
     }
