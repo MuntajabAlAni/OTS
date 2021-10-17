@@ -20,6 +20,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         private readonly PhoneNumberRepository _phoneNumberRepository;
         private readonly ActivityLogRepository _activityLogRepository;
         private readonly CompanyRepository _companyRepository;
+        private PhoneNumberInfo _phoneNumberInfo;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly long _id;
@@ -45,10 +46,10 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 FillCompaniesComboBox();
                 if (_id != 0)
                 {
-                    PhoneNumberInfo phoneNumberInfo = await _phoneNumberRepository.GetById(_id);
-                    TxtPhoneNumber.Text = phoneNumberInfo.PhoneNumber;
-                    TxtCustomerName.Text = phoneNumberInfo.CustomerName;
-                    CombCompanies.SelectedValue = phoneNumberInfo.CompanyId;
+                    _phoneNumberInfo = await _phoneNumberRepository.GetById(_id);
+                    TxtPhoneNumber.Text = _phoneNumberInfo.PhoneNumber;
+                    TxtCustomerName.Text = _phoneNumberInfo.CustomerName;
+                    CombCompanies.SelectedValue = _phoneNumberInfo.CompanyId;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -156,11 +157,24 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
-        private void AddPhoneNumber_KeyDown(object sender, KeyEventArgs e)
+        private async void AddPhoneNumber_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeletePhoneNumber))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _phoneNumberRepository.Delete(_phoneNumberInfo);
+                        this.Close();
+                    }
+                }
             }
         }
         private void TxtPhoneNumber_Leave(object sender, EventArgs e)

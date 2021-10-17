@@ -317,6 +317,7 @@ namespace OTS.Ticketing.Win.Tasks
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddTask";
             this.Load += new System.EventHandler(this.AddTask_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddTask_KeyDown);
             this.PnlContainer.ResumeLayout(false);
             this.PnlContainer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditEmployee)).EndInit();

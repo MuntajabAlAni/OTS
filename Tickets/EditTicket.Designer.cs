@@ -544,6 +544,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "EditTicket";
             this.Load += new System.EventHandler(this.EditTicket_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EditTicket_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

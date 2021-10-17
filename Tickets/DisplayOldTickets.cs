@@ -53,9 +53,9 @@ namespace OTS.Ticketing.Win.Tickets
                     SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
                     BtnEdit.Visible = true;
-                BtnExcel.Visible = true;
-                CombUser.Visible = true;
-                LblUser.Visible = true;
+                    BtnExcel.Visible = true;
+                    CombUser.Visible = true;
+                    LblUser.Visible = true;
                     return;
                 }
                 var result = await _companyRepository.GetByName(_companyName);
@@ -205,6 +205,7 @@ namespace OTS.Ticketing.Win.Tickets
             long selectedRevision = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["مراجعة البطاقة"].Value.ToString());
             EditTicket editTicket = new EditTicket(selectedNumber, selectedRevision);
             editTicket.ShowDialog();
+            BtnUpdate.PerformClick();
         }
 
         private void CombUser_SelectedValueChanged(object sender, EventArgs e)

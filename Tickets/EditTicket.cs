@@ -20,6 +20,7 @@ namespace OTS.Ticketing.Win.Tickets
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly TicketRepository _ticketRepository;
         private readonly ActivityLogRepository _activityLogRepository;
+        private TicketInfo _ticketInfo;
         private readonly long _number;
         private readonly long _revision;
         public EditTicket(long number, long revision)
@@ -42,27 +43,27 @@ namespace OTS.Ticketing.Win.Tickets
             FillTransferedToComboBox();
             FillStatesComboBox();
 
-            TicketInfo ticketInfo = await _ticketRepository.GetTicketByNumberAndRevision(_number, _revision);
-            LblNumber.Text = ticketInfo.Number.ToString();
-            LblRevision.Text = ticketInfo.Revision.ToString();
-            SystemConstants.SelectedCompanyId = ticketInfo.CompanyId;
-            CompanyInfo companyInfo = await _ticketRepository.GetCompanyById(ticketInfo.CompanyId);
+            _ticketInfo = await _ticketRepository.GetTicketByNumberAndRevision(_number, _revision);
+            LblNumber.Text = _ticketInfo.Number.ToString();
+            LblRevision.Text = _ticketInfo.Revision.ToString();
+            SystemConstants.SelectedCompanyId = _ticketInfo.CompanyId;
+            CompanyInfo companyInfo = await _ticketRepository.GetCompanyById(_ticketInfo.CompanyId);
             LblCompanyName.Text = companyInfo.Name;
-            SystemConstants.SelectedPhoneNumberId = ticketInfo.PhoneNumberId;
-            SystemConstants.SelectedSoftware = ticketInfo.SoftwareId;
-            SystemConstants.SelectedUser = ticketInfo.UserId;
-            LblOpenDate.Text = ticketInfo.OpenDate.ToString();
-            TxtProblem.Text = ticketInfo.Problem != null ? ticketInfo.Problem.ToString() : "";
-            CombStates.SelectedValue = ticketInfo.StateId;
-            CombTransferedTo.SelectedValue = ticketInfo.TransferedTo;
-            TxtRemarks.Text = ticketInfo.Remarks != null ? ticketInfo.Remarks.ToString() : "";
-            ToggleClosed.Checked = ticketInfo.IsClosed;
-            ToggleIsIndexed.Checked = ticketInfo.IsIndexed;
-            ToggleRemotely.Checked = ticketInfo.Remotely;
+            SystemConstants.SelectedPhoneNumberId = _ticketInfo.PhoneNumberId;
+            SystemConstants.SelectedSoftware = _ticketInfo.SoftwareId;
+            SystemConstants.SelectedUser = _ticketInfo.UserId;
+            LblOpenDate.Text = _ticketInfo.OpenDate.ToString();
+            TxtProblem.Text = _ticketInfo.Problem != null ? _ticketInfo.Problem.ToString() : "";
+            CombStates.SelectedValue = _ticketInfo.StateId;
+            CombTransferedTo.SelectedValue = _ticketInfo.TransferedTo;
+            TxtRemarks.Text = _ticketInfo.Remarks != null ? _ticketInfo.Remarks.ToString() : "";
+            ToggleClosed.Checked = _ticketInfo.IsClosed;
+            ToggleIsIndexed.Checked = _ticketInfo.IsIndexed;
+            ToggleRemotely.Checked = _ticketInfo.Remotely;
 
             FillSoftwaresComboBox();
             FillUsersComboBox();
-            FillPhoneNumbersComboBox(ticketInfo.CompanyId);
+            FillPhoneNumbersComboBox(_ticketInfo.CompanyId);
         }
 
         private async void FillSoftwaresComboBox()
@@ -196,7 +197,7 @@ namespace OTS.Ticketing.Win.Tickets
                Convert.ToInt64(CombUsers.SelectedValue));
                     TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
-                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo( ActivityType.EditTicket,
+                    await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditTicket,
                          updatedTicket.Id, "تعديل بطاقة"));
                     //todo: update model !! activityLog Affected ID
                     this.Close();
@@ -206,6 +207,27 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
+            }
+        }
+
+        private async void EditTicket_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteTicket)))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _ticketRepository.Delete(_ticketInfo);
+                        this.Close();
+                    }
+                }
             }
         }
     }

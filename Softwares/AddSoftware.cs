@@ -18,6 +18,7 @@ namespace OTS.Ticketing.Win.Softwares
     {
         readonly SoftwareRepository _softwareRepository;
         readonly ActivityLogRepository _activityLogRepository;
+        private SoftwareInfo _softwareInfo;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
 
@@ -36,8 +37,8 @@ namespace OTS.Ticketing.Win.Softwares
             {
                 if (_id != 0)
                 {
-                    SoftwareInfo softwareInfo = await _softwareRepository.GetById(_id);
-                    TxtName.Text = softwareInfo.Name;
+                    _softwareInfo = await _softwareRepository.GetById(_id);
+                    TxtName.Text = _softwareInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -90,6 +91,28 @@ namespace OTS.Ticketing.Win.Softwares
         private void BtnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private async void AddSoftware_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteSoftware))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _softwareRepository.Delete(_softwareInfo);
+                        this.Close();
+                    }
+                }
+            }
         }
     }
 }

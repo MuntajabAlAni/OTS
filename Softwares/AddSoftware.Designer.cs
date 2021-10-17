@@ -104,11 +104,13 @@ namespace OTS.Ticketing.Win.Softwares
             this.Controls.Add(this.TxtName);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "AddSoftware";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AddSoftware";
             this.Load += new System.EventHandler(this.AddSoftware_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AddSoftware_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

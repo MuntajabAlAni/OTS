@@ -16,7 +16,7 @@ namespace OTS.Ticketing.Win.Branches
 {
     public partial class AddBranch : Form
     {
-        private readonly BranchRepository branchRepository;
+        private readonly BranchRepository _branchRepository;
         private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private BranchInfo _branchInfo;
@@ -25,7 +25,7 @@ namespace OTS.Ticketing.Win.Branches
 
         public AddBranch(long id)
         {
-            branchRepository = new BranchRepository();
+            _branchRepository = new BranchRepository();
             _activityLogRepository = new ActivityLogRepository();
             _id = id;
             InitializeComponent();
@@ -37,7 +37,7 @@ namespace OTS.Ticketing.Win.Branches
             {
                 if (_id != 0)
                 {
-                    _branchInfo = await branchRepository.GetById(_id);
+                    _branchInfo = await _branchRepository.GetById(_id);
                     TxtName.Text = _branchInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
@@ -64,13 +64,13 @@ namespace OTS.Ticketing.Win.Branches
                 if (_id == 0)
                 {
 
-                    long addedId = await branchRepository.Add(branchInfo);
+                    long addedId = await _branchRepository.Add(branchInfo);
                     await _activityLogRepository.AddActivityLog(
                         new ActivityLogInfo(ActivityType.AddBranch, addedId, "إضافة فرع"));
                 }
                 else
                 {
-                    await branchRepository.Update(branchInfo);
+                    await _branchRepository.Update(branchInfo);
                     await _activityLogRepository.AddActivityLog(
                         new ActivityLogInfo(ActivityType.EditBranch, _id, "تعديل فرع"));
                 }
@@ -98,11 +98,25 @@ namespace OTS.Ticketing.Win.Branches
             this.Close();
         }
 
-        private void AddBranch_KeyDown(object sender, KeyEventArgs e)
+        private async void AddBranch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteBranch))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _branchRepository.Delete(_branchInfo);
+                        this.Close();
+                    }
+                }
             }
         }
 

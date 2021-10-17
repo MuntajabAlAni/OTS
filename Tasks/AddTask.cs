@@ -1,6 +1,7 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Employees;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace OTS.Ticketing.Win.Tasks
         private readonly TaskRepository _taskRepository;
         private readonly EmployeeRepository _employeeRepository;
         private readonly CompanyRepository _companyRepository;
+        private TaskInfo _taskInfo;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AddTask(long id, DateTime selectedDate, long employeeId)
@@ -39,14 +41,14 @@ namespace OTS.Ticketing.Win.Tasks
             FillEmployeesComboBox();
             if (_id != 0)
             {
-                var task = await _taskRepository.GetById(_id);
-                if (!(task is null))
+                _taskInfo = await _taskRepository.GetById(_id);
+                if (!(_taskInfo is null))
                 {
-                    CombCompanies.SelectedValue = task.CompanyId;
-                    CombEmployees.SelectedValue = task.EmployeeId;
-                    DtpFromTime.Value = Convert.ToDateTime(task.TaskStart);
-                    DtpToTime.Value = Convert.ToDateTime(task.TaskEnd);
-                    TxtTaskDetails.Text = task.TaskDetails;
+                    CombCompanies.SelectedValue = _taskInfo.CompanyId;
+                    CombEmployees.SelectedValue = _taskInfo.EmployeeId;
+                    DtpFromTime.Value = Convert.ToDateTime(_taskInfo.TaskStart);
+                    DtpToTime.Value = Convert.ToDateTime(_taskInfo.TaskEnd);
+                    TxtTaskDetails.Text = _taskInfo.TaskDetails;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -207,6 +209,30 @@ namespace OTS.Ticketing.Win.Tasks
             {
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
+            }
+        }
+
+        private async void AddTask_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteTask))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _taskRepository.Delete(_taskInfo);
+                        this.Close();
+                    }
+                }
             }
         }
     }

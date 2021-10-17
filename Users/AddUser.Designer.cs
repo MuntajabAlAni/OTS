@@ -227,6 +227,7 @@ namespace OTS.Ticketing.Win.Users
             this.ClientSize = new System.Drawing.Size(440, 400);
             this.Controls.Add(this.PnlContainer);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.KeyPreview = true;
             this.Name = "AddUser";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

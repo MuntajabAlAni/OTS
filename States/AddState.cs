@@ -18,6 +18,7 @@ namespace OTS.Ticketing.Win.States
     {
         readonly StateRepository _stateRepository;
         readonly ActivityLogRepository _activityLogRepository;
+        private StateInfo _stateInfo;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
         public AddState(long id)
@@ -79,8 +80,8 @@ namespace OTS.Ticketing.Win.States
             {
                 if (_id != 0)
                 {
-                    StateInfo stateInfo = await _stateRepository.GetById(_id);
-                    TxtName.Text = stateInfo.Name;
+                    _stateInfo = await _stateRepository.GetById(_id);
+                    TxtName.Text = _stateInfo.Name;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -92,11 +93,25 @@ namespace OTS.Ticketing.Win.States
 
         }
 
-        private void AddState_KeyDown(object sender, KeyEventArgs e)
+        private async void AddState_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteState))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _stateRepository.Delete(_stateInfo);
+                        this.Close();
+                    }
+                }
             }
         }
 

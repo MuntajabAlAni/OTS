@@ -170,11 +170,24 @@ namespace OTS.Ticketing.Win.Companies
             this.Close();
         }
 
-        private void AddCompany_KeyDown(object sender, KeyEventArgs e)
+        private async void AddCompany_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteCompany))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _companyRepository.Delete(_companyInfo);
+                        this.Close();
+                    }
+                }
             }
         }
     }

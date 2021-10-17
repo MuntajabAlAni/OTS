@@ -18,7 +18,7 @@ namespace OTS.Ticketing.Win.Employees
             var parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
-            string query = @"select * from Employees WHERE id = @id";
+            string query = @"select * from Employees WHERE id = @id AND isDeleted = 0";
 
             var result = await _dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             return result.FirstOrDefault();
@@ -50,10 +50,9 @@ namespace OTS.Ticketing.Win.Employees
         {
             var parameters = new DynamicParameters();
             parameters.Add("@onlyStateOn", onlyStateOn);
-            string query = "SELECT * FROM Employees where IIF(@onlyStateOn = 0,0,state) = @onlyStateOn";
+            string query = "SELECT * FROM Employees where IIF(@onlyStateOn = 0,0,state) = @onlyStateOn AND isDeleted = 0";
             var result = await _dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             var list = result.ToList();
-            list.Insert(0, (new EmployeeInfo { Id = 0, EmployeeName = "يرجى إختيار موظف" }));
             return list;
         }
         public async Task<long> GetIdByName(string name)
@@ -61,7 +60,7 @@ namespace OTS.Ticketing.Win.Employees
             var parameters = new DynamicParameters();
             parameters.Add("@name", name);
 
-            string query = "SELECT * from Employees where EmployeeName = @name";
+            string query = "SELECT * from Employees where EmployeeName = @name AND isDeleted = 0";
 
             var result = await _dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             var employeeInfo = result.FirstOrDefault();

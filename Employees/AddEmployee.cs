@@ -1,5 +1,6 @@
 ﻿using NLog;
 using OTS.Ticketing.Win.Employees;
+using OTS.Ticketing.Win.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace OTS.Ticketing.Win.Tasks
     {
         private readonly long _id;
         private readonly EmployeeRepository _employeeRepository;
+        private EmployeeInfo _employeeInfo;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public AddEmployee(long id)
@@ -34,12 +36,12 @@ namespace OTS.Ticketing.Win.Tasks
         {
             if (_id != 0)
             {
-                var employee = await _employeeRepository.GetById(_id);
-                if (!(employee is null))
+                _employeeInfo = await _employeeRepository.GetById(_id);
+                if (!(_employeeInfo is null))
                 {
-                    TxtName.Text = employee.EmployeeName;
-                    TxtRemarks.Text = employee.Remarks;
-                    CbState.Checked = employee.State;
+                    TxtName.Text = _employeeInfo.EmployeeName;
+                    TxtRemarks.Text = _employeeInfo.Remarks;
+                    CbState.Checked = _employeeInfo.State;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -91,11 +93,24 @@ namespace OTS.Ticketing.Win.Tasks
             }
         }
 
-        private void AddEmployee_KeyDown(object sender, KeyEventArgs e)
+        private async void AddEmployee_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteEmployee))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _employeeRepository.Delete(_employeeInfo);
+                        this.Close();
+                    }
+                }
             }
         }
     }

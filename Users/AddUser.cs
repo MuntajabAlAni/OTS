@@ -19,6 +19,7 @@ namespace OTS.Ticketing.Win.Users
     {
         private readonly UserRepository _userRepository;
         private readonly ActivityLogRepository _activityLogRepository;
+        private UserInfo _userInfo;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly long _id;
         public AddUser(long id)
@@ -33,21 +34,24 @@ namespace OTS.Ticketing.Win.Users
         {
             try
             {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    BtnRoles.Visible = false;
+
                 if (_id != 0)
                 {
-                    UserInfo UserInfo = await _userRepository.GetById(_id);
-                    if (UserInfo.UserName == "admin")
+                    _userInfo = await _userRepository.GetById(_id);
+                    if (_userInfo.UserName == "admin")
                     {
                         TxtUserName.Enabled = false;
                         CbState.Enabled = false;
                         BtnRoles.Visible = false;
                     }
-                    TxtDisplayName.Text = UserInfo.DisplayName;
-                    TxtUserName.Text = UserInfo.UserName;
+                    TxtDisplayName.Text = _userInfo.DisplayName;
+                    TxtUserName.Text = _userInfo.UserName;
                     TxtPassword.Text = "            ";
-                    TxtIp.Text = UserInfo.Ip;
-                    TxtRemarks.Text = UserInfo.Remarks;
-                    CbState.Checked = UserInfo.State;
+                    TxtIp.Text = _userInfo.Ip;
+                    TxtRemarks.Text = _userInfo.Remarks;
+                    CbState.Checked = _userInfo.State;
                     BtnAdd.Text = "تعديل";
                 }
             }
@@ -120,11 +124,25 @@ namespace OTS.Ticketing.Win.Users
             };
         }
 
-        private void AddUser_KeyDown(object sender, KeyEventArgs e)
+        private async void AddUser_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
             {
                 this.Close();
+            }
+
+            if (e.KeyCode == Keys.Delete)
+            {
+                if (_id != 0 & (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.DeleteUser))))
+                {
+                    if (MessageBox.Show("هل انت متأكد من الحذف ؟", "تأكيد", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        == DialogResult.Yes)
+                    {
+                        await _userRepository.Delete(_userInfo);
+                        this.Close();
+                    }
+                }
             }
         }
 
