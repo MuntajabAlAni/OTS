@@ -63,7 +63,17 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         }
         private async Task GetDtgPhoneNumbersData()
         {
-            DtgPhoneNumbers.DataSource = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
+            DataTable dt = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
+            DataColumn dc = new DataColumn("ت", typeof(int));
+            dt.Columns.Add(dc);
+            int i = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr["ت"] = i + 1;
+                i++;
+            }
+            DtgPhoneNumbers.DataSource = dt;
+            DtgPhoneNumbers.Columns["ت"].DisplayIndex = 0;
             DtgPhoneNumbers.Columns["Id"].Visible = false;
             DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
             DtgPhoneNumbers.Columns["CustomerName"].HeaderText = "اسم الزبون";

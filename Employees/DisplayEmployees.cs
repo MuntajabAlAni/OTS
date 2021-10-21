@@ -44,7 +44,17 @@ namespace OTS.Ticketing.Win.Tasks
         {
             try
             {
-                DtgEmployees.DataSource = SystemConstants.ToDataTable(await _employeeRepository.GetAll(false));
+                DataTable dt = SystemConstants.ToDataTable(await _employeeRepository.GetAll(false));
+                DataColumn dc = new DataColumn("ت", typeof(int));
+                dt.Columns.Add(dc);
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dr["ت"] = i + 1;
+                    i++;
+                }
+                DtgEmployees.DataSource = dt;
+                DtgEmployees.Columns["ت"].DisplayIndex = 0;
                 DtgEmployees.Columns["State"].HeaderText = "الحالة";
                 DtgEmployees.Columns["employeeName"].HeaderText = "اسم الموظف";
                 DtgEmployees.Columns["Remarks"].Visible = false;

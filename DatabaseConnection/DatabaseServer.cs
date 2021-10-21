@@ -66,9 +66,9 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
         private bool IsConnected()
         {
-        using (var connection = new SqlConnection(ConnectionTools.ConnectionValue(false, TxtServerIp.Text)))
-        {
-            try
+            using (var connection = new SqlConnection(ConnectionTools.ConnectionValue(false, TxtServerIp.Text)))
+            {
+                try
                 {
                     connection.Open();
                     return true;

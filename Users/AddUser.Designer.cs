@@ -56,6 +56,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblRemarks.Size = new System.Drawing.Size(58, 15);
             this.LblRemarks.TabIndex = 12;
             this.LblRemarks.Text = "ملاحظات :";
+            this.LblRemarks.Visible = false;
             // 
             // LblDisplayName
             // 
@@ -75,6 +76,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtRemarks.Name = "TxtRemarks";
             this.TxtRemarks.Size = new System.Drawing.Size(208, 74);
             this.TxtRemarks.TabIndex = 4;
+            this.TxtRemarks.Visible = false;
             // 
             // TxtDisplayName
             // 
@@ -83,6 +85,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtDisplayName.Name = "TxtDisplayName";
             this.TxtDisplayName.Size = new System.Drawing.Size(143, 25);
             this.TxtDisplayName.TabIndex = 0;
+            this.TxtDisplayName.TextChanged += new System.EventHandler(this.TxtDisplayName_TextChanged);
             // 
             // PnlContainer
             // 
@@ -133,6 +136,7 @@ namespace OTS.Ticketing.Win.Users
             this.BtnRoles.TabIndex = 7;
             this.BtnRoles.Text = "الصلاحيات";
             this.BtnRoles.UseVisualStyleBackColor = false;
+            this.BtnRoles.Visible = false;
             this.BtnRoles.Click += new System.EventHandler(this.BtnRoles_Click);
             // 
             // BtnExit
@@ -159,6 +163,7 @@ namespace OTS.Ticketing.Win.Users
             this.LblIp.Size = new System.Drawing.Size(68, 15);
             this.LblIp.TabIndex = 11;
             this.LblIp.Text = "IP Address :";
+            this.LblIp.Visible = false;
             // 
             // LblPassword
             // 
@@ -202,6 +207,7 @@ namespace OTS.Ticketing.Win.Users
             this.TxtIp.Name = "TxtIp";
             this.TxtIp.Size = new System.Drawing.Size(143, 25);
             this.TxtIp.TabIndex = 3;
+            this.TxtIp.Visible = false;
             // 
             // TxtPassword
             // 

@@ -97,8 +97,18 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                DtgTickets.DataSource = SystemConstants.ToDataTable(
+                DataTable dt = SystemConstants.ToDataTable(
                     await _ticketRepository.GetAllTicketsByUserId(SystemConstants.loggedInUser.Id));
+                DataColumn dc = new DataColumn("ت", typeof(int));
+                dt.Columns.Add(dc);
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dr["ت"] = i + 1;
+                    i++;
+                }
+                DtgTickets.DataSource = dt;
+                DtgTickets.Columns["ت"].DisplayIndex = 0;
                 DtgTickets.Columns["Number"].HeaderText = "رقم البطاقة";
                 DtgTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
                 DtgTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
@@ -137,7 +147,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 if (DtgTickets.Rows.Count == 0) return;
 
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.TicketInProgress));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.TicketInProgress));
 
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
@@ -245,7 +255,7 @@ namespace OTS.Ticketing.Win.Tickets
                     //    this.Close();
                     //    SystemConstants.TechnicalSupportTask = true;
                     //}
-                    await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayTickets));
+                    await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayTickets));
                     GetDtgTicketsData();
                     RefreshAllData();
                 }

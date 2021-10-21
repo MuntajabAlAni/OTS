@@ -420,6 +420,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PhoneNumbers\AddPhoneNumber.resx">
       <DependentUpon>AddPhoneNumber.cs</DependentUpon>
@@ -466,10 +467,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="bin\Debug\Wake.png" />
-    <None Include="bin\Debug\Sleep.png" />
-    <None Include="bin\Debug\GreenCircle.png" />
-    <None Include="bin\Debug\RedCircle.png" />
+    <None Include="Resources\Wake.png" />
+    <None Include="Resources\Sleep.png" />
+    <None Include="Resources\Online.png" />
+    <None Include="Resources\Offline.png" />
     <Content Include="OTS_Ticketing_Software_ICON.ico" />
   </ItemGroup>
   <ItemGroup />

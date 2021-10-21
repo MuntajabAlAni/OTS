@@ -37,7 +37,7 @@ namespace OTS.Ticketing.Win.Tasks
 
         private async void AddTask_Load(object sender, EventArgs e)
         {
-            FillCompaniesComboBox();
+            await FillCompaniesComboBox();
             FillEmployeesComboBox();
             if (_id != 0)
             {
@@ -54,7 +54,7 @@ namespace OTS.Ticketing.Win.Tasks
             }
         }
 
-        private async void FillCompaniesComboBox()
+        private async Task FillCompaniesComboBox()
         {
             try
             {
@@ -140,13 +140,13 @@ namespace OTS.Ticketing.Win.Tasks
             this.Close();
         }
 
-        private void BtnAddCompany_Click(object sender, EventArgs e)
+        private async void BtnAddCompany_Click(object sender, EventArgs e)
         {
             try
             {
                 var addCompany = new AddCompany(0);
                 addCompany.ShowDialog();
-                FillCompaniesComboBox();
+                await FillCompaniesComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
@@ -156,7 +156,7 @@ namespace OTS.Ticketing.Win.Tasks
             }
         }
 
-        private void BtnEditCompany_Click(object sender, EventArgs e)
+        private async void BtnEditCompany_Click(object sender, EventArgs e)
         {
             try
             {
@@ -167,7 +167,7 @@ namespace OTS.Ticketing.Win.Tasks
                 }
                 var editCompany = new AddCompany(Convert.ToInt64(CombCompanies.SelectedValue));
                 editCompany.ShowDialog();
-                FillCompaniesComboBox();
+                await FillCompaniesComboBox();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
@@ -233,6 +233,22 @@ namespace OTS.Ticketing.Win.Tasks
                         this.Close();
                     }
                 }
+            }
+        }
+
+        private async void BtnSearchCompany_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DisplayCompanies displayCompanies = new DisplayCompanies(true, CombCompanies.Text);
+                displayCompanies.ShowDialog();
+                await FillCompaniesComboBox();
+                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
             }
         }
     }

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using OTS.Ticketing.Win.Enums;
 using OTS.Ticketing.Win.ActivityLog;
 using OTS.Ticketing.Win.UsersRoles;
+using System.Text.RegularExpressions;
 
 namespace OTS.Ticketing.Win.Users
 {
@@ -34,9 +35,12 @@ namespace OTS.Ticketing.Win.Users
         {
             try
             {
-                if (!SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
-                    BtnRoles.Visible = false;
-
+                if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                {
+                    BtnRoles.Visible = true;
+                    LblRemarks.Visible = true;
+                    TxtRemarks.Visible = true;
+                }
                 if (_id != 0)
                 {
                     _userInfo = await _userRepository.GetById(_id);
@@ -44,7 +48,7 @@ namespace OTS.Ticketing.Win.Users
                     {
                         TxtUserName.Enabled = false;
                         CbState.Enabled = false;
-                        BtnRoles.Visible = false;
+                        BtnRoles.Enabled = false;
                     }
                     TxtDisplayName.Text = _userInfo.DisplayName;
                     TxtUserName.Text = _userInfo.UserName;
@@ -115,8 +119,8 @@ namespace OTS.Ticketing.Win.Users
             return new UserInfo
             {
                 Id = _id,
-                DisplayName = TxtDisplayName.Text,
-                UserName = TxtUserName.Text,
+                DisplayName = TxtDisplayName.Text.Trim(),
+                UserName = TxtUserName.Text.Trim(),
                 PasswordHash = TxtPassword.Text,
                 State = CbState.Checked,
                 Ip = TxtIp.Text,
@@ -140,6 +144,8 @@ namespace OTS.Ticketing.Win.Users
                         == DialogResult.Yes)
                     {
                         await _userRepository.Delete(_userInfo);
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.DeleteUser,
+                                            _id, "حذف مستخدم"));
                         this.Close();
                     }
                 }
@@ -150,6 +156,12 @@ namespace OTS.Ticketing.Win.Users
         {
             DisplayRoles displayRoles = new DisplayRoles(_id);
             displayRoles.ShowDialog();
+        }
+
+        private void TxtDisplayName_TextChanged(object sender, EventArgs e)
+        {
+            Regex regex = new Regex("^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$");
+            if (!regex.IsMatch(TxtDisplayName.Text)) TxtDisplayName.Text = "";
         }
     }
 }

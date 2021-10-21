@@ -57,7 +57,7 @@ namespace OTS.Ticketing.Win.MainForms
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<int> UpdateSessionByUserId(SessionInfo session)
+        public async Task<int> UpdateSession(SessionInfo session)
         {
             var parameters = new DynamicParameters(session);
 
@@ -65,7 +65,14 @@ namespace OTS.Ticketing.Win.MainForms
                                  lastEvent = IIF(@lastEvent = 0,lastEvent,@lastEvent),
                                  computerName = @computerName,
 			   	                 lastUpdateDate = SYSDATETIME()
-					             WHERE userId = @userId and sessionId = @sessionId;";
+					             WHERE userId = @userId and sessionId = @sessionId;
+
+                              UPDATE Sessions SET 
+                              lastEvent = 14,
+                              isOnline = 0,
+                              Number = ''
+                              WHERE
+                              ABS(DATEDIFF(MINUTE,SYSDATETIME(),(lastUpdateDate))) > 4";
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }

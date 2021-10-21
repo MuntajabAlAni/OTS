@@ -40,8 +40,18 @@ namespace OTS.Ticketing.Win.Users
         {
             try
             {
-                DtgUsers.DataSource = SystemConstants.ToDataTable(await userRepository.GetAll());
-                DtgUsers.Columns["Id"].HeaderText = "ت";
+                DataTable dt = SystemConstants.ToDataTable(await userRepository.GetAll());
+                DataColumn dc = new DataColumn("ت", typeof(int));
+                dt.Columns.Add(dc);
+                int i = 0;
+                foreach (DataRow dr in dt.Rows)
+                {
+                    dr["ت"] = i + 1;
+                    i++;
+                }
+                DtgUsers.DataSource = dt;
+                DtgUsers.Columns["ت"].DisplayIndex = 0;
+                DtgUsers.Columns["Id"].Visible = false;
                 DtgUsers.Columns["displayName"].HeaderText = "اسم الموظف";
                 DtgUsers.Columns["userName"].Visible = false;
                 DtgUsers.Columns["passwordHash"].Visible = false;

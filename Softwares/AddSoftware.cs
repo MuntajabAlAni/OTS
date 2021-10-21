@@ -109,6 +109,8 @@ namespace OTS.Ticketing.Win.Softwares
                         == DialogResult.Yes)
                     {
                         await _softwareRepository.Delete(_softwareInfo);
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.DeleteSoftware,
+                         _id, "تعديل برنامج"));
                         this.Close();
                     }
                 }

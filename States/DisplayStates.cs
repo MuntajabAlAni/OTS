@@ -39,8 +39,18 @@ namespace OTS.Ticketing.Win.States
 
         private async void GetDtgStatesData()
         {
-            DtgStates.DataSource = SystemConstants.ToDataTable(await stateRepository.GetAll());
-            DtgStates.Columns["Id"].HeaderText = "ت";
+            DataTable dt = SystemConstants.ToDataTable(await stateRepository.GetAll());
+            DataColumn dc = new DataColumn("ت", typeof(int));
+            dt.Columns.Add(dc);
+            int i = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr["ت"] = i + 1;
+                i++;
+            }
+            DtgStates.DataSource = dt;
+            DtgStates.Columns["ت"].DisplayIndex = 0;
+            DtgStates.Columns["Id"].Visible = false;
             DtgStates.Columns["Name"].HeaderText = "الحالة";
             DtgStates.Columns["IsDeleted"].Visible = false;
 

@@ -77,15 +77,15 @@ namespace OTS.Ticketing.Win.MainForms
                     MessageBox.Show(LocalizationMessages.GetMessage("WrongInformations"));
                     return;
                 }
-                if (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor")
+                if (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor") //todo: add batool
                 {
                     if (string.IsNullOrWhiteSpace(TxtNumber.Text))
                     {
                         MessageBox.Show("يرجى إدخال الرقم المخصص");
                         return;
                     }
-                    if ((Convert.ToInt32(TxtNumber.Text) < 100 & Convert.ToInt32(TxtNumber.Text) > 122)
-                        | (Convert.ToInt32(TxtNumber.Text) < 3600 & Convert.ToInt32(TxtNumber.Text) > 3622))
+                    if ((Convert.ToInt32(TxtNumber.Text) < 100 | Convert.ToInt32(TxtNumber.Text) > 125)
+                        & (Convert.ToInt32(TxtNumber.Text) < 3600 | Convert.ToInt32(TxtNumber.Text) > 3625))
                     {
                         TxtNumber.Text = "";
                         MessageBox.Show("! يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
@@ -213,7 +213,7 @@ namespace OTS.Ticketing.Win.MainForms
         private void TxtUserName_Leave(object sender, EventArgs e)
         {
             TxtNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor");
-            LblNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor");
+            LblNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor"); //todo: add batool
         }
 
         private void TxtNumber_KeyPress(object sender, KeyPressEventArgs e)

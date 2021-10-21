@@ -114,6 +114,8 @@ namespace OTS.Ticketing.Win.Branches
                         == DialogResult.Yes)
                     {
                         await _branchRepository.Delete(_branchInfo);
+                        await _activityLogRepository.AddActivityLog(
+                        new ActivityLogInfo(ActivityType.DeleteBranch, _id, "حذف فرع"));
                         this.Close();
                     }
                 }

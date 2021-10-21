@@ -185,6 +185,8 @@ namespace OTS.Ticketing.Win.Companies
                         == DialogResult.Yes)
                     {
                         await _companyRepository.Delete(_companyInfo);
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.DeleteCompany,
+                         _id, "حذف شركة"));
                         this.Close();
                     }
                 }

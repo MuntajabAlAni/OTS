@@ -100,6 +100,7 @@ namespace OTS.Ticketing.Win.Tickets
             _dt.Columns["OpenDate"].ColumnName = "تاريخ فتح البطاقة";
             _dt.Columns["CloseDate"].ColumnName = "تاريخ إغلاق البطاقة";
             _dt.Columns["PhoneNumber"].ColumnName = "رقم الهاتف";
+            _dt.Columns["CustomerName"].ColumnName = "اسم المتصل";
             _dt.Columns["SoftwareName"].ColumnName = "البرنامج";
             _dt.Columns["UserName"].ColumnName = "الموظف";
             _dt.Columns["CompanyName"].ColumnName = "اسم الشركة";
@@ -113,8 +114,17 @@ namespace OTS.Ticketing.Win.Tickets
             _dt.Columns.Remove("IsClosed");
             _dt.Columns.Remove("IsDeleted");
 
-            DtgOldTickets.DataSource = _dt;
+            DataColumn dc = new DataColumn("ت", typeof(int));
+            _dt.Columns.Add(dc);
+            int i = 0;
+            foreach (DataRow dr in _dt.Rows)
+            {
+                dr["ت"] = i + 1;
+                i++;
+            }
 
+            DtgOldTickets.DataSource = _dt;
+            DtgOldTickets.Columns["ت"].DisplayIndex = 0;
             DtgOldTickets.Columns["الملاحظات"].Visible = false;
         }
         private async void FillCompaniesComboBox(long userId)
@@ -158,7 +168,9 @@ namespace OTS.Ticketing.Win.Tickets
 
         private void BtnUpdate_Click(object sender, EventArgs e)
         {
+            PnlLoad.Visible = true;
             GetDtgOldTickets();
+            PnlLoad.Visible = false;
         }
 
         private void BtnExit_Click(object sender, EventArgs e)

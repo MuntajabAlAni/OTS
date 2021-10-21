@@ -109,6 +109,8 @@ namespace OTS.Ticketing.Win.States
                         == DialogResult.Yes)
                     {
                         await _stateRepository.Delete(_stateInfo);
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.DeleteState,
+                         _id, "حذف حالة"));
                         this.Close();
                     }
                 }

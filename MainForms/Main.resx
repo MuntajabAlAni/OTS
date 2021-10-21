@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnSoftwares.Text" xml:space="preserve">
-    <value>البرامج</value>
-  </data>
   <data name="&gt;&gt;BtnCompanies.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
   </data>
@@ -127,9 +124,8 @@
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>Yes</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="BtnDisplayEmployees.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="&gt;&gt;BtnUsers.Name" xml:space="preserve">
+    <value>BtnUsers</value>
   </data>
   <data name="&gt;&gt;PnlLoad.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -137,6 +133,9 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="BtnActivityLog.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="&gt;&gt;PnlContainer.Name" xml:space="preserve">
+    <value>PnlContainer</value>
   </data>
   <data name="&gt;&gt;ImbNormalSize.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -167,6 +166,9 @@
   </data>
   <data name="PnlTop.Size" type="System.Drawing.Size, System.Drawing">
     <value>1050, 60</value>
+  </data>
+  <data name="BtnPhoneNumbres.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
   </data>
   <data name="BtnStates.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
@@ -1094,6 +1096,7 @@
   <data name="&gt;&gt;PnlTop.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="BtnOldTickets.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
@@ -1102,9 +1105,6 @@
   </data>
   <data name="BtnCompanies.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
-  </data>
-  <data name="BtnPhoneNumbres.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 265</value>
   </data>
   <data name="&gt;&gt;EditUserToolStripMenuItem.Name" xml:space="preserve">
     <value>EditUserToolStripMenuItem</value>
@@ -1120,6 +1120,9 @@
   </data>
   <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 22</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewRightClickToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="BtnHome.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
@@ -1142,8 +1145,8 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="PnlLoad.Location" type="System.Drawing.Point, System.Drawing">
-    <value>550, 320</value>
+  <data name="BtnAddTicket.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>20, 0, 0, 0</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Main</value>
@@ -1248,8 +1251,8 @@
   <data name="PnlContainer.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;BtnScheduling.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="PnlLoad.Location" type="System.Drawing.Point, System.Drawing">
+    <value>550, 320</value>
   </data>
   <data name="&gt;&gt;BtnAddTicket.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -1318,6 +1321,9 @@
   <data name="BtnSoftwares.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
   </data>
+  <data name="&gt;&gt;BtnScheduling.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -1336,14 +1342,14 @@
   <data name="&gt;&gt;BtnDisplayEmployees.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 22</value>
+  <data name="تحديثToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
   <data name="BtnUsers.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;PnlContainer.Name" xml:space="preserve">
-    <value>PnlContainer</value>
+  <data name="&gt;&gt;تحديثToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;BackUpToolStripMenuItem.Name" xml:space="preserve">
     <value>BackUpToolStripMenuItem</value>
@@ -1407,6 +1413,9 @@
   <data name="LOGO.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
+  <data name="&gt;&gt;تحديثToolStripMenuItem.Name" xml:space="preserve">
+    <value>تحديثToolStripMenuItem</value>
+  </data>
   <data name="BtnAddTicket.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
   </data>
@@ -1447,6 +1456,9 @@
   <data name="&gt;&gt;BtnUsers.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
   </data>
+  <data name="dataGridViewRightClickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 20</value>
+  </data>
   <data name="BtnOldTickets.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -1461,6 +1473,9 @@
   </data>
   <data name="BtnPhoneNumbres.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
+  </data>
+  <data name="&gt;&gt;الملاحظاتToolStripMenuItem.Name" xml:space="preserve">
+    <value>الملاحظاتToolStripMenuItem</value>
   </data>
   <data name="PnlTop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1479,6 +1494,9 @@
   </data>
   <data name="BtnStates.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 316</value>
+  </data>
+  <data name="BtnDisplayEmployees.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;ImbMaximize.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1557,6 +1575,9 @@
   </data>
   <data name="BtnPhoneNumbres.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
+  </data>
+  <data name="DataGridViewRightClickToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 20</value>
   </data>
   <data name="ImbNormalSize.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -1823,8 +1844,8 @@
   <data name="&gt;&gt;PbLoading.Parent" xml:space="preserve">
     <value>PnlLoad</value>
   </data>
-  <data name="BtnOldTickets.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="PnlMenuVertical.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="BtnTickets.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleRight</value>
@@ -1844,8 +1865,17 @@
   <data name="&gt;&gt;LOGO.Name" xml:space="preserve">
     <value>LOGO</value>
   </data>
+  <data name="&gt;&gt;DataGridViewRightClickToolStripMenuItem.Name" xml:space="preserve">
+    <value>DataGridViewRightClickToolStripMenuItem</value>
+  </data>
+  <data name="PnlLoad.Size" type="System.Drawing.Size, System.Drawing">
+    <value>200, 100</value>
+  </data>
   <data name="BtnPhoneNumbres.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="&gt;&gt;dataGridViewRightClickToolStripMenuItem.Name" xml:space="preserve">
+    <value>dataGridViewRightClickToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;PnlTop.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -3214,6 +3244,9 @@
   <data name="ImbMaximize.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="ExitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 22</value>
+  </data>
   <data name="BtnUsers.Size" type="System.Drawing.Size, System.Drawing">
     <value>250, 45</value>
   </data>
@@ -3264,6 +3297,9 @@
   <data name="&gt;&gt;LOGO.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
   </data>
+  <data name="&gt;&gt;الملاحظاتToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;BtnActivityLog.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
@@ -3273,8 +3309,8 @@
   <data name="&gt;&gt;BtnDisplayEmployees.Name" xml:space="preserve">
     <value>BtnDisplayEmployees</value>
   </data>
-  <data name="BtnPhoneNumbres.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleRight</value>
+  <data name="الملاحظاتToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
   <data name="&gt;&gt;ImbClose.Parent" xml:space="preserve">
     <value>PnlTop</value>
@@ -3303,8 +3339,8 @@
   <data name="BtnScheduling.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
-  <data name="BtnAddTicket.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 0, 0, 0</value>
+  <data name="BtnPhoneNumbres.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 265</value>
   </data>
   <data name="ImbClose.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>Zoom</value>
@@ -3335,9 +3371,6 @@
   </data>
   <data name="&gt;&gt;BtnAddTicket.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;HelpToolStripMenuItem.Name" xml:space="preserve">
-    <value>HelpToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;BtnActivityLog.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
@@ -3411,8 +3444,8 @@
   <data name="BtnDisplayEmployees.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="BtnHome.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
+  <data name="&gt;&gt;HelpToolStripMenuItem.Name" xml:space="preserve">
+    <value>HelpToolStripMenuItem</value>
   </data>
   <data name="BtnTickets.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -3423,8 +3456,8 @@
   <data name="&gt;&gt;ImbMinimize.Name" xml:space="preserve">
     <value>ImbMinimize</value>
   </data>
-  <data name="&gt;&gt;BtnUsers.Name" xml:space="preserve">
-    <value>BtnUsers</value>
+  <data name="BtnSoftwares.Text" xml:space="preserve">
+    <value>البرامج</value>
   </data>
   <data name="ImbMinimize.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5312,8 +5345,8 @@
   <data name="BtnScheduling.Text" xml:space="preserve">
     <value>جدول دوام الموظفين</value>
   </data>
-  <data name="PnlMenuVertical.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
+  <data name="BtnHome.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
   <data name="BtnDisplayEmployees.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>
@@ -5353,6 +5386,9 @@
   </data>
   <data name="&gt;&gt;BtnAddTicket.Parent" xml:space="preserve">
     <value>PnlMenuVertical</value>
+  </data>
+  <data name="&gt;&gt;DataGridViewRightClickToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1300, 730</value>
@@ -5487,8 +5523,8 @@
   <data name="BtnHome.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
-  <data name="PnlLoad.Size" type="System.Drawing.Size, System.Drawing">
-    <value>200, 100</value>
+  <data name="BtnOldTickets.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="BtnUsers.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>20, 0, 0, 0</value>

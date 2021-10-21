@@ -4615,20 +4615,26 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEzUwyWDXj1AJcwAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="RestoreDatabaseToolStripMenuItem.Text" xml:space="preserve">
-    <value>استرجاع الملفات</value>
-  </data>
-  <data name="BackUpDatabaseToolStripMenuItem.Text" xml:space="preserve">
-    <value>نسخ الملفات</value>
-  </data>
   <data name="HelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>49, 20</value>
   </data>
   <data name="HelpToolStripMenuItem.Text" xml:space="preserve">
     <value>المزيد</value>
+  </data>
+  <data name="AboutToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="RestoreDatabaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="RestoreDatabaseToolStripMenuItem.Text" xml:space="preserve">
+    <value>استرجاع الملفات</value>
+  </data>
+  <data name="BackUpDatabaseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>153, 22</value>
+  </data>
+  <data name="BackUpDatabaseToolStripMenuItem.Text" xml:space="preserve">
+    <value>نسخ الملفات</value>
   </data>
   <data name="PnlContainer.Size" type="System.Drawing.Size, System.Drawing">
     <value>1050, 680</value>

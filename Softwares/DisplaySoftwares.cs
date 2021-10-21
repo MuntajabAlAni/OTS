@@ -39,8 +39,18 @@ namespace OTS.Ticketing.Win.Softwares
         }
         private async void GetDtgSoftwaresData()
         {
-            DtgSoftwares.DataSource = SystemConstants.ToDataTable(await softwareRepository.GetAll());
-            DtgSoftwares.Columns["Id"].HeaderText = "ت";
+            DataTable dt = SystemConstants.ToDataTable(await softwareRepository.GetAll());
+            DataColumn dc = new DataColumn("ت", typeof(int));
+            dt.Columns.Add(dc);
+            int i = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                dr["ت"] = i + 1;
+                i++;
+            }
+            DtgSoftwares.DataSource = dt;
+            DtgSoftwares.Columns["ت"].DisplayIndex = 0;
+            DtgSoftwares.Columns["Id"].Visible = false;
             DtgSoftwares.Columns["Name"].HeaderText = "البرنامج";
             DtgSoftwares.Columns["IsDeleted"].Visible = false;
 

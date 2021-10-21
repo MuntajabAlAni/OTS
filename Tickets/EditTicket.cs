@@ -225,6 +225,8 @@ namespace OTS.Ticketing.Win.Tickets
                         == DialogResult.Yes)
                     {
                         await _ticketRepository.Delete(_ticketInfo);
+                        await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.DeleteTicket,
+                         _ticketInfo.Id, "حذف بطاقة"));
                         this.Close();
                     }
                 }

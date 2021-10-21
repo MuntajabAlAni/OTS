@@ -19,7 +19,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             }
         }
 
-        public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters)
+        public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters = null)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
             {

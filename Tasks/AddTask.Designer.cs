@@ -49,17 +49,20 @@ namespace OTS.Ticketing.Win.Tasks
             this.BtnExit = new System.Windows.Forms.Button();
             this.TxtTaskDetails = new System.Windows.Forms.TextBox();
             this.BtnAdd = new System.Windows.Forms.Button();
+            this.BtnSearchCompany = new System.Windows.Forms.PictureBox();
             this.PnlContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditCompany)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).BeginInit();
             this.SuspendLayout();
             // 
             // PnlContainer
             // 
             this.PnlContainer.BackColor = System.Drawing.Color.WhiteSmoke;
             this.PnlContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnlContainer.Controls.Add(this.BtnSearchCompany);
             this.PnlContainer.Controls.Add(this.LblDate);
             this.PnlContainer.Controls.Add(this.DtpDate);
             this.PnlContainer.Controls.Add(this.LblTo);
@@ -304,6 +307,23 @@ namespace OTS.Ticketing.Win.Tasks
             this.BtnAdd.UseVisualStyleBackColor = false;
             this.BtnAdd.Click += new System.EventHandler(this.BtnAdd_Click);
             // 
+            // BtnSearchCompany
+            // 
+            this.BtnSearchCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSearchCompany.BackColor = System.Drawing.Color.White;
+            this.BtnSearchCompany.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.BtnSearchCompany.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.BtnSearchCompany.ErrorImage = ((System.Drawing.Image)(resources.GetObject("BtnSearchCompany.ErrorImage")));
+            this.BtnSearchCompany.Image = ((System.Drawing.Image)(resources.GetObject("BtnSearchCompany.Image")));
+            this.BtnSearchCompany.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.BtnSearchCompany.Location = new System.Drawing.Point(63, 18);
+            this.BtnSearchCompany.Name = "BtnSearchCompany";
+            this.BtnSearchCompany.Size = new System.Drawing.Size(25, 25);
+            this.BtnSearchCompany.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.BtnSearchCompany.TabIndex = 23;
+            this.BtnSearchCompany.TabStop = false;
+            this.BtnSearchCompany.Click += new System.EventHandler(this.BtnSearchCompany_Click);
+            // 
             // AddTask
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -324,6 +344,7 @@ namespace OTS.Ticketing.Win.Tasks
             ((System.ComponentModel.ISupportInitialize)(this.BtnEditCompany)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.BtnAddCompany)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.BtnSearchCompany)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -349,5 +370,6 @@ namespace OTS.Ticketing.Win.Tasks
         private System.Windows.Forms.Label LblEmployeeName;
         private System.Windows.Forms.Label LblDate;
         private System.Windows.Forms.DateTimePicker DtpDate;
+        private System.Windows.Forms.PictureBox BtnSearchCompany;
     }
 }

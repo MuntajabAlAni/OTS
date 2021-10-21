@@ -47,7 +47,7 @@ namespace OTS.Ticketing.Win
             PnlLoad.BringToFront();
             PnlLoad.Visible = false;
         }
-        private async void Main_Load(object sender, EventArgs e)
+        private void Main_Load(object sender, EventArgs e)
         {
             try
             {
@@ -133,7 +133,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.Home));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.Home));
                 if (PnlContainer.Controls.ContainsKey("Home")) return;
                 ApplingFormOnContainer(new Home());
             }
@@ -155,7 +155,14 @@ namespace OTS.Ticketing.Win
                 await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignOut,
                      SystemConstants.loggedInUser.Id, "تسجيل خروج مستخدم"));
 
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.LoggedOut));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.LoggedOut));
+                SessionInfo session = new SessionInfo
+                {
+                    IsOnline = false,
+                    UserId = SystemConstants.loggedInUser.Id
+                };
+
+                await _mainRepository.UpdateIsOnlineByUserId(session);
                 this.Close();
                 Login login = new Login();
                 login.Show();
@@ -174,7 +181,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayTickets));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayTickets));
                 if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
                 ApplingFormOnContainer(new DisplayTickets());
             }
@@ -188,7 +195,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.AddTicket));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.AddTicket));
                 var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
                 ApplingFormOnContainer(new AddTicket());
             }
@@ -209,7 +216,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.Companies));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.Companies));
                 if (PnlContainer.Controls.ContainsKey("DisplayCompanies")) return;
                 ApplingFormOnContainer(new DisplayCompanies(false));
             }
@@ -223,7 +230,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.Users));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.Users));
                 if (PnlContainer.Controls.ContainsKey("DisplayUsers")) return;
                 ApplingFormOnContainer(new DisplayUsers());
             }
@@ -237,7 +244,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.PhoneNumbers));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.PhoneNumbers));
                 if (PnlContainer.Controls.ContainsKey("DisplayPhoneNumbers")) return;
                 ApplingFormOnContainer(new DisplayPhoneNumbers(false));
             }
@@ -265,7 +272,7 @@ namespace OTS.Ticketing.Win
                     };
 
                     await _mainRepository.UpdateIsOnlineByUserId(session);
-                    await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.LoggedOut));
+                    await _mainRepository.UpdateSession(new SessionInfo(EventType.LoggedOut));
                     Application.Exit();
                 }
             }
@@ -279,7 +286,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.States));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.States));
                 if (PnlContainer.Controls.ContainsKey("DisplayStates")) return;
                 ApplingFormOnContainer(new DisplayStates());
             }
@@ -293,7 +300,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.Softwares));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.Softwares));
                 if (PnlContainer.Controls.ContainsKey("DisplaySoftwares")) return;
                 ApplingFormOnContainer(new DisplaySoftwares());
             }
@@ -307,7 +314,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayOldTickets));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayOldTickets));
                 if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
                 ApplingFormOnContainer(new DisplayOldTickets());
             }
@@ -330,7 +337,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayActivities));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayActivities));
                 if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
                 ApplingFormOnContainer(new DisplayActivities());
             }
@@ -344,7 +351,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.Schedule));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.Schedule));
                 if (PnlContainer.Controls.ContainsKey("Schedule")) return;
                 ApplingFormOnContainer(new DisplayTasks());
             }
@@ -358,7 +365,7 @@ namespace OTS.Ticketing.Win
         {
             try
             {
-                await _mainRepository.UpdateSessionByUserId(new SessionInfo(EventType.DisplayEmployees));
+                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayEmployees));
                 if (PnlContainer.Controls.ContainsKey("DisplayEmployees")) return;
                 ApplingFormOnContainer(new DisplayEmployees());
             }
@@ -449,7 +456,7 @@ namespace OTS.Ticketing.Win
                 {
                     try
                     {
-                        var result = await _mainRepository.UpdateSessionByUserId(new SessionInfo(0));
+                        var result = await _mainRepository.UpdateSession(new SessionInfo(0));
                         await Task.Delay(3000);
                         if (result == 0)
                         {

@@ -172,6 +172,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                         == DialogResult.Yes)
                     {
                         await _phoneNumberRepository.Delete(_phoneNumberInfo);
+                        await _activityLogRepository.AddActivityLog(
+                            new ActivityLogInfo(ActivityType.DeletePhoneNumber, _id, "حذف رقم هاتف"));
                         this.Close();
                     }
                 }

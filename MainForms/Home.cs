@@ -132,8 +132,8 @@ namespace OTS.Ticketing.Win.MainForms
                     DtgUsers.DataSource = dt;
                     DtgUsers.Sort(DtgUsers.Columns["isOnline"], System.ComponentModel.ListSortDirection.Descending);
                     DtgUsers.Columns["isOnline"].Visible = false;
-                    Image online = Properties.Resources.GreenCircle;
-                    Image offline = Properties.Resources.RedCircle;
+                    Image online = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Wake : Properties.Resources.Online;
+                    Image offline = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Sleep : Properties.Resources.Offline;
 
                     if (DtgUsers.Columns.Contains("الحالة") == false)
                     {
@@ -216,6 +216,16 @@ namespace OTS.Ticketing.Win.MainForms
         private async void BtnRefresh_Click(object sender, EventArgs e)
         {
             await GetDtgLastTicketsData();
+        }
+
+        private async void DtgLastTickets_DoubleClick(object sender, EventArgs e)
+        {
+            if (DtgLastTickets.Rows.Count == 0) return;
+            long selectedNumber = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Number"].Value.ToString());
+            long selectedRevision = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
+            TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketRemarks remarks = new TicketRemarks(selectedTicket);
+            remarks.ShowDialog();
         }
     }
 }

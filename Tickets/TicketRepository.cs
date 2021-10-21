@@ -233,7 +233,8 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@userId", userId);
             parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
 
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, pn.CustomerName CustomerName,
+                                                 s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
 												 end IsIndexed FROM tickets t
@@ -263,7 +264,8 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@userId", userId);
             parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
 
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber,pn.CustomerName CustomerName,
+                                                 s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
 												 end IsIndexed, u.displayName as TransferedTo FROM tickets t
@@ -293,7 +295,8 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@userId", userId);
             parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
 
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber,pn.CustomerName CustomerName,
+                                                 s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
 												 end IsIndexed,  u.displayName as TransferedTo FROM tickets t

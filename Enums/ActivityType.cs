@@ -24,6 +24,13 @@ namespace OTS.Ticketing.Win.Enums
         AddState,
         EditState,
         AddBranch,
-        EditBranch
+        EditBranch,
+        DeleteTicket,
+        DeleteCompany,
+        DeleteUser,
+        DeletePhoneNumber,
+        DeleteSoftware,
+        DeleteState,
+        DeleteBranch
     }
 }
