@@ -16,15 +16,16 @@ namespace OTS.Ticketing.Win.Companies
         public async Task<long> Add(CompanyInfo company)
         {
             var parameters = new DynamicParameters(company);
-            string command = "INSERT INTO Companies (Name, Address, BranchId, Remarks) VALUES (@Name, @Address, @BranchId, @Remarks)";
+            string command = @"INSERT INTO Companies (Name, Address, BranchId, Remarks) VALUES (@Name, @Address, @BranchId, @Remarks);
+			                   SELECT SCOPE_IDENTITY();";
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<CompanyInfo> GetInfoById(long id)
+        public async Task<CompanyInfo> GetById(long id)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
-            string query = "SELECT * FROM Companies WHERE Id = @id";
+            string query = "SELECT * FROM Companies WHERE Id = @id And isDeleted = 0";
             var result = await _dataAccess.QueryAsync<CompanyInfo>(query, parameters);
             return result.FirstOrDefault();
         }

@@ -43,7 +43,7 @@ namespace OTS.Ticketing.Win.Tickets
             FillTransferedToComboBox();
             FillStatesComboBox();
 
-            _ticketInfo = await _ticketRepository.GetTicketByNumberAndRevision(_number, _revision);
+            _ticketInfo = await _ticketRepository.GetByNumberAndRevision(_number, _revision);
             LblNumber.Text = _ticketInfo.Number.ToString();
             LblRevision.Text = _ticketInfo.Revision.ToString();
             SystemConstants.SelectedCompanyId = _ticketInfo.CompanyId;
@@ -195,7 +195,7 @@ namespace OTS.Ticketing.Win.Tickets
                Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                Convert.ToInt64(CombSoftwares.SelectedValue),
                Convert.ToInt64(CombUsers.SelectedValue));
-                    TicketInfo updatedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+                    TicketInfo updatedTicket = await _ticketRepository.GetByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.EditTicket,
                          updatedTicket.Id, "تعديل بطاقة"));

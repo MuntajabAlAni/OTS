@@ -17,7 +17,8 @@ namespace OTS.Ticketing.Win.Softwares
         {
             var parameters = new DynamicParameters(software);
 
-            string command = "INSERT INTO Softwares (Name) VALUES (@name)";
+            string command = @"INSERT INTO Softwares (Name) VALUES (@name);
+			                   SELECT SCOPE_IDENTITY();";
 
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }

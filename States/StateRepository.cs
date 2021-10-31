@@ -17,7 +17,8 @@ namespace OTS.Ticketing.Win.States
         {
             var parameters = new DynamicParameters(state);
 
-            string command = "INSERT INTO States (name) VALUES (@name)";
+            string command = @"INSERT INTO States (name) VALUES (@name);
+			                   SELECT SCOPE_IDENTITY();";
 
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }

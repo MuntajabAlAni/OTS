@@ -17,7 +17,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             var parameters = new DynamicParameters(phoneNumber);
             string command = @"INSERT INTO PhoneNumbers (phoneNumber, customerName, companyId)
-                               VALUES (@phoneNumber, @customerName, @companyId)";
+                               VALUES (@phoneNumber, @customerName, @companyId);
+			                   SELECT SCOPE_IDENTITY();";
 
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
@@ -57,17 +58,6 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             var result = await _dataAccess.QueryAsync<PhoneNumberView>(query, parameters);
             return result.ToList();
         }
-        public async Task<long> GetIdBy(string phoneNumber)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@phoneNumber", phoneNumber);
-
-            string query = "SELECT id from phoneNumbers WHERE PhoneNumber = @PhoneNumber And isDeleted = 0";
-
-            var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
-            PhoneNumberInfo phoneNumberInfo = result.FirstOrDefault();
-            return phoneNumberInfo.Id;
-        }
         public async Task Delete(PhoneNumberInfo phoneNumber)
         {
             var parameters = new DynamicParameters(phoneNumber);
@@ -75,6 +65,17 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                                 isDeleted = 1
                                WHERE Id = @id";
             await _dataAccess.ExecuteAsync(command, parameters);
+        }
+        public async Task<List<PhoneNumberInfo>> GetByCompanyId(long companyId)
+        {
+            var parameters = new DynamicParameters();
+            parameters.Add("@companyId", companyId);
+
+            string query = "SELECT * FROM PhoneNumbers WHERE IIF(@companyId = 0,0,companyId) = @companyId AND isDeleted = 0";
+
+            var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, parameters);
+
+            return result.ToList();
         }
     }
 }

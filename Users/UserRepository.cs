@@ -13,7 +13,7 @@ namespace OTS.Ticketing.Win.Users
     {
         private readonly DataAccess _dataAccess = new DataAccess();
 
-        public async Task<int> Add(UserInfo user)
+        public async Task<long> Add(UserInfo user)
         {
 
             user.Salt = Guid.NewGuid();
@@ -27,9 +27,10 @@ namespace OTS.Ticketing.Win.Users
                                         @state,
                                         @ip,
                                         @remarks,
-                                        @Salt)";
+                                        @Salt);
+			                  SELECT SCOPE_IDENTITY();";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
         public async Task<UserInfo> GetById(long id)
         {

@@ -76,7 +76,7 @@ namespace OTS.Ticketing.Win.Tickets
                 ToolTip.SetToolTip(BtnAddSoftware, "إضافة برنامج");
                 ToolTip.SetToolTip(BtnEditSoftware, "تعديل برنامج");
 
-                LblNumber.Text = await _ticketRepository.GetLastTicketNumber();
+                LblNumber.Text = await _ticketRepository.GetLastNumber();
                 LblRevision.Text = "0";
                 FillCompaniesComboBox();
                 FillSoftwaresComboBox();
@@ -167,7 +167,7 @@ namespace OTS.Ticketing.Win.Tickets
         }
         private async void FillDtgUnclosedTickets(long companyId)
         {
-            DtgUnclosedTickets.DataSource = await _ticketRepository.GetUnclosedTicketsOnSelectedCompanyId(companyId);
+            DtgUnclosedTickets.DataSource = await _ticketRepository.GetUnclosedByCompanyId(companyId);
             DtgUnclosedTickets.Columns["Number"].HeaderText = "رقم البطاقة";
             DtgUnclosedTickets.Columns["OpenDate"].HeaderText = "تاريخ فتح البطاقة";
             DtgUnclosedTickets.Columns["CloseDate"].HeaderText = "تاريخ إغلاق البطاقة";
@@ -181,9 +181,7 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
             DtgUnclosedTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
             DtgUnclosedTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
-            DtgUnclosedTickets.Columns["Remarks"].Visible = false;
-            DtgUnclosedTickets.Columns["TransferedTo"].Visible = false;
-            DtgUnclosedTickets.Columns["IsDeleted"].Visible = false;
+            DtgUnclosedTickets.HideUntranslatedColumns();
 
         }
         private void BtnExit_Click(object sender, EventArgs e)
@@ -218,7 +216,7 @@ namespace OTS.Ticketing.Win.Tickets
                     SystemConstants.SelectedSoftware = 0;
                     SystemConstants.SelectedUser = 0;
 
-                    TicketInfo addedTicket = await _ticketRepository.GetTicketByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
+                    TicketInfo addedTicket = await _ticketRepository.GetByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
                         Convert.ToInt32(LblRevision.Text));
 
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddTicket,
@@ -241,7 +239,7 @@ namespace OTS.Ticketing.Win.Tickets
                 if (DtgUnclosedTickets.RowCount == 0) return;
                 long selectedNumber = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-                TicketInfo selectedTicket = await _ticketRepository.GetTicketByNumberAndRevision(selectedNumber, selectedRevision);
+                TicketInfo selectedTicket = await _ticketRepository.GetByNumberAndRevision(selectedNumber, selectedRevision);
                 LblNumber.Text = selectedTicket.Number.ToString();
                 LblRevision.Text = (selectedTicket.Revision + 1).ToString();
                 CombCompanies.SelectedValue = selectedTicket.CompanyId;

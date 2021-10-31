@@ -16,7 +16,8 @@ namespace OTS.Ticketing.Win.Branches
         public async Task<long> Add(BranchInfo branch)
         {
             var parameters = new DynamicParameters(branch);
-            string command = "INSERT INTO Branches (Name) VALUES (@name)";
+            string command = @"INSERT INTO Branches (Name) VALUES (@name);
+                               SELECT SCOPE_IDENTITY();";
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
         public async Task<BranchInfo> GetById(long id)

@@ -41,7 +41,7 @@ namespace OTS.Ticketing.Win.Companies
                     if (DtgCompanies.Rows.Count == 1)
                     {
                         long id = Convert.ToInt64(DtgCompanies.Rows[0].Cells["Id"].Value.ToString());
-                        CompanyInfo selectedCompany = await companyRepository.GetInfoById(id);
+                        CompanyInfo selectedCompany = await companyRepository.GetById(id);
                         SystemConstants.SelectedCompanyId = selectedCompany.Id;
                         this.Close();
                     }
@@ -88,7 +88,7 @@ namespace OTS.Ticketing.Win.Companies
                 if (_search)
                 {
                     long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
-                    CompanyInfo selectedCompany = await companyRepository.GetInfoById(id);
+                    CompanyInfo selectedCompany = await companyRepository.GetById(id);
                     SystemConstants.SelectedCompanyId = selectedCompany.Id;
                     this.Close();
                 }

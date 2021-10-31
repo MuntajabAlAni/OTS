@@ -51,6 +51,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.PnlLoad = new System.Windows.Forms.Panel();
             this.PbLoading = new System.Windows.Forms.PictureBox();
             this.CbClosed = new System.Windows.Forms.CheckBox();
+            this.BtnRemarks = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DtgOldTickets)).BeginInit();
             this.PnlLoad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).BeginInit();
@@ -320,6 +321,23 @@ namespace OTS.Ticketing.Win.Tickets
             this.CbClosed.Text = "المغلقة";
             this.CbClosed.UseVisualStyleBackColor = true;
             // 
+            // BtnRemarks
+            // 
+            this.BtnRemarks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnRemarks.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            this.BtnRemarks.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.BtnRemarks.FlatAppearance.BorderSize = 2;
+            this.BtnRemarks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnRemarks.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.BtnRemarks.Location = new System.Drawing.Point(641, 453);
+            this.BtnRemarks.Name = "BtnRemarks";
+            this.BtnRemarks.Size = new System.Drawing.Size(120, 45);
+            this.BtnRemarks.TabIndex = 9;
+            this.BtnRemarks.Text = "الملاحظات";
+            this.BtnRemarks.UseVisualStyleBackColor = false;
+            this.BtnRemarks.Visible = false;
+            this.BtnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
+            // 
             // DisplayOldTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -336,6 +354,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.DtpFromDate);
             this.Controls.Add(this.DtpToDate);
             this.Controls.Add(this.BtnUpdate);
+            this.Controls.Add(this.BtnRemarks);
             this.Controls.Add(this.BtnExcel);
             this.Controls.Add(this.BtnEdit);
             this.Controls.Add(this.BtnExit);
@@ -377,5 +396,6 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Panel PnlLoad;
         private System.Windows.Forms.PictureBox PbLoading;
         private System.Windows.Forms.CheckBox CbClosed;
+        private System.Windows.Forms.Button BtnRemarks;
     }
 }

@@ -25,6 +25,9 @@ namespace OTS.Ticketing.Win.Tickets
         public string IsClosed { get; set; }
         public string TransferedTo { get; set; }
         public bool IsDeleted { get; set; }
+        public bool RemotelyView { get; set; }
+        public bool IsIndexedView { get; set; }
+        public bool IsClosedView { get; set; }
 
     }
 }

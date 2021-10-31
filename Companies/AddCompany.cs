@@ -68,7 +68,7 @@ namespace OTS.Ticketing.Win.Companies
                 FillCombBranches();
                 if (_id != 0)
                 {
-                    _companyInfo = await _companyRepository.GetInfoById(_id);
+                    _companyInfo = await _companyRepository.GetById(_id);
                     TxtName.Text = _companyInfo.Name;
                     TxtAddress.Text = _companyInfo.Address;
                     CombBranches.SelectedValue = _companyInfo.BranchId;

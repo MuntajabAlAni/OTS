@@ -125,7 +125,7 @@ namespace OTS.Ticketing.Win.Tickets
 
             DtgOldTickets.DataSource = _dt;
             DtgOldTickets.Columns["ت"].DisplayIndex = 0;
-            DtgOldTickets.Columns["الملاحظات"].Visible = false;
+            DtgOldTickets.HideUntranslatedColumns();
         }
         private async void FillCompaniesComboBox(long userId)
         {
@@ -225,14 +225,14 @@ namespace OTS.Ticketing.Win.Tickets
             FillCompaniesComboBox(Convert.ToInt64(CombUser.SelectedValue));
         }
 
-        private async void DtgOldTickets_DoubleClick(object sender, EventArgs e)
+        private void DtgOldTickets_DoubleClick(object sender, EventArgs e)
         {
             if (DtgOldTickets.Rows.Count == 0) return;
             long selectedNumber = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["رقم البطاقة"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["مراجعة البطاقة"].Value.ToString());
-            TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
-            TicketRemarks remarks = new TicketRemarks(selectedTicket);
-            remarks.ShowDialog();
+
+            ViewTicket view = new ViewTicket(selectedNumber, selectedRevision);
+            view.ShowDialog();
         }
 
         private void PnlLoad_VisibleChanged(object sender, EventArgs e)
@@ -241,6 +241,16 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 control.Enabled = !PnlLoad.Visible;
             }
+        }
+
+        private async void BtnRemarks_Click(object sender, EventArgs e)
+        {
+            if (DtgOldTickets.Rows.Count == 0) return;
+            long selectedNumber = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["رقم البطاقة"].Value.ToString());
+            long selectedRevision = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["مراجعة البطاقة"].Value.ToString());
+            TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketRemarks remarks = new TicketRemarks(selectedTicket);
+            remarks.ShowDialog();
         }
     }
 }

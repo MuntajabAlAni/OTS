@@ -23,7 +23,7 @@ namespace OTS.Ticketing.Win.Employees
             var result = await _dataAccess.QueryAsync<EmployeeInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<int> Update(EmployeeInfo employeeInfo)
+        public async Task Update(EmployeeInfo employeeInfo)
         {
             var parameters = new DynamicParameters(employeeInfo);
 
@@ -33,18 +33,19 @@ namespace OTS.Ticketing.Win.Employees
                                State = @State
                                WHERE id = @id";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<int> Add(EmployeeInfo employeeInfo)
+        public async Task<long> Add(EmployeeInfo employeeInfo)
         {
             var parameters = new DynamicParameters(employeeInfo);
 
             string command = @"INSERT INTO Employees 
                                 (EmployeeName, Remarks, State) 
                                 Values 
-                                (@EmployeeName, @Remarks, @State)";
+                                (@EmployeeName, @Remarks, @State);
+			                    SELECT SCOPE_IDENTITY();";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
         public async Task<List<EmployeeInfo>> GetAll(bool onlyStateOn)
         {

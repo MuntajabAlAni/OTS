@@ -160,7 +160,7 @@ namespace OTS.Ticketing.Win.Users
 
         private void TxtDisplayName_TextChanged(object sender, EventArgs e)
         {
-            Regex regex = new Regex("^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-zA-Z-_]*$");
+            Regex regex = new Regex("^[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-z A-Z]+[\u0600-\u065F\u066A-\u06EF\u06FA-\u06FFa-z A-Z-_]*$");
             if (!regex.IsMatch(TxtDisplayName.Text)) TxtDisplayName.Text = "";
         }
     }

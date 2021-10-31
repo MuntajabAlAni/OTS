@@ -80,6 +80,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             try
             {
+                long addedId = 0;
                 if (TxtPhoneNumber.Text == "" | CombCompanies.SelectedValue == DBNull.Value | Convert.ToInt64(CombCompanies.SelectedValue) == 0)
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -88,7 +89,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 PhoneNumberInfo phoneNumber = GetFormData();
                 if (_id == 0)
                 {
-                    long addedId = await _phoneNumberRepository.Add(phoneNumber);
+                    addedId = await _phoneNumberRepository.Add(phoneNumber);
                     await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.AddPhoneNumber,
                         addedId, "إضافة رقم هاتف"));
                 }
@@ -100,7 +101,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
                 }
                 SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
-                SystemConstants.SelectedPhoneNumberId = await _phoneNumberRepository.GetIdBy(TxtPhoneNumber.Text);
+                SystemConstants.SelectedPhoneNumberId = _id == 0 ? addedId : _id;
                 this.Close();
             }
             catch (Exception ex)

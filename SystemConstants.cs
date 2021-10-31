@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -100,6 +101,21 @@ namespace OTS.Ticketing.Win
             else if (!Control.IsDisposed)
             {
                 Action();
+            }
+        }
+    }
+
+    public static class DataGridViewExtensions
+    {
+        public static void HideUntranslatedColumns(this DataGridView gridView)
+        {
+            var r = new Regex("^[A-Z a-z\\d_-]+$");
+            foreach (DataGridViewColumn column in gridView.Columns)
+            {
+                if (r.IsMatch(column.HeaderText) && r.IsMatch(column.Name))
+                {
+                    gridView.Columns[column.Index].Visible = false;
+                }
             }
         }
     }

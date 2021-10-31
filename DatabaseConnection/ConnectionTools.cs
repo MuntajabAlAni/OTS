@@ -21,7 +21,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
                 Password = "vULiwCss0SrBrLJ"
             };
 
-            bool devTest = true;                    //todo: SET FALSE WHEN RELEASE A NEW VERSION
+            bool devTest = false;                    //todo: SET FALSE WHEN RELEASE A NEW VERSION
             str.IntegratedSecurity = devTest;
             if(!devTest)
             str["Server"] = str.DataSource + @"\FOTSQLSERVER";

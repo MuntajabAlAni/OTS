@@ -77,7 +77,7 @@ namespace OTS.Ticketing.Win.MainForms
                     MessageBox.Show(LocalizationMessages.GetMessage("WrongInformations"));
                     return;
                 }
-                if (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor") //todo: add batool
+                if (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor" & TxtUserName.Text.ToLower() != "batool")
                 {
                     if (string.IsNullOrWhiteSpace(TxtNumber.Text))
                     {
@@ -212,8 +212,8 @@ namespace OTS.Ticketing.Win.MainForms
 
         private void TxtUserName_Leave(object sender, EventArgs e)
         {
-            TxtNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor");
-            LblNumber.Visible = (TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor"); //todo: add batool
+            TxtNumber.Visible = TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor" & TxtUserName.Text.ToLower() != "batool";
+            LblNumber.Visible = TxtUserName.Text.ToLower() != "admin" & TxtUserName.Text.ToLower() != "noor" & TxtUserName.Text.ToLower() != "batool";
         }
 
         private void TxtNumber_KeyPress(object sender, KeyPressEventArgs e)

@@ -55,18 +55,19 @@ namespace OTS.Ticketing.Win.Tasks
             var result = await _dataAccess.QueryAsync<TaskInfo>(query, parameters);
             return result.FirstOrDefault();
         }        
-        public async Task<int> Add(TaskInfo taskInfo)
+        public async Task<long> Add(TaskInfo taskInfo)
         {
             var parameters = new DynamicParameters(taskInfo);
 
             string command = @"INSERT INTO Tasks 
                                 (EmployeeId, CompanyId, TaskDate, TaskStart, TaskEnd, TaskState, TaskDetails) 
                                 Values 
-                                (@EmployeeId, @CompanyId, @TaskDate, @TaskStart, @TaskEnd, @TaskState, @TaskDetails)";
+                                (@EmployeeId, @CompanyId, @TaskDate, @TaskStart, @TaskEnd, @TaskState, @TaskDetails);
+			                    SELECT SCOPE_IDENTITY();";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }       
-        public async Task<int> Update(TaskInfo taskInfo)
+        public async Task Update(TaskInfo taskInfo)
         {
             var parameters = new DynamicParameters(taskInfo);
 
@@ -80,7 +81,7 @@ namespace OTS.Ticketing.Win.Tasks
                                TaskDetails = @TaskDetails
                                WHERE id = @id";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
         public async Task Delete(TaskInfo task)
         {
