@@ -221,6 +221,7 @@
     <Compile Include="Tickets\EditTicket.Designer.cs">
       <DependentUpon>EditTicket.cs</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\OldTicketRequest.cs" />
     <Compile Include="Tickets\TicketRemarks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,7 +308,6 @@
     <Compile Include="States\StateInfo.cs" />
     <Compile Include="States\StateRepository.cs" />
     <Compile Include="SystemConstants.cs" />
-    <Compile Include="Tickets\TicketsView.cs" />
     <Compile Include="PhoneNumbers\PhoneNumberRepository.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

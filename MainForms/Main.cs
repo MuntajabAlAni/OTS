@@ -28,8 +28,8 @@ namespace OTS.Ticketing.Win
 {
     public partial class Main : Form
     {
-        private readonly TicketRepository _ticketRepository;
         private readonly MainRepository _mainRepository;
+        private readonly UserRepository _userRepository;
         private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly CancellationTokenSource _cancellationTokenSource;
@@ -37,7 +37,7 @@ namespace OTS.Ticketing.Win
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _mainRepository = new MainRepository();
-            _ticketRepository = new TicketRepository();
+            _userRepository = new UserRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             UpdateSession();
@@ -196,7 +196,7 @@ namespace OTS.Ticketing.Win
             try
             {
                 await _mainRepository.UpdateSession(new SessionInfo(EventType.AddTicket));
-                var UserInfo = await _ticketRepository.GetUserById(SystemConstants.loggedInUser.Id);
+                var UserInfo = await _userRepository.GetById(SystemConstants.loggedInUser.Id);
                 ApplingFormOnContainer(new AddTicket());
             }
             catch (Exception ex)

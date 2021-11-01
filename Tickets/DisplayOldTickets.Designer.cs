@@ -201,7 +201,6 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombUser.Size = new System.Drawing.Size(126, 25);
             this.CombUser.TabIndex = 1;
             this.CombUser.Visible = false;
-            this.CombUser.SelectedValueChanged += new System.EventHandler(this.CombUser_SelectedValueChanged);
             // 
             // CombCompanies
             // 

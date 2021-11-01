@@ -20,12 +20,12 @@ namespace OTS.Ticketing.Win.Tickets
     public class TicketRepository
     {
         public DataAccess _dataAccess = new DataAccess();
-        public async Task<List<TicketsView>> GetAllByUserId(long UserId)
+        public async Task<List<TicketInfo>> GetUnClosedByUserId(long UserId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@UserId", UserId);
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+                                                 c.name as CompanyName, t.problem, st.name stateName, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
 												 end IsIndexed FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
@@ -34,24 +34,24 @@ namespace OTS.Ticketing.Win.Tickets
                                                  inner join companies c on t.companyId = c.id 
 												 left join states st on t.stateId = st.id
 												 inner join (select number,max(revision) revision from tickets where UserId = @UserId group by number) t2 on t.revision = t2.revision and t.number = t2.number
-												 WHERE t.UserId = @UserId and t.isClosed is null and t.isDeleted = 0
+												 WHERE t.UserId = @UserId and t.isClosed = 0 and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.ToList();
         }
         public async Task<string> GetLastNumber()
         {
             string query = "SELECT TOP 1 t.number from tickets t order by t.number DESC";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
-            TicketsView ticketDetails = result.FirstOrDefault();
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, new DynamicParameters());
+            TicketInfo ticketDetails = result.FirstOrDefault();
             if (ticketDetails == null) return "1";
             return (ticketDetails.Number + 1).ToString();
         }
-// USERS WHERE STATE =1 and isDELETED = 0  Without admin and noor and batool
-//todo: add id = 0 to all users.. companies.. states.. etc.
-        public async Task<long> AddTicket(TicketInfo ticket)
+        // USERS WHERE STATE =1 and isDELETED = 0  Without admin and noor and batool
+        //todo: add id = 0 to all users.. companies.. states.. etc.
+        public async Task<long> Add(TicketInfo ticket)
         {
             var parameters = new DynamicParameters(ticket);
             string command = @"INSERT INTO tickets
@@ -67,12 +67,12 @@ namespace OTS.Ticketing.Win.Tickets
 
             return await _dataAccess.ExecuteScalarAsync<long>(command, parameters);
         }
-        public async Task<List<TicketsView>> GetUnclosedByCompanyId(long companyId)
+        public async Task<List<TicketInfo>> GetUnclosedByCompanyId(long companyId)
         {
             var parameters = new DynamicParameters();
             parameters.Add("@companyId", companyId);
             string query = @" SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+                                                 c.name as CompanyName, t.problem, st.name stateName, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
 												 end IsIndexed, case when t.isClosed = 1 then 'مغلقة' 
                                                  when t.isClosed = 0 then 'غير مغلقة' end isClosed FROM tickets t
@@ -85,7 +85,7 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE isClosed = 0 and t.companyId = @companyId and t.isDeleted = 0
                                                  ORDER BY t.number,t.revision";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.ToList();
         }
         public async Task<TicketInfo> GetByNumberAndRevision(long ticketNumber, long revision)
@@ -98,14 +98,14 @@ namespace OTS.Ticketing.Win.Tickets
             var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<TicketsView> GetDetailsByNumberAndRevision(long ticketNumber, long revision)
+        public async Task<TicketInfo> GetViewByNumberAndRevision(long ticketNumber, long revision)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@ticketNumber", ticketNumber);
             parameters.Add("@revision", revision);
             string query = @"select t.id, t.number, t.revision, t.OpenDate, c.name CompanyName, pn.phoneNumber PhoneNumber,
-                            s.name SoftwareName, u.displayName UserName, st.name State, t.problem, t.remarks, 
-                            t.remotely remotelyView, t.isIndexed isIndexedView, t.isClosed isClosedView, ut.displayName TransferedTo
+                            s.name SoftwareName, u.displayName UserName, st.name StateName, t.problem, t.remarks, 
+                            t.remotely remotely, t.isIndexed isIndexed, t.isClosed isClosed, ut.displayName TransferedToName
                              from tickets t
                              join companies c on c.id = t.companyId
                              join softwares s on s.id = t.softwareId
@@ -115,22 +115,12 @@ namespace OTS.Ticketing.Win.Tickets
                              join phoneNumbers pn on pn.id = t.phoneNumberId
                               where t.number = @ticketNumber and t.revision = @revision and t.isDeleted = 0";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<int> Update(long number, int revision, DateTime closeDate, long stateId, string remarks, string problem, int remotely, bool IsIndexed, bool closed, long transferedTo)
+        public async Task Answer(TicketInfo ticket)
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("@number", number);
-            parameters.Add("@revision", revision);
-            parameters.Add("@closeDate", closeDate);
-            parameters.Add("@stateId", stateId);
-            parameters.Add("@remarks", remarks);
-            parameters.Add("@problem", problem);
-            parameters.Add("@remotely", remotely);
-            parameters.Add("@IsIndexed", IsIndexed);
-            parameters.Add("@closed", closed);
-            parameters.Add("@transferedTo", transferedTo);
+            var parameters = new DynamicParameters(ticket);
 
             string command = @"UPDATE tickets
                              SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
@@ -141,20 +131,11 @@ namespace OTS.Ticketing.Win.Tickets
                            ,IsIndexed = @IsIndexed
                            ,isClosed = @closed
                            ,transferedTo = @transferedTo
-                            WHERE number = @number and revision = @revision";
+                            WHERE t.number = @ticketNumber and t.revision = @revision";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, parameters);
         }
-        public async Task<UserInfo> GetUserById(long id)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@id", id);
-
-            string query = "SELECT * FROM Users WHERE Id = @id AND isDeleted = 0";
-            var result = await _dataAccess.QueryAsync<UserInfo>(query, parameters);
-            return result.FirstOrDefault();
-        }
-        public async Task<TicketsView> GetTicketDetailsByByNumberAndRevision(long ticketNumber, long revision)
+        public async Task<TicketInfo> GetDetailsByNumberAndRevision(long ticketNumber, long revision)
         {
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@ticketNumber", ticketNumber);
@@ -174,115 +155,27 @@ namespace OTS.Ticketing.Win.Tickets
 												 WHERE  t.number = @ticketNumber and t.revision = @revision and t.isDeleted = 0
                                                  ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
         }
-        public async Task<List<TicketsView>> GetOldUnClosedTicketsByUserIdOrCompanyId(
-            long companyId, long userId, DateTime fromDate, DateTime toDate)
+        public async Task<List<TicketInfo>> GetByRequest(OldTicketRequest request)
         {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@companyId", companyId);
-            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
-            parameters.Add("@userId", userId);
-            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
+            request.ToDate = request.ToDate.AddDays(1);
+            var parameters = new DynamicParameters(request);
 
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, pn.CustomerName CustomerName,
-                                                 s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
-												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed FROM tickets t
-                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
-                                                 inner join softwares s on t.softwareId = s.id
-                                                 inner join Users e on t.UserId = e.id
-                                                 inner join companies c on t.companyId = c.id
-                                                 inner join branches b on c.branchId = b.id
-												 inner join (select number,max(revision) revision from tickets group by number) t2 on t.revision = t2.revision and t.number = t2.number 
-												 left join states st on t.stateId = st.id
-												 WHERE IIF(@companyId = 0,0,t.CompanyId) = @companyId
-												 and IIF(@userId = 0,0,t.UserId) = @userId
-												 and t.openDate between @fromDate and @toDate
-												 and (t.isClosed = 0 or t.isClosed is null)
-                                                 and t.isDeleted = 0
-                                                 ORDER BY t.number DESC,t.revision DESC";
+            string query = @"EXEC  DisplayTicketsReport
+		                    @fromdate = @FromDate,
+		                    @toDate = @ToDate,
+		                    @companyId = @CompanyId,
+		                    @userId = @UserId,
+		                    @isClosed = @IsClosed";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
-            return result.ToList();
-        }
-        public async Task<List<TicketsView>> GetOldTicketsByUserIdOrCompanyId(
-            long companyId, long userId, DateTime fromDate, DateTime toDate)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@companyId", companyId);
-            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
-            parameters.Add("@userId", userId);
-            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
-
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber,pn.CustomerName CustomerName,
-                                                 s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
-												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed, u.displayName as TransferedTo FROM tickets t
-                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
-                                                 inner join softwares s on t.softwareId = s.id
-                                                 inner join Users e on t.UserId = e.id
-                                                 inner join companies c on t.companyId = c.id
-                                                 inner join branches b on c.branchId = b.id
-												 left join states st on t.stateId = st.id
-                                                 left join Users u on t.transferedTo = u.id
-												 WHERE  IIF(@companyId = 0,0,t.CompanyId) = @companyId
-												 and IIF(@userId = 0,0,t.UserId) = @userId
-												 and t.openDate between @fromDate and @toDate
-												 and t.isClosed = 1
-                                                 and t.isDeleted = 0
-                                                 ORDER BY t.number DESC,t.revision DESC";
-
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
-            return result.ToList();
-        }
-        public async Task<List<TicketsView>> GetAllOldTicketsByUserIdOrCompanyId(
-    long companyId, long userId, DateTime fromDate, DateTime toDate)
-        {
-            DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@companyId", companyId);
-            parameters.Add("@fromDate", fromDate.ToString("yyyy-MM-dd 00:00:00.000"));
-            parameters.Add("@userId", userId);
-            parameters.Add("@toDate", toDate.ToString("yyyy-MM-dd 23:59:59.000"));
-
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber,pn.CustomerName CustomerName,
-                                                 s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, b.name as BranchName, t.problem, st.name state, t.remarks, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
-												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed,  u.displayName as TransferedTo FROM tickets t
-                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
-                                                 inner join softwares s on t.softwareId = s.id
-                                                 inner join Users e on t.UserId = e.id
-                                                 inner join companies c on t.companyId = c.id
-                                                 inner join branches b on c.branchId = b.id
-												 left join states st on t.stateId = st.id
-                                                 left join Users u on t.transferedTo = u.id
-												 WHERE  IIF(@companyId = 0,0,t.CompanyId) = @companyId
-												 and IIF(@userId = 0,0,t.UserId) = @userId
-												 and t.openDate between @fromDate and @toDate
-                                                 and t.isDeleted = 0
-                                                 ORDER BY t.number DESC,t.revision DESC";
-
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, parameters);
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.ToList();
         }
         public async Task UpdateInsertTicket(TicketInfo ticket)
         {
-            var updateParameters = new DynamicParameters();
-            updateParameters.Add("@number", ticket.Number);
-            updateParameters.Add("@revision", ticket.Revision);
-            updateParameters.Add("@closeDate", ticket.CloseDate);
-            updateParameters.Add("@stateId", ticket.StateId);
-            updateParameters.Add("@remarks", ticket.Remarks);
-            updateParameters.Add("@problem", ticket.Problem);
-            updateParameters.Add("@remotely", ticket.Remotely);
-            updateParameters.Add("@IsIndexed", ticket.IsIndexed);
-            updateParameters.Add("@closed", ticket.IsClosed);
-            updateParameters.Add("@transferedTo", ticket.TransferedTo);
-
+            var updateParameters = new DynamicParameters(ticket);
             string updateCommand = @"UPDATE tickets
                              SET closeDate = CASE WHEN closeDate is null then @closeDate else closeDate end
                            ,stateId = @stateId
@@ -300,14 +193,8 @@ namespace OTS.Ticketing.Win.Tickets
                 using (var trans = connection.BeginTransaction())
                 {
                     int recordsUpdated = await connection.ExecuteAsync(updateCommand, updateParameters, trans);
-
-                    var insertParameters = new DynamicParameters();
-                    insertParameters.Add("@number", ticket.Number);
-                    insertParameters.Add("@revision", ticket.Revision + 1);
-                    insertParameters.Add("@companyId", ticket.CompanyId);
-                    insertParameters.Add("@phoneNumberId", ticket.PhoneNumberId);
-                    insertParameters.Add("@softwareId", ticket.SoftwareId);
-                    insertParameters.Add("@UserId", ticket.TransferedTo);
+                    ticket.Revision += 1;
+                    var insertParameters = new DynamicParameters(ticket);
 
                     string insertCommand = @"INSERT INTO tickets
                             (number, phoneNumberId, softwareId, UserId, companyId, revision)
@@ -321,7 +208,6 @@ namespace OTS.Ticketing.Win.Tickets
 
                     try
                     {
-
                         await connection.ExecuteAsync(insertCommand, insertParameters, transaction: trans);
                         trans.Commit();
                     }
@@ -333,24 +219,9 @@ namespace OTS.Ticketing.Win.Tickets
                 }
             }
         }
-        public async Task<int> UpdateEntireTicket(long number, int revision, DateTime closeDate, long stateId, string remarks,
-            string problem, int remotely, bool IsIndexed, bool closed, long transferedTo, long phoneNumberId, long softwareId, long userId)
+        public async Task<int> Update(TicketInfo ticket)
         {
-            var parameters = new DynamicParameters();
-            parameters.Add("@number", number);
-            parameters.Add("@revision", revision);
-            parameters.Add("@closeDate", closeDate);
-            parameters.Add("@stateId", stateId);
-            parameters.Add("@remarks", remarks);
-            parameters.Add("@problem", problem);
-            parameters.Add("@remotely", remotely);
-            parameters.Add("@IsIndexed", IsIndexed);
-            parameters.Add("@closed", closed);
-            parameters.Add("@transferedTo", transferedTo);
-            parameters.Add("@phoneNumberId", phoneNumberId);
-            parameters.Add("@softwareId", softwareId);
-            parameters.Add("@userId", userId);
-
+            var parameters = new DynamicParameters(ticket);
             string command = @"UPDATE tickets
                              SET phoneNumberId = @phoneNumberId
                            ,softwareId = @softwareId
@@ -363,7 +234,7 @@ namespace OTS.Ticketing.Win.Tickets
                            ,IsIndexed = @IsIndexed
                            ,isClosed = @closed
                            ,transferedTo = @transferedTo
-                            WHERE number = @number and revision = @revision";
+                            WHERE t.number = @ticketNumber and t.revision = @revision";
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }
@@ -375,12 +246,10 @@ namespace OTS.Ticketing.Win.Tickets
                                WHERE Id = @id";
             await _dataAccess.ExecuteAsync(command, parameters);
         }
-
-        public async Task<List<TicketsView>> GetTodaysTickets()
+        public async Task<List<TicketInfo>> GetTodaysTickets()
         {
-
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                c.name as CompanyName, t.problem, st.name state, t.revision, 
+                                                c.name as CompanyName, t.problem, st.name stateName, t.revision, 
 												Case t.IsIndexed when 1 then 'مرتبة'
 												 else 'غير مرتبة'
 												 end IsIndexed,
@@ -397,9 +266,8 @@ namespace OTS.Ticketing.Win.Tickets
                                                  and t.isDeleted = 0
 												 ORDER BY t.number DESC,t.revision DESC";
 
-            var result = await _dataAccess.QueryAsync<TicketsView>(query, new DynamicParameters());
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query, new DynamicParameters());
             return result.ToList();
         }
-
     }
 }

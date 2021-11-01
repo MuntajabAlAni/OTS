@@ -12,8 +12,8 @@ namespace OTS.Ticketing.Win.Tickets
 {
     public partial class TicketRemarks : Form
     {
-        private readonly TicketsView _ticket;
-        public TicketRemarks(TicketsView ticket)
+        private readonly TicketInfo _ticket;
+        public TicketRemarks(TicketInfo ticket)
         {
             _ticket = ticket;
             InitializeComponent();

@@ -25,12 +25,16 @@ namespace OTS.Ticketing.Win.Tickets
     {
         readonly TicketRepository _ticketRepository;
         readonly MainRepository _mainRepository;
+        readonly StateRepository _stateRepository;
+        readonly UserRepository _userRepository;
         readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public DisplayTickets()
         {
             _mainRepository = new MainRepository();
+            _stateRepository = new StateRepository();
+            _userRepository = new UserRepository();
             _ticketRepository = new TicketRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
@@ -67,7 +71,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombTransferedTo.DisplayMember = "displayName";
                 CombTransferedTo.ValueMember = "Id";
-                CombTransferedTo.DataSource = await _ticketRepository.GetAllUsers();
+                CombTransferedTo.DataSource = await _userRepository.GetAll();
                 CombTransferedTo.SelectedValue = 0;
             }
             catch (Exception ex)
@@ -83,7 +87,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombStates.DisplayMember = "Name";
                 CombStates.ValueMember = "Id";
-                CombStates.DataSource = await _ticketRepository.GetAllStates();
+                CombStates.DataSource = await _stateRepository.GetAll();
                 CombStates.SelectedValue = 0;
             }
             catch (Exception ex)
@@ -98,7 +102,7 @@ namespace OTS.Ticketing.Win.Tickets
             try
             {
                 DataTable dt = SystemConstants.ToDataTable(
-                    await _ticketRepository.GetAllByUserId(SystemConstants.loggedInUser.Id));
+                    await _ticketRepository.GetUnClosedByUserId(SystemConstants.loggedInUser.Id));
                 DataColumn dc = new DataColumn("ت", typeof(int));
                 dt.Columns.Add(dc);
                 int i = 0;
@@ -118,7 +122,7 @@ namespace OTS.Ticketing.Win.Tickets
                 DtgTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
                 DtgTickets.Columns["BranchName"].HeaderText = "الفرع";
                 DtgTickets.Columns["Problem"].HeaderText = "المشكلة";
-                DtgTickets.Columns["State"].HeaderText = "الحالة";
+                DtgTickets.Columns["StateName"].HeaderText = "الحالة";
                 DtgTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
                 DtgTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
                 DtgTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
@@ -149,7 +153,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-                TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
+                TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
                 LblNumber.Text = selectedTicket.Number.ToString();
                 LblRevision.Text = selectedTicket.Revision.ToString();
                 LblCompany.Text = selectedTicket.CompanyName.ToString();
@@ -157,13 +161,13 @@ namespace OTS.Ticketing.Win.Tickets
                 LblPhoneNumber.Text = selectedTicket.PhoneNumber.ToString();
                 LblSoftware.Text = selectedTicket.SoftwareName.ToString();
                 LblOpenDate.Text = selectedTicket.OpenDate.ToString("yyyy-MM-dd hh:mm tt dddd");
-                if (selectedTicket.State != null)
+                if (selectedTicket.StateName != null)
                 {
                     TxtProblem.Text = selectedTicket.Problem;
                     TxtRemarks.Text = selectedTicket.Remarks;
-                    CombStates.Text = selectedTicket.State;
-                    ToggleIsIndexed.Checked = selectedTicket.IsIndexed == "مرتبة";
-                    ToggleClosed.Checked = selectedTicket.IsClosed == "مغلقة";
+                    CombStates.Text = selectedTicket.StateName;
+                    ToggleIsIndexed.Checked = selectedTicket.IsIndexedView == "مرتبة";
+                    ToggleClosed.Checked = selectedTicket.IsClosedView == "مغلقة";
                 }
             }
             catch (Exception ex)
@@ -212,16 +216,21 @@ namespace OTS.Ticketing.Win.Tickets
                 {
                     if (Convert.ToInt64(CombTransferedTo.SelectedValue) == 0 & Convert.ToInt64(CombStates.SelectedValue) != 4)
                     {
-                        await _ticketRepository.Update(Convert.ToInt64(LblNumber.Text),
-                    Convert.ToInt32(LblRevision.Text),
-                    DateTime.Now,
-                    Convert.ToInt64(CombStates.SelectedValue),
-                    TxtRemarks.Text,
-                    TxtProblem.Text,
-                    Convert.ToInt32(ToggleRemotely.Checked),
-                    ToggleIsIndexed.Checked,
-                    ToggleClosed.Checked,
-                    Convert.ToInt64(CombTransferedTo.SelectedValue));
+                        TicketInfo ticket = new TicketInfo()
+                        {
+                            Number = Convert.ToInt64(LblNumber.Text),
+                            Revision = Convert.ToInt32(LblRevision.Text),
+                            CloseDate = DateTime.Now,
+                            StateId = Convert.ToInt64(CombStates.SelectedValue),
+                            Remarks = TxtRemarks.Text,
+                            Problem = TxtProblem.Text,
+                            Remotely = ToggleRemotely.Checked,
+                            IsIndexed = ToggleIsIndexed.Checked,
+                            IsClosed = ToggleClosed.Checked,
+                            TransferedTo = Convert.ToInt64(CombTransferedTo.SelectedValue)
+                        };
+
+                        await _ticketRepository.Answer(ticket);
 
                         TicketInfo updatedTicket = await _ticketRepository.GetByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
         Convert.ToInt64(LblRevision.Text));

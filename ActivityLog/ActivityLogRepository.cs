@@ -28,9 +28,7 @@ namespace OTS.Ticketing.Win.ActivityLog
         }
         public async Task<List<ActivityView>> GetActivityLog(ActivityLogReportInfo logReportInfo)
         {
-            logReportInfo.FromDate.ToString("yyyy-MM-dd 00:00:00.000");
-            logReportInfo.ToDate.ToString("yyyy-MM-dd 23:59:59.000");
-
+            logReportInfo.ToDate = logReportInfo.ToDate.AddDays(1);
             var parameters = new DynamicParameters(logReportInfo);
 
             string query = @"select al.id, u.displayName username, al.activityDate, a.activityName activityType, al.computerName,

@@ -37,7 +37,7 @@ namespace OTS.Ticketing.Win.Users
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("@id", id);
 
-            string query = @"SELECT * FROM Users WHERE ID = @ID";
+            string query = @"SELECT * FROM Users WHERE ID = @ID And isDeleted = 0";
             var result = await _dataAccess.QueryAsync<UserInfo>(query, parameters);
             return result.FirstOrDefault();
         }

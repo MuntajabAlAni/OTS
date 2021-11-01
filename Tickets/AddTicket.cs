@@ -21,6 +21,10 @@ namespace OTS.Ticketing.Win.Tickets
     public partial class AddTicket : Form
     {
         readonly TicketRepository _ticketRepository;
+        readonly CompanyRepository _companyRepository;
+        readonly SoftwareRepository _softwareRepository;
+        readonly UserRepository _userRepository;
+        readonly PhoneNumberRepository _phoneNumberRepository;
         readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -28,6 +32,10 @@ namespace OTS.Ticketing.Win.Tickets
         public AddTicket()
         {
             _ticketRepository = new TicketRepository();
+            _companyRepository = new CompanyRepository();
+            _softwareRepository = new SoftwareRepository();
+            _userRepository = new UserRepository();
+            _phoneNumberRepository = new PhoneNumberRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
         }
@@ -100,7 +108,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                CombCompanies.DataSource = await _ticketRepository.GetAllCompanies();
+                CombCompanies.DataSource = await _companyRepository.GetAll();
                 CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
             }
             catch (Exception ex)
@@ -116,7 +124,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombSoftware.DisplayMember = "Name";
                 CombSoftware.ValueMember = "Id";
-                CombSoftware.DataSource = await _ticketRepository.GetAllSoftwares();
+                CombSoftware.DataSource = await _softwareRepository.GetAll();
                 CombSoftware.SelectedValue = SystemConstants.SelectedSoftware;
             }
             catch (Exception ex)
@@ -132,7 +140,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _ticketRepository.GetAllUsers();
+                CombUser.DataSource = await _userRepository.GetAll();
                 CombUser.SelectedValue = SystemConstants.SelectedUser;
             }
             catch (Exception ex)
@@ -146,7 +154,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                var result = await _ticketRepository.GetPhoneNumbersOnSelectedCompanyId(Convert.ToInt64(CombCompanies.SelectedValue));
+                var result = await _phoneNumberRepository.GetByCompanyId(Convert.ToInt64(CombCompanies.SelectedValue));
                 if (result.Count != 0)
                 {
                     CombPhoneNumbers.DisplayMember = "phoneNumber";
@@ -177,7 +185,7 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["CompanyName"].HeaderText = "اسم الشركة";
             DtgUnclosedTickets.Columns["BranchName"].HeaderText = "الفرع";
             DtgUnclosedTickets.Columns["Problem"].HeaderText = "المشكلة";
-            DtgUnclosedTickets.Columns["State"].HeaderText = "الحالة";
+            DtgUnclosedTickets.Columns["StateName"].HeaderText = "الحالة";
             DtgUnclosedTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
             DtgUnclosedTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
             DtgUnclosedTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
@@ -204,12 +212,16 @@ namespace OTS.Ticketing.Win.Tickets
                 dr = MessageBox.Show("هل انت متأكد من الإضافة ؟", "", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-                    await _ticketRepository.AddTicket(Convert.ToInt64(LblNumber.Text),
-                Convert.ToInt32(LblRevision.Text),
-                Convert.ToInt64(CombCompanies.SelectedValue),
-                Convert.ToInt64(CombPhoneNumbers.SelectedValue),
-                Convert.ToInt64(CombSoftware.SelectedValue),
-                Convert.ToInt64(CombUser.SelectedValue));
+                    TicketInfo ticket = new TicketInfo() {
+                    Number = Convert.ToInt64(LblNumber.Text),
+                Revision = Convert.ToInt32(LblRevision.Text),
+                CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                PhoneNumberId = Convert.ToInt64(CombPhoneNumbers.SelectedValue),
+                SoftwareId = Convert.ToInt64(CombSoftware.SelectedValue),
+                UserId = Convert.ToInt64(CombUser.SelectedValue)
+                    };
+
+                    await _ticketRepository.Add(ticket);
 
                     SystemConstants.SelectedCompanyId = 0;
                     SystemConstants.SelectedPhoneNumberId = 0;

@@ -2,6 +2,7 @@
 using NLog;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.Utils;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace OTS.Ticketing.Win.Tickets
     {
         private readonly TicketRepository _ticketRepository;
         private readonly CompanyRepository _companyRepository;
+        private readonly UserRepository _userRepository;
         private readonly string _companyName;
         private System.Data.DataTable _dt;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -29,6 +31,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             _ticketRepository = new TicketRepository();
             _companyRepository = new CompanyRepository();
+            _userRepository = new UserRepository();
             _companyName = companyName;
             InitializeComponent();
             CombUser.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -48,7 +51,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                 DtpToDate.Value = DateTime.Today;
                 FillUsersComboBox();
-                FillCompaniesComboBox(SystemConstants.loggedInUser.Id);
+                FillCompaniesComboBox();
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
                     SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
@@ -72,30 +75,43 @@ namespace OTS.Ticketing.Win.Tickets
         }
         private async void GetDtgOldTickets()
         {
-            if (CbUnclosed.Checked & !CbClosed.Checked) _dt =
-                    SystemConstants.ToDataTable(await _ticketRepository.GetOldUnClosedTicketsByUserIdOrCompanyId(
-                Convert.ToInt64(CombCompanies.SelectedValue),
-                Convert.ToInt64(CombUser.SelectedValue),
-                DtpFromDate.Value,
-                DtpToDate.Value));
-            else if (!CbUnclosed.Checked & CbClosed.Checked) _dt =
-                    SystemConstants.ToDataTable(await _ticketRepository.GetOldTicketsByUserIdOrCompanyId(
-                Convert.ToInt64(CombCompanies.SelectedValue),
-                Convert.ToInt64(CombUser.SelectedValue),
-                DtpFromDate.Value,
-                DtpToDate.Value));
-            else if (CbUnclosed.Checked & CbClosed.Checked) _dt =
-                    SystemConstants.ToDataTable(await _ticketRepository.GetAllOldTicketsByUserIdOrCompanyId(
-                 Convert.ToInt64(CombCompanies.SelectedValue),
-                 Convert.ToInt64(CombUser.SelectedValue),
-                 DtpFromDate.Value,
-                 DtpToDate.Value));
-            else if (!CbUnclosed.Checked & !CbClosed.Checked)
+            OldTicketRequest request = default;
+            if (!CbUnclosed.Checked & !CbClosed.Checked)
             {
                 MessageBox.Show("يرجى إختيار نوع إغلاق البطاقة !");
                 return;
             }
+            else if (CbUnclosed.Checked & !CbClosed.Checked)
+                request = new OldTicketRequest()
+                {
+                    FromDate = DtpFromDate.Value,
+                    ToDate = DtpToDate.Value,
+                    UserId = Convert.ToInt64(CombUser.SelectedValue),
+                    CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                    IsClosed = 0
+                };
+            else if (!CbUnclosed.Checked & CbClosed.Checked)
+                request = new OldTicketRequest()
+                {
+                    FromDate = DtpFromDate.Value,
+                    ToDate = DtpToDate.Value,
+                    UserId = Convert.ToInt64(CombUser.SelectedValue),
+                    CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                    IsClosed = 1
+                };
+            else if (CbUnclosed.Checked & CbClosed.Checked)
+                request = new OldTicketRequest()
+                {
+                    FromDate = DtpFromDate.Value,
+                    ToDate = DtpToDate.Value,
+                    UserId = Convert.ToInt64(CombUser.SelectedValue),
+                    CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                    IsClosed = 2
+                };
 
+
+            _dt =
+                   SystemConstants.ToDataTable(await _ticketRepository.GetByRequest(request));
             _dt.Columns["Number"].ColumnName = "رقم البطاقة";
             _dt.Columns["OpenDate"].ColumnName = "تاريخ فتح البطاقة";
             _dt.Columns["CloseDate"].ColumnName = "تاريخ إغلاق البطاقة";
@@ -106,10 +122,10 @@ namespace OTS.Ticketing.Win.Tickets
             _dt.Columns["CompanyName"].ColumnName = "اسم الشركة";
             _dt.Columns["BranchName"].ColumnName = "الفرع";
             _dt.Columns["Problem"].ColumnName = "المشكلة";
-            _dt.Columns["State"].ColumnName = "الحالة";
+            _dt.Columns["StateName"].ColumnName = "الحالة";
             _dt.Columns["Revision"].ColumnName = "مراجعة البطاقة";
-            _dt.Columns["IsIndexed"].ColumnName = "ترتيب الملفات";
-            _dt.Columns["TransferedTo"].ColumnName = "تم التحويل الى";
+            _dt.Columns["IsIndexedView"].ColumnName = "ترتيب الملفات";
+            _dt.Columns["TransferedToName"].ColumnName = "تم التحويل الى";
             _dt.Columns["Remarks"].ColumnName = "الملاحظات";
             _dt.Columns.Remove("IsClosed");
             _dt.Columns.Remove("IsDeleted");
@@ -127,14 +143,13 @@ namespace OTS.Ticketing.Win.Tickets
             DtgOldTickets.Columns["ت"].DisplayIndex = 0;
             DtgOldTickets.HideUntranslatedColumns();
         }
-        private async void FillCompaniesComboBox(long userId)
+        private async void FillCompaniesComboBox()
         {
             try
             {
-                userId = userId == 1 ? 0 : userId;
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
-                var list = await _ticketRepository.GetCompaniesByUserId(userId);
+                var list = await _companyRepository.GetAll();
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                 {
                     list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
@@ -155,7 +170,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _ticketRepository.GetAllUsers();
+                CombUser.DataSource = await _userRepository.GetAll();
                 CombUser.SelectedValue = SystemConstants.SelectedUser;
             }
             catch (Exception ex)
@@ -220,11 +235,6 @@ namespace OTS.Ticketing.Win.Tickets
             BtnUpdate.PerformClick();
         }
 
-        private void CombUser_SelectedValueChanged(object sender, EventArgs e)
-        {
-            FillCompaniesComboBox(Convert.ToInt64(CombUser.SelectedValue));
-        }
-
         private void DtgOldTickets_DoubleClick(object sender, EventArgs e)
         {
             if (DtgOldTickets.Rows.Count == 0) return;
@@ -248,7 +258,7 @@ namespace OTS.Ticketing.Win.Tickets
             if (DtgOldTickets.Rows.Count == 0) return;
             long selectedNumber = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["رقم البطاقة"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["مراجعة البطاقة"].Value.ToString());
-            TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
             TicketRemarks remarks = new TicketRemarks(selectedTicket);
             remarks.ShowDialog();
         }

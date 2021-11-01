@@ -85,7 +85,7 @@ namespace OTS.Ticketing.Win.MainForms
                 DtgLastTickets.Columns["CompanyName"].HeaderText = LocalizationMessages.GetMessage("CompanyName");
                 DtgLastTickets.Columns["BranchName"].HeaderText = LocalizationMessages.GetMessage("BranchName");
                 DtgLastTickets.Columns["IsIndexed"].HeaderText = LocalizationMessages.GetMessage("IsIndexed");
-                DtgLastTickets.Columns["State"].HeaderText = LocalizationMessages.GetMessage("State");
+                DtgLastTickets.Columns["StateName"].HeaderText = LocalizationMessages.GetMessage("State");
                 DtgLastTickets.Columns["Problem"].HeaderText = LocalizationMessages.GetMessage("Problem");
                 DtgLastTickets.Columns["Revision"].HeaderText = LocalizationMessages.GetMessage("Revision");
                 DtgLastTickets.Columns["IsClosed"].HeaderText = LocalizationMessages.GetMessage("IsClosed");
@@ -222,7 +222,7 @@ namespace OTS.Ticketing.Win.MainForms
             if (DtgLastTickets.Rows.Count == 0) return;
             long selectedNumber = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Number"].Value.ToString());
             long selectedRevision = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-            TicketsView selectedTicket = await _ticketRepository.GetTicketDetailsByByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
             TicketRemarks remarks = new TicketRemarks(selectedTicket);
             remarks.ShowDialog();
         }
