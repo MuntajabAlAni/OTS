@@ -90,10 +90,10 @@ namespace OTS.Ticketing.Win.Tickets
                 FillSoftwaresComboBox();
                 FillUsersComboBox();
                 FillPhoneNumbersComboBox();
-                SystemConstants.SelectedCompanyId = 0;
-                SystemConstants.SelectedPhoneNumberId = 0;
-                SystemConstants.SelectedSoftware = 0;
-                SystemConstants.SelectedUser = 0;
+                SystemConstants.selectedCompanyId = 0;
+                SystemConstants.selectedPhoneNumberId = 0;
+                SystemConstants.selectedSoftware = 0;
+                SystemConstants.selectedUser = 0;
             }
             catch (Exception ex)
             {
@@ -109,7 +109,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
                 CombCompanies.DataSource = await _companyRepository.GetAll();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -125,7 +125,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombSoftware.DisplayMember = "Name";
                 CombSoftware.ValueMember = "Id";
                 CombSoftware.DataSource = await _softwareRepository.GetAll();
-                CombSoftware.SelectedValue = SystemConstants.SelectedSoftware;
+                CombSoftware.SelectedValue = SystemConstants.selectedSoftware;
             }
             catch (Exception ex)
             {
@@ -140,8 +140,8 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _userRepository.GetAll();
-                CombUser.SelectedValue = SystemConstants.SelectedUser;
+                CombUser.DataSource = await _userRepository.GetOTS();
+                CombUser.SelectedValue = SystemConstants.selectedUser;
             }
             catch (Exception ex)
             {
@@ -160,7 +160,7 @@ namespace OTS.Ticketing.Win.Tickets
                     CombPhoneNumbers.DisplayMember = "phoneNumber";
                     CombPhoneNumbers.ValueMember = "Id";
                     CombPhoneNumbers.DataSource = result;
-                    CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
+                    CombPhoneNumbers.SelectedValue = SystemConstants.selectedPhoneNumberId;
                 }
                 else CombPhoneNumbers.DataSource = null;
                 FillDtgUnclosedTickets(Convert.ToInt64(CombCompanies.SelectedValue));
@@ -187,8 +187,8 @@ namespace OTS.Ticketing.Win.Tickets
             DtgUnclosedTickets.Columns["Problem"].HeaderText = "المشكلة";
             DtgUnclosedTickets.Columns["StateName"].HeaderText = "الحالة";
             DtgUnclosedTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
-            DtgUnclosedTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
-            DtgUnclosedTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
+            DtgUnclosedTickets.Columns["IsIndexedView"].HeaderText = "ترتيب الملفات";
+            DtgUnclosedTickets.Columns["IsClosedView"].HeaderText = "الإغلاق";
             DtgUnclosedTickets.HideUntranslatedColumns();
 
         }
@@ -223,10 +223,10 @@ namespace OTS.Ticketing.Win.Tickets
 
                     await _ticketRepository.Add(ticket);
 
-                    SystemConstants.SelectedCompanyId = 0;
-                    SystemConstants.SelectedPhoneNumberId = 0;
-                    SystemConstants.SelectedSoftware = 0;
-                    SystemConstants.SelectedUser = 0;
+                    SystemConstants.selectedCompanyId = 0;
+                    SystemConstants.selectedPhoneNumberId = 0;
+                    SystemConstants.selectedSoftware = 0;
+                    SystemConstants.selectedUser = 0;
 
                     TicketInfo addedTicket = await _ticketRepository.GetByNumberAndRevision(Convert.ToInt64(LblNumber.Text),
                         Convert.ToInt32(LblRevision.Text));
@@ -272,7 +272,7 @@ namespace OTS.Ticketing.Win.Tickets
                 AddCompany addCompany = new AddCompany(0);
                 addCompany.ShowDialog();
                 FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -287,7 +287,7 @@ namespace OTS.Ticketing.Win.Tickets
                 AddCompany addCompany = new AddCompany(Convert.ToInt64(CombCompanies.SelectedValue));
                 addCompany.ShowDialog();
                 FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -299,7 +299,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
+                SystemConstants.selectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
                 AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0, CombPhoneNumbers.Text);
                 addPhoneNumber.ShowDialog();
                 FillCompaniesComboBox();
@@ -315,7 +315,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
+                SystemConstants.selectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
                 AddPhoneNumber addPhoneNumber = new AddPhoneNumber(Convert.ToInt64(CombPhoneNumbers.SelectedValue), CombPhoneNumbers.Text);
                 addPhoneNumber.ShowDialog();
                 FillCompaniesComboBox();
@@ -332,7 +332,7 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
+                SystemConstants.selectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
                 DisplayPhoneNumbers displayPhoneNumbers = new DisplayPhoneNumbers(true, CombPhoneNumbers.Text);
                 displayPhoneNumbers.ShowDialog();
                 FillCompaniesComboBox();
@@ -372,7 +372,7 @@ namespace OTS.Ticketing.Win.Tickets
                 DisplayCompanies displayCompanies = new DisplayCompanies(true, CombCompanies.Text);
                 displayCompanies.ShowDialog();
                 FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -394,7 +394,7 @@ namespace OTS.Ticketing.Win.Tickets
                 AddSoftware addSoftware = new AddSoftware(0);
                 addSoftware.ShowDialog();
                 FillSoftwaresComboBox();
-                CombSoftware.SelectedValue = SystemConstants.SelectedSoftware;
+                CombSoftware.SelectedValue = SystemConstants.selectedSoftware;
             }
             catch (Exception ex)
             {
@@ -409,7 +409,7 @@ namespace OTS.Ticketing.Win.Tickets
                 AddSoftware addSoftware = new AddSoftware(Convert.ToInt64(CombSoftware.SelectedValue));
                 addSoftware.ShowDialog();
                 FillSoftwaresComboBox();
-                CombSoftware.SelectedValue = SystemConstants.SelectedSoftware;
+                CombSoftware.SelectedValue = SystemConstants.selectedSoftware;
             }
             catch (Exception ex)
             {

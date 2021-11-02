@@ -67,7 +67,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
                 CombCompanies.DataSource = await _companyRepository.GetAll();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -100,8 +100,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                          _id, "تعديل رقم هاتف"));
 
                 }
-                SystemConstants.SelectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
-                SystemConstants.SelectedPhoneNumberId = _id == 0 ? addedId : _id;
+                SystemConstants.selectedCompanyId = Convert.ToInt64(CombCompanies.SelectedValue);
+                SystemConstants.selectedPhoneNumberId = _id == 0 ? addedId : _id;
                 this.Close();
             }
             catch (Exception ex)
@@ -134,7 +134,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 AddCompany addCompany = new AddCompany(0, CombCompanies.Text);
                 addCompany.ShowDialog();
                 FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -195,7 +195,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 DisplayCompanies displayCompanies = new DisplayCompanies(true, CombCompanies.Text);
                 displayCompanies.ShowDialog();
                 FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {

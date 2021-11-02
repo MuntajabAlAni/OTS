@@ -27,7 +27,7 @@ namespace OTS.Ticketing.Win.Tickets
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, t.problem, st.name stateName, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed FROM tickets t
+												 end IsIndexedView FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
@@ -74,8 +74,8 @@ namespace OTS.Ticketing.Win.Tickets
             string query = @" SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                  c.name as CompanyName, t.problem, st.name stateName, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed, case when t.isClosed = 1 then 'مغلقة' 
-                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosed FROM tickets t
+												 end IsIndexedView, case when t.isClosed = 1 then 'مغلقة' 
+                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosedView FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
                                                  inner join Users e on t.UserId = e.id
@@ -101,7 +101,7 @@ namespace OTS.Ticketing.Win.Tickets
         public async Task<TicketInfo> GetViewByNumberAndRevision(long ticketNumber, long revision)
         {
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("@ticketNumber", ticketNumber);
+            parameters.Add("@Number", ticketNumber);
             parameters.Add("@revision", revision);
             string query = @"select t.id, t.number, t.revision, t.OpenDate, c.name CompanyName, pn.phoneNumber PhoneNumber,
                             s.name SoftwareName, u.displayName UserName, st.name StateName, t.problem, t.remarks, 
@@ -113,7 +113,7 @@ namespace OTS.Ticketing.Win.Tickets
                              left join states st on st.id = t.stateId
                              left join users ut on ut.id = t.transferedTo
                              join phoneNumbers pn on pn.id = t.phoneNumberId
-                              where t.number = @ticketNumber and t.revision = @revision and t.isDeleted = 0";
+                              where t.number = @Number and t.revision = @revision and t.isDeleted = 0";
 
             var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.FirstOrDefault();
@@ -129,9 +129,9 @@ namespace OTS.Ticketing.Win.Tickets
                            ,problem = @problem
                            ,remotely = @remotely
                            ,IsIndexed = @IsIndexed
-                           ,isClosed = @closed
+                           ,isClosed = @isClosed
                            ,transferedTo = @transferedTo
-                            WHERE t.number = @ticketNumber and t.revision = @revision";
+                            WHERE number = @Number and revision = @revision";
 
             await _dataAccess.ExecuteAsync(command, parameters);
         }
@@ -141,11 +141,11 @@ namespace OTS.Ticketing.Win.Tickets
             parameters.Add("@ticketNumber", ticketNumber);
             parameters.Add("@revision", revision);
             string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
-                                                 c.name as CompanyName, t.problem, st.name state, t.revision, t.Remarks,
+                                                 c.name as CompanyName, t.problem, st.name stateName, t.revision, t.Remarks,
 												 Case when t.IsIndexed = 1 then 'مرتبة'
 												 when t.IsIndexed = 0 then 'غير مرتبة'
-												 end IsIndexed, case when t.isClosed = 1 then 'مغلقة' 
-                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosed
+												 end IsIndexedView, case when t.isClosed = 1 then 'مغلقة' 
+                                                 when t.isClosed = 0 then 'غير مغلقة' end isClosedView
 												  FROM tickets t
                                                  inner join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  inner join softwares s on t.softwareId = s.id
@@ -183,7 +183,7 @@ namespace OTS.Ticketing.Win.Tickets
                            ,problem = @problem
                            ,remotely = @remotely
                            ,IsIndexed = @IsIndexed
-                           ,isClosed = @closed
+                           ,isClosed = @isClosed
                            ,transferedTo = @transferedTo
                             WHERE number = @number and revision = @revision";
 
@@ -232,9 +232,9 @@ namespace OTS.Ticketing.Win.Tickets
                            ,problem = @problem
                            ,remotely = @remotely
                            ,IsIndexed = @IsIndexed
-                           ,isClosed = @closed
+                           ,isClosed = @isClosed
                            ,transferedTo = @transferedTo
-                            WHERE t.number = @ticketNumber and t.revision = @revision";
+                            WHERE number = @Number and revision = @revision";
 
             return await _dataAccess.ExecuteAsync(command, parameters);
         }
@@ -252,9 +252,9 @@ namespace OTS.Ticketing.Win.Tickets
                                                 c.name as CompanyName, t.problem, st.name stateName, t.revision, 
 												Case t.IsIndexed when 1 then 'مرتبة'
 												 else 'غير مرتبة'
-												 end IsIndexed,
+												 end IsIndexedView,
 												 case t.isClosed when 1 then 'مغلقة' 
-                                                 else 'غير مغلقة' end isClosed, u.displayName as TransferedTo
+                                                 else 'غير مغلقة' end isClosedView, u.displayName as TransferedToName
 												 FROM tickets t
                                                  left join phoneNumbers pn on t.phoneNumberId = pn.id
                                                  left join softwares s on t.softwareId = s.id

@@ -44,7 +44,8 @@ namespace OTS.Ticketing.Win.Tickets
             ToggleClosed.Checked = _ticket.IsClosed;
             ToggleIsIndexed.Checked = _ticket.IsIndexed;
             ToggleRemotely.Checked = _ticket.Remotely;
-
+            if (ToggleRemotely.Checked) LblRemote.Text = "بإستخدام Anydesk";
+            else LblRemote.Text = "بإتصال فقط";
         }
 
         private void BtnBack_Click(object sender, EventArgs e)

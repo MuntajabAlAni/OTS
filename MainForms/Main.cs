@@ -29,7 +29,6 @@ namespace OTS.Ticketing.Win
     public partial class Main : Form
     {
         private readonly MainRepository _mainRepository;
-        private readonly UserRepository _userRepository;
         private readonly ActivityLogRepository _activityLogRepository;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly CancellationTokenSource _cancellationTokenSource;
@@ -37,7 +36,6 @@ namespace OTS.Ticketing.Win
         {
             _cancellationTokenSource = new CancellationTokenSource();
             _mainRepository = new MainRepository();
-            _userRepository = new UserRepository();
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             UpdateSession();
@@ -129,11 +127,11 @@ namespace OTS.Ticketing.Win
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private async void BtnHome_Click(object sender, EventArgs e)
+        private void BtnHome_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.Home));
+                SystemConstants.currentEvent = EventType.Home;
                 if (PnlContainer.Controls.ContainsKey("Home")) return;
                 ApplingFormOnContainer(new Home());
             }
@@ -155,7 +153,7 @@ namespace OTS.Ticketing.Win
                 await _activityLogRepository.AddActivityLog(new ActivityLogInfo(ActivityType.SignOut,
                      SystemConstants.loggedInUser.Id, "تسجيل خروج مستخدم"));
 
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.LoggedOut));
+                SystemConstants.currentEvent = EventType.LoggedOut;
                 SessionInfo session = new SessionInfo
                 {
                     IsOnline = false,
@@ -177,11 +175,11 @@ namespace OTS.Ticketing.Win
         {
             Exit();
         }
-        private async void BtnTickets_Click(object sender, EventArgs e)
+        private void BtnTickets_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayTickets));
+                SystemConstants.currentEvent = EventType.DisplayTickets;
                 if (PnlContainer.Controls.ContainsKey("DisplayTickets")) return;
                 ApplingFormOnContainer(new DisplayTickets());
             }
@@ -191,12 +189,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnAddTicket_Click(object sender, EventArgs e)
+        private void BtnAddTicket_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.AddTicket));
-                var UserInfo = await _userRepository.GetById(SystemConstants.loggedInUser.Id);
+                SystemConstants.currentEvent = EventType.AddTicket;
                 ApplingFormOnContainer(new AddTicket());
             }
             catch (Exception ex)
@@ -212,11 +209,11 @@ namespace OTS.Ticketing.Win
                 Exit();
             }
         }
-        private async void BtnCompanies_Click(object sender, EventArgs e)
+        private void BtnCompanies_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.Companies));
+                SystemConstants.currentEvent = EventType.Companies;
                 if (PnlContainer.Controls.ContainsKey("DisplayCompanies")) return;
                 ApplingFormOnContainer(new DisplayCompanies(false));
             }
@@ -226,11 +223,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnUsers_Click(object sender, EventArgs e)
+        private void BtnUsers_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.Users));
+                SystemConstants.currentEvent = EventType.Users;
                 if (PnlContainer.Controls.ContainsKey("DisplayUsers")) return;
                 ApplingFormOnContainer(new DisplayUsers());
             }
@@ -240,11 +237,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnPhoneNumbres_Click(object sender, EventArgs e)
+        private void BtnPhoneNumbres_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.PhoneNumbers));
+                SystemConstants.currentEvent = EventType.PhoneNumbers;
                 if (PnlContainer.Controls.ContainsKey("DisplayPhoneNumbers")) return;
                 ApplingFormOnContainer(new DisplayPhoneNumbers(false));
             }
@@ -272,7 +269,7 @@ namespace OTS.Ticketing.Win
                     };
 
                     await _mainRepository.UpdateIsOnlineByUserId(session);
-                    await _mainRepository.UpdateSession(new SessionInfo(EventType.LoggedOut));
+                    SystemConstants.currentEvent = EventType.LoggedOut;
                     Application.Exit();
                 }
             }
@@ -282,11 +279,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnStates_Click(object sender, EventArgs e)
+        private void BtnStates_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.States));
+                SystemConstants.currentEvent = EventType.States;
                 if (PnlContainer.Controls.ContainsKey("DisplayStates")) return;
                 ApplingFormOnContainer(new DisplayStates());
             }
@@ -296,11 +293,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnSoftwares_Click(object sender, EventArgs e)
+        private void BtnSoftwares_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.Softwares));
+                SystemConstants.currentEvent = EventType.Softwares;
                 if (PnlContainer.Controls.ContainsKey("DisplaySoftwares")) return;
                 ApplingFormOnContainer(new DisplaySoftwares());
             }
@@ -310,11 +307,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnOldTickets_Click(object sender, EventArgs e)
+        private void BtnOldTickets_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayOldTickets));
+                SystemConstants.currentEvent = EventType.DisplayOldTickets;
                 if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
                 ApplingFormOnContainer(new DisplayOldTickets());
             }
@@ -333,11 +330,11 @@ namespace OTS.Ticketing.Win
             AddUser displayUser = new AddUser(SystemConstants.loggedInUser.Id);
             displayUser.ShowDialog();
         }
-        private async void BtnActivityLog_Click(object sender, EventArgs e)
+        private void BtnActivityLog_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayActivities));
+                SystemConstants.currentEvent = EventType.DisplayActivities;
                 if (PnlContainer.Controls.ContainsKey("DisplayActivities")) return;
                 ApplingFormOnContainer(new DisplayActivities());
             }
@@ -347,11 +344,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnScheduling_Click(object sender, EventArgs e)
+        private void BtnScheduling_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.Schedule));
+                SystemConstants.currentEvent = EventType.Schedule;
                 if (PnlContainer.Controls.ContainsKey("Schedule")) return;
                 ApplingFormOnContainer(new DisplayTasks());
             }
@@ -361,11 +358,11 @@ namespace OTS.Ticketing.Win
                 Logger.Error(ex);
             }
         }
-        private async void BtnDisplayEmployees_Click(object sender, EventArgs e)
+        private void BtnDisplayEmployees_Click(object sender, EventArgs e)
         {
             try
             {
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayEmployees));
+                SystemConstants.currentEvent = EventType.DisplayEmployees;
                 if (PnlContainer.Controls.ContainsKey("DisplayEmployees")) return;
                 ApplingFormOnContainer(new DisplayEmployees());
             }
@@ -456,8 +453,8 @@ namespace OTS.Ticketing.Win
                 {
                     try
                     {
-                        var result = await _mainRepository.UpdateSession(new SessionInfo(0));
-                        await Task.Delay(3000);
+                        var result = await _mainRepository.UpdateSession(new SessionInfo(SystemConstants.currentEvent));
+                        await Task.Delay(5000);
                         if (result == 0)
                         {
                             MessageBox.Show("تم تسجيل الدخول أكثر من مرة");

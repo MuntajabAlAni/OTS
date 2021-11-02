@@ -114,6 +114,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleClosed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToggleClosed.BackgroundImage")));
             this.ToggleClosed.Checked = false;
             this.ToggleClosed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ToggleClosed.Enabled = false;
             this.ToggleClosed.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleClosed.InnerCirclePadding = 3;
             this.ToggleClosed.Location = new System.Drawing.Point(225, 83);
@@ -159,6 +160,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleIsIndexed.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToggleIsIndexed.BackgroundImage")));
             this.ToggleIsIndexed.Checked = false;
             this.ToggleIsIndexed.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ToggleIsIndexed.Enabled = false;
             this.ToggleIsIndexed.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleIsIndexed.InnerCirclePadding = 3;
             this.ToggleIsIndexed.Location = new System.Drawing.Point(225, 15);
@@ -204,6 +206,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.ToggleRemotely.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ToggleRemotely.BackgroundImage")));
             this.ToggleRemotely.Checked = false;
             this.ToggleRemotely.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ToggleRemotely.Enabled = false;
             this.ToggleRemotely.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ToggleRemotely.InnerCirclePadding = 3;
             this.ToggleRemotely.Location = new System.Drawing.Point(225, 49);

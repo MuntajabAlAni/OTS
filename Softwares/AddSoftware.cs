@@ -68,7 +68,7 @@ namespace OTS.Ticketing.Win.Softwares
                          _id, "تعديل برنامج"));
                 }
                 SoftwareInfo softwareInfo = await _softwareRepository.GetByName(TxtName.Text);
-                SystemConstants.SelectedSoftware = softwareInfo.Id;
+                SystemConstants.selectedSoftware = softwareInfo.Id;
                 this.Close();
             }
             catch (Exception ex)

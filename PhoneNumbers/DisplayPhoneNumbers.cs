@@ -41,8 +41,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     {
                         long id = Convert.ToInt64(DtgPhoneNumbers.Rows[0].Cells["Id"].Value.ToString());
                         PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetById(id);
-                        SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
-                        SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
+                        SystemConstants.selectedPhoneNumberId = selectedPhoneNumber.Id;
+                        SystemConstants.selectedCompanyId = selectedPhoneNumber.CompanyId;
                         this.Close();
                     }
                     if (DtgPhoneNumbers.Rows.Count == 0)
@@ -89,8 +89,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
                     long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
                     PhoneNumberInfo selectedPhoneNumber = await phoneNumberRepository.GetById(id);
-                    SystemConstants.SelectedPhoneNumberId = selectedPhoneNumber.Id;
-                    SystemConstants.SelectedCompanyId = selectedPhoneNumber.CompanyId;
+                    SystemConstants.selectedPhoneNumberId = selectedPhoneNumber.Id;
+                    SystemConstants.selectedCompanyId = selectedPhoneNumber.CompanyId;
                     this.Close();
                 }
                 else

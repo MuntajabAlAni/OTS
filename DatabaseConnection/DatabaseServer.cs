@@ -40,9 +40,9 @@ namespace OTS.Ticketing.Win.DatabaseConnection
             try
             {
                 _iniFile.IniWriteValue("Connection", "Database", CombDatabases.SelectedValue.ToString());
-                SystemConstants.Database = CombDatabases.SelectedValue.ToString();
+                SystemConstants.database = CombDatabases.SelectedValue.ToString();
                 _iniFile.IniWriteValue("Connection", "ServerIp", TxtServerIp.Text);
-                SystemConstants.ServerIp = TxtServerIp.Text;
+                SystemConstants.serverIp = TxtServerIp.Text;
                 this.Close();
             }
             catch (Exception ex)

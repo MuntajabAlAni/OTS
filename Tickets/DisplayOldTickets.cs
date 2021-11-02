@@ -24,24 +24,22 @@ namespace OTS.Ticketing.Win.Tickets
         private readonly TicketRepository _ticketRepository;
         private readonly CompanyRepository _companyRepository;
         private readonly UserRepository _userRepository;
-        private readonly string _companyName;
         private System.Data.DataTable _dt;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        public DisplayOldTickets(string companyName = "")
+        public DisplayOldTickets()
         {
             _ticketRepository = new TicketRepository();
             _companyRepository = new CompanyRepository();
             _userRepository = new UserRepository();
-            _companyName = companyName;
             InitializeComponent();
-            CombUser.DropDownStyle = ComboBoxStyle.DropDownList;
-            CombCompanies.DropDownStyle = ComboBoxStyle.DropDownList;
+            //CombUser.DropDownStyle = ComboBoxStyle.DropDownList;
+            //CombCompanies.DropDownStyle = ComboBoxStyle.DropDownList;
             PnlLoad.Dock = DockStyle.Fill;
             PnlLoad.BringToFront();
             PnlLoad.Visible = false;
         }
 
-        private async void DisplayOldTickets_Load(object sender, EventArgs e)
+        private void DisplayOldTickets_Load(object sender, EventArgs e)
         {
             try
             {
@@ -55,17 +53,13 @@ namespace OTS.Ticketing.Win.Tickets
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
                     SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
-                    BtnEdit.Visible = true;
                     BtnExcel.Visible = true;
                     CombUser.Visible = true;
                     LblUser.Visible = true;
                     return;
                 }
-                var result = await _companyRepository.GetByName(_companyName);
-                CompanyView company = result.FirstOrDefault();
-                CombCompanies.SelectedValue = company.Id;
+                CombCompanies.SelectedValue = 0;
                 CombUser.SelectedValue = 0;
-                BtnUpdate.PerformClick();
             }
             catch (Exception ex)
             {
@@ -73,7 +67,7 @@ namespace OTS.Ticketing.Win.Tickets
                 Logger.Error(ex);
             }
         }
-        private async void GetDtgOldTickets()
+        private async Task GetDtgOldTickets()
         {
             OldTicketRequest request = default;
             if (!CbUnclosed.Checked & !CbClosed.Checked)
@@ -150,12 +144,9 @@ namespace OTS.Ticketing.Win.Tickets
                 CombCompanies.DisplayMember = "Name";
                 CombCompanies.ValueMember = "Id";
                 var list = await _companyRepository.GetAll();
-                if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
-                {
-                    list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
-                }
+                list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
                 CombCompanies.DataSource = list;
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -170,8 +161,10 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _userRepository.GetAll();
-                CombUser.SelectedValue = SystemConstants.SelectedUser;
+                List<UserInfo> users = await _userRepository.GetOTS();
+                users.Insert(0, new UserInfo { Id = 0, DisplayName = "الكل" });
+                CombUser.DataSource = users;
+                CombUser.SelectedValue = SystemConstants.selectedUser;
             }
             catch (Exception ex)
             {
@@ -181,10 +174,10 @@ namespace OTS.Ticketing.Win.Tickets
 
         }
 
-        private void BtnUpdate_Click(object sender, EventArgs e)
+        private async void BtnUpdate_Click(object sender, EventArgs e)
         {
             PnlLoad.Visible = true;
-            GetDtgOldTickets();
+            await GetDtgOldTickets();
             PnlLoad.Visible = false;
         }
 

@@ -42,7 +42,7 @@ namespace OTS.Ticketing.Win.Companies
                     {
                         long id = Convert.ToInt64(DtgCompanies.Rows[0].Cells["Id"].Value.ToString());
                         CompanyInfo selectedCompany = await companyRepository.GetById(id);
-                        SystemConstants.SelectedCompanyId = selectedCompany.Id;
+                        SystemConstants.selectedCompanyId = selectedCompany.Id;
                         this.Close();
                     }
                     if (DtgCompanies.Rows.Count == 0)
@@ -89,7 +89,7 @@ namespace OTS.Ticketing.Win.Companies
                 {
                     long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
                     CompanyInfo selectedCompany = await companyRepository.GetById(id);
-                    SystemConstants.SelectedCompanyId = selectedCompany.Id;
+                    SystemConstants.selectedCompanyId = selectedCompany.Id;
                     this.Close();
                 }
                 else

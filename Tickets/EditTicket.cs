@@ -60,12 +60,12 @@ namespace OTS.Ticketing.Win.Tickets
             _ticketInfo = await _ticketRepository.GetByNumberAndRevision(_number, _revision);
             LblNumber.Text = _ticketInfo.Number.ToString();
             LblRevision.Text = _ticketInfo.Revision.ToString();
-            SystemConstants.SelectedCompanyId = _ticketInfo.CompanyId;
+            SystemConstants.selectedCompanyId = _ticketInfo.CompanyId;
             CompanyInfo companyInfo = await _companyRepository.GetById(_ticketInfo.CompanyId);
             LblCompanyName.Text = companyInfo.Name;
-            SystemConstants.SelectedPhoneNumberId = _ticketInfo.PhoneNumberId;
-            SystemConstants.SelectedSoftware = _ticketInfo.SoftwareId;
-            SystemConstants.SelectedUser = _ticketInfo.UserId;
+            SystemConstants.selectedPhoneNumberId = _ticketInfo.PhoneNumberId;
+            SystemConstants.selectedSoftware = _ticketInfo.SoftwareId;
+            SystemConstants.selectedUser = _ticketInfo.UserId;
             LblOpenDate.Text = _ticketInfo.OpenDate.ToString();
             TxtProblem.Text = _ticketInfo.Problem != null ? _ticketInfo.Problem.ToString() : "";
             CombStates.SelectedValue = _ticketInfo.StateId;
@@ -87,7 +87,7 @@ namespace OTS.Ticketing.Win.Tickets
                 CombSoftwares.DisplayMember = "Name";
                 CombSoftwares.ValueMember = "Id";
                 CombSoftwares.DataSource = await _softwareRepository.GetAll();
-                CombSoftwares.SelectedValue = SystemConstants.SelectedSoftware;
+                CombSoftwares.SelectedValue = SystemConstants.selectedSoftware;
             }
             catch (Exception ex)
             {
@@ -102,8 +102,8 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombUsers.DisplayMember = "displayName";
                 CombUsers.ValueMember = "Id";
-                CombUsers.DataSource = await _userRepository.GetAll();
-                CombUsers.SelectedValue = SystemConstants.SelectedUser;
+                CombUsers.DataSource = await _userRepository.GetOTS();
+                CombUsers.SelectedValue = SystemConstants.selectedUser;
             }
             catch (Exception ex)
             {
@@ -123,7 +123,7 @@ namespace OTS.Ticketing.Win.Tickets
                     CombPhoneNumbers.DisplayMember = "phoneNumber";
                     CombPhoneNumbers.ValueMember = "Id";
                     CombPhoneNumbers.DataSource = result;
-                    CombPhoneNumbers.SelectedValue = SystemConstants.SelectedPhoneNumberId;
+                    CombPhoneNumbers.SelectedValue = SystemConstants.selectedPhoneNumberId;
                 }
                 else CombPhoneNumbers.DataSource = null;
             }
@@ -140,7 +140,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombTransferedTo.DisplayMember = "displayName";
                 CombTransferedTo.ValueMember = "Id";
-                CombTransferedTo.DataSource = await _userRepository.GetAll();
+                CombTransferedTo.DataSource = await _userRepository.GetOTS();
                 CombTransferedTo.SelectedValue = 0;
             }
             catch (Exception ex)
@@ -249,6 +249,12 @@ namespace OTS.Ticketing.Win.Tickets
                     }
                 }
             }
+        }
+
+        private void ToggleRemotely_CheckedChanged(object sender, Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs e)
+        {
+            if (ToggleRemotely.Checked) LblRemote.Text = "بإستخدام Anydesk";
+            else LblRemote.Text = "بإتصال فقط";
         }
     }
 }

@@ -48,8 +48,8 @@ namespace OTS.Ticketing.Win.MainForms
                 _activityLogRepository = new ActivityLogRepository();
                 InitializeComponent();
                 IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
-                SystemConstants.Database = iniFile.IniReadValue("Connection", "Database");
-                SystemConstants.ServerIp = iniFile.IniReadValue("Connection", "ServerIp");
+                SystemConstants.database = iniFile.IniReadValue("Connection", "Database");
+                SystemConstants.serverIp = iniFile.IniReadValue("Connection", "ServerIp");
             }
             catch (Exception ex)
             {

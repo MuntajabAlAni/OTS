@@ -62,7 +62,7 @@ namespace OTS.Ticketing.Win.MainForms
             var parameters = new DynamicParameters(session);
 
             string command = @"UPDATE sessions SET 
-                                 lastEvent = IIF(@lastEvent = 0,lastEvent,@lastEvent),
+                                 lastEvent = @lastEvent,
                                  computerName = @computerName,
 			   	                 lastUpdateDate = SYSDATETIME()
 					             WHERE userId = @userId and sessionId = @sessionId;
@@ -79,10 +79,10 @@ namespace OTS.Ticketing.Win.MainForms
         public async Task<List<SessionView>> GetSessions()
         {
             string query = @"SELECT s.id, s.userId ,u.displayName ,e.eventName ,s.computerName ,s.lastUpdateDate ,s.isOnline ,s.number
-                             FROM Sessions s 
+                             FROM Sessions s with (nolock)
                              join users u on u.id = s.userId
                              left join events e on e.id = s.lastEvent
-                             Where u.userName not in ('admin','Noor')";
+                             Where u.userName not in ('admin','Noor','Batool')";
             var result = await _dataAccess.QueryAsync<SessionView>(query);
             return result.ToList();
         }

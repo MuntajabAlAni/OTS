@@ -83,14 +83,12 @@ namespace OTS.Ticketing.Win.MainForms
                 DtgLastTickets.Columns["SoftwareName"].HeaderText = LocalizationMessages.GetMessage("SoftwareName");
                 DtgLastTickets.Columns["UserName"].HeaderText = LocalizationMessages.GetMessage("UserName");
                 DtgLastTickets.Columns["CompanyName"].HeaderText = LocalizationMessages.GetMessage("CompanyName");
-                DtgLastTickets.Columns["BranchName"].HeaderText = LocalizationMessages.GetMessage("BranchName");
-                DtgLastTickets.Columns["IsIndexed"].HeaderText = LocalizationMessages.GetMessage("IsIndexed");
+                DtgLastTickets.Columns["IsIndexedView"].HeaderText = LocalizationMessages.GetMessage("IsIndexed");
                 DtgLastTickets.Columns["StateName"].HeaderText = LocalizationMessages.GetMessage("State");
                 DtgLastTickets.Columns["Problem"].HeaderText = LocalizationMessages.GetMessage("Problem");
                 DtgLastTickets.Columns["Revision"].HeaderText = LocalizationMessages.GetMessage("Revision");
-                DtgLastTickets.Columns["IsClosed"].HeaderText = LocalizationMessages.GetMessage("IsClosed");
-                DtgLastTickets.Columns["Remarks"].HeaderText = LocalizationMessages.GetMessage("Remarks");
-                DtgLastTickets.Columns["TransferedTo"].HeaderText = LocalizationMessages.GetMessage("TransferedTo");
+                DtgLastTickets.Columns["IsClosedView"].HeaderText = LocalizationMessages.GetMessage("IsClosed");
+                DtgLastTickets.Columns["TransferedToName"].HeaderText = LocalizationMessages.GetMessage("TransferedTo");
                 DtgLastTickets.HideUntranslatedColumns();
             }
             catch (Exception ex)

@@ -235,6 +235,7 @@ namespace OTS.Ticketing.Win.Tickets
             toggleState9.BorderThicknessInner = 1;
             this.ToggleRemotely.ToggleStateOn = toggleState9;
             this.ToggleRemotely.Value = false;
+            this.ToggleRemotely.CheckedChanged += new System.EventHandler<Bunifu.UI.WinForms.BunifuToggleSwitch.CheckedChangedEventArgs>(this.ToggleRemotely_CheckedChanged);
             // 
             // CombTransferedTo
             // 

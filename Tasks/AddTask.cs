@@ -147,7 +147,7 @@ namespace OTS.Ticketing.Win.Tasks
                 var addCompany = new AddCompany(0);
                 addCompany.ShowDialog();
                 await FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -168,7 +168,7 @@ namespace OTS.Ticketing.Win.Tasks
                 var editCompany = new AddCompany(Convert.ToInt64(CombCompanies.SelectedValue));
                 editCompany.ShowDialog();
                 await FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {
@@ -243,7 +243,7 @@ namespace OTS.Ticketing.Win.Tasks
                 DisplayCompanies displayCompanies = new DisplayCompanies(true, CombCompanies.Text);
                 displayCompanies.ShowDialog();
                 await FillCompaniesComboBox();
-                CombCompanies.SelectedValue = SystemConstants.SelectedCompanyId;
+                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
             }
             catch (Exception ex)
             {

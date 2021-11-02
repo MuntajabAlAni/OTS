@@ -1,4 +1,5 @@
-﻿using OTS.Ticketing.Win.Users;
+﻿using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.UsersRoles;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,14 @@ namespace OTS.Ticketing.Win
     {
         public static UserInfo loggedInUser = null;
         public static Guid loggedInUserSessionId = Guid.Empty;
-        public static long SelectedPhoneNumberId = 0;
-        public static long SelectedCompanyId = 0;
-        public static long SelectedSoftware = 0;
-        public static long SelectedUser = 0;
-        public static string Database;
-        public static string ServerIp;
+        public static long selectedPhoneNumberId = 0;
+        public static long selectedCompanyId = 0;
+        public static long selectedSoftware = 0;
+        public static long selectedUser = 0;
+        public static EventType currentEvent = 0;
+        public static string database;
+        public static string serverIp;
         public static List<long> userRoles = null;
-
 
         public static DataTable ToDataTable<T>(IList<T> data)
         {
@@ -48,17 +49,15 @@ namespace OTS.Ticketing.Win
             }
             return table;
         }
-
         public static void Initialize()
         {
             loggedInUser = null;
-            SelectedPhoneNumberId = 0;
-            SelectedCompanyId = 0;
-            SelectedSoftware = 0;
-            SelectedUser = 0;
+            selectedPhoneNumberId = 0;
+            selectedCompanyId = 0;
+            selectedSoftware = 0;
+            selectedUser = 0;
             userRoles = null;
         }
-
         public static string SHA512(string plaintext)
         {
             ASCIIEncoding AE = new ASCIIEncoding();
@@ -69,7 +68,6 @@ namespace OTS.Ticketing.Win
 
             return Convert.ToBase64String(passHash);
         }
-
         public static DataTable ToDataTable(IEnumerable<dynamic> items)
         {
             var data = items.ToArray();
@@ -86,8 +84,6 @@ namespace OTS.Ticketing.Win
             }
             return dt;
         }
-
-
     }
 
     public static class ControlExtensions
@@ -104,7 +100,6 @@ namespace OTS.Ticketing.Win
             }
         }
     }
-
     public static class DataGridViewExtensions
     {
         public static void HideUntranslatedColumns(this DataGridView gridView)

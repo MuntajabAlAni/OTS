@@ -334,7 +334,6 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnRemarks.TabIndex = 9;
             this.BtnRemarks.Text = "الملاحظات";
             this.BtnRemarks.UseVisualStyleBackColor = false;
-            this.BtnRemarks.Visible = false;
             this.BtnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
             // 
             // DisplayOldTickets

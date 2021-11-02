@@ -24,7 +24,6 @@ namespace OTS.Ticketing.Win.Tickets
     public partial class DisplayTickets : Form
     {
         readonly TicketRepository _ticketRepository;
-        readonly MainRepository _mainRepository;
         readonly StateRepository _stateRepository;
         readonly UserRepository _userRepository;
         readonly ActivityLogRepository _activityLogRepository;
@@ -32,7 +31,6 @@ namespace OTS.Ticketing.Win.Tickets
 
         public DisplayTickets()
         {
-            _mainRepository = new MainRepository();
             _stateRepository = new StateRepository();
             _userRepository = new UserRepository();
             _ticketRepository = new TicketRepository();
@@ -71,7 +69,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombTransferedTo.DisplayMember = "displayName";
                 CombTransferedTo.ValueMember = "Id";
-                CombTransferedTo.DataSource = await _userRepository.GetAll();
+                CombTransferedTo.DataSource = await _userRepository.GetOTS();
                 CombTransferedTo.SelectedValue = 0;
             }
             catch (Exception ex)
@@ -124,8 +122,7 @@ namespace OTS.Ticketing.Win.Tickets
                 DtgTickets.Columns["Problem"].HeaderText = "المشكلة";
                 DtgTickets.Columns["StateName"].HeaderText = "الحالة";
                 DtgTickets.Columns["Revision"].HeaderText = "مراجعة البطاقة";
-                DtgTickets.Columns["IsIndexed"].HeaderText = "ترتيب الملفات";
-                DtgTickets.Columns["IsClosed"].HeaderText = "الإغلاق";
+                DtgTickets.Columns["IsIndexedView"].HeaderText = "ترتيب الملفات";
                 DtgTickets.HideUntranslatedColumns();
 
             }
@@ -149,7 +146,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 if (DtgTickets.Rows.Count == 0) return;
 
-                await _mainRepository.UpdateSession(new SessionInfo(EventType.TicketInProgress));
+                SystemConstants.currentEvent = EventType.TicketInProgress;
 
                 long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
                 long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
@@ -188,7 +185,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 if (LblNumber.Text == "" | Convert.ToInt64(CombStates.SelectedValue) == 0)
                 {
-                    MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("يرجى إختيار البطاقة و تحديد حالة البطاقة", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (Convert.ToInt64(CombTransferedTo.SelectedValue) == SystemConstants.loggedInUser.Id)
@@ -262,7 +259,7 @@ namespace OTS.Ticketing.Win.Tickets
                     //    this.Close();
                     //    SystemConstants.TechnicalSupportTask = true;
                     //}
-                    await _mainRepository.UpdateSession(new SessionInfo(EventType.DisplayTickets));
+                    SystemConstants.currentEvent = EventType.DisplayTickets;
                     GetDtgTicketsData();
                     RefreshAllData();
                 }
@@ -333,12 +330,7 @@ namespace OTS.Ticketing.Win.Tickets
 
         private void BtnOldTickets_Click(object sender, EventArgs e)
         {
-            if (LblCompany.Text == "")
-            {
-                MessageBox.Show("! يرجى إختيار بطاقة اولاً");
-                return;
-            }
-            DisplayOldTickets displayOldTickets = new DisplayOldTickets(LblCompany.Text);
+            DisplayOldTickets displayOldTickets = new DisplayOldTickets();
             displayOldTickets.ShowDialog();
         }
 

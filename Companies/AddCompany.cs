@@ -141,7 +141,7 @@ namespace OTS.Ticketing.Win.Companies
                 }
                 List<CompanyView> companies = await _companyRepository.GetByName(TxtName.Text);
                 CompanyView selectedCompany = companies.FirstOrDefault();
-                SystemConstants.SelectedCompanyId = selectedCompany.Id;
+                SystemConstants.selectedCompanyId = selectedCompany.Id;
                 this.Close();
 
             }

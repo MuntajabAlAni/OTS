@@ -15,13 +15,13 @@ namespace OTS.Ticketing.Win.DatabaseConnection
         {
             SqlConnectionStringBuilder str = new SqlConnectionStringBuilder
             {
-                DataSource = ServerIp == "" ? SystemConstants.ServerIp : ServerIp,
-                InitialCatalog = init == false ? SystemConstants.Database : "master",
+                DataSource = ServerIp == "" ? SystemConstants.serverIp : ServerIp,
+                InitialCatalog = init == false ? SystemConstants.database : "master",
                 UserID = "sa",
                 Password = "vULiwCss0SrBrLJ"
             };
 
-            bool devTest = true;                    //todo: SET FALSE WHEN RELEASE A NEW VERSION
+            bool devTest = false;                    //todo: SET FALSE WHEN RELEASE A NEW VERSION
             str.IntegratedSecurity = devTest;
             if(!devTest)
             str["Server"] = str.DataSource + @"\FOTSQLSERVER";
