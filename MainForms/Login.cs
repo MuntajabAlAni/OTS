@@ -50,6 +50,8 @@ namespace OTS.Ticketing.Win.MainForms
                 IniFile iniFile = new IniFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini"));
                 SystemConstants.database = iniFile.IniReadValue("Connection", "Database");
                 SystemConstants.serverIp = iniFile.IniReadValue("Connection", "ServerIp");
+                string timeout = iniFile.IniReadValue("Connection", "Timeout");
+                SystemConstants.timeout = timeout == "" ? 30 : Convert.ToInt32(timeout);
             }
             catch (Exception ex)
             {
@@ -84,8 +86,8 @@ namespace OTS.Ticketing.Win.MainForms
                         MessageBox.Show("يرجى إدخال الرقم المخصص");
                         return;
                     }
-                    if ((Convert.ToInt32(TxtNumber.Text) < 100 | Convert.ToInt32(TxtNumber.Text) > 125)
-                        & (Convert.ToInt32(TxtNumber.Text) < 3600 | Convert.ToInt32(TxtNumber.Text) > 3625))
+                    if ((Convert.ToInt32(TxtNumber.Text) < 100 | Convert.ToInt32(TxtNumber.Text) > 122)
+                        & (Convert.ToInt32(TxtNumber.Text) < 3600 | Convert.ToInt32(TxtNumber.Text) > 3622))
                     {
                         TxtNumber.Text = "";
                         MessageBox.Show("! يرجى إدخال الرقم بشكل صحيح من الارقام الموجودة");
@@ -96,6 +98,7 @@ namespace OTS.Ticketing.Win.MainForms
 
                 SystemConstants.loggedInUser = result;
                 SystemConstants.loggedInUserSessionId = Guid.NewGuid();
+                SystemConstants.loggedInUserNumber = TxtNumber.Text;
 
                 List<long> roles = new List<long>();
                 var userRolesInfo = await _mainRepository.GetUserRoles(result.Id);

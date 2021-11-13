@@ -476,6 +476,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\TicketOnProgress.png" />
     <None Include="Resources\Wake.png" />
     <None Include="Resources\Sleep.png" />
     <None Include="Resources\Online.png" />

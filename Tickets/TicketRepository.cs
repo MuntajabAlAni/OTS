@@ -202,7 +202,7 @@ namespace OTS.Ticketing.Win.Tickets
                            (@number,
                             @phoneNumberId,
                             @softwareId,
-                            @UserId,
+                            @TransferedTo,
                             @companyId,
                             @revision)";
 

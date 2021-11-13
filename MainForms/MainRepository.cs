@@ -64,17 +64,23 @@ namespace OTS.Ticketing.Win.MainForms
             string command = @"UPDATE sessions SET 
                                  lastEvent = @lastEvent,
                                  computerName = @computerName,
+                                 Number = @number,
+                                 IsOnline = @IsOnline,
 			   	                 lastUpdateDate = SYSDATETIME()
-					             WHERE userId = @userId and sessionId = @sessionId;
+					             WHERE userId = @userId and sessionId = @sessionId";
 
-                              UPDATE Sessions SET 
+            return await _dataAccess.ExecuteAsync(command, parameters, SystemConstants.timeout, null);
+        }
+        public async Task UpdateOfflineUsers()
+        {
+            string command = @"UPDATE Sessions SET 
                               lastEvent = 14,
                               isOnline = 0,
                               Number = ''
                               WHERE
-                              ABS(DATEDIFF(MINUTE,SYSDATETIME(),(lastUpdateDate))) > 4";
+                              ABS(DATEDIFF(MINUTE,SYSDATETIME(),(lastUpdateDate))) > 4 AND isOnline = 1";
 
-            return await _dataAccess.ExecuteAsync(command, parameters);
+            await _dataAccess.ExecuteAsync(command, null,SystemConstants.timeout, null);
         }
         public async Task<List<SessionView>> GetSessions()
         {
@@ -83,7 +89,7 @@ namespace OTS.Ticketing.Win.MainForms
                              join users u on u.id = s.userId
                              left join events e on e.id = s.lastEvent
                              Where u.userName not in ('admin','Noor','Batool')";
-            var result = await _dataAccess.QueryAsync<SessionView>(query);
+            var result = await _dataAccess.QueryAsync<SessionView>(query, null, false, "", null, SystemConstants.timeout, null);
             return result.ToList();
         }
         public async Task<SettingsInfo> GetSettings()

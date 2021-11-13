@@ -46,13 +46,15 @@ namespace OTS.Ticketing.Win.MainForms
                 {
                     BtnOnlineState.Visible = true;
                 }
-                RtbNotes.SelectionAlignment = HorizontalAlignment.Center;
+
                 await GetDtgLastTicketsData();
-                if (!File.Exists(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt")))
+
+                if (!File.Exists(Path.Combine("Notes.txt")))
                 {
-                    File.CreateText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"));
+                    File.CreateText(Path.Combine("Notes.txt")).Close();
                 }
-                RtbNotes.Text = File.ReadAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"));
+                RtbNotes.SelectionAlignment = HorizontalAlignment.Center;
+                RtbNotes.Text = File.ReadAllText(Path.Combine("Notes.txt"));
                 GetDtgUsersData();
             }
             catch (Exception ex)
@@ -130,6 +132,7 @@ namespace OTS.Ticketing.Win.MainForms
                     DtgUsers.Sort(DtgUsers.Columns["isOnline"], System.ComponentModel.ListSortDirection.Descending);
                     DtgUsers.Columns["isOnline"].Visible = false;
                     Image online = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Wake : Properties.Resources.Online;
+                    Image ticketOnProgress = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Wake : Properties.Resources.TicketOnProgress;
                     Image offline = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Sleep : Properties.Resources.Offline;
 
                     if (DtgUsers.Columns.Contains("الحالة") == false)
@@ -147,6 +150,10 @@ namespace OTS.Ticketing.Win.MainForms
                         if (Convert.ToBoolean(row.Cells["isOnline"].Value) == true)
                         {
                             row.Cells["الحالة"].Value = online;
+                            if (row.Cells["اخر حركة"].Value.ToString() == "مشغول ببطاقة")
+                            {
+                                row.Cells["الحالة"].Value = ticketOnProgress;
+                            }
                         }
                         else
                         {

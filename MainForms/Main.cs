@@ -39,6 +39,7 @@ namespace OTS.Ticketing.Win
             _activityLogRepository = new ActivityLogRepository();
             InitializeComponent();
             UpdateSession();
+            UpdateOffline();
             FileToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
             HelpToolStripMenuItem.DropDownDirection = ToolStripDropDownDirection.BelowLeft;
             PnlLoad.Dock = DockStyle.Fill;
@@ -204,7 +205,7 @@ namespace OTS.Ticketing.Win
         }
         private void Main_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape)
+            if (e.KeyCode == Keys.Escape | (e.KeyCode == Keys.F4 & ModifierKeys == Keys.Alt))
             {
                 Exit();
             }
@@ -264,13 +265,19 @@ namespace OTS.Ticketing.Win
 
                     SessionInfo session = new SessionInfo
                     {
-                        IsOnline = false,
-                        UserId = SystemConstants.loggedInUser.Id
+                        UserId = SystemConstants.loggedInUser.Id,
+                        LastEvent = (int)EventType.LoggedOut,
+                        ComputerName = Environment.MachineName,
+                        SessionId = SystemConstants.loggedInUserSessionId,
+                        Number = "",
+                        IsOnline = false
                     };
 
                     await _mainRepository.UpdateIsOnlineByUserId(session);
-                    SystemConstants.currentEvent = EventType.LoggedOut;
+                    await _mainRepository.UpdateSession(session);
+
                     Application.Exit();
+                    Environment.Exit(Environment.ExitCode);
                 }
             }
             catch (Exception ex)
@@ -323,7 +330,8 @@ namespace OTS.Ticketing.Win
         }
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Online Technical Support 6059\n1.0.0.4\nFuture of Technology Co.\n2021 ", "عن", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show($"Online Technical Support 6059\n{Application.ProductVersion}\nFuture of Technology Co.\n2021 ", "حول البرنامج",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
         private void EditUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -460,6 +468,27 @@ namespace OTS.Ticketing.Win
                             MessageBox.Show("تم تسجيل الدخول أكثر من مرة");
                             Application.Exit();
                         }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Logger.Error(ex);
+                    }
+                }
+            });
+        }
+
+        private void UpdateOffline()
+        {
+            CancellationToken cancellationToken = _cancellationTokenSource.Token;
+            Task.Run(async () =>
+            {
+                while (!cancellationToken.IsCancellationRequested)
+                {
+                    try
+                    {
+                        await _mainRepository.UpdateOfflineUsers();
+                        await Task.Delay(60000);
                     }
                     catch (Exception ex)
                     {

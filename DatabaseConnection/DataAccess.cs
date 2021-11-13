@@ -11,15 +11,16 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 {
     public class DataAccess
     {
-        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, DynamicParameters parameters = null, bool init = false, string ServerIp = "")
+        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, DynamicParameters parameters = null, bool init = false, string ServerIp = "",
+            IDbTransaction transaction = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue(init, ServerIp)))
             {
-                return await connection.QueryAsync<T>(sql, parameters);
+                return await connection.QueryAsync<T>(sql, parameters, transaction, commandTimeout, commandType);
             }
         }
 
-        public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters = null)
+        public async Task<int> ExecuteAsync(string sql, DynamicParameters parameters = null, int? commandTimeout = null, CommandType? commandType = null)
         {
             using (SqlConnection connection = new SqlConnection(ConnectionTools.ConnectionValue()))
             {
@@ -27,7 +28,7 @@ namespace OTS.Ticketing.Win.DatabaseConnection
                     connection.Open();
                 using (var trans = connection.BeginTransaction())
                 {
-                    var result = await connection.ExecuteAsync(sql, parameters, trans);
+                    var result = await connection.ExecuteAsync(sql, parameters, trans, commandTimeout, commandType);
                     trans.Commit();
                     return result;
                 }

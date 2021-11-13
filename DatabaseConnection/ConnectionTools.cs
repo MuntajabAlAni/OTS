@@ -23,8 +23,8 @@ namespace OTS.Ticketing.Win.DatabaseConnection
 
             bool devTest = false;                    //todo: SET FALSE WHEN RELEASE A NEW VERSION
             str.IntegratedSecurity = devTest;
-            if(!devTest)
-            str["Server"] = str.DataSource + @"\FOTSQLSERVER";
+            if (!devTest)
+                str["Server"] = str.DataSource + @"\FOTSQLSERVER";
 
             return str.ConnectionString;
         }

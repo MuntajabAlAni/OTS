@@ -18,6 +18,7 @@ namespace OTS.Ticketing.Win
     public class SystemConstants
     {
         public static UserInfo loggedInUser = null;
+        public static string loggedInUserNumber = "";
         public static Guid loggedInUserSessionId = Guid.Empty;
         public static long selectedPhoneNumberId = 0;
         public static long selectedCompanyId = 0;
@@ -26,6 +27,7 @@ namespace OTS.Ticketing.Win
         public static EventType currentEvent = 0;
         public static string database;
         public static string serverIp;
+        public static int? timeout = null;
         public static List<long> userRoles = null;
 
         public static DataTable ToDataTable<T>(IList<T> data)
