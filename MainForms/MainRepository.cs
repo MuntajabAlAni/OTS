@@ -65,7 +65,6 @@ namespace OTS.Ticketing.Win.MainForms
                                  lastEvent = @lastEvent,
                                  computerName = @computerName,
                                  Number = @number,
-                                 IsOnline = @IsOnline,
 			   	                 lastUpdateDate = SYSDATETIME()
 					             WHERE userId = @userId and sessionId = @sessionId";
 

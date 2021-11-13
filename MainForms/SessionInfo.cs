@@ -16,7 +16,6 @@ namespace OTS.Ticketing.Win.MainForms
             ComputerName = Environment.MachineName;
             SessionId = SystemConstants.loggedInUserSessionId;
             Number = SystemConstants.loggedInUserNumber;
-            IsOnline = eventType != EventType.LoggedOut;
         }
         public long Id { get; set; }
         public long UserId { get; set; }

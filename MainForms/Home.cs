@@ -150,14 +150,14 @@ namespace OTS.Ticketing.Win.MainForms
                         if (Convert.ToBoolean(row.Cells["isOnline"].Value) == true)
                         {
                             row.Cells["الحالة"].Value = online;
-                            if (row.Cells["اخر حركة"].Value.ToString() == "مشغول ببطاقة")
-                            {
-                                row.Cells["الحالة"].Value = ticketOnProgress;
-                            }
                         }
                         else
                         {
                             row.Cells["الحالة"].Value = offline;
+                            if (row.Cells["اخر حركة"].Value.ToString() == "مشغول")
+                            {
+                                row.Cells["الحالة"].Value = ticketOnProgress;
+                            }
                         }
                     }
                     foreach (DataGridViewColumn col in DtgUsers.Columns)
