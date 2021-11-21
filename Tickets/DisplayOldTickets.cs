@@ -228,16 +228,6 @@ namespace OTS.Ticketing.Win.Tickets
             BtnUpdate.PerformClick();
         }
 
-        private void DtgOldTickets_DoubleClick(object sender, EventArgs e)
-        {
-            if (DtgOldTickets.Rows.Count == 0) return;
-            long selectedNumber = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["رقم البطاقة"].Value.ToString());
-            long selectedRevision = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["مراجعة البطاقة"].Value.ToString());
-
-            ViewTicket view = new ViewTicket(selectedNumber, selectedRevision);
-            view.ShowDialog();
-        }
-
         private void PnlLoad_VisibleChanged(object sender, EventArgs e)
         {
             foreach (Control control in Controls)
@@ -254,6 +244,16 @@ namespace OTS.Ticketing.Win.Tickets
             TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
             TicketRemarks remarks = new TicketRemarks(selectedTicket);
             remarks.ShowDialog();
+        }
+
+        private void DtgOldTickets_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DtgOldTickets.Rows.Count == 0) return;
+            long selectedNumber = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["رقم البطاقة"].Value.ToString());
+            long selectedRevision = Convert.ToInt64(DtgOldTickets.SelectedRows[0].Cells["مراجعة البطاقة"].Value.ToString());
+
+            ViewTicket view = new ViewTicket(selectedNumber, selectedRevision);
+            view.ShowDialog();
         }
     }
 }

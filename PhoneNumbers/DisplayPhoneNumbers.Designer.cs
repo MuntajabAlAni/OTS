@@ -99,7 +99,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             this.DtgPhoneNumbers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgPhoneNumbers.Size = new System.Drawing.Size(421, 377);
             this.DtgPhoneNumbers.TabIndex = 0;
-            this.DtgPhoneNumbers.DoubleClick += new System.EventHandler(this.DtgPhoneNumbers_DoubleClick);
+            this.DtgPhoneNumbers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgPhoneNumbers_CellContentDoubleClick);
             // 
             // BtnExit
             // 

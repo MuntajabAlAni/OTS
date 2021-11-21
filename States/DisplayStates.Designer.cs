@@ -115,7 +115,7 @@ namespace OTS.Ticketing.Win.States
             this.DtgStates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgStates.Size = new System.Drawing.Size(421, 377);
             this.DtgStates.TabIndex = 0;
-            this.DtgStates.DoubleClick += new System.EventHandler(this.DtgStates_DoubleClick);
+            this.DtgStates.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgStates_CellContentDoubleClick);
             // 
             // BtnExit
             // 

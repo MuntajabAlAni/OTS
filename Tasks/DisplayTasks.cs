@@ -164,16 +164,6 @@ namespace OTS.Ticketing.Win.Tasks
             }
         }
 
-        private async void DtgTasks_DoubleClick(object sender, EventArgs e)
-        {
-            if (DtgTasks.SelectedRows.Count < 1) return;
-            long selectedTaskId = Convert.ToInt64(DtgTasks.SelectedRows[0].Cells["Id"].Value);
-            var selectedTask = await _taskRepository.GetById(selectedTaskId);
-            selectedTask.TaskState = !selectedTask.TaskState;
-            await _taskRepository.Update(selectedTask);
-            GetDtgTasksData();
-        }
-
         private void BtnToday_Click(object sender, EventArgs e)
         {
             if (_selectedDate.ToString("yyyy-MM-dd") == DateTime.Now.ToString("yyyy-MM-dd")) return;
@@ -181,6 +171,16 @@ namespace OTS.Ticketing.Win.Tasks
             GetDtgScheduleData();
             DtgTasks.DataSource = null;
             LblEmployeeName.Text = "";
+        }
+
+        private async void DtgTasks_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (DtgTasks.SelectedRows.Count < 1) return;
+            long selectedTaskId = Convert.ToInt64(DtgTasks.SelectedRows[0].Cells["Id"].Value);
+            var selectedTask = await _taskRepository.GetById(selectedTaskId);
+            selectedTask.TaskState = !selectedTask.TaskState;
+            await _taskRepository.Update(selectedTask);
+            GetDtgTasksData();
         }
     }
 }

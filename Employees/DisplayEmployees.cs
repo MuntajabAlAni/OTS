@@ -87,7 +87,7 @@ namespace OTS.Ticketing.Win.Tasks
             GetDtgEmployeesData();
         }
 
-        private void DtgEmployees_DoubleClick(object sender, EventArgs e)
+        private void DtgEmployees_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {

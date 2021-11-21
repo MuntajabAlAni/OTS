@@ -113,7 +113,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.DtgLastTickets.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DtgLastTickets.RowTemplate.Height = 26;
             this.DtgLastTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DtgLastTickets.DoubleClick += new System.EventHandler(this.DtgLastTickets_DoubleClick);
+            this.DtgLastTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgLastTickets_CellContentDoubleClick);
             // 
             // LblTime
             // 

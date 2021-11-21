@@ -230,7 +230,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgUnclosedTickets.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DtgUnclosedTickets.RowTemplate.Height = 26;
             this.DtgUnclosedTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DtgUnclosedTickets.DoubleClick += new System.EventHandler(this.DtgUnclosedTickets_DoubleClick);
+            this.DtgUnclosedTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgUnclosedTickets_CellContentDoubleClick);
             // 
             // LblUnclosedTickets
             // 

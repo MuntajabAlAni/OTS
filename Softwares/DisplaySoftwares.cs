@@ -56,25 +56,6 @@ namespace OTS.Ticketing.Win.Softwares
 
         }
 
-        private void DtgSoftwares_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditSoftware)) &
-                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
-                    return;
-                long id = Convert.ToInt64(DtgSoftwares.SelectedRows[0].Cells["Id"].Value.ToString());
-                AddSoftware addSoftware = new AddSoftware(id);
-                addSoftware.ShowDialog();
-                GetDtgSoftwaresData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Error(ex);
-            }
-        }
-
         private void BtnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -93,6 +74,25 @@ namespace OTS.Ticketing.Win.Softwares
             AddSoftware addSoftware = new AddSoftware(0);
             addSoftware.ShowDialog();
             GetDtgSoftwaresData();
+        }
+
+        private void DtgSoftwares_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditSoftware)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    return;
+                long id = Convert.ToInt64(DtgSoftwares.SelectedRows[0].Cells["Id"].Value.ToString());
+                AddSoftware addSoftware = new AddSoftware(id);
+                addSoftware.ShowDialog();
+                GetDtgSoftwaresData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
     }
 }

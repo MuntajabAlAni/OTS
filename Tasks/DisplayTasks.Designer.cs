@@ -214,7 +214,7 @@ namespace OTS.Ticketing.Win.Tasks
             this.DtgTasks.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgTasks.Size = new System.Drawing.Size(626, 256);
             this.DtgTasks.TabIndex = 4;
-            this.DtgTasks.DoubleClick += new System.EventHandler(this.DtgTasks_DoubleClick);
+            this.DtgTasks.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgTasks_CellContentDoubleClick);
             // 
             // BtnPrevious
             // 
@@ -313,7 +313,7 @@ namespace OTS.Ticketing.Win.Tasks
             this.BtnToday.UseVisualStyleBackColor = false;
             this.BtnToday.Click += new System.EventHandler(this.BtnToday_Click);
             // 
-            // Schedule
+            // DisplayTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -330,7 +330,7 @@ namespace OTS.Ticketing.Win.Tasks
             this.Controls.Add(this.DtgSchedule);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
-            this.Name = "Schedule";
+            this.Name = "DisplayTasks";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Schedule";

@@ -80,7 +80,28 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             DtgPhoneNumbers.Columns["CompanyName"].HeaderText = "اسم الشركة";
             DtgPhoneNumbers.Columns["IsDeleted"].Visible = false;
         }
-        private async void DtgPhoneNumbers_DoubleClick(object sender, EventArgs e)
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void DisplayPhoneNumbers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private async void BtnAdd_Click(object sender, EventArgs e)
+        {
+            AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0);
+            addPhoneNumber.ShowDialog();
+            await GetDtgPhoneNumbersData();
+        }
+
+        private async void DtgPhoneNumbers_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -109,27 +130,6 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
-
-        }
-
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void DisplayPhoneNumbers_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-
-        private async void BtnAdd_Click(object sender, EventArgs e)
-        {
-            AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0);
-            addPhoneNumber.ShowDialog();
-            await GetDtgPhoneNumbersData();
         }
     }
 }

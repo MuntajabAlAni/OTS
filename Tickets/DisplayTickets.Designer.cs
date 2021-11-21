@@ -158,7 +158,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgTickets.Size = new System.Drawing.Size(1026, 333);
             this.DtgTickets.TabIndex = 31;
-            this.DtgTickets.DoubleClick += new System.EventHandler(this.DtgTickets_DoubleClick);
+            this.DtgTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgTickets_CellContentDoubleClick);
             // 
             // LblNumberTitle
             // 

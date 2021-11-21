@@ -69,25 +69,6 @@ namespace OTS.Ticketing.Win.Users
             }
         }
 
-        private void DtgUsers_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditUser)) &
-                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
-                    return;
-                long id = Convert.ToInt64(DtgUsers.SelectedRows[0].Cells["Id"].Value.ToString());
-                AddUser addUser = new AddUser(id);
-                addUser.ShowDialog();
-                GetDtgUsersData();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Error(ex);
-            }
-        }
-
         private void BtnExit_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -106,6 +87,25 @@ namespace OTS.Ticketing.Win.Users
             AddUser addUser = new AddUser(0);
             addUser.ShowDialog();
             GetDtgUsersData();
+        }
+
+        private void DtgUsers_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (!SystemConstants.userRoles.Contains(((long)RoleType.EditUser)) &
+                    !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
+                    return;
+                long id = Convert.ToInt64(DtgUsers.SelectedRows[0].Cells["Id"].Value.ToString());
+                AddUser addUser = new AddUser(id);
+                addUser.ShowDialog();
+                GetDtgUsersData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
         }
     }
 }

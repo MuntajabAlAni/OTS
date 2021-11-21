@@ -140,40 +140,6 @@ namespace OTS.Ticketing.Win.Tickets
             else LblRemote.Text = "بإتصال فقط";
         }
 
-        private async void DtgTickets_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DtgTickets.Rows.Count == 0) return;
-
-                SystemConstants.currentEvent = EventType.TicketInProgress;
-
-                long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
-                long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-                TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
-                LblNumber.Text = selectedTicket.Number.ToString();
-                LblRevision.Text = selectedTicket.Revision.ToString();
-                LblCompany.Text = selectedTicket.CompanyName.ToString();
-                LblUser.Text = selectedTicket.UserName.ToString();
-                LblPhoneNumber.Text = selectedTicket.PhoneNumber.ToString();
-                LblSoftware.Text = selectedTicket.SoftwareName.ToString();
-                LblOpenDate.Text = selectedTicket.OpenDate.ToString("yyyy-MM-dd hh:mm tt dddd");
-                if (selectedTicket.StateName != null)
-                {
-                    TxtProblem.Text = selectedTicket.Problem;
-                    TxtRemarks.Text = selectedTicket.Remarks;
-                    CombStates.Text = selectedTicket.StateName;
-                    ToggleIsIndexed.Checked = selectedTicket.IsIndexedView == "مرتبة";
-                    ToggleClosed.Checked = selectedTicket.IsClosedView == "مغلقة";
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Error(ex);
-            }
-        }
-
         private void BtnRefresh_Click(object sender, EventArgs e)
         {
             GetDtgTicketsData();
@@ -341,6 +307,40 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombTransferedTo.Visible = false;
                 FillUsersComboBox();
+            }
+        }
+
+        private async void DtgTickets_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (DtgTickets.Rows.Count == 0) return;
+
+                SystemConstants.currentEvent = EventType.TicketInProgress;
+
+                long selectedNumber = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Number"].Value.ToString());
+                long selectedRevision = Convert.ToInt64(DtgTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
+                TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
+                LblNumber.Text = selectedTicket.Number.ToString();
+                LblRevision.Text = selectedTicket.Revision.ToString();
+                LblCompany.Text = selectedTicket.CompanyName.ToString();
+                LblUser.Text = selectedTicket.UserName.ToString();
+                LblPhoneNumber.Text = selectedTicket.PhoneNumber.ToString();
+                LblSoftware.Text = selectedTicket.SoftwareName.ToString();
+                LblOpenDate.Text = selectedTicket.OpenDate.ToString("yyyy-MM-dd hh:mm tt dddd");
+                if (selectedTicket.StateName != null)
+                {
+                    TxtProblem.Text = selectedTicket.Problem;
+                    TxtRemarks.Text = selectedTicket.Remarks;
+                    CombStates.Text = selectedTicket.StateName;
+                    ToggleIsIndexed.Checked = selectedTicket.IsIndexedView == "مرتبة";
+                    ToggleClosed.Checked = selectedTicket.IsClosedView == "مغلقة";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
             }
         }
     }

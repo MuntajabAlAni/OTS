@@ -221,8 +221,7 @@ namespace OTS.Ticketing.Win.MainForms
         {
             await GetDtgLastTicketsData();
         }
-
-        private async void DtgLastTickets_DoubleClick(object sender, EventArgs e)
+        private async void DtgLastTickets_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (DtgLastTickets.Rows.Count == 0) return;
             long selectedNumber = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Number"].Value.ToString());

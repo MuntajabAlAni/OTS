@@ -112,8 +112,7 @@ namespace OTS.Ticketing.Win.ActivityLog
                 ToDate = DtpToDate.Value
             };
         }
-
-        private void DtgActivityLog_DoubleClick(object sender, EventArgs e)
+        private void DtgActivityLog_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (Control.ModifierKeys == Keys.Alt)
             {

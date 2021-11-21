@@ -115,7 +115,7 @@ namespace OTS.Ticketing.Win.Users
             this.DtgUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgUsers.Size = new System.Drawing.Size(421, 377);
             this.DtgUsers.TabIndex = 0;
-            this.DtgUsers.DoubleClick += new System.EventHandler(this.DtgUsers_DoubleClick);
+            this.DtgUsers.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgUsers_CellContentDoubleClick);
             // 
             // BtnExit
             // 

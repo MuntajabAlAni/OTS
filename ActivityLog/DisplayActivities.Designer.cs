@@ -203,7 +203,7 @@ namespace OTS.Ticketing.Win.ActivityLog
             this.DtgActivityLog.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgActivityLog.Size = new System.Drawing.Size(1001, 386);
             this.DtgActivityLog.TabIndex = 33;
-            this.DtgActivityLog.DoubleClick += new System.EventHandler(this.DtgActivityLog_DoubleClick);
+            this.DtgActivityLog.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgActivityLog_CellContentDoubleClick);
             // 
             // CombActivities
             // 

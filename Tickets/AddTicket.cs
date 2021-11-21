@@ -212,13 +212,14 @@ namespace OTS.Ticketing.Win.Tickets
                 dr = MessageBox.Show("هل انت متأكد من الإضافة ؟", "", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-                    TicketInfo ticket = new TicketInfo() {
-                    Number = Convert.ToInt64(LblNumber.Text),
-                Revision = Convert.ToInt32(LblRevision.Text),
-                CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
-                PhoneNumberId = Convert.ToInt64(CombPhoneNumbers.SelectedValue),
-                SoftwareId = Convert.ToInt64(CombSoftware.SelectedValue),
-                UserId = Convert.ToInt64(CombUser.SelectedValue)
+                    TicketInfo ticket = new TicketInfo()
+                    {
+                        Number = Convert.ToInt64(LblNumber.Text),
+                        Revision = Convert.ToInt32(LblRevision.Text),
+                        CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                        PhoneNumberId = Convert.ToInt64(CombPhoneNumbers.SelectedValue),
+                        SoftwareId = Convert.ToInt64(CombSoftware.SelectedValue),
+                        UserId = Convert.ToInt64(CombUser.SelectedValue)
                     };
 
                     await _ticketRepository.Add(ticket);
@@ -243,27 +244,6 @@ namespace OTS.Ticketing.Win.Tickets
                 Logger.Error(ex);
             }
 
-        }
-        private async void DtgUnclosedTickets_DoubleClick(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DtgUnclosedTickets.RowCount == 0) return;
-                long selectedNumber = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Number"].Value.ToString());
-                long selectedRevision = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
-                TicketInfo selectedTicket = await _ticketRepository.GetByNumberAndRevision(selectedNumber, selectedRevision);
-                LblNumber.Text = selectedTicket.Number.ToString();
-                LblRevision.Text = (selectedTicket.Revision + 1).ToString();
-                CombCompanies.SelectedValue = selectedTicket.CompanyId;
-                CombUser.SelectedValue = selectedTicket.UserId;
-                CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
-                CombSoftware.SelectedValue = selectedTicket.SoftwareId;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Logger.Error(ex);
-            }
         }
         private void BtnAddCompany_Click(object sender, EventArgs e)
         {
@@ -467,6 +447,28 @@ namespace OTS.Ticketing.Win.Tickets
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private async void DtgUnclosedTickets_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (DtgUnclosedTickets.RowCount == 0) return;
+                long selectedNumber = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Number"].Value.ToString());
+                long selectedRevision = Convert.ToInt64(DtgUnclosedTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
+                TicketInfo selectedTicket = await _ticketRepository.GetByNumberAndRevision(selectedNumber, selectedRevision);
+                LblNumber.Text = selectedTicket.Number.ToString();
+                LblRevision.Text = (selectedTicket.Revision + 1).ToString();
+                CombCompanies.SelectedValue = selectedTicket.CompanyId;
+                CombUser.SelectedValue = selectedTicket.UserId;
+                CombPhoneNumbers.SelectedValue = selectedTicket.PhoneNumberId;
+                CombSoftware.SelectedValue = selectedTicket.SoftwareId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
             }
         }
     }

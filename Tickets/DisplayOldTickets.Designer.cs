@@ -134,7 +134,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgOldTickets.Size = new System.Drawing.Size(1001, 386);
             this.DtgOldTickets.TabIndex = 11;
-            this.DtgOldTickets.DoubleClick += new System.EventHandler(this.DtgOldTickets_DoubleClick);
+            this.DtgOldTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgOldTickets_CellContentDoubleClick);
             // 
             // BtnExit
             // 

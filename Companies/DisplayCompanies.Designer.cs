@@ -92,7 +92,7 @@ namespace OTS.Ticketing.Win.Companies
             this.DtgCompanies.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.DtgCompanies.RowTemplate.Height = 26;
             this.DtgCompanies.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DtgCompanies.DoubleClick += new System.EventHandler(this.DtgCompanies_DoubleClick);
+            this.DtgCompanies.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgCompanies_CellContentDoubleClick);
             // 
             // BtnExit
             // 

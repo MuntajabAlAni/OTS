@@ -81,7 +81,28 @@ namespace OTS.Ticketing.Win.Companies
             DtgCompanies.Columns["Remarks"].Visible = false;
             DtgCompanies.Columns["IsDeleted"].Visible = false;
         }
-        private async void DtgCompanies_DoubleClick(object sender, EventArgs e)
+
+        private void BtnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void DisplayCompanies_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private async void BtnAdd_Click(object sender, EventArgs e)
+        {
+            AddCompany addCompany = new AddCompany(0);
+            addCompany.ShowDialog();
+            await GetDtgCompaniesData();
+        }
+
+        private async void DtgCompanies_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -108,26 +129,6 @@ namespace OTS.Ticketing.Win.Companies
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
-        }
-
-        private void BtnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void DisplayCompanies_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape)
-            {
-                this.Close();
-            }
-        }
-
-        private async void BtnAdd_Click(object sender, EventArgs e)
-        {
-            AddCompany addCompany = new AddCompany(0);
-            addCompany.ShowDialog();
-            await GetDtgCompaniesData();
         }
     }
 }
