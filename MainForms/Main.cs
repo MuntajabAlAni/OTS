@@ -46,10 +46,18 @@ namespace OTS.Ticketing.Win
             PnlLoad.BringToFront();
             PnlLoad.Visible = false;
         }
-        private void Main_Load(object sender, EventArgs e)
+        private async void Main_Load(object sender, EventArgs e)
         {
             try
             {
+                SessionInfo session = new SessionInfo
+                {
+                    IsOnline = true,
+                    UserId = SystemConstants.loggedInUser.Id
+                };
+
+                await _mainRepository.UpdateIsOnlineByUserId(session);
+
                 BtnHome.PerformClick();
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                 {
@@ -155,13 +163,20 @@ namespace OTS.Ticketing.Win
                      SystemConstants.loggedInUser.Id, "تسجيل خروج مستخدم"));
 
                 SystemConstants.currentEvent = EventType.LoggedOut;
+
                 SessionInfo session = new SessionInfo
                 {
-                    IsOnline = false,
-                    UserId = SystemConstants.loggedInUser.Id
+                    UserId = SystemConstants.loggedInUser.Id,
+                    LastEvent = (int)EventType.LoggedOut,
+                    ComputerName = Environment.MachineName,
+                    SessionId = SystemConstants.loggedInUserSessionId,
+                    Number = "",
+                    IsOnline = false
                 };
 
                 await _mainRepository.UpdateIsOnlineByUserId(session);
+                await _mainRepository.UpdateSession(session);
+
                 this.Close();
                 Login login = new Login();
                 login.Show();
