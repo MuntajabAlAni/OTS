@@ -24,8 +24,9 @@ namespace OTS.Ticketing.Win.Tickets
         private readonly TicketRepository _ticketRepository;
         private readonly CompanyRepository _companyRepository;
         private readonly UserRepository _userRepository;
-        private System.Data.DataTable _dt;
+        private DataTable _dt;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+
         public DisplayOldTickets()
         {
             _ticketRepository = new TicketRepository();
@@ -50,6 +51,7 @@ namespace OTS.Ticketing.Win.Tickets
                 DtpToDate.Value = DateTime.Today;
                 FillUsersComboBox();
                 FillCompaniesComboBox();
+               
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
                     SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
@@ -58,6 +60,7 @@ namespace OTS.Ticketing.Win.Tickets
                     LblUser.Visible = true;
                     return;
                 }
+
                 CombCompanies.SelectedValue = 0;
                 CombUser.SelectedValue = 0;
             }

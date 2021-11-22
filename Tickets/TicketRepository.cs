@@ -248,7 +248,7 @@ namespace OTS.Ticketing.Win.Tickets
         }
         public async Task<List<TicketInfo>> GetTodaysTickets()
         {
-            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+            string query = @"SELECT t.number, t.openDate, t.closeDate, t.companyId, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
                                                 c.name as CompanyName, t.problem, st.name stateName, t.revision, 
 												Case t.IsIndexed when 1 then 'مرتبة'
 												 else 'غير مرتبة'

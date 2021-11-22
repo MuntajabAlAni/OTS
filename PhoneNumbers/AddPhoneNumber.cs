@@ -81,7 +81,8 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             try
             {
                 long addedId = 0;
-                if (TxtPhoneNumber.Text == "" | CombCompanies.SelectedValue == DBNull.Value | Convert.ToInt64(CombCompanies.SelectedValue) == 0)
+                if (TxtPhoneNumber.Text == "" | CombCompanies.SelectedValue == DBNull.Value |
+                    Convert.ToInt64(CombCompanies.SelectedValue) == 0 | TxtCustomerName.Text == "")
                 {
                     MessageBox.Show("يرجى ادخال المعلومات بشكل صحيح", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;

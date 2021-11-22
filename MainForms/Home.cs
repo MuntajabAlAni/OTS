@@ -91,6 +91,13 @@ namespace OTS.Ticketing.Win.MainForms
                 DtgLastTickets.Columns["Revision"].HeaderText = LocalizationMessages.GetMessage("Revision");
                 DtgLastTickets.Columns["IsClosedView"].HeaderText = LocalizationMessages.GetMessage("IsClosed");
                 DtgLastTickets.Columns["TransferedToName"].HeaderText = LocalizationMessages.GetMessage("TransferedTo");
+
+                foreach (DataGridViewRow r in DtgLastTickets.Rows)
+                {
+                    if (r.Cells["IsClosedView"].Value.ToString() == "غير مغلقة")
+                        r.DefaultCellStyle.BackColor = Color.FromArgb(255, 128, 128);
+                }
+
                 DtgLastTickets.HideUntranslatedColumns();
             }
             catch (Exception ex)
@@ -229,6 +236,33 @@ namespace OTS.Ticketing.Win.MainForms
             TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
             TicketRemarks remarks = new TicketRemarks(selectedTicket);
             remarks.ShowDialog();
+        }
+
+        private async void NotesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DtgLastTickets.Rows.Count == 0) return;
+            long selectedNumber = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Number"].Value.ToString());
+            long selectedRevision = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
+            TicketInfo selectedTicket = await _ticketRepository.GetDetailsByNumberAndRevision(selectedNumber, selectedRevision);
+            TicketRemarks remarks = new TicketRemarks(selectedTicket);
+            remarks.ShowDialog();
+        }
+
+        private void ViewTicketToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (DtgLastTickets.Rows.Count == 0) return;
+            long selectedNumber = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Number"].Value.ToString());
+            long selectedRevision = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["Revision"].Value.ToString());
+
+            ViewTicket view = new ViewTicket(selectedNumber, selectedRevision);
+            view.ShowDialog();
+        }
+
+        private void DisplayOldTicektsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SystemConstants.selectedCompanyId = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["CompanyId"].Value.ToString());
+            DisplayOldTickets displayOldTickets = new DisplayOldTickets();
+            displayOldTickets.ShowDialog();
         }
     }
 }

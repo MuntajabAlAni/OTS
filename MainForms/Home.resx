@@ -125,7 +125,40 @@
   <data name="DtgLastTickets.ColumnHeadersHeight" type="System.Int32, mscorlib">
     <value>34</value>
   </data>
+  <metadata name="ContextMenuStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>99, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="NotesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="NotesToolStripMenuItem.Text" xml:space="preserve">
+    <value>ملاحظات</value>
+  </data>
+  <data name="ViewTicketToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="ViewTicketToolStripMenuItem.Text" xml:space="preserve">
+    <value>اظهار البطاقة</value>
+  </data>
+  <data name="DisplayOldTicektsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="DisplayOldTicektsToolStripMenuItem.Text" xml:space="preserve">
+    <value>بطاقات الشركة</value>
+  </data>
+  <data name="ContextMenuStrip.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Yes</value>
+  </data>
+  <data name="ContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 92</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuStrip.Name" xml:space="preserve">
+    <value>ContextMenuStrip</value>
+  </data>
+  <data name="&gt;&gt;ContextMenuStrip.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="DtgLastTickets.Location" type="System.Drawing.Point, System.Drawing">
     <value>27, 349</value>
   </data>
@@ -151,7 +184,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DtgLastTickets.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="LblTime.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -250,7 +283,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;LblDataGridTitle.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -274,7 +307,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="RtbNotes.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt</value>
@@ -301,7 +334,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;RtbNotes.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="LblNotes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -355,7 +388,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="DtgUsers.ColumnHeadersHeight" type="System.Int32, mscorlib">
     <value>29</value>
@@ -382,7 +415,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;DtgUsers.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="LblUsers.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Right</value>
@@ -439,7 +472,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;panel3.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="BtnOnlineState.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
@@ -472,7 +505,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnOnlineState.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="BtnRefresh.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
@@ -508,7 +541,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;BtnRefresh.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -527,6 +560,24 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="&gt;&gt;NotesToolStripMenuItem.Name" xml:space="preserve">
+    <value>NotesToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;NotesToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ViewTicketToolStripMenuItem.Name" xml:space="preserve">
+    <value>ViewTicketToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;ViewTicketToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;DisplayOldTicektsToolStripMenuItem.Name" xml:space="preserve">
+    <value>DisplayOldTicektsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;DisplayOldTicektsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;Timer.Name" xml:space="preserve">
     <value>Timer</value>

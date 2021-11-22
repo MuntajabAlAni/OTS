@@ -41,6 +41,10 @@ namespace OTS.Ticketing.Win.MainForms
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.DtgLastTickets = new System.Windows.Forms.DataGridView();
+            this.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.NotesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ViewTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DisplayOldTicektsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.LblTime = new System.Windows.Forms.Label();
             this.LblDate = new System.Windows.Forms.Label();
             this.Timer = new System.Windows.Forms.Timer(this.components);
@@ -55,6 +59,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.BtnOnlineState = new System.Windows.Forms.Button();
             this.BtnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.DtgLastTickets)).BeginInit();
+            this.ContextMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).BeginInit();
@@ -89,6 +94,7 @@ namespace OTS.Ticketing.Win.MainForms
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.DtgLastTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DtgLastTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.DtgLastTickets.ContextMenuStrip = this.ContextMenuStrip;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -114,6 +120,33 @@ namespace OTS.Ticketing.Win.MainForms
             this.DtgLastTickets.RowTemplate.Height = 26;
             this.DtgLastTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgLastTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgLastTickets_CellContentDoubleClick);
+            // 
+            // ContextMenuStrip
+            // 
+            this.ContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NotesToolStripMenuItem,
+            this.ViewTicketToolStripMenuItem,
+            this.DisplayOldTicektsToolStripMenuItem});
+            this.ContextMenuStrip.Name = "ContextMenuStrip";
+            resources.ApplyResources(this.ContextMenuStrip, "ContextMenuStrip");
+            // 
+            // NotesToolStripMenuItem
+            // 
+            this.NotesToolStripMenuItem.Name = "NotesToolStripMenuItem";
+            resources.ApplyResources(this.NotesToolStripMenuItem, "NotesToolStripMenuItem");
+            this.NotesToolStripMenuItem.Click += new System.EventHandler(this.NotesToolStripMenuItem_Click);
+            // 
+            // ViewTicketToolStripMenuItem
+            // 
+            this.ViewTicketToolStripMenuItem.Name = "ViewTicketToolStripMenuItem";
+            resources.ApplyResources(this.ViewTicketToolStripMenuItem, "ViewTicketToolStripMenuItem");
+            this.ViewTicketToolStripMenuItem.Click += new System.EventHandler(this.ViewTicketToolStripMenuItem_Click);
+            // 
+            // DisplayOldTicektsToolStripMenuItem
+            // 
+            this.DisplayOldTicektsToolStripMenuItem.Name = "DisplayOldTicektsToolStripMenuItem";
+            resources.ApplyResources(this.DisplayOldTicektsToolStripMenuItem, "DisplayOldTicektsToolStripMenuItem");
+            this.DisplayOldTicektsToolStripMenuItem.Click += new System.EventHandler(this.DisplayOldTicektsToolStripMenuItem_Click);
             // 
             // LblTime
             // 
@@ -283,6 +316,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.Name = "Home";
             this.Load += new System.EventHandler(this.Home_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DtgLastTickets)).EndInit();
+            this.ContextMenuStrip.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -311,5 +345,9 @@ namespace OTS.Ticketing.Win.MainForms
         private System.Windows.Forms.Label LblUsers;
         private System.Windows.Forms.Button BtnOnlineState;
         private System.Windows.Forms.Button BtnRefresh;
+        private System.Windows.Forms.ContextMenuStrip ContextMenuStrip;
+        private System.Windows.Forms.ToolStripMenuItem NotesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ViewTicketToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DisplayOldTicektsToolStripMenuItem;
     }
 }
