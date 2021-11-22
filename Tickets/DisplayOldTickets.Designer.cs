@@ -52,6 +52,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.PbLoading = new System.Windows.Forms.PictureBox();
             this.CbClosed = new System.Windows.Forms.CheckBox();
             this.BtnRemarks = new System.Windows.Forms.Button();
+            this.CombInterval = new System.Windows.Forms.ComboBox();
+            this.LblInterval = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DtgOldTickets)).BeginInit();
             this.PnlLoad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).BeginInit();
@@ -135,6 +137,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.Size = new System.Drawing.Size(1001, 386);
             this.DtgOldTickets.TabIndex = 11;
             this.DtgOldTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgOldTickets_CellContentDoubleClick);
+            this.DtgOldTickets.Sorted += new System.EventHandler(this.DtgOldTickets_Sorted);
             // 
             // BtnExit
             // 
@@ -173,7 +176,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpToDate.CustomFormat = "";
             this.DtpToDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpToDate.Location = new System.Drawing.Point(294, 22);
+            this.DtpToDate.Location = new System.Drawing.Point(230, 25);
             this.DtpToDate.Name = "DtpToDate";
             this.DtpToDate.Size = new System.Drawing.Size(106, 25);
             this.DtpToDate.TabIndex = 5;
@@ -185,7 +188,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpFromDate.CustomFormat = "";
             this.DtpFromDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFromDate.Location = new System.Drawing.Point(438, 22);
+            this.DtpFromDate.Location = new System.Drawing.Point(378, 25);
             this.DtpFromDate.Name = "DtpFromDate";
             this.DtpFromDate.Size = new System.Drawing.Size(104, 25);
             this.DtpFromDate.TabIndex = 3;
@@ -196,7 +199,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CombUser.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombUser.FormattingEnabled = true;
-            this.CombUser.Location = new System.Drawing.Point(579, 22);
+            this.CombUser.Location = new System.Drawing.Point(695, 25);
             this.CombUser.Name = "CombUser";
             this.CombUser.Size = new System.Drawing.Size(126, 25);
             this.CombUser.TabIndex = 1;
@@ -209,9 +212,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombCompanies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombCompanies.FormattingEnabled = true;
-            this.CombCompanies.Location = new System.Drawing.Point(772, 22);
+            this.CombCompanies.Location = new System.Drawing.Point(827, 25);
             this.CombCompanies.Name = "CombCompanies";
-            this.CombCompanies.Size = new System.Drawing.Size(180, 25);
+            this.CombCompanies.Size = new System.Drawing.Size(186, 25);
             this.CombCompanies.TabIndex = 0;
             // 
             // LblUser
@@ -219,7 +222,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblUser.AutoSize = true;
             this.LblUser.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblUser.Location = new System.Drawing.Point(711, 27);
+            this.LblUser.Location = new System.Drawing.Point(769, 7);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(55, 15);
             this.LblUser.TabIndex = 27;
@@ -231,7 +234,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblCompany.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCompany.AutoSize = true;
             this.LblCompany.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblCompany.Location = new System.Drawing.Point(958, 27);
+            this.LblCompany.Location = new System.Drawing.Point(971, 7);
             this.LblCompany.Name = "LblCompany";
             this.LblCompany.Size = new System.Drawing.Size(45, 15);
             this.LblCompany.TabIndex = 26;
@@ -243,7 +246,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CbUnclosed.Checked = true;
             this.CbUnclosed.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CbUnclosed.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbUnclosed.Location = new System.Drawing.Point(206, 26);
+            this.CbUnclosed.Location = new System.Drawing.Point(138, 37);
             this.CbUnclosed.Name = "CbUnclosed";
             this.CbUnclosed.Size = new System.Drawing.Size(82, 19);
             this.CbUnclosed.TabIndex = 6;
@@ -271,7 +274,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblFrom.AutoSize = true;
             this.LblFrom.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblFrom.Location = new System.Drawing.Point(548, 27);
+            this.LblFrom.Location = new System.Drawing.Point(488, 30);
             this.LblFrom.Name = "LblFrom";
             this.LblFrom.Size = new System.Drawing.Size(28, 15);
             this.LblFrom.TabIndex = 27;
@@ -281,7 +284,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblTo.AutoSize = true;
             this.LblTo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblTo.Location = new System.Drawing.Point(406, 27);
+            this.LblTo.Location = new System.Drawing.Point(342, 30);
             this.LblTo.Name = "LblTo";
             this.LblTo.Size = new System.Drawing.Size(30, 15);
             this.LblTo.TabIndex = 27;
@@ -313,7 +316,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.CbClosed.Checked = true;
             this.CbClosed.CheckState = System.Windows.Forms.CheckState.Checked;
             this.CbClosed.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.CbClosed.Location = new System.Drawing.Point(138, 26);
+            this.CbClosed.Location = new System.Drawing.Point(157, 12);
             this.CbClosed.Name = "CbClosed";
             this.CbClosed.Size = new System.Drawing.Size(63, 19);
             this.CbClosed.TabIndex = 6;
@@ -336,6 +339,40 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnRemarks.UseVisualStyleBackColor = false;
             this.BtnRemarks.Click += new System.EventHandler(this.BtnRemarks_Click);
             // 
+            // CombInterval
+            // 
+            this.CombInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CombInterval.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombInterval.FormattingEnabled = true;
+            this.CombInterval.Items.AddRange(new object[] {
+            "اول ادخال - اخر ادخال",
+            "اليوم",
+            "الامس",
+            "هذا الاسبوع",
+            "الاسبوع الفائت",
+            "اخر سبعة ايام",
+            "هذا الشهر",
+            "الشهر الفائت",
+            "اخر ثلاثون يوماً"});
+            this.CombInterval.Location = new System.Drawing.Point(580, 25);
+            this.CombInterval.Name = "CombInterval";
+            this.CombInterval.Size = new System.Drawing.Size(109, 25);
+            this.CombInterval.TabIndex = 1;
+            this.CombInterval.Visible = false;
+            this.CombInterval.SelectedIndexChanged += new System.EventHandler(this.CombInterval_SelectedIndexChanged);
+            // 
+            // LblInterval
+            // 
+            this.LblInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblInterval.AutoSize = true;
+            this.LblInterval.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblInterval.Location = new System.Drawing.Point(652, 7);
+            this.LblInterval.Name = "LblInterval";
+            this.LblInterval.Size = new System.Drawing.Size(40, 15);
+            this.LblInterval.TabIndex = 27;
+            this.LblInterval.Text = "الفترة :";
+            this.LblInterval.Visible = false;
+            // 
             // DisplayOldTickets
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,9 +382,11 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.CbUnclosed);
             this.Controls.Add(this.LblTo);
             this.Controls.Add(this.LblFrom);
+            this.Controls.Add(this.LblInterval);
             this.Controls.Add(this.LblUser);
             this.Controls.Add(this.LblCompany);
             this.Controls.Add(this.CombCompanies);
+            this.Controls.Add(this.CombInterval);
             this.Controls.Add(this.CombUser);
             this.Controls.Add(this.DtpFromDate);
             this.Controls.Add(this.DtpToDate);
@@ -395,5 +434,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.PictureBox PbLoading;
         private System.Windows.Forms.CheckBox CbClosed;
         private System.Windows.Forms.Button BtnRemarks;
+        private System.Windows.Forms.ComboBox CombInterval;
+        private System.Windows.Forms.Label LblInterval;
     }
 }

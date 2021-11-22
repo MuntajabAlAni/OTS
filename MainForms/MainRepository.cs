@@ -87,7 +87,7 @@ namespace OTS.Ticketing.Win.MainForms
                              FROM Sessions s with (nolock)
                              join users u on u.id = s.userId
                              left join events e on e.id = s.lastEvent
-                             Where u.userName not in ('admin','Noor','Batool')";
+                             Where u.userName not in ('admin')";
             var result = await _dataAccess.QueryAsync<SessionView>(query, null, false, "", null, SystemConstants.timeout, null);
             return result.ToList();
         }

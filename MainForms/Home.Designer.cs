@@ -120,6 +120,7 @@ namespace OTS.Ticketing.Win.MainForms
             this.DtgLastTickets.RowTemplate.Height = 26;
             this.DtgLastTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgLastTickets.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DtgLastTickets_CellContentDoubleClick);
+            this.DtgLastTickets.Sorted += new System.EventHandler(this.DtgLastTickets_Sorted);
             // 
             // ContextMenuStrip
             // 

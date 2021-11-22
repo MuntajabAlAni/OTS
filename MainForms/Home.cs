@@ -264,5 +264,18 @@ namespace OTS.Ticketing.Win.MainForms
             DisplayOldTickets displayOldTickets = new DisplayOldTickets();
             displayOldTickets.ShowDialog();
         }
+
+        private void DtgLastTickets_Sorted(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridViewRow r in DtgLastTickets.Rows)
+            {
+                r.Cells["ت"].Value = i + 1;
+                i++;
+            
+                if (r.Cells["IsClosedView"].Value.ToString() == "غير مغلقة")
+                    r.DefaultCellStyle.BackColor = Color.FromArgb(255, 128, 128);
+            }
+        }
     }
 }

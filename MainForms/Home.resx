@@ -130,19 +130,19 @@
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="NotesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="NotesToolStripMenuItem.Text" xml:space="preserve">
     <value>ملاحظات</value>
   </data>
   <data name="ViewTicketToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="ViewTicketToolStripMenuItem.Text" xml:space="preserve">
     <value>اظهار البطاقة</value>
   </data>
   <data name="DisplayOldTicektsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
+    <value>146, 22</value>
   </data>
   <data name="DisplayOldTicektsToolStripMenuItem.Text" xml:space="preserve">
     <value>بطاقات الشركة</value>
@@ -151,7 +151,7 @@
     <value>Yes</value>
   </data>
   <data name="ContextMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 92</value>
+    <value>147, 70</value>
   </data>
   <data name="&gt;&gt;ContextMenuStrip.Name" xml:space="preserve">
     <value>ContextMenuStrip</value>

@@ -26,12 +26,25 @@ namespace OTS.Ticketing.Win.Tickets
         private readonly UserRepository _userRepository;
         private DataTable _dt;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private DateTime _prevSaturday = DateTime.Today;
+        private DateTime _nextFriday = DateTime.Today;
+
 
         public DisplayOldTickets()
         {
             _ticketRepository = new TicketRepository();
             _companyRepository = new CompanyRepository();
             _userRepository = new UserRepository();
+
+            while (!(_prevSaturday.DayOfWeek == DayOfWeek.Saturday))
+            {
+                _prevSaturday = _prevSaturday.AddDays(-1);
+            }
+
+            while (!(_nextFriday.DayOfWeek == DayOfWeek.Friday))
+            {
+                _nextFriday = _nextFriday.AddDays(1);
+            }
             InitializeComponent();
             //CombUser.DropDownStyle = ComboBoxStyle.DropDownList;
             //CombCompanies.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -48,15 +61,19 @@ namespace OTS.Ticketing.Win.Tickets
                     !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                     BtnEdit.Visible = false;
 
+                DtpFromDate.Value = DateTime.Today.AddDays(-1);
                 DtpToDate.Value = DateTime.Today;
+
                 FillUsersComboBox();
                 FillCompaniesComboBox();
-               
+
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
                     SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
                     BtnExcel.Visible = true;
                     CombUser.Visible = true;
+                    CombInterval.Visible = true;
+                    LblInterval.Visible = true;
                     LblUser.Visible = true;
                     return;
                 }
@@ -124,6 +141,17 @@ namespace OTS.Ticketing.Win.Tickets
             _dt.Columns["IsIndexedView"].ColumnName = "ترتيب الملفات";
             _dt.Columns["TransferedToName"].ColumnName = "تم التحويل الى";
             _dt.Columns["Remarks"].ColumnName = "الملاحظات";
+            _dt.Columns["RemotelyView"].ColumnName = "الحل";
+            _dt.Columns["IsClosedView"].ColumnName = "الإغلاق";
+            _dt.Columns.Remove("Id");
+            _dt.Columns.Remove("PhoneNumberId");
+            _dt.Columns.Remove("SoftwareId");
+            _dt.Columns.Remove("UserId");
+            _dt.Columns.Remove("CompanyId");
+            _dt.Columns.Remove("StateId");
+            _dt.Columns.Remove("Remotely");
+            _dt.Columns.Remove("IsIndexed");
+            _dt.Columns.Remove("TransferedTo");
             _dt.Columns.Remove("IsClosed");
             _dt.Columns.Remove("IsDeleted");
 
@@ -257,6 +285,63 @@ namespace OTS.Ticketing.Win.Tickets
 
             ViewTicket view = new ViewTicket(selectedNumber, selectedRevision);
             view.ShowDialog();
+        }
+
+        private void DtgOldTickets_Sorted(object sender, EventArgs e)
+        {
+            int i = 0;
+            foreach (DataGridViewRow r in DtgOldTickets.Rows)
+            {
+                r.Cells["ت"].Value = i + 1;
+                i++;
+            }
+        }
+
+        private void CombInterval_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            switch (CombInterval.SelectedIndex)
+            {
+                case 0:
+                    DtpFromDate.Value = new DateTime(2021, 08, 04);
+                    DtpToDate.Value = DateTime.Today;
+                    break;
+                case 1:
+                    DtpFromDate.Value = DateTime.Today;
+                    DtpToDate.Value = DateTime.Today;
+                    break;
+                case 2:
+                    DtpFromDate.Value = DateTime.Today.AddDays(-1);
+                    DtpToDate.Value = DateTime.Today.AddDays(-1);
+                    break;
+                case 3:
+                    DtpFromDate.Value = _prevSaturday;
+                    DtpToDate.Value = _nextFriday;
+                    break;
+                case 4:
+                    DtpFromDate.Value = _prevSaturday.AddDays(-7);
+                    DtpToDate.Value = _nextFriday.AddDays(-7);
+                    break;
+                case 5:
+                    DtpFromDate.Value = DateTime.Today.AddDays(-6);
+                    DtpToDate.Value = DateTime.Today;
+                    break;
+                case 6:
+                    DtpFromDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+                    DtpToDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month));
+                    break;
+                case 7:
+                    DtpFromDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 1);
+                    DtpToDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month - 1));
+                    break;
+                case 8:
+                    DtpFromDate.Value = DateTime.Today.AddDays(-30);
+                    DtpToDate.Value = DateTime.Today;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
