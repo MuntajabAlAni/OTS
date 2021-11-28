@@ -296,7 +296,7 @@ namespace OTS.Ticketing.Win.Tickets
 
         private void BtnOldTickets_Click(object sender, EventArgs e)
         {
-            DisplayOldTickets displayOldTickets = new DisplayOldTickets();
+            DisplayOldTickets displayOldTickets = new DisplayOldTickets(0);
             displayOldTickets.ShowDialog();
         }
 

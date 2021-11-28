@@ -28,10 +28,12 @@ namespace OTS.Ticketing.Win.Tickets
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private DateTime _prevSaturday = DateTime.Today;
         private DateTime _nextFriday = DateTime.Today;
+        private readonly long _companyId;
 
 
-        public DisplayOldTickets()
+        public DisplayOldTickets(long companyId)
         {
+            _companyId = companyId;
             _ticketRepository = new TicketRepository();
             _companyRepository = new CompanyRepository();
             _userRepository = new UserRepository();
@@ -66,6 +68,11 @@ namespace OTS.Ticketing.Win.Tickets
 
                 FillUsersComboBox();
                 FillCompaniesComboBox();
+
+                if (_companyId > 0)
+                {
+                    CombInterval.SelectedIndex = 0;
+                }
 
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
                     SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
@@ -177,7 +184,7 @@ namespace OTS.Ticketing.Win.Tickets
                 var list = await _companyRepository.GetAll();
                 list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
                 CombCompanies.DataSource = list;
-                CombCompanies.SelectedValue = SystemConstants.selectedCompanyId;
+                CombCompanies.SelectedValue = _companyId;
             }
             catch (Exception ex)
             {

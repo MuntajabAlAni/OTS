@@ -335,7 +335,7 @@ namespace OTS.Ticketing.Win
             {
                 SystemConstants.currentEvent = EventType.DisplayOldTickets;
                 if (PnlContainer.Controls.ContainsKey("DisplayOldTickets")) return;
-                ApplingFormOnContainer(new DisplayOldTickets());
+                ApplingFormOnContainer(new DisplayOldTickets(0));
             }
             catch (Exception ex)
             {

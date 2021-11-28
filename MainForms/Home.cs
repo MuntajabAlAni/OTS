@@ -11,6 +11,7 @@ using NLog;
 using System.IO;
 using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.Tickets;
+using OTS.Ticketing.Win.Enums;
 
 namespace OTS.Ticketing.Win.MainForms
 {
@@ -139,7 +140,7 @@ namespace OTS.Ticketing.Win.MainForms
                     DtgUsers.Sort(DtgUsers.Columns["isOnline"], System.ComponentModel.ListSortDirection.Descending);
                     DtgUsers.Columns["isOnline"].Visible = false;
                     Image online = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Wake : Properties.Resources.Online;
-                    Image ticketOnProgress = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Wake : Properties.Resources.TicketOnProgress;
+                    Image ticketOnProgress = Properties.Resources.TicketOnProgress;
                     Image offline = SystemConstants.loggedInUser.Id == 4 ? Properties.Resources.Sleep : Properties.Resources.Offline;
 
                     if (DtgUsers.Columns.Contains("الحالة") == false)
@@ -156,15 +157,16 @@ namespace OTS.Ticketing.Win.MainForms
                     {
                         if (Convert.ToBoolean(row.Cells["isOnline"].Value) == true)
                         {
+                            if (row.Cells["اخر حركة"].Value.ToString() == "مشغول")
+                            {
+                                row.Cells["الحالة"].Value = ticketOnProgress;
+                                continue;
+                            }
                             row.Cells["الحالة"].Value = online;
                         }
                         else
                         {
                             row.Cells["الحالة"].Value = offline;
-                            if (row.Cells["اخر حركة"].Value.ToString() == "مشغول")
-                            {
-                                row.Cells["الحالة"].Value = ticketOnProgress;
-                            }
                         }
                     }
                     foreach (DataGridViewColumn col in DtgUsers.Columns)
@@ -188,33 +190,27 @@ namespace OTS.Ticketing.Win.MainForms
         {
             File.WriteAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Notes.txt"), RtbNotes.Text);
         }
-        private async void BtnOnlineState_Click(object sender, EventArgs e)
+        private void BtnOnlineState_Click(object sender, EventArgs e)
         {
 
             if (BtnOnlineState.Text == "مشغول")
             {
-                SessionInfo session = new SessionInfo
-                {
-                    IsOnline = false,
-                    UserId = SystemConstants.loggedInUser.Id
-                };
+                SystemConstants.currentEvent = EventType.TicketInProgress;
 
-                await _mainRepository.UpdateIsOnlineByUserId(session);
                 BtnOnlineState.Text = "متفرغ";
                 BtnOnlineState.BackColor = Color.Crimson;
+                LblTime.ForeColor = Color.Crimson;
+                LblDate.ForeColor = Color.Crimson;
                 isBtnChecked = true;
             }
             else if (BtnOnlineState.Text == "متفرغ")
             {
-                SessionInfo session = new SessionInfo
-                {
-                    IsOnline = true,
-                    UserId = SystemConstants.loggedInUser.Id
-                };
+                SystemConstants.currentEvent = EventType.Home;
 
-                await _mainRepository.UpdateIsOnlineByUserId(session);
                 BtnOnlineState.Text = "مشغول";
                 BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
+                LblTime.ForeColor = Color.White;
+                LblDate.ForeColor = Color.White;
                 isBtnChecked = false;
             }
 
@@ -260,8 +256,7 @@ namespace OTS.Ticketing.Win.MainForms
 
         private void DisplayOldTicektsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SystemConstants.selectedCompanyId = Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["CompanyId"].Value.ToString());
-            DisplayOldTickets displayOldTickets = new DisplayOldTickets();
+            DisplayOldTickets displayOldTickets = new DisplayOldTickets(Convert.ToInt64(DtgLastTickets.SelectedRows[0].Cells["CompanyId"].Value.ToString()));
             displayOldTickets.ShowDialog();
         }
 
@@ -272,7 +267,7 @@ namespace OTS.Ticketing.Win.MainForms
             {
                 r.Cells["ت"].Value = i + 1;
                 i++;
-            
+
                 if (r.Cells["IsClosedView"].Value.ToString() == "غير مغلقة")
                     r.DefaultCellStyle.BackColor = Color.FromArgb(255, 128, 128);
             }
