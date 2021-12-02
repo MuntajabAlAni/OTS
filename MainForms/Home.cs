@@ -96,9 +96,16 @@ namespace OTS.Ticketing.Win.MainForms
                 foreach (DataGridViewRow r in DtgLastTickets.Rows)
                 {
                     if (r.Cells["IsClosedView"].Value.ToString() == "غير مغلقة")
+                    {
+                        if (r.Cells["StateName"].Value.ToString() == "مؤجلة")
+                        {
+                            r.DefaultCellStyle.BackColor = Color.Silver;
+                            continue;
+                        }
                         r.DefaultCellStyle.BackColor = Color.FromArgb(255, 128, 128);
-                }
+                    }
 
+                }
                 DtgLastTickets.HideUntranslatedColumns();
             }
             catch (Exception ex)
