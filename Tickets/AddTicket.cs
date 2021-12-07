@@ -88,7 +88,7 @@ namespace OTS.Ticketing.Win.Tickets
                 LblRevision.Text = "0";
                 FillCompaniesComboBox();
                 FillSoftwaresComboBox();
-                FillUsersComboBox();
+                //FillUsersComboBox();
                 FillPhoneNumbersComboBox();
                 SystemConstants.selectedCompanyId = 0;
                 SystemConstants.selectedPhoneNumberId = 0;
@@ -140,7 +140,7 @@ namespace OTS.Ticketing.Win.Tickets
             {
                 CombUser.DisplayMember = "displayName";
                 CombUser.ValueMember = "Id";
-                CombUser.DataSource = await _userRepository.GetOTS();
+                CombUser.DataSource = await _userRepository.GetOnlineOTS();
                 CombUser.SelectedValue = SystemConstants.selectedUser;
             }
             catch (Exception ex)
@@ -470,6 +470,11 @@ namespace OTS.Ticketing.Win.Tickets
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
+        }
+
+        private void CombUser_Enter(object sender, EventArgs e)
+        {
+            FillUsersComboBox();
         }
     }
 }

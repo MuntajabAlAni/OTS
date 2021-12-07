@@ -35,13 +35,11 @@ namespace OTS.Ticketing.Win.MainForms
             {
                 if (isBtnChecked)
                 {
-                    BtnOnlineState.Text = "متفرغ";
-                    BtnOnlineState.BackColor = Color.Crimson;
+                    SetBusy();
                 }
                 else
                 {
-                    BtnOnlineState.Text = "مشغول";
-                    BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
+                    SetFree();
                 }
                 if (SystemConstants.loggedInUser.Id != 1 & SystemConstants.loggedInUser.Id != 2)
                 {
@@ -63,6 +61,25 @@ namespace OTS.Ticketing.Win.MainForms
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
+        }
+
+        private void SetBusy()
+        {
+            SystemConstants.currentEvent = EventType.TicketInProgress;
+
+            BtnOnlineState.Text = "متفرغ";
+            BtnOnlineState.BackColor = Color.Crimson;
+            LblTime.ForeColor = Color.Crimson;
+            LblDate.ForeColor = Color.Crimson;
+        }
+        private void SetFree()
+        {
+            SystemConstants.currentEvent = EventType.Home;
+
+            BtnOnlineState.Text = "مشغول";
+            BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
+            LblTime.ForeColor = Color.White;
+            LblDate.ForeColor = Color.White;
         }
         private async Task GetDtgLastTicketsData()
         {
@@ -202,22 +219,12 @@ namespace OTS.Ticketing.Win.MainForms
 
             if (BtnOnlineState.Text == "مشغول")
             {
-                SystemConstants.currentEvent = EventType.TicketInProgress;
-
-                BtnOnlineState.Text = "متفرغ";
-                BtnOnlineState.BackColor = Color.Crimson;
-                LblTime.ForeColor = Color.Crimson;
-                LblDate.ForeColor = Color.Crimson;
+                SetBusy();
                 isBtnChecked = true;
             }
             else if (BtnOnlineState.Text == "متفرغ")
             {
-                SystemConstants.currentEvent = EventType.Home;
-
-                BtnOnlineState.Text = "مشغول";
-                BtnOnlineState.BackColor = Color.FromArgb(0, 122, 204);
-                LblTime.ForeColor = Color.White;
-                LblDate.ForeColor = Color.White;
+                SetFree();
                 isBtnChecked = false;
             }
 

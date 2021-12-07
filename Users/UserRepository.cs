@@ -56,6 +56,17 @@ namespace OTS.Ticketing.Win.Users
             var result = await _dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
             return result.ToList();
         }
+        public async Task<List<UserInfo>> GetOnlineOTS()
+        {
+            string query = @"select u.id, u.displayName + ' - ' + e.EventName as DisplayName
+                                from users u
+                                join usersroles ur on u.id = ur.UserId
+								join [sessions] s on u.id = s.userId
+								join events e  on s.lastEvent = e.id
+                                WHERE u.isDeleted = 0 and ur.RoleId = 31 and s.isOnline = 1";
+            var result = await _dataAccess.QueryAsync<UserInfo>(query, new DynamicParameters());
+            return result.ToList();
+        }
         public async Task<int> Update(UserInfo user)
         {
             user.Salt = Guid.NewGuid();
