@@ -75,7 +75,8 @@ namespace OTS.Ticketing.Win.Tickets
                 }
 
                 if (SystemConstants.userRoles.Contains(((long)RoleType.Admin)) |
-                    SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
+                    SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)) |
+                    SystemConstants.userRoles.Contains(((long)RoleType.CallReceiver)))
                 {
                     BtnExcel.Visible = true;
                     CombUser.Visible = true;

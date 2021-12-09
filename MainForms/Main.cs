@@ -77,6 +77,7 @@ namespace OTS.Ticketing.Win
                 {
                     BtnTickets.Visible = false;
                     BtnAddTicket.Visible = true;
+                    BtnOldTickets.Visible = true;
                     BtnAddTicket.Location = new Point(0, 162);
                     return;
                 }
