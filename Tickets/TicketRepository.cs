@@ -40,6 +40,24 @@ namespace OTS.Ticketing.Win.Tickets
             var result = await _dataAccess.QueryAsync<TicketInfo>(query, parameters);
             return result.ToList();
         }
+        public async Task<List<TicketInfo>> GetUnClosedByCallReceiver()
+        {
+            string query = @"SELECT t.number, t.openDate, t.closeDate, pn.phoneNumber, s.name as SoftwareName, e.displayName as UserName,
+                                                 c.name as CompanyName, t.problem, st.name stateName, t.revision, Case when t.IsIndexed = 1 then 'مرتبة'
+												 when t.IsIndexed = 0 then 'غير مرتبة'
+												 end IsIndexedView FROM tickets t
+                                                 inner join phoneNumbers pn on t.phoneNumberId = pn.id
+                                                 inner join softwares s on t.softwareId = s.id
+                                                 inner join Users e on t.UserId = e.id
+                                                 inner join companies c on t.companyId = c.id 
+												 left join states st on t.stateId = st.id
+												 inner join (select number,max(revision) revision from tickets where UserId in (2, 4, 10, 11, 13, 15, 19, 20, 21, 24) group by number) t2 on t.revision = t2.revision and t.number = t2.number
+												 WHERE t.UserId in (2, 4, 10, 11, 13, 15, 19, 20, 21, 24) and t.isClosed = 0 and t.isDeleted = 0
+                                                 ORDER BY t.number DESC,t.revision DESC";
+            //todo: batool users !!
+            var result = await _dataAccess.QueryAsync<TicketInfo>(query);
+            return result.ToList();
+        }
         public async Task<string> GetLastNumber()
         {
             string query = "SELECT TOP 1 t.number from tickets t order by t.number DESC";

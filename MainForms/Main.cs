@@ -75,11 +75,10 @@ namespace OTS.Ticketing.Win
                 }
                 if (SystemConstants.userRoles.Contains(((long)RoleType.CallReceiver)))
                 {
-                    BtnTickets.Visible = false;
+                    BtnTickets.Visible = true;
                     BtnAddTicket.Visible = true;
                     BtnOldTickets.Visible = true;
-                    BtnAddTicket.Location = new Point(0, 162);
-                    return;
+                    BtnAddTicket.Location = new Point(0, 214);
                 }
                 if (SystemConstants.userRoles.Contains(((long)RoleType.OTSManager)))
                 {
@@ -88,7 +87,10 @@ namespace OTS.Ticketing.Win
                     BtnScheduling.Visible = true;
                     BtnDisplayEmployees.Visible = true;
                 }
-                BtnTickets.Location = new Point(0, 162);
+                if (SystemConstants.userRoles.Contains(((long)RoleType.OTS)))
+                {
+                    BtnTickets.Location = new Point(0, 162);
+                }
             }
             catch (Exception ex)
             {

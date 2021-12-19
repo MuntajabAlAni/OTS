@@ -99,8 +99,9 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                DataTable dt = SystemConstants.ToDataTable(
-                    await _ticketRepository.GetUnClosedByUserId(SystemConstants.loggedInUser.Id));
+                DataTable dt = SystemConstants.userRoles.Contains(((long)RoleType.CallReceiver)) ? 
+                    SystemConstants.ToDataTable(await _ticketRepository.GetUnClosedByCallReceiver()) :
+                    SystemConstants.ToDataTable(await _ticketRepository.GetUnClosedByUserId(SystemConstants.loggedInUser.Id));
                 DataColumn dc = new DataColumn("ت", typeof(int));
                 dt.Columns.Add(dc);
                 int i = 0;
