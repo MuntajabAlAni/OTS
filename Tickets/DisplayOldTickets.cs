@@ -339,8 +339,13 @@ namespace OTS.Ticketing.Win.Tickets
                     DtpToDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month));
                     break;
                 case 7:
-                    DtpFromDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 1);
-                    DtpToDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month - 1));
+                    DtpFromDate.Value = DateTime.Today.Month == 1 ?
+
+                        new DateTime(DateTime.Today.Year - 1, 12, 1):
+                        new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, 1);
+                    DtpToDate.Value = DateTime.Today.Month == 1 ?
+                         new DateTime(DateTime.Today.Year - 1, 12, DateTime.DaysInMonth(DateTime.Today.Year - 1, 12)) :
+                        new DateTime(DateTime.Today.Year, DateTime.Today.Month - 1, DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month - 1));
                     break;
                 case 8:
                     DtpFromDate.Value = DateTime.Today.AddDays(-30);
