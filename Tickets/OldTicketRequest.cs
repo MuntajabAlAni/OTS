@@ -12,6 +12,7 @@ namespace OTS.Ticketing.Win.Tickets
         public DateTime ToDate { get; set; }
         public long UserId { get; set; }
         public long CompanyId { get; set; }
+        public long PhoneNumberId { get; set; }
         public int IsClosed { get; set; }
     }
 }

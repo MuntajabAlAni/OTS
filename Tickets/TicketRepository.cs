@@ -185,6 +185,7 @@ namespace OTS.Ticketing.Win.Tickets
 		                    @fromdate = @FromDate,
 		                    @toDate = @ToDate,
 		                    @companyId = @CompanyId,
+		                    @phoneNumberId = @PhoneNumberId,
 		                    @userId = @UserId,
 		                    @isClosed = @IsClosed";
 

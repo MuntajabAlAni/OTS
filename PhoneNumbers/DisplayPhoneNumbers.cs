@@ -18,6 +18,7 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         readonly private string _phoneNumber;
         readonly bool _search;
+        private DataTable _phoneNumbers;
 
         public DisplayPhoneNumbers(bool search, string phoneNumber = "")
         {
@@ -33,7 +34,10 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 if (!SystemConstants.userRoles.Contains(((long)RoleType.AddPhoneNumber)) &
                     !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                     BtnAdd.Visible = false;
-                await GetDtgPhoneNumbersData();
+
+                _phoneNumbers = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
+
+                GetDtgPhoneNumbersData(_phoneNumbers);
                 if (_search)
                 {
                     BtnAdd.Visible = false;
@@ -61,18 +65,20 @@ namespace OTS.Ticketing.Win.PhoneNumbers
             }
 
         }
-        private async Task GetDtgPhoneNumbersData()
+        private void GetDtgPhoneNumbersData(DataTable data)
         {
-            DataTable dt = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
-            DataColumn dc = new DataColumn("ت", typeof(int));
-            dt.Columns.Add(dc);
-            int i = 0;
-            foreach (DataRow dr in dt.Rows)
+            if (!data.Columns.Contains("ت"))
             {
-                dr["ت"] = i + 1;
-                i++;
+                DataColumn dc = new DataColumn("ت", typeof(int));
+                data.Columns.Add(dc);
+                int i = 0;
+                foreach (DataRow dr in data.Rows)
+                {
+                    dr["ت"] = i + 1;
+                    i++;
+                }
             }
-            DtgPhoneNumbers.DataSource = dt;
+            DtgPhoneNumbers.DataSource = data;
             DtgPhoneNumbers.Columns["ت"].DisplayIndex = 0;
             DtgPhoneNumbers.Columns["Id"].Visible = false;
             DtgPhoneNumbers.Columns["phoneNumber"].HeaderText = "رقم الهاتف";
@@ -98,7 +104,10 @@ namespace OTS.Ticketing.Win.PhoneNumbers
         {
             AddPhoneNumber addPhoneNumber = new AddPhoneNumber(0);
             addPhoneNumber.ShowDialog();
-            await GetDtgPhoneNumbersData();
+
+            _phoneNumbers = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
+
+            GetDtgPhoneNumbersData(_phoneNumbers);
         }
 
         private async void DtgPhoneNumbers_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -122,7 +131,10 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                     long id = Convert.ToInt64(DtgPhoneNumbers.SelectedRows[0].Cells["Id"].Value.ToString());
                     AddPhoneNumber addPhoneNumber = new AddPhoneNumber(id);
                     addPhoneNumber.ShowDialog();
-                    await GetDtgPhoneNumbersData();
+
+                    _phoneNumbers = SystemConstants.ToDataTable(await phoneNumberRepository.GetBySearch(_phoneNumber));
+
+                    GetDtgPhoneNumbersData(_phoneNumbers);
                 }
             }
             catch (Exception ex)
@@ -130,6 +142,21 @@ namespace OTS.Ticketing.Win.PhoneNumbers
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
+        }
+
+        private void TxtPhoneNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtPhoneNumber.Text != string.Empty)
+            {
+                var rows = _phoneNumbers.Select($"PhoneNumber Like '%{ TxtPhoneNumber.Text }%'");
+                if (rows.Count() > 0)
+                {
+                    GetDtgPhoneNumbersData(rows.CopyToDataTable());
+                    return;
+                }
+            }
+
+            GetDtgPhoneNumbersData(_phoneNumbers);
         }
     }
 }

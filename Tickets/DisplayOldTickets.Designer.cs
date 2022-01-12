@@ -29,10 +29,10 @@ namespace OTS.Ticketing.Win.Tickets
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DisplayOldTickets));
             this.BtnEdit = new System.Windows.Forms.Button();
             this.DtgOldTickets = new System.Windows.Forms.DataGridView();
@@ -54,6 +54,8 @@ namespace OTS.Ticketing.Win.Tickets
             this.BtnRemarks = new System.Windows.Forms.Button();
             this.CombInterval = new System.Windows.Forms.ComboBox();
             this.LblInterval = new System.Windows.Forms.Label();
+            this.CombPhoneNumbers = new System.Windows.Forms.ComboBox();
+            this.LblPhoneNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DtgOldTickets)).BeginInit();
             this.PnlLoad.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbLoading)).BeginInit();
@@ -82,13 +84,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.AllowUserToDeleteRows = false;
             this.DtgOldTickets.AllowUserToOrderColumns = true;
             this.DtgOldTickets.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgOldTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgOldTickets.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.DtgOldTickets.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -97,24 +99,24 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.DtgOldTickets.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.DtgOldTickets.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DtgOldTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DtgOldTickets.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.DtgOldTickets.ColumnHeadersHeight = 34;
             this.DtgOldTickets.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DtgOldTickets.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DtgOldTickets.DefaultCellStyle = dataGridViewCellStyle7;
             this.DtgOldTickets.EnableHeadersVisualStyles = false;
             this.DtgOldTickets.GridColor = System.Drawing.Color.WhiteSmoke;
             this.DtgOldTickets.Location = new System.Drawing.Point(12, 62);
@@ -125,13 +127,13 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtgOldTickets.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.DtgOldTickets.RowHeadersVisible = false;
             this.DtgOldTickets.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.WhiteSmoke;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.DtgOldTickets.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.WhiteSmoke;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(122)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.White;
+            this.DtgOldTickets.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.DtgOldTickets.RowTemplate.Height = 26;
             this.DtgOldTickets.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgOldTickets.Size = new System.Drawing.Size(1001, 386);
@@ -178,7 +180,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.DtpToDate.Location = new System.Drawing.Point(230, 25);
             this.DtpToDate.Name = "DtpToDate";
-            this.DtpToDate.Size = new System.Drawing.Size(106, 25);
+            this.DtpToDate.Size = new System.Drawing.Size(89, 25);
             this.DtpToDate.TabIndex = 5;
             this.DtpToDate.Value = new System.DateTime(2021, 9, 13, 12, 12, 40, 0);
             // 
@@ -188,9 +190,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.DtpFromDate.CustomFormat = "";
             this.DtpFromDate.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.DtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DtpFromDate.Location = new System.Drawing.Point(378, 25);
+            this.DtpFromDate.Location = new System.Drawing.Point(361, 25);
             this.DtpFromDate.Name = "DtpFromDate";
-            this.DtpFromDate.Size = new System.Drawing.Size(104, 25);
+            this.DtpFromDate.Size = new System.Drawing.Size(86, 25);
             this.DtpFromDate.TabIndex = 3;
             this.DtpFromDate.Value = new System.DateTime(2021, 8, 4, 0, 0, 0, 0);
             // 
@@ -199,9 +201,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CombUser.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombUser.FormattingEnabled = true;
-            this.CombUser.Location = new System.Drawing.Point(695, 25);
+            this.CombUser.Location = new System.Drawing.Point(615, 25);
             this.CombUser.Name = "CombUser";
-            this.CombUser.Size = new System.Drawing.Size(126, 25);
+            this.CombUser.Size = new System.Drawing.Size(107, 25);
             this.CombUser.TabIndex = 1;
             this.CombUser.Visible = false;
             // 
@@ -212,9 +214,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.CombCompanies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.CombCompanies.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.CombCompanies.FormattingEnabled = true;
-            this.CombCompanies.Location = new System.Drawing.Point(827, 25);
+            this.CombCompanies.Location = new System.Drawing.Point(854, 25);
             this.CombCompanies.Name = "CombCompanies";
-            this.CombCompanies.Size = new System.Drawing.Size(186, 25);
+            this.CombCompanies.Size = new System.Drawing.Size(159, 25);
             this.CombCompanies.TabIndex = 0;
             // 
             // LblUser
@@ -222,7 +224,7 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblUser.AutoSize = true;
             this.LblUser.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblUser.Location = new System.Drawing.Point(769, 7);
+            this.LblUser.Location = new System.Drawing.Point(670, 7);
             this.LblUser.Name = "LblUser";
             this.LblUser.Size = new System.Drawing.Size(55, 15);
             this.LblUser.TabIndex = 27;
@@ -274,7 +276,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblFrom.AutoSize = true;
             this.LblFrom.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblFrom.Location = new System.Drawing.Point(488, 30);
+            this.LblFrom.Location = new System.Drawing.Point(453, 30);
             this.LblFrom.Name = "LblFrom";
             this.LblFrom.Size = new System.Drawing.Size(28, 15);
             this.LblFrom.TabIndex = 27;
@@ -284,7 +286,7 @@ namespace OTS.Ticketing.Win.Tickets
             // 
             this.LblTo.AutoSize = true;
             this.LblTo.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblTo.Location = new System.Drawing.Point(342, 30);
+            this.LblTo.Location = new System.Drawing.Point(325, 30);
             this.LblTo.Name = "LblTo";
             this.LblTo.Size = new System.Drawing.Size(30, 15);
             this.LblTo.TabIndex = 27;
@@ -354,7 +356,7 @@ namespace OTS.Ticketing.Win.Tickets
             "هذا الشهر",
             "الشهر الفائت",
             "اخر ثلاثون يوماً"});
-            this.CombInterval.Location = new System.Drawing.Point(580, 25);
+            this.CombInterval.Location = new System.Drawing.Point(500, 25);
             this.CombInterval.Name = "CombInterval";
             this.CombInterval.Size = new System.Drawing.Size(109, 25);
             this.CombInterval.TabIndex = 1;
@@ -366,12 +368,35 @@ namespace OTS.Ticketing.Win.Tickets
             this.LblInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.LblInterval.AutoSize = true;
             this.LblInterval.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.LblInterval.Location = new System.Drawing.Point(652, 7);
+            this.LblInterval.Location = new System.Drawing.Point(572, 7);
             this.LblInterval.Name = "LblInterval";
             this.LblInterval.Size = new System.Drawing.Size(40, 15);
             this.LblInterval.TabIndex = 27;
             this.LblInterval.Text = "الفترة :";
             this.LblInterval.Visible = false;
+            // 
+            // CombPhoneNumbers
+            // 
+            this.CombPhoneNumbers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CombPhoneNumbers.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CombPhoneNumbers.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CombPhoneNumbers.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.CombPhoneNumbers.FormattingEnabled = true;
+            this.CombPhoneNumbers.Location = new System.Drawing.Point(728, 25);
+            this.CombPhoneNumbers.Name = "CombPhoneNumbers";
+            this.CombPhoneNumbers.Size = new System.Drawing.Size(120, 25);
+            this.CombPhoneNumbers.TabIndex = 0;
+            // 
+            // LblPhoneNumber
+            // 
+            this.LblPhoneNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.LblPhoneNumber.AutoSize = true;
+            this.LblPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.LblPhoneNumber.Location = new System.Drawing.Point(786, 7);
+            this.LblPhoneNumber.Name = "LblPhoneNumber";
+            this.LblPhoneNumber.Size = new System.Drawing.Size(65, 15);
+            this.LblPhoneNumber.TabIndex = 26;
+            this.LblPhoneNumber.Text = "رقم الهاتف :";
             // 
             // DisplayOldTickets
             // 
@@ -384,7 +409,9 @@ namespace OTS.Ticketing.Win.Tickets
             this.Controls.Add(this.LblFrom);
             this.Controls.Add(this.LblInterval);
             this.Controls.Add(this.LblUser);
+            this.Controls.Add(this.LblPhoneNumber);
             this.Controls.Add(this.LblCompany);
+            this.Controls.Add(this.CombPhoneNumbers);
             this.Controls.Add(this.CombCompanies);
             this.Controls.Add(this.CombInterval);
             this.Controls.Add(this.CombUser);
@@ -436,5 +463,7 @@ namespace OTS.Ticketing.Win.Tickets
         private System.Windows.Forms.Button BtnRemarks;
         private System.Windows.Forms.ComboBox CombInterval;
         private System.Windows.Forms.Label LblInterval;
+        private System.Windows.Forms.ComboBox CombPhoneNumbers;
+        private System.Windows.Forms.Label LblPhoneNumber;
     }
 }

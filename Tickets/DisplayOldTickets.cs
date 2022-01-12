@@ -2,6 +2,7 @@
 using NLog;
 using OTS.Ticketing.Win.Companies;
 using OTS.Ticketing.Win.Enums;
+using OTS.Ticketing.Win.PhoneNumbers;
 using OTS.Ticketing.Win.Users;
 using OTS.Ticketing.Win.Utils;
 using System;
@@ -23,6 +24,7 @@ namespace OTS.Ticketing.Win.Tickets
     {
         private readonly TicketRepository _ticketRepository;
         private readonly CompanyRepository _companyRepository;
+        private readonly PhoneNumberRepository _phoneNumberRepository;
         private readonly UserRepository _userRepository;
         private DataTable _dt;
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
@@ -36,6 +38,7 @@ namespace OTS.Ticketing.Win.Tickets
             _companyId = companyId;
             _ticketRepository = new TicketRepository();
             _companyRepository = new CompanyRepository();
+            _phoneNumberRepository = new PhoneNumberRepository();
             _userRepository = new UserRepository();
 
             while (!(_prevSaturday.DayOfWeek == DayOfWeek.Saturday))
@@ -68,6 +71,7 @@ namespace OTS.Ticketing.Win.Tickets
 
                 FillUsersComboBox();
                 FillCompaniesComboBox();
+                FillPhoneNumbersComboBox();
 
                 if (_companyId > 0)
                 {
@@ -110,6 +114,7 @@ namespace OTS.Ticketing.Win.Tickets
                     ToDate = DtpToDate.Value,
                     UserId = Convert.ToInt64(CombUser.SelectedValue),
                     CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                    PhoneNumberId = Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                     IsClosed = 0
                 };
             else if (!CbUnclosed.Checked & CbClosed.Checked)
@@ -119,6 +124,7 @@ namespace OTS.Ticketing.Win.Tickets
                     ToDate = DtpToDate.Value,
                     UserId = Convert.ToInt64(CombUser.SelectedValue),
                     CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                    PhoneNumberId = Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                     IsClosed = 1
                 };
             else if (CbUnclosed.Checked & CbClosed.Checked)
@@ -128,6 +134,7 @@ namespace OTS.Ticketing.Win.Tickets
                     ToDate = DtpToDate.Value,
                     UserId = Convert.ToInt64(CombUser.SelectedValue),
                     CompanyId = Convert.ToInt64(CombCompanies.SelectedValue),
+                    PhoneNumberId = Convert.ToInt64(CombPhoneNumbers.SelectedValue),
                     IsClosed = 2
                 };
 
@@ -186,6 +193,24 @@ namespace OTS.Ticketing.Win.Tickets
                 list.Insert(0, (new CompanyInfo { Id = 0, Name = "الكل" }));
                 CombCompanies.DataSource = list;
                 CombCompanies.SelectedValue = _companyId;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Logger.Error(ex);
+            }
+
+        }
+
+        private async void FillPhoneNumbersComboBox()
+        {
+            try
+            {
+                CombPhoneNumbers.DisplayMember = "PhoneNumber";
+                CombPhoneNumbers.ValueMember = "Id";
+                var list = await _phoneNumberRepository.GetAll();
+                list.Insert(0, (new PhoneNumberInfo { Id = 0, PhoneNumber = "الكل" }));
+                CombPhoneNumbers.DataSource = list;
             }
             catch (Exception ex)
             {

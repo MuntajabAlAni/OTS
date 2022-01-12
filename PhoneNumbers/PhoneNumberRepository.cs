@@ -77,5 +77,11 @@ namespace OTS.Ticketing.Win.PhoneNumbers
 
             return result.ToList();
         }
+        public async Task<List<PhoneNumberInfo>> GetAll()
+        {
+            string query = "SELECT * FROM PhoneNumbers where isDeleted = 0";
+            var result = await _dataAccess.QueryAsync<PhoneNumberInfo>(query, new DynamicParameters());
+            return result.ToList();
+        }
     }
 }

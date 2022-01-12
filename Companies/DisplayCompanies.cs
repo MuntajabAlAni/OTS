@@ -19,6 +19,8 @@ namespace OTS.Ticketing.Win.Companies
 
         readonly string _companyName;
         readonly bool _search;
+        private DataTable _companies;
+
         public DisplayCompanies(bool serach, string companyName = "")
         {
             InitializeComponent();
@@ -34,7 +36,9 @@ namespace OTS.Ticketing.Win.Companies
                     !SystemConstants.userRoles.Contains(((long)RoleType.Admin)))
                     BtnAdd.Visible = false;
 
-                await GetDtgCompaniesData();
+                _companies = SystemConstants.ToDataTable(await companyRepository.GetByName(_companyName));
+                GetDtgCompaniesData(_companies);
+
                 if (_search)
                 {
                     BtnAdd.Visible = false;
@@ -61,18 +65,20 @@ namespace OTS.Ticketing.Win.Companies
             }
         }
 
-        private async Task GetDtgCompaniesData()
+        private void GetDtgCompaniesData(DataTable data)
         {
-            DataTable dt = SystemConstants.ToDataTable(await companyRepository.GetByName(_companyName));
-            DataColumn dc = new DataColumn("ت", typeof(int));
-            dt.Columns.Add(dc);
-            int i = 0;
-            foreach (DataRow dr in dt.Rows)
+            if (!data.Columns.Contains("ت"))
             {
-                dr["ت"] = i + 1;
-                i++;
+                DataColumn dc = new DataColumn("ت", typeof(int));
+                data.Columns.Add(dc);
+                int i = 0;
+                foreach (DataRow dr in data.Rows)
+                {
+                    dr["ت"] = i + 1;
+                    i++;
+                }
             }
-            DtgCompanies.DataSource = dt;
+            DtgCompanies.DataSource = data;
             DtgCompanies.Columns["ت"].DisplayIndex = 0;
             DtgCompanies.Columns["Id"].Visible = false;
             DtgCompanies.Columns["Name"].HeaderText = "اسم الشركة";
@@ -99,7 +105,9 @@ namespace OTS.Ticketing.Win.Companies
         {
             AddCompany addCompany = new AddCompany(0);
             addCompany.ShowDialog();
-            await GetDtgCompaniesData();
+
+            _companies = SystemConstants.ToDataTable(await companyRepository.GetByName(_companyName));
+            GetDtgCompaniesData(_companies);
         }
 
         private async void DtgCompanies_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -121,7 +129,9 @@ namespace OTS.Ticketing.Win.Companies
                     long id = Convert.ToInt64(DtgCompanies.SelectedRows[0].Cells["Id"].Value.ToString());
                     AddCompany addCompany = new AddCompany(id);
                     addCompany.ShowDialog();
-                    await GetDtgCompaniesData();
+
+                    _companies = SystemConstants.ToDataTable(await companyRepository.GetByName(_companyName));
+                    GetDtgCompaniesData(_companies);
                 }
             }
             catch (Exception ex)
@@ -129,6 +139,21 @@ namespace OTS.Ticketing.Win.Companies
                 MessageBox.Show(ex.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Logger.Error(ex);
             }
+        }
+
+        private void TxtCompany_TextChanged(object sender, EventArgs e)
+        {
+            if (TxtCompany.Text != string.Empty)
+            {
+                var rows = _companies.Select($"Name Like '%{ TxtCompany.Text }%'");
+                if (rows.Count() > 0)
+                {
+                    GetDtgCompaniesData(rows.CopyToDataTable());
+                    return;
+                }
+            }
+
+            GetDtgCompaniesData(_companies);
         }
     }
 }
