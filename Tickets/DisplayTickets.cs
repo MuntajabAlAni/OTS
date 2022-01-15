@@ -99,9 +99,18 @@ namespace OTS.Ticketing.Win.Tickets
         {
             try
             {
-                DataTable dt = SystemConstants.userRoles.Contains(((long)RoleType.CallReceiver)) ? 
-                    SystemConstants.ToDataTable(await _ticketRepository.GetUnClosedByCallReceiver()) :
-                    SystemConstants.ToDataTable(await _ticketRepository.GetUnClosedByUserId(SystemConstants.loggedInUser.Id));
+                DataTable dt;
+                if (SystemConstants.userRoles.Contains(((long)RoleType.CallReceiver)))
+                {
+                    var callReceiverTickets = await _ticketRepository.GetUnClosedByCallReceiver();
+                    callReceiverTickets.AddRange(await _ticketRepository.GetUnClosedByUserId(SystemConstants.loggedInUser.Id));
+                    dt = SystemConstants.ToDataTable(callReceiverTickets);
+                }
+                else
+                {
+                    dt = SystemConstants.ToDataTable(await _ticketRepository.GetUnClosedByUserId(SystemConstants.loggedInUser.Id));
+                }
+
                 DataColumn dc = new DataColumn("ت", typeof(int));
                 dt.Columns.Add(dc);
                 int i = 0;
