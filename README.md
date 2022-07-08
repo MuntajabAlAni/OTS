@@ -30,5 +30,5 @@ Current reports are:
 <hr/>
 
 <h4>Insert Ticket Screen</h4>
-<img src='Images/screen2.emf'/>
+<img src='Images/screen2.png'/>
 <hr/>
